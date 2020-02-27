@@ -1,0 +1,57 @@
+
+p, .title {
+    font-family: "Raleway", serif;
+}
+
+.title, .posted{
+    text-align: center;
+}
+
+.index-main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+} 
+
+.sidebar {
+    width: 90%;
+}
+
+
+.text-link, a{
+    color: #8ba2d2;
+    transition: 9s;
+}
+
+.text-side{
+    color: #42b72a;
+    transition: 9s;
+}
+
+.index-thumbnail{
+    float: left;
+    margin: 0 10px 5px 0;
+}
+
+.marginb5{
+    margin-bottom: 30px;
+}
+
+a:hover, .text-side:hover, .text-link:hover{
+    color: #FF0000;
+    transition: 7s;
+}
+
+a, a:hover, .text-side:hover, .text-link:link, .text-link:hover, .text-link:visited{
+    outline: none;
+    text-decoration: none;
+}
+
+
+@media only screen and (max-width: 850px) {
+  .sidebar{display: none;}
+  .index-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
