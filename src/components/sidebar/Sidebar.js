@@ -24,13 +24,6 @@ const Sidebar = () => {
                                 crystal
                                 resume
                             }
-                            labels {
-                                tag
-                                tech
-                                name 
-                                size 
-                                color
-                            }
                         }
                     }
                     allContentfulBlogPost {
