@@ -1,6 +1,10 @@
 "use strict";
 
 const siteConfig = require("./config");
+const contentfulConfig = {
+  spaceId: process.env.SPACEID,
+  accessToken: process.env.TOKEN,
+};
 
 module.exports = {
   siteMetadata: {
@@ -24,6 +28,10 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-minify`,
+    {
+      resolve: 'gatsby-source-contentful',
+      options: contentfulConfig,
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

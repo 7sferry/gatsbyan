@@ -1,102 +1,88 @@
-import React from "react";
-import { graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import "./blog-post.css";
-
 import Sidebar from "../components/sidebar/Sidebar";
-import TechTag from "../components/tags/TechTag";
 import CustomShareBlock from "../components/CustomShareBlock";
+import { getPlurals, getTechTags } from "../components/constant";
+import React from "react";
+import { graphql } from "gatsby";
+import get from "lodash/get";
 
-const BlogPost = props => {
-  const post = props.data.markdownRemark;
-  const labels = props.data.site.siteMetadata.labels;
-  const siteName = props.data.site.siteMetadata.title;
-  const siteUrl = props.data.site.siteMetadata.url;
-  const url = `${siteUrl}${props.pageContext.slug}`;
-  const tags = post.frontmatter.tags;
+class BlogPostTemplate extends React.Component {
+  render() {
+    const post = get(this.props, "data.contentfulBlogPost");
+    const site = get(this.props, "data.site.siteMetadata");
+    const timeToRead = post.body.childMarkdownRemark.timeToRead;
+    const url = `${site.url}/blog/${post.slug}`;
+    return (
+      <Layout>
+        <SEO title={post.title} />
+        <div className="post-page-main">
+          <div className="sidebar border-right px-4 py-2">
+            <Sidebar />
+          </div>
 
-  const getTechTags = tags => {
-    const techTags = [];
-    tags.forEach((tag, i) => {
-      labels.forEach(label => {
-        if (tag === label.tag) {
-          techTags.push(
-            <TechTag
-              key={i}
-              tag={label.tag}
-              tech={label.tech}
-              name={label.name}
-              size={label.size}
-              color={label.color}
-            />
-          );
-        }
-      });
-    });
-    return techTags;
-  };
-
-  return (
-    <Layout>
-      <SEO title={post.frontmatter.title} />
-      <div className="post-page-main">
-        <div className="sidebar px-4 py-2">
-          <Sidebar />
-        </div>
-
-        <div className="post-main">
-          <SEO
-            title={post.frontmatter.title}
-            description={post.frontmatter.title}
-          />
-          <div className="mt-3">
-            <h2 className="title">{post.frontmatter.title}</h2>
-            <small className="d-block text-info posted">
-              <i className="d-block">
-                Posted on {post.frontmatter.date} &nbsp;&nbsp;&nbsp; (
-                {post.timeToRead} min read)
-              </i>
-              {getTechTags(tags)}
-            </small>
-            <div className="pt-3" dangerouslySetInnerHTML={{ __html: post.html }} />
-            <CustomShareBlock
-              title={post.frontmatter.title}
-              siteName={siteName}
-              url={url}
-            />
+          <div className="post-main">
+            <SEO title={post.title} description={post.title} />
+            <div>
+              <h2 className="title">{post.title}</h2>
+              <h3 className="title text-info">
+                <i className="page-info">Posted on {post.publishDate}</i>
+                <i className="page-info">
+                  {timeToRead} min read{getPlurals(timeToRead)}
+                </i>
+                <i className="page-info">{getTechTags(post.tags)}</i>
+              </h3>
+              <div
+                className="pt-3"
+                dangerouslySetInnerHTML={{
+                  __html: post.body.childMarkdownRemark.html,
+                }}
+              />
+              <CustomShareBlock
+                title={post.title}
+                siteName={site.title}
+                url={url}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
-  );
-};
+      </Layout>
+    );
+  }
+}
 
-export const query = graphql`
-  query($slug: String!) {
+export default BlogPostTemplate;
+
+export const pageQuery = graphql`
+  query BlogPostBySlug($slug: String!) {
+    contentfulBlogPost(slug: { eq: $slug }) {
+      title
+      publishDate(formatString: "MMMM Do, YYYY")
+      heroImage {
+        fixed(width: 160) {
+          base64
+          width
+          height
+          src
+          srcSet
+          srcSetWebp
+          tracedSVG
+        }
+      }
+      body {
+        childMarkdownRemark {
+          html
+          timeToRead
+        }
+      }
+      tags
+      slug
+    }
     site {
       siteMetadata {
         url
-        title
-        labels {
-          tag
-          tech
-          name
-          size
-          color
-        }
-      }
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      timeToRead
-      frontmatter {
-        title
-        date(formatString: "DD/MM/YYYY")
-        tags
       }
     }
   }
 `;
-
-export default BlogPost;

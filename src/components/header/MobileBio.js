@@ -10,10 +10,10 @@ const MobileBio = (props) => {
         <Mobsoc contacts={props.contacts}/>
         <div className="mobile-bio-main">
             <img src={bioImg} className="ml-4 mt-2" style={{ maxWidth: `75px`, maxHeight: `75px`, borderRadius: `50%`,boxShadow: `1px 1px 3px`}} alt="author-pic" />
-            <p className="ml-3 mt-2 mb-0">
-              <h4 className="mb-1">{props.author}</h4>
-              <h7>{props.tagline}</h7>
-            </p>
+            <div className="ml-3 mt-2 mb-0">
+              <p className="mb-1">{props.author}</p>
+              <small>{props.tagline}</small>
+            </div>
         </div></>
     )
 };

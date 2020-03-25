@@ -6,137 +6,142 @@ import "./index.css";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Sidebar from "../components/sidebar/Sidebar";
-import TechTag from "../components/tags/TechTag";
 import Img from "gatsby-image";
+import get from "lodash/get";
+import { getTechTags } from "../components/constant";
 
-const IndexPage = ({ data }) => {
-  const posts = data.allMarkdownRemark.edges;
-  const labels = data.site.siteMetadata.labels;
-  const currentPage = 1;
-  const nextPage = (currentPage + 1).toString();
+class IndexPage extends React.Component {
+  render() {
+    const posts = get(this, "props.data.allContentfulBlogPost.edges");
+    const pageInfo = get(this, "props.data.allContentfulBlogPost.pageInfo");
 
-  const getTechTags = tags => {
-    const techTags = [];
-    tags.forEach((tag, i) => {
-      labels.forEach(label => {
-        if (tag === label.tag) {
-          techTags.push(
-            <TechTag
-              key={i}
-              tag={label.tag}
-              tech={label.tech}
-              name={label.name}
-              size={label.size}
-              color={label.color}
-            />
-          );
-        }
-      });
-    });
-    return techTags;
-  };
-
-  return (
-    <Layout>
-      <SEO
-        title="Home"
-        keywords={[
-          `gatsby`,
-          `javascript`,
-          `react`,
-          `web development`,
-          `blog`,
-          `graphql`,
-        ]}
-      />
-      <div className="index-main">
-        <div className="sidebar border-right px-4 py-2">
-          <Sidebar />
-        </div>
-        <div className="post-list-main">
-          {posts.map(post => {
-            const tags = post.node.frontmatter.tags;
-            return (
-              <div id={post.node.id} key={post.node.id} className="container text-justify mb-5">
-                <h3 className="title">
-                  <Link to={post.node.fields.slug} className="text-link">
-                    {post.node.frontmatter.title}
-                  </Link>
-                </h3>
-                <small className="d-block text-info posted">
-                  <i className="d-block">Posted on {post.node.frontmatter.date} &nbsp;&nbsp;&nbsp; ({post.node.timeToRead} min read)</i>
-                  {getTechTags(tags)}
-                </small>
-                <p className="d-inline-block">
-                  <Img
-                    className="index-thumbnail"
-                    fixed={
-                      post.node.frontmatter.featuredImage.childImageSharp.fixed
-                    }
-                  />
-                  {post.node.excerpt}
-                  <Link to={post.node.fields.slug} className="text-primary">
-                    <small className="d-inline ml-1"> Read full post</small>
-                  </Link>
-                </p>
-              </div>
-            );
-          })}
-          <div className="mt-4 text-center">
-            <Link to={nextPage} rel="next" style={{ textDecoration: `none` }}>
-              <span className="text-link">Next Page →</span>
-            </Link>
+    return (
+      <Layout>
+        <SEO
+          title="Home"
+          keywords={[
+            `gatsby`,
+            `javascript`,
+            `react`,
+            `web development`,
+            `blog`,
+            `graphql`,
+          ]}
+        />
+        <div className="index-main">
+          <div className="sidebar border-right px-4 py-2">
+            <Sidebar />
+          </div>
+          <div className="post-list-main">
+            {posts.map(post => {
+              const tags = post.node.tags;
+              const timeToRead = post.node.body.childMarkdownRemark.timeToRead;
+              return (
+                <div
+                  id={post.node.id}
+                  key={post.node.id}
+                  className="container text-justify"
+                >
+                  <h2 className="title">
+                    <Link to={`/blog/${post.node.slug}`} className="text-link">
+                      {post.node.title}
+                    </Link>
+                  </h2>
+                  <h3 className="title text-info">
+                    <i className="page-info">
+                      Posted on {post.node.publishDate}
+                    </i>
+                    <i className="page-info">
+                      {timeToRead} min{timeToRead > 1 ? "s" : ""} read
+                    </i>
+                    <i className="page-info">{getTechTags(tags)}</i>
+                  </h3>
+                  <div className="d-inline-block">
+                    <Img
+                      className="index-thumbnail"
+                      fixed={post.node.heroImage.fixed}
+                    />
+                    <p>
+                      {post.node.body.childMarkdownRemark.excerpt}
+                      <Link to={`/post.node.slug`} className="text-primary">
+                        <small className="d-inline ml-1"> Read full post</small>
+                      </Link>
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+            <div className="text-center mt-4">
+              {pageInfo.hasPreviousPage && (
+                <Link
+                  to={
+                    pageInfo.currentPage === 2
+                      ? "/"
+                      : `/${pageInfo.currentPage - 1}`
+                  }
+                  rel="prev"
+                  style={{ textDecoration: `none` }}
+                >
+                  <span className="text-link">← Previous Page</span>
+                </Link>
+              )}
+              {pageInfo.hasNextPage && (
+                <Link
+                  to={`/${pageInfo.currentPage + 1}`}
+                  rel="next"
+                  style={{ textDecoration: `none` }}
+                >
+                  <span className="text-link ml-5">Next Page →</span>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
-  );
-};
+      </Layout>
+    );
+  }
+}
 
 export const pageQuery = graphql`
-  query IndexQuery {
-    site {
-      siteMetadata {
-        title
-        author
-        labels {
-          tag
-          tech
-          name
-          size
-          color
-        }
-      }
-    }
-    allMarkdownRemark(
-      limit: 5
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
+  query HomeQuery($skip: Int, $limit: Int = 2, $tag: String) {
+    allContentfulBlogPost(
+      skip: $skip
+      limit: $limit
+      sort: { fields: publishDate, order: DESC }
+      filter: { tags: { eq: $tag } }
     ) {
       edges {
         node {
-            timeToRead
-          excerpt(pruneLength: 500)
-          id
-          frontmatter {
-            title
-            date(formatString: "DD/MM/YYYY")
-            tags
-            featuredImage {
-              childImageSharp {
-                fixed(width: 160) {
-                    base64
-                    width
-                    height
-                    srcSetWebp
-                }
-              }
+          slug
+          body {
+            childMarkdownRemark {
+              timeToRead
+              excerpt(pruneLength: 700)
             }
           }
-          fields {
-            slug
+          tags
+          title
+          publishDate(formatString: "MMMM Do, YYYY")
+          heroImage {
+            fixed(width: 160) {
+              base64
+              width
+              height
+              src
+              srcSet
+              srcSetWebp
+              tracedSVG
+            }
           }
+          id
         }
+      }
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        perPage
+        currentPage
+        pageCount
       }
     }
   }

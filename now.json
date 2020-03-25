@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "SPACEID": "@spaceid",
+      "TOKEN": "@token"
+    }
+  }
+}
