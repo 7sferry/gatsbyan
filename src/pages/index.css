@@ -3,6 +3,12 @@ p, .title {
     font-family: "Raleway", serif;
 }
 
+.page-info{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 85%;
+}
+
 .title, .posted{
     text-align: center;
 }

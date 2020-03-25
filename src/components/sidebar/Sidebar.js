@@ -1,16 +1,15 @@
-import React from "react"
-import { StaticQuery, graphql} from "gatsby"
-import Bio from "./Bio"
-import "./sidebar.css"
+import React from "react";
+import { StaticQuery, graphql } from "gatsby";
+import Bio from "./Bio";
+import "./sidebar.css";
 
-import SocialLinks from "./SocialLinks"
-import TechTags from "./TechTags"
-
+import SocialLinks from "./SocialLinks";
+import TechTags from "./TechTags";
 
 const Sidebar = () => {
-    return (
-        <StaticQuery
-            query={graphql`
+  return (
+    <StaticQuery
+      query={graphql`
                 query SiteBioQuery {
                     site {
                         siteMetadata {
@@ -34,34 +33,33 @@ const Sidebar = () => {
                             }
                         }
                     }
-                    allMarkdownRemark(
-                        limit: 10
-                        sort: { fields: [frontmatter___date], order: DESC }
-                        filter: { frontmatter: { published: { eq: true } } }
-                    ) {
-                        edges {
-                            node {
-                                frontmatter {
-                                    tags
-                                }
-                            }
+                    allContentfulBlogPost {
+                      edges {
+                        node {
+                          tags
                         }
+                      }
                     }
-                }
+                  }
             `}
-            render={data => (
-                <>
-                    <div className="sidebar-main ">
-                        <Bio author={data.site.siteMetadata.author} tagline={data.site.siteMetadata.tagline} />
-                        <SocialLinks contacts={data.site.siteMetadata.contacts} />
-                        <div className="tech-tags mt-4">
-                            <TechTags labels={data.site.siteMetadata.labels} posts={data.allMarkdownRemark.edges} />
-                        </div>
-                    </div>
-                </>
-            )}
-        />
-    )
-}
+      render={data => (
+        <>
+          <div className="sidebar-main ">
+            <Bio
+              author={data.site.siteMetadata.author}
+              tagline={data.site.siteMetadata.tagline}
+            />
+            <SocialLinks contacts={data.site.siteMetadata.contacts} />
+            <div className="tech-tags mt-4">
+              <TechTags
+                posts={data.allContentfulBlogPost.edges}
+              />
+            </div>
+          </div>
+        </>
+      )}
+    />
+  );
+};
 
-export default Sidebar
+export default Sidebar;

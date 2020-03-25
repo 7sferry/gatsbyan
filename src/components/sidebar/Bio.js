@@ -10,10 +10,12 @@ const PhotoImage = (
         file(relativePath: { eq: "ferry.jpg" }) {
           childImageSharp {
             fixed(width: 150, quality: 100) {
-              tracedSVG
               width
               height
+              src
+              srcSet
               srcSetWebp
+              base64
             }
           }
         }
