@@ -1,5 +1,5 @@
 "use strict";
-
+require('dotenv').config();
 const siteConfig = require("./config");
 const contentfulConfig = {
   spaceId: process.env.SPACEID,
