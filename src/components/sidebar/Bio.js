@@ -25,7 +25,8 @@ const PhotoImage = (
       <Img
         className="profile-img"
         fixed={data.file.childImageSharp.fixed}
-        alt=""
+        alt="Ferry"
+        title="Ferry Suhandri"
       />
     )}
   />
