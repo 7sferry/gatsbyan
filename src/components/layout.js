@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
               paddingTop: 0,
             }}
           >
-            <main className="p-4">{children}</main>
+            <main className="main-layout">{children}</main>
             <footer className="text-center">
               <hr/>
               <p className="d-inline">© {new Date().getFullYear()} <a className="text-info" href="https://ferry.netlify.com/resume/">Ferry S</a>.</p>

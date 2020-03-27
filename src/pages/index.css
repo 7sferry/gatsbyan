@@ -3,14 +3,18 @@ p, .title {
     font-family: "Raleway", serif;
 }
 
+.main-layout{
+    padding: 3rem;
+}
+
 .page-info{
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 3px 10px;
     font-size: 85%;
 }
 
 .title, .posted{
     text-align: center;
+    line-height: 18px;
 }
 
 .index-main {
@@ -59,5 +63,8 @@ a, a:hover, .text-side:hover, .text-link:link, .text-link:hover, .text-link:visi
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+  }
+  .main-layout{
+      padding: 1.5rem 0 0;
   }
 }

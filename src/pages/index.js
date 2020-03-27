@@ -40,30 +40,32 @@ class IndexPage extends React.Component {
                 <div
                   id={post.node.id}
                   key={post.node.id}
-                  className="container text-justify"
+                  className="container"
                 >
-                  <h2 className="title">
+                  <h3 className="title">
                     <Link to={`/blog/${post.node.slug}`} className="text-link">
                       {post.node.title}
                     </Link>
-                  </h2>
-                  <h3 className="title text-info">
-                    <i className="page-info">
-                      Posted on {post.node.publishDate}
-                    </i>
-                    <i className="page-info">
-                      {timeToRead} min{timeToRead > 1 ? "s" : ""} read
-                    </i>
-                    <i className="page-info">{getTechTags(tags)}</i>
                   </h3>
-                  <div className="d-inline-block">
+                  <div className="title text-info">
+
+                    <span className="page-info">
+                      {post.node.publishDate}
+                    </span>
+                    <span className="page-info">
+                      {timeToRead} min{timeToRead > 1 ? "s" : ""} read
+                    </span>
+                    <br/>
+                    <span className="page-info">{getTechTags(tags)}</span>
+                  </div>
+                  <div className="d-inline-block text-justify pt-1">
                     <Img
                       className="index-thumbnail"
                       fixed={post.node.heroImage.fixed}
                     />
                     <p>
                       {post.node.body.childMarkdownRemark.excerpt}
-                      <Link to={`/post.node.slug`} className="text-primary">
+                      <Link to={`/blog/${post.node.slug}`} className="text-primary">
                         <small className="d-inline ml-1"> Read full post</small>
                       </Link>
                     </p>
@@ -130,6 +132,7 @@ export const pageQuery = graphql`
               src
               srcSet
               srcSetWebp
+              srcWebp
               tracedSVG
             }
           }

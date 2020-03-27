@@ -4,5 +4,9 @@
       "SPACEID": "@spaceid",
       "TOKEN": "@token"
     }
-  }
+  },
+  "version": 2,
+  "routes": [
+    { "src": "/.*", "status": 404, "dest": "/404" }
+  ]
 }

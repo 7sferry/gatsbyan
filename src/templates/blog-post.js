@@ -25,20 +25,23 @@ class BlogPostTemplate extends React.Component {
           <div className="post-main">
             <SEO title={post.title} description={post.title} />
             <div>
-              <h2 className="title">{post.title}</h2>
-              <h3 className="title text-info">
-                <i className="page-info">Posted on {post.publishDate}</i>
-                <i className="page-info">
-                  {timeToRead} min read{getPlurals(timeToRead)}
-                </i>
-                <i className="page-info">{getTechTags(post.tags)}</i>
-              </h3>
-              <div
-                className="pt-3"
-                dangerouslySetInnerHTML={{
-                  __html: post.body.childMarkdownRemark.html,
-                }}
-              />
+              <h3 className="title">{post.title}</h3>
+              <div className="title text-info">
+                <span className="page-info">{post.publishDate}</span>
+                <span className="page-info">
+                  {timeToRead} min{getPlurals(timeToRead)} read
+                </span>
+                <br />
+                <span className="page-info">{getTechTags(post.tags)}</span>
+              </div>
+              <div className="d-inline-block">
+                <p
+                  className="pt-3"
+                  dangerouslySetInnerHTML={{
+                    __html: post.body.childMarkdownRemark.html,
+                  }}
+                />
+              </div>
               <CustomShareBlock
                 title={post.title}
                 siteName={site.title}
@@ -59,17 +62,6 @@ export const pageQuery = graphql`
     contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishDate(formatString: "MMMM Do, YYYY")
-      heroImage {
-        fixed(width: 160) {
-          base64
-          width
-          height
-          src
-          srcSet
-          srcSetWebp
-          tracedSVG
-        }
-      }
       body {
         childMarkdownRemark {
           html

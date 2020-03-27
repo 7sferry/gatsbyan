@@ -9,12 +9,13 @@ const PhotoImage = (
       query Bio {
         file(relativePath: { eq: "ferry.jpg" }) {
           childImageSharp {
-            fixed(width: 150, quality: 100) {
+            fixed(width: 150, quality: 100, toFormat: WEBP) {
               width
               height
               src
               srcSet
               srcSetWebp
+              srcWebp
               base64
             }
           }

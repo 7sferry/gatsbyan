@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 
 
 import MobileMenuLinks from "./MobileMenuLinks"
-import SocialLinks from "./SocialLinks"
+import Menu from "./Menu"
 import "./header.css"
 
 const Header = ({ siteTitle, tagline, contacts }) => {
@@ -30,7 +30,7 @@ const Header = ({ siteTitle, tagline, contacts }) => {
             {siteTitle}
           </Link>
         </h1>
-        <SocialLinks contacts={contacts} />
+        <Menu />
       </div>
       <MobileMenuLinks/>
     </header>
