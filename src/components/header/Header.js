@@ -1,22 +1,19 @@
-import React from "react"
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
+import React from "react";
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
 
+import MobileMenuLinks from "./MobileMenuLinks";
+import Menu from "./Menu";
+import "./header.css";
 
-import MobileMenuLinks from "./MobileMenuLinks"
-import Menu from "./Menu"
-import "./header.css"
-
-const Header = ({ siteTitle, tagline, contacts }) => {
-
+const Header = ({ siteTitle }) => {
   return (
-    <header
-      className="head-main"
-    >
-      <div className="head-elements"
+    <header className="head-main">
+      <div
+        className="head-elements"
         style={{
           margin: `0`,
-          padding: `.75rem`
+          padding: `.75rem`,
         }}
       >
         <h1 className="head-logo ml-4" style={{ margin: 0 }}>
@@ -32,17 +29,17 @@ const Header = ({ siteTitle, tagline, contacts }) => {
         </h1>
         <Menu />
       </div>
-      <MobileMenuLinks/>
+      <MobileMenuLinks />
     </header>
-  )
-}
+  );
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-}
+};
 
 Header.defaultProps = {
   siteTitle: ``,
-}
+};
 
-export default Header
+export default Header;

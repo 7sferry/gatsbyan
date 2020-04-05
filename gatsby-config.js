@@ -1,18 +1,20 @@
 "use strict";
-require('dotenv').config();
+require("dotenv").config();
 const siteConfig = require("./config");
 const contentfulConfig = {
   spaceId: process.env.SPACEID,
   accessToken: process.env.TOKEN,
 };
+const queries = require("./src/utils/Algolia");
 
 module.exports = {
   siteMetadata: {
-    url: siteConfig.url,
+    siteUrl: siteConfig.url,
     title: siteConfig.title,
     tagline: siteConfig.tagline,
     description: `Blog Ferry Suhandri, IT specialist dari Solok, Sumatera Barat`,
     author: siteConfig.author.name,
+    copyright: siteConfig.copyright,
     contacts: {
       linkedin: siteConfig.author.contacts.linkedin,
       github: siteConfig.author.contacts.github,
@@ -21,15 +23,32 @@ module.exports = {
       resume: siteConfig.author.contacts.resume,
       facebook: siteConfig.author.contacts.facebook,
     },
-    labels: siteConfig.labels,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-remark-plaintext`,
+    `gatsby-transformer-sqip`,
     `gatsby-plugin-minify`,
     {
-      resolve: 'gatsby-source-contentful',
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        sitemapSize: 5000,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-algolia",
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
+        indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
+        queries,
+        chunkSize: 10000,
+      },
+    },
+    {
+      resolve: "gatsby-source-contentful",
       options: contentfulConfig,
     },
     {
@@ -50,6 +69,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-responsive-iframe`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -60,14 +80,24 @@ module.exports = {
               noInlineHighlight: false,
             },
           },
-          `gatsby-remark-responsive-iframe`,
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images-medium-zoom`,
+            options: {
+              margin: 36,
+              scrollOffset: 0,
+              background: "transparent",
+            },
+          },
+          {
+            resolve: `gatsby-remark-images-contentful`,
             options: {
               // It's important to specify the maxWidth (in pixels) of
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
-              maxWidth: 2000,
+              maxWidth: 1200,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              backgroundColor: "transparent",
             },
           },
         ],
@@ -96,6 +126,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 };

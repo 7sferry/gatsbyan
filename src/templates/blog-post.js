@@ -1,19 +1,19 @@
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Layout from "../components/Layout";
+import SEO from "../components/SEO";
 import "./blog-post.css";
 import Sidebar from "../components/sidebar/Sidebar";
-import CustomShareBlock from "../components/CustomShareBlock";
-import { getPlurals, getTechTags } from "../components/constant";
+import Share from "../components/Share";
+import { getPlurals, getTechTags } from "../components/Constant";
 import React from "react";
 import { graphql } from "gatsby";
-import get from "lodash/get";
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = get(this.props, "data.contentfulBlogPost");
-    const site = get(this.props, "data.site.siteMetadata");
+    const post = this.props.data.contentfulBlogPost;
+    const site = this.props.data.site.siteMetadata;
     const timeToRead = post.body.childMarkdownRemark.timeToRead;
-    const url = `${site.url}/blog/${post.slug}`;
+    const url = `${site.siteUrl}/blog/${post.slug}`;
+
     return (
       <Layout>
         <SEO title={post.title} />
@@ -42,11 +42,7 @@ class BlogPostTemplate extends React.Component {
                   }}
                 />
               </div>
-              <CustomShareBlock
-                title={post.title}
-                siteName={site.title}
-                url={url}
-              />
+              <Share title={post.title} siteName={site.title} url={url} />
             </div>
           </div>
         </div>
@@ -73,7 +69,7 @@ export const pageQuery = graphql`
     }
     site {
       siteMetadata {
-        url
+        siteUrl
       }
     }
   }

@@ -1,6 +1,6 @@
 const path = require(`path`);
-const { createFilePath } = require(`gatsby-source-filesystem`);
 const _ = require("lodash");
+const siteConfig = require("./config");
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -28,8 +28,13 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
+        const postSizeByTag = new Map();
         const posts = result.data.allContentfulBlogPost.edges;
         posts.forEach(post => {
+          post.node.tags.forEach(tag => {
+            let count = postSizeByTag.has(tag) ? postSizeByTag.get(tag) + 1 : 1;
+            postSizeByTag.set(tag, count);
+          });
           createPage({
             path: `/blog/${post.node.slug}/`,
             component: blogPost,
@@ -41,7 +46,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         const postsPerPage = 2;
         const numPages = Math.ceil(posts.length / postsPerPage);
-        Array.from({ length: numPages }).forEach((_, i) => {
+        Array.from({ length: numPages }).forEach((value, i) => {
           createPage({
             path: i === 0 ? `/` : `/${i + 1}`,
             component: path.resolve("./src/pages/index.js"),
@@ -52,24 +57,25 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-    let tags = new Set();
-    _.each(posts, edge => {
-      if (_.get(edge, "node.tags")) {
-        edge.node.tags.forEach(tag => {
-          tags.add(tag);
-        })
-      }
-    });
+        postSizeByTag.forEach((size, tag) => {
+          const numTags = Math.ceil(size / postsPerPage);
+          Array.from({ length: numTags }).forEach((value, i) => {
+            createPage({
+              path: `/tags/${_.kebabCase(tag)}/` + (i === 0 ? `` : `${i + 1}`),
+              component: path.resolve("./src/pages/index.js"),
+              context: {
+                tag: tag,
+                limit: postsPerPage,
+                skip: i * postsPerPage,
+              },
+            });
+          });
+        });
 
-    tags.forEach(tag => {
-      createPage({
-        path: `/tags/${_.kebabCase(tag)}/`,
-        component: path.resolve("src/pages/index.js"),
-        context: {
-          tag,
-        },
-      });
-    });
+        createPage({
+          path: `/search/`,
+          component: path.resolve("./src/templates/search-page.js"),
+        });
       })
     );
   });

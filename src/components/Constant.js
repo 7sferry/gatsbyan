@@ -8,11 +8,11 @@ import { Link } from "gatsby";
 
 export const getTechTags = tags => {
   const techTags = [];
-  if(tags !== undefined && tags !== null){
-    tags.forEach((tag, i) =>{
+  if (tags !== undefined && tags !== null) {
+    tags.forEach((tag, i) => {
       techTags.push(
         <span key={tag}>
-              {i > 0 ? ", " : ""}
+          {i > 0 ? ", " : ""}
           <Link to={`/tags/${tag}/`}>{tag}</Link>
         </span>
       );
@@ -22,5 +22,5 @@ export const getTechTags = tags => {
 };
 
 export const getPlurals = count => {
-  return count > 1 ? "s" : ""
+  return count > 1 ? "s" : "";
 };

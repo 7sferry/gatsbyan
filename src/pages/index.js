@@ -1,33 +1,24 @@
 import React from "react";
+import Img from "gatsby-image";
 import { Link, graphql } from "gatsby";
+import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import Sidebar from "../components/sidebar/Sidebar";
+import { getPlurals, getTechTags } from "../components/Constant";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import Sidebar from "../components/sidebar/Sidebar";
-import Img from "gatsby-image";
-import get from "lodash/get";
-import { getTechTags } from "../components/constant";
-
 class IndexPage extends React.Component {
   render() {
-    const posts = get(this, "props.data.allContentfulBlogPost.edges");
-    const pageInfo = get(this, "props.data.allContentfulBlogPost.pageInfo");
+    const contents = this.props.data.allContentfulBlogPost;
+    const posts = contents.edges;
+    const pageInfo = contents.pageInfo;
+    const tag = this.props.pageContext.tag;
+    const uri = tag ? `/tags/${tag}` : ``;
 
     return (
       <Layout>
-        <SEO
-          title="Home"
-          keywords={[
-            `gatsby`,
-            `javascript`,
-            `react`,
-            `web development`,
-            `blog`,
-            `graphql`,
-          ]}
-        />
+        <SEO title="Home" keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`, `graphql`]} />
         <div className="index-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
@@ -37,32 +28,22 @@ class IndexPage extends React.Component {
               const tags = post.node.tags;
               const timeToRead = post.node.body.childMarkdownRemark.timeToRead;
               return (
-                <div
-                  id={post.node.id}
-                  key={post.node.id}
-                  className="container"
-                >
+                <div id={post.node.id} key={post.node.id} className="container">
                   <h3 className="title">
                     <Link to={`/blog/${post.node.slug}`} className="text-link">
                       {post.node.title}
                     </Link>
                   </h3>
                   <div className="title text-info">
-
+                    <span className="page-info">{post.node.publishDate}</span>
                     <span className="page-info">
-                      {post.node.publishDate}
+                      {timeToRead} min{getPlurals(timeToRead)} read
                     </span>
-                    <span className="page-info">
-                      {timeToRead} min{timeToRead > 1 ? "s" : ""} read
-                    </span>
-                    <br/>
+                    <br />
                     <span className="page-info">{getTechTags(tags)}</span>
                   </div>
                   <div className="d-inline-block text-justify pt-1">
-                    <Img
-                      className="index-thumbnail"
-                      fixed={post.node.heroImage.fixed}
-                    />
+                    <Img className="index-thumbnail" fixed={post.node.heroImage.fixed} />
                     <p>
                       {post.node.body.childMarkdownRemark.excerpt}
                       <Link to={`/blog/${post.node.slug}`} className="text-primary">
@@ -76,11 +57,7 @@ class IndexPage extends React.Component {
             <div className="text-center mt-4">
               {pageInfo.hasPreviousPage && (
                 <Link
-                  to={
-                    pageInfo.currentPage === 2
-                      ? "/"
-                      : `/${pageInfo.currentPage - 1}`
-                  }
+                  to={`${uri}/${pageInfo.currentPage === 2 ? `` : pageInfo.currentPage - 1}`}
                   rel="prev"
                   style={{ textDecoration: `none` }}
                 >
@@ -88,11 +65,7 @@ class IndexPage extends React.Component {
                 </Link>
               )}
               {pageInfo.hasNextPage && (
-                <Link
-                  to={`/${pageInfo.currentPage + 1}`}
-                  rel="next"
-                  style={{ textDecoration: `none` }}
-                >
+                <Link to={`${uri}/${pageInfo.currentPage + 1}`} rel="next" style={{ textDecoration: `none` }}>
                   <span className="text-link ml-5">Next Page →</span>
                 </Link>
               )}
