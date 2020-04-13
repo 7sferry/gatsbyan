@@ -12,7 +12,7 @@ module.exports = {
     siteUrl: siteConfig.url,
     title: siteConfig.title,
     tagline: siteConfig.tagline,
-    description: `Blog Ferry Suhandri, IT specialist dari Solok, Sumatera Barat`,
+    description: siteConfig.description,
     author: siteConfig.author.name,
     realName: siteConfig.author.realName,
     keywords: siteConfig.keywords,
@@ -118,7 +118,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: siteConfig.author.name,
+        name: siteConfig.author.realName,
         short_name: siteConfig.author.name,
         start_url: `/`,
         background_color: `#663399`,

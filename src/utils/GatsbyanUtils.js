@@ -25,4 +25,4 @@ export const getPlurals = count => {
   return count > 1 ? "s" : "";
 };
 
-export const PAGE_COUNT = 11;
+export const PAGE_COUNT = 5;
