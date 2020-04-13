@@ -21,7 +21,7 @@ class IndexPage extends React.Component {
     const metadata = this.props.data.site.siteMetadata;
     return (
       <Layout>
-        <SEO title="Home" keywords={metadata.keywords} url={metadata.siteUrl} image={`https://images.ctfassets.net/7wjlcr9d5ii8/6RaKpXeGjMuYBbcRjaUpmu/7252c5b72c71eff43d200fa075715192/WhatsApp_Image_2019-05-20_at_11.31.56.jpeg`} />
+        <SEO title="Home" keywords={metadata.keywords} url={metadata.siteUrl} image={`${metadata.siteUrl}/avatar.jpg`} />
         <div className="index-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />

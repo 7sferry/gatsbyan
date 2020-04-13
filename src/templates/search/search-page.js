@@ -45,7 +45,7 @@ class SearchPage extends React.Component {
 
     return (
       <Layout>
-        <SEO title="Pencarian" keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`, `graphql`]} />
+        <SEO title="Pencarian" />
         <div className="index-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />

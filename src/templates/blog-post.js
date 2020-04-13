@@ -14,9 +14,10 @@ class BlogPostTemplate extends React.Component {
     const timeToRead = post.body.childMarkdownRemark.timeToRead;
     const url = `${site.siteUrl}/blog/${post.slug}`;
 
+    const imageURL = `https:${post.heroImage.file.url}`;
     return (
       <Layout>
-        <SEO title={post.title} description={post.description.description} image={post.heroImage.file.url} url={url} />
+        <SEO title={post.title} description={post.description.description} image={imageURL} url={url} />
         <div className="post-page-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
