@@ -19,7 +19,6 @@ const useSiteMetadata = () => {
                         srcSetWebp
                         srcWebp
                         base64
-                        tracedSVG
                     }
                 }
             }
