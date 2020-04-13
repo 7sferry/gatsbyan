@@ -3,6 +3,14 @@ p, .title {
     font-family: "Raleway", serif;
 }
 
+body.medium-zoom--opened #___gatsby{
+    filter: blur(3px);
+    transition-delay: 0.1s;
+}
+.medium-zoom-image{
+    transition: transform 0.5s cubic-bezier(.2,0,.2,1) !important;
+}
+
 .main-layout{
     padding: 3rem;
 }
@@ -19,7 +27,7 @@ p, .title {
 
 .index-main {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 0.5fr;
 } 
 
 .sidebar {

@@ -9,7 +9,7 @@ const MobileBio = props => {
   return (
     <>
       <Socials mobile={true} contacts={props.contacts} />
-      <div className="mobile-bio-main">
+      <div className="mobile-bio-main" style={{paddingBottom: "1.45rem"}}>
         <Img
           fixed={photo}
           className="ml-4 mt-2"

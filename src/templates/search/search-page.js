@@ -3,13 +3,14 @@
  * on April 2020        *
  ************************/
 
-import Layout from "../components/Layout";
-import SEO from "../components/SEO";
-import Sidebar from "../components/sidebar/Sidebar";
+import Layout from "../../components/Layout";
+import SEO from "../../components/SEO";
+import Sidebar from "../../components/sidebar/Sidebar";
 import React from "react";
 import algoliasearch from "algoliasearch/lite";
 import Hits from "./hits";
-import { InstantSearch, SearchBox, VoiceSearch, Configure, Pagination } from "react-instantsearch-dom";
+import { InstantSearch, SearchBox, VoiceSearch, Configure, connectPagination } from "react-instantsearch-dom";
+import Pagination from "../../components/Pagination";
 
 class SearchPage extends React.Component {
   render() {
@@ -36,22 +37,29 @@ class SearchPage extends React.Component {
       },
     };
 
+    const Paging = connectPagination(({ createURL, currentRefinement, nbPages, refine }) => {
+      const url = "/search";
+
+      return <Pagination totalPageCount={nbPages} currentPage={currentRefinement} url={url} refine={refine} />;
+    });
+
     return (
       <Layout>
-        <SEO title="Home" keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`, `graphql`]} />
+        <SEO title="Pencarian" keywords={[`gatsby`, `javascript`, `react`, `web development`, `blog`, `graphql`]} />
         <div className="index-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
           </div>
           <div className="post-list-main">
             <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
-              <Configure distinct hitsPerPage={2} />
+              <Configure hitsPerPage={1} />
               {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
-              <SearchBox searchAsYouType={false} />
+              <SearchBox className={"search-box"} showLoadingIndicator={true} searchAsYouType={false} />
+              <Paging />
               <Hits />
-              <Pagination />
             </InstantSearch>
           </div>
+          <div className="sidebar px-4 py-2">{/*<Sidebar />*/}</div>
         </div>
       </Layout>
     );

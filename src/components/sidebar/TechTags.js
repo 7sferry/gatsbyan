@@ -4,11 +4,15 @@ import { Link } from "gatsby";
 const TechTags = props => {
   const posts = props.posts;
   const tags = new Set();
-  posts.forEach(post => {
-    post.node.tags.forEach(tag => {
-      tags.add(tag);
+  if(posts){
+    posts.forEach(post =>{
+      if(post.node.tags){
+        post.node.tags.forEach(tag =>{
+          tags.add(tag);
+        });
+      }
     });
-  });
+  }
 
   const getTechTags = tags => {
     const techTags = [];
@@ -24,7 +28,7 @@ const TechTags = props => {
 
   return (
     <>
-      <h4>Tags</h4>
+      <h4 className="mb-1">Tags</h4>
       <div className="d-block">{getTechTags(tags)}</div>
     </>
   );

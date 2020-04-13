@@ -14,6 +14,8 @@ module.exports = {
     tagline: siteConfig.tagline,
     description: `Blog Ferry Suhandri, IT specialist dari Solok, Sumatera Barat`,
     author: siteConfig.author.name,
+    realName: siteConfig.author.realName,
+    keywords: siteConfig.keywords,
     copyright: siteConfig.copyright,
     contacts: {
       linkedin: siteConfig.author.contacts.linkedin,
@@ -81,11 +83,12 @@ module.exports = {
             },
           },
           {
-            resolve: `gatsby-remark-images-medium-zoom`,
+            resolve: `gatsby-remark-images-zoom`,
             options: {
-              margin: 36,
-              scrollOffset: 0,
+              margin: 26,
+              scrollOffset: 36,
               background: "transparent",
+              zIndex: 0,
             },
           },
           {
@@ -115,11 +118,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: siteConfig.author.name,
+        short_name: siteConfig.author.name,
         start_url: `/`,
         background_color: `#663399`,
-        theme_color: `#663399`,
+        theme_color: `#3948DF`,
         display: `minimal-ui`,
         icon: `src/images/avatar.png`, // This path is relative to the root of the site.
       },

@@ -24,3 +24,5 @@ export const getTechTags = tags => {
 export const getPlurals = count => {
   return count > 1 ? "s" : "";
 };
+
+export const PAGE_COUNT = 11;

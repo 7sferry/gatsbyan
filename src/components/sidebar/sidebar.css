@@ -14,6 +14,9 @@
     font-family: "Raleway";
 }
 
+.mobile-tech-tags{
+    display: none;
+}
 
 .profile-img {
      border-radius: 50%;
@@ -29,3 +32,9 @@ small, h3, p {
     font-size: 2vw;
 }
 
+
+@media only screen and (max-width: 850px) {
+    .mobile-tech-tags{
+        display: inline-block;
+    }
+}

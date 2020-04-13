@@ -3,7 +3,7 @@ import SEO from "../components/SEO";
 import "./blog-post.css";
 import Sidebar from "../components/sidebar/Sidebar";
 import Share from "../components/Share";
-import { getPlurals, getTechTags } from "../components/Constant";
+import { getPlurals, getTechTags } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
 
@@ -16,14 +16,13 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout>
-        <SEO title={post.title} />
+        <SEO title={post.title} description={post.description.description} image={post.heroImage.file.url} url={url} />
         <div className="post-page-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
           </div>
 
           <div className="post-main">
-            <SEO title={post.title} description={post.title} />
             <div>
               <h3 className="title">{post.title}</h3>
               <div className="title text-info">
@@ -45,6 +44,7 @@ class BlogPostTemplate extends React.Component {
               <Share title={post.title} siteName={site.title} url={url} />
             </div>
           </div>
+          <div className="sidebar px-4 py-2">{/*<Sidebar />*/}</div>
         </div>
       </Layout>
     );
@@ -64,6 +64,14 @@ export const pageQuery = graphql`
           timeToRead
         }
       }
+      description{
+          description
+      }
+        heroImage{
+            file{
+                url
+            }
+        }
       tags
       slug
     }

@@ -7,15 +7,14 @@ const allContentfulBlogPost = `{
   allContentfulBlogPost {
     edges {
         node {
+          publishDate(formatString: "DD MMMM YYYY")
+          title
           slug
           body {
             childMarkdownRemark {
               plainText
+              excerpt(pruneLength: 300, truncate: true)
             }
-          }
-          title
-          description {
-            description
           }
         }
     }

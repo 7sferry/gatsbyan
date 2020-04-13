@@ -16,7 +16,7 @@ const Header = ({ siteTitle }) => {
           padding: `.75rem`,
         }}
       >
-        <h1 className="head-logo ml-4" style={{ margin: 0 }}>
+        <h1 className="head-logo ml-4 my-emoji" style={{ margin: 0 }}>
           <Link
             to="/"
             style={{

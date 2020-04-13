@@ -56,7 +56,6 @@ small {
   .mobile-bio-main{
     display: flex;
     flex-direction: row;
-    /*justify-content: space-between;*/
   }
   .mobile-social{
     justify-content: space-evenly;

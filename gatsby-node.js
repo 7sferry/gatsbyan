@@ -1,6 +1,5 @@
 const path = require(`path`);
 const _ = require("lodash");
-const siteConfig = require("./config");
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -31,10 +30,12 @@ exports.createPages = ({ graphql, actions }) => {
         const postSizeByTag = new Map();
         const posts = result.data.allContentfulBlogPost.edges;
         posts.forEach(post => {
-          post.node.tags.forEach(tag => {
-            let count = postSizeByTag.has(tag) ? postSizeByTag.get(tag) + 1 : 1;
-            postSizeByTag.set(tag, count);
-          });
+          if(post.node.tags){
+            post.node.tags.forEach(tag =>{
+              let count = postSizeByTag.has(tag) ? postSizeByTag.get(tag) + 1 : 1;
+              postSizeByTag.set(tag, count);
+            });
+          }
           createPage({
             path: `/blog/${post.node.slug}/`,
             component: blogPost,
@@ -74,7 +75,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         createPage({
           path: `/search/`,
-          component: path.resolve("./src/templates/search-page.js"),
+          component: path.resolve("./src/templates/search/search-page.js"),
         });
       })
     );

@@ -12,7 +12,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import Header from "./header/Header";
 import MobileBio from "./header/MobileBio";
 import "./layout.css";
+import TechTags from "./sidebar/TechTags";
+import { Sign } from "./Sign";
 
+Sign();
 const Layout = ({ children }) => {
   return (
     <StaticQuery
@@ -31,6 +34,13 @@ const Layout = ({ children }) => {
                 resume
                 blogger
                 crystal
+              }
+            }
+          }
+          allContentfulBlogPost {
+            edges {
+              node {
+                tags
               }
             }
           }
@@ -55,8 +65,11 @@ const Layout = ({ children }) => {
             >
               <main className="main-layout">{children}</main>
               <footer className="text-center">
+                <div className="mobile-tech-tags mt-4">
+                  <TechTags posts={data.allContentfulBlogPost.edges} />
+                </div>
                 <hr />
-                <p className="d-inline">
+                <p className="d-inline my-emoji">
                   {metadata.copyright}
                 </p>
                 <p className="mt-5 text-muted d-inline">
