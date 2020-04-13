@@ -34,7 +34,7 @@ class BlogPostTemplate extends React.Component {
                 <span className="page-info">{getTechTags(post.tags)}</span>
               </div>
               <div className="d-inline-block">
-                <p
+                <div
                   className="pt-3"
                   dangerouslySetInnerHTML={{
                     __html: post.body.childMarkdownRemark.html,

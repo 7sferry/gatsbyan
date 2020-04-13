@@ -72,14 +72,14 @@ const Layout = ({ children }) => {
                 <p className="d-inline my-emoji">
                   {metadata.copyright}
                 </p>
-                <p className="mt-5 text-muted d-inline">
-                  <i>
-                    {" Powered By "}
-                    <a className="text-info" href="https://www.gatsbyjs.org">
-                      Gatsby
-                    </a>
-                  </i>
-                </p>
+                {/*<p className="mt-5 text-muted d-inline">*/}
+                  {/*<i>*/}
+                    {/*{" Powered By "}*/}
+                    {/*<a className="text-info" href="https://www.gatsbyjs.org">*/}
+                      {/*Gatsby*/}
+                    {/*</a>*/}
+                  {/*</i>*/}
+                {/*</p>*/}
               </footer>
             </div>
           </>
