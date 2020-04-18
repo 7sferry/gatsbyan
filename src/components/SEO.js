@@ -95,11 +95,11 @@ function SEO({ description, lang, meta, title, keywords, image, url }) {
         },
         {
           name: `keyword`,
-          content: keywords ? keywords.join(",") : metaDescription,
+          content: keywords ? keywords.join(",") : metaDescription.split(" ").join(","),
         },
         {
           name: `keywords`,
-          content: keywords ? keywords.join(",") : metaDescription,
+          content: keywords ? keywords.join(",") : metaDescription.split(" ").join(","),
         },
       ].concat(meta)}
     />

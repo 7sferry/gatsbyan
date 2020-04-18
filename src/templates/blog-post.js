@@ -6,6 +6,10 @@ import Share from "../components/Share";
 import { getPlurals, getTechTags } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
+import retext from "retext";
+import pos from "retext-pos";
+import keywords from "retext-keywords";
+import toString from 'nlcst-to-string'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -13,11 +17,18 @@ class BlogPostTemplate extends React.Component {
     const site = this.props.data.site.siteMetadata;
     const timeToRead = post.body.childMarkdownRemark.timeToRead;
     const url = `${site.siteUrl}/blog/${post.slug}`;
+    let keyword = this.getKeywords(post.body.childMarkdownRemark.plainText);
 
     const imageURL = `https:${post.heroImage.file.url}`;
     return (
       <Layout>
-        <SEO title={post.title} description={post.description.description} image={imageURL} url={url} />
+        <SEO
+          title={post.title}
+          description={post.description.description}
+          image={imageURL}
+          url={url}
+          keywords={keyword}
+        />
         <div className="post-page-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
@@ -50,6 +61,19 @@ class BlogPostTemplate extends React.Component {
       </Layout>
     );
   }
+
+  getKeywords(description) {
+    let keyword = [];
+    retext()
+      .use(pos)
+      .use(keywords, {maximum: 10})
+      .process(description, function(err, file) {
+        file.data.keyphrases.forEach(function(phrase) {
+          keyword.push(phrase.matches[0].nodes.map(toString).join(""));
+        });
+      });
+    return keyword;
+  }
 }
 
 export default BlogPostTemplate;
@@ -63,16 +87,17 @@ export const pageQuery = graphql`
         childMarkdownRemark {
           html
           timeToRead
+            plainText
         }
       }
-      description{
-          description
+      description {
+        description
       }
-        heroImage{
-            file{
-                url
-            }
+      heroImage {
+        file {
+          url
         }
+      }
       tags
       slug
     }

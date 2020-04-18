@@ -32,6 +32,7 @@
     "gatsby-transformer-sharp": "^2.4.4",
     "gatsby-transformer-sqip": "^2.2.4",
     "lodash": "^4.17.11",
+    "nlcst-to-string": "^2.0.4",
     "prismjs": "^1.16.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -41,7 +42,10 @@
     "react-helmet": "^5.2.1",
     "react-icons": "^3.7.0",
     "react-instantsearch-dom": "^6.4.0",
-    "react-paginating": "^1.4.0"
+    "react-paginating": "^1.4.0",
+    "retext": "^7.0.1",
+    "retext-keywords": "^6.0.0",
+    "retext-pos": "^3.0.0"
   },
   "devDependencies": {
     "prettier": "^1.17.1"
