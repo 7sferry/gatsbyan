@@ -98,11 +98,11 @@ function SEO({ description, lang, meta, title, image, url }) {
         },
         {
           property: `fb:admins`,
-          content: `7sferry`,
+          content: `ferriy.s`,
         },
         {
           property: `fb:app_id`,
-          content: `2050507281848079`,
+          content: `1365740643629290`,
         },
       ].concat(meta)}
     />
