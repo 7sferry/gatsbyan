@@ -96,6 +96,14 @@ function SEO({ description, lang, meta, title, image, url }) {
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          property: `fb:admins`,
+          content: `7sferry`,
+        },
+        {
+          property: `fb:app_id`,
+          content: `2050507281848079`,
+        },
       ].concat(meta)}
     />
   );

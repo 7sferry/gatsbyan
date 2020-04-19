@@ -33,7 +33,7 @@ class IndexPage extends React.Component {
               return (
                 <div id={post.node.id} key={post.node.id} className="container d-block">
                   <h3 className="title">
-                    <Link to={`/blog/${post.node.slug}`} className="text-link">
+                    <Link to={`/blog/${post.node.slug}/`} className="text-link">
                       {post.node.title}
                     </Link>
                   </h3>
