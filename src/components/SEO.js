@@ -97,10 +97,6 @@ function SEO({ description, lang, meta, title, image, url }) {
           content: metaDescription,
         },
         {
-          property: `fb:admins`,
-          content: `ferriy.s`,
-        },
-        {
           property: `fb:app_id`,
           content: `1365740643629290`,
         },

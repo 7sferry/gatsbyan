@@ -66,19 +66,6 @@ class BlogPostTemplate extends React.Component {
       </Layout>
     );
   }
-
-  //   getKeywords(description) {
-  //     let keyword = [];
-  //     retext()
-  //       .use(pos)
-  //       .use(keywords, { maximum: 10 })
-  //       .process(description, function(err, file) {
-  //         file.data.keyphrases.forEach(function(phrase) {
-  //           keyword.push(phrase.matches[0].nodes.map(toString).join(""));
-  //         });
-  //       });
-  //     return keyword;
-  //   }
 }
 
 export default BlogPostTemplate;
