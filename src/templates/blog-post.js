@@ -49,7 +49,7 @@ class BlogPostTemplate extends React.Component {
                 />
               </div>
               <Share title={post.title} siteName={site.title} url={url} />
-              <Comment href={`${url}/${post.slug}`}/>
+              <Comment href={url}/>
             </div>
           </div>
           <div className="sidebar px-4 py-2">{/*<Sidebar />*/}</div>
