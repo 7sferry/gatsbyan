@@ -13,7 +13,7 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.contentfulBlogPost;
     const site = this.props.data.site.siteMetadata;
     const timeToRead = post.body.childMarkdownRemark.timeToRead;
-    const url = `${site.siteUrl}/blog/${post.slug}`;
+    const url = `${site.siteUrl}/blog/${post.slug}/`;
 
     const imageURL = `https:${post.heroImage.file.url}`;
     return (
