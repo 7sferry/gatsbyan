@@ -21,12 +21,12 @@ class IndexPage extends React.Component {
     const metadata = this.props.data.site.siteMetadata;
     return (
       <Layout>
-        <SEO title="Home" keywords={metadata.keywords} url={metadata.siteUrl} image={`${metadata.siteUrl}/avatar.jpg`} />
+        <SEO title="Home" url={metadata.siteUrl} />
         <div className="index-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
           </div>
-          <div className="post-list-main">
+          <div className="post-main">
             {posts.map(post => {
               const tags = post.node.tags;
               const timeToRead = post.node.body.childMarkdownRemark.timeToRead;
@@ -115,7 +115,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         siteUrl
-        keywords
       }
     }
   }

@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-function SEO({ description, lang, meta, title, keywords, image, url }) {
+function SEO({ description, lang, meta, title, image, url }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -20,6 +20,7 @@ function SEO({ description, lang, meta, title, keywords, image, url }) {
             description
             author
             realName
+            siteUrl
           }
         }
       }
@@ -28,6 +29,8 @@ function SEO({ description, lang, meta, title, keywords, image, url }) {
 
   const metadata = site.siteMetadata;
   const metaDescription = description || metadata.description;
+  const metaImage = image || `${url}/ferry-suhandri.jpg`;
+  const metaUrl = url || metadata.siteUrl;
 
   return (
     <Helmet
@@ -55,23 +58,23 @@ function SEO({ description, lang, meta, title, keywords, image, url }) {
         },
         {
           property: `og:url`,
-          content: url,
+          content: metaUrl,
         },
         {
           property: `og:image`,
-          content: image,
+          content: metaImage,
         },
         {
           property: `og:image:type`,
-          content: 'image/jpg',
+          content: "metaImage/jpg",
         },
         {
           property: `og:image:width`,
-          content: '338',
+          content: "338",
         },
         {
           property: `og:image:height`,
-          content: '463',
+          content: "463",
         },
         {
           name: `twitter:card`,
@@ -87,19 +90,11 @@ function SEO({ description, lang, meta, title, keywords, image, url }) {
         },
         {
           name: `twitter:image`,
-          content: image,
+          content: metaImage,
         },
         {
           name: `twitter:description`,
           content: metaDescription,
-        },
-        {
-          name: `keyword`,
-          content: keywords ? keywords.join(",") : metaDescription.split(" ").join(","),
-        },
-        {
-          name: `keywords`,
-          content: keywords ? keywords.join(",") : metaDescription.split(" ").join(","),
         },
       ].concat(meta)}
     />
@@ -114,7 +109,6 @@ SEO.defaultProps = {
 
 SEO.propTypes = {
   description: PropTypes.string,
-  keywords: PropTypes.arrayOf(PropTypes.string),
   image: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
@@ -123,3 +117,5 @@ SEO.propTypes = {
 };
 
 export default SEO;
+
+// todo delete keywords

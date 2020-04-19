@@ -6,8 +6,6 @@ module.exports = {
   tagline: "An ISTJ, Type 5, Engineer, Gamer, and Thriller-Movies-Lover",
   description: `Personal Blog by Ferry Suhandri`,
   copyright: `© ${new Date().getFullYear()} Ferry Suhandri.`,
-  keywords: [`gatsby`, `ferry suhandri`, `solok`, `sumatera barat`, `advotics`, `jatis`,
-    'ix korong', 'lubuk sikarah', ],
   author: {
     name: "Ferry S",
     realName: "Ferry Suhandri",

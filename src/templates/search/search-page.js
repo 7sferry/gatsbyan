@@ -50,7 +50,7 @@ class SearchPage extends React.Component {
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
           </div>
-          <div className="post-list-main">
+          <div className="post-main">
             <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
               <Configure hitsPerPage={26} />
               {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}

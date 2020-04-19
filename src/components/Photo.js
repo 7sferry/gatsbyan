@@ -11,7 +11,7 @@ const useSiteMetadata = () => {
         query Bio {
             file(relativePath: { eq: "ferry.jpg" }) {
                 childImageSharp {
-                    fixed(width: 150, quality: 100, toFormat: WEBP) {
+                    fixed(width: 150, quality: 100) {
                         width
                         height
                         src

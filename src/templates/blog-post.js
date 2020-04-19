@@ -6,10 +6,6 @@ import Share from "../components/Share";
 import { getPlurals, getTechTags } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
-import retext from "retext";
-import pos from "retext-pos";
-import keywords from "retext-keywords";
-import toString from 'nlcst-to-string'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -17,7 +13,6 @@ class BlogPostTemplate extends React.Component {
     const site = this.props.data.site.siteMetadata;
     const timeToRead = post.body.childMarkdownRemark.timeToRead;
     const url = `${site.siteUrl}/blog/${post.slug}`;
-    let keyword = this.getKeywords(post.body.childMarkdownRemark.plainText);
 
     const imageURL = `https:${post.heroImage.file.url}`;
     return (
@@ -27,9 +22,8 @@ class BlogPostTemplate extends React.Component {
           description={post.description.description}
           image={imageURL}
           url={url}
-          keywords={keyword}
         />
-        <div className="post-page-main">
+        <div className="index-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
           </div>
@@ -62,18 +56,18 @@ class BlogPostTemplate extends React.Component {
     );
   }
 
-  getKeywords(description) {
-    let keyword = [];
-    retext()
-      .use(pos)
-      .use(keywords, {maximum: 10})
-      .process(description, function(err, file) {
-        file.data.keyphrases.forEach(function(phrase) {
-          keyword.push(phrase.matches[0].nodes.map(toString).join(""));
-        });
-      });
-    return keyword;
-  }
+//   getKeywords(description) {
+//     let keyword = [];
+//     retext()
+//       .use(pos)
+//       .use(keywords, { maximum: 10 })
+//       .process(description, function(err, file) {
+//         file.data.keyphrases.forEach(function(phrase) {
+//           keyword.push(phrase.matches[0].nodes.map(toString).join(""));
+//         });
+//       });
+//     return keyword;
+//   }
 }
 
 export default BlogPostTemplate;
@@ -87,7 +81,6 @@ export const pageQuery = graphql`
         childMarkdownRemark {
           html
           timeToRead
-            plainText
         }
       }
       description {
