@@ -3,8 +3,8 @@
  * on April 2020        *
  ************************/
 
-import React, { Component} from 'react';
-import { FacebookProvider, Comments, } from "react-facebook";
+import React, { Component } from "react";
+import { FacebookProvider, Comments } from "react-facebook";
 
 export default class Comment extends Component {
   render() {

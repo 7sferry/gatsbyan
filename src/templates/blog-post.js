@@ -9,6 +9,18 @@ import { graphql } from "gatsby";
 import Comment from "../components/Comment";
 
 class BlogPostTemplate extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { showComment: false };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(() => ({
+      // showComment: !prevState.showComment,
+      showComment: true,
+    }));
+  }
+
   render() {
     const post = this.props.data.contentfulBlogPost;
     const site = this.props.data.site.siteMetadata;
@@ -16,14 +28,10 @@ class BlogPostTemplate extends React.Component {
     const url = `${site.siteUrl}/blog/${post.slug}/`;
 
     const imageURL = `https:${post.heroImage.file.url}`;
+
     return (
       <Layout>
-        <SEO
-          title={post.title}
-          description={post.description.description}
-          image={imageURL}
-          url={url}
-        />
+        <SEO title={post.title} description={post.description.description} image={imageURL} url={url} />
         <div className="index-main">
           <div className="sidebar border-right px-4 py-2">
             <Sidebar />
@@ -49,7 +57,8 @@ class BlogPostTemplate extends React.Component {
                 />
               </div>
               <Share title={post.title} siteName={site.title} url={url} />
-              {/*<Comment href={url}/>*/}
+              <button onClick={this.handleClick}>Show comment</button>
+              {this.state.showComment ? <Comment href={url} /> : <></>}
             </div>
           </div>
           <div className="sidebar px-4 py-2">{/*<Sidebar />*/}</div>
@@ -58,18 +67,18 @@ class BlogPostTemplate extends React.Component {
     );
   }
 
-//   getKeywords(description) {
-//     let keyword = [];
-//     retext()
-//       .use(pos)
-//       .use(keywords, { maximum: 10 })
-//       .process(description, function(err, file) {
-//         file.data.keyphrases.forEach(function(phrase) {
-//           keyword.push(phrase.matches[0].nodes.map(toString).join(""));
-//         });
-//       });
-//     return keyword;
-//   }
+  //   getKeywords(description) {
+  //     let keyword = [];
+  //     retext()
+  //       .use(pos)
+  //       .use(keywords, { maximum: 10 })
+  //       .process(description, function(err, file) {
+  //         file.data.keyphrases.forEach(function(phrase) {
+  //           keyword.push(phrase.matches[0].nodes.map(toString).join(""));
+  //         });
+  //       });
+  //     return keyword;
+  //   }
 }
 
 export default BlogPostTemplate;
