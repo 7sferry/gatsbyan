@@ -3,7 +3,7 @@ import SEO from "../components/SEO";
 import "./blog-post.css";
 import Sidebar from "../components/sidebar/Sidebar";
 import Share from "../components/Share";
-import { getPlurals, getTechTags } from "../utils/GatsbyanUtils";
+import { getPlurals, getTechTags, getDate } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -41,21 +41,21 @@ class BlogPostTemplate extends React.Component {
 
           <div className="post-main">
             <div>
-              <h3 className="title">{post.title}</h3>
-              <div className="title text-info mb-4">
-                <span className="page-info">{post.publishDate}</span>
-                <span className="page-info">
-                  {timeToRead} min{getPlurals(timeToRead)} read
-                </span>
-                <br />
-                <span className="page-info">{getTechTags(post.tags)}</span>
-              </div>
               <div className={heroStyles.hero}>
                 <Img
                   className={heroStyles.heroImage}
                   alt={post.title}
                   fluid={post.heroImage.fluid}
                 />
+              </div>
+              <h3 className="title mt-4">{post.title}</h3>
+              <div className="title text-info">
+                <span className="page-info">{getDate(post.publishDate)}</span>
+                <span className="page-info">
+                  {timeToRead} min{getPlurals(timeToRead)} read
+                </span>
+                <br />
+                <span className="page-info">{getTechTags(post.tags)}</span>
               </div>
               <div className="d-inline-block">
                 <div
@@ -83,7 +83,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     contentfulBlogPost(slug: { eq: $slug }) {
       title
-      publishDate(formatString: "MMMM Do, YYYY")
+      publishDate
       body {
         childMarkdownRemark {
           html
@@ -94,12 +94,12 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-          fluid{
-              tracedSVG
+          fluid {
               aspectRatio
               src
               srcSet
               sizes
+              tracedSVG
           }
         file {
           url

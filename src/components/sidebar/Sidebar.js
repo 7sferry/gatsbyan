@@ -37,6 +37,7 @@ const Sidebar = () => {
       `}
       render={data => (
         <>
+          {/*<div style={{position: 'fixed', overflowX: 'hidden', display: 'grid', gridTemplateColumns: '1fr 2fr 1fr',  }}>*/}
           <div className="sidebar-main ">
             <Bio author={data.site.siteMetadata.author} tagline={data.site.siteMetadata.tagline} />
             <Socials mobile={false} contacts={data.site.siteMetadata.contacts} />
@@ -44,6 +45,7 @@ const Sidebar = () => {
               <TechTags posts={data.allContentfulBlogPost.edges} />
             </div>
           </div>
+        {/*</div>*/}
         </>
       )}
     />

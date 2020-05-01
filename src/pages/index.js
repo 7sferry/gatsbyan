@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Sidebar from "../components/sidebar/Sidebar";
 import Pagination from "../components/Pagination";
-import { getPlurals, getTechTags } from "../utils/GatsbyanUtils";
+import { getPlurals, getTechTags, getDate } from "../utils/GatsbyanUtils";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 import "../components/pagination.css";
@@ -38,7 +38,7 @@ class IndexPage extends React.Component {
                     </Link>
                   </h3>
                   <div className="title text-info">
-                    <span className="page-info">{post.node.publishDate}</span>
+                    <span className="page-info">{getDate(post.node.publishDate)}</span>
                     <span className="page-info">
                       {timeToRead} min{getPlurals(timeToRead)} read
                     </span>
@@ -87,7 +87,7 @@ export const pageQuery = graphql`
           }
           tags
           title
-          publishDate(formatString: "MMMM Do, YYYY")
+          publishDate
           heroImage {
             fixed(width: 160) {
               base64
