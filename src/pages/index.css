@@ -28,8 +28,8 @@ body.medium-zoom--opened #___gatsby{
 .index-main {
     display: -ms-grid;
     display: grid;
-    grid-template-columns: 1fr 2fr 0.5fr;
-    -ms-grid-columns: 1fr 2fr 0.5fr;
+    grid-template-columns: 1fr 2fr 1fr;
+    -ms-grid-columns: 1fr 2fr 1fr;
 }
 
 .sidebar {

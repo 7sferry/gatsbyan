@@ -6,7 +6,9 @@ import Share from "../components/Share";
 import { getPlurals, getTechTags } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
+import Img from "gatsby-image";
 import Comment from "../components/Comment";
+import heroStyles from '../components/hero.module.css'
 
 class BlogPostTemplate extends React.Component {
   constructor(props) {
@@ -40,7 +42,7 @@ class BlogPostTemplate extends React.Component {
           <div className="post-main">
             <div>
               <h3 className="title">{post.title}</h3>
-              <div className="title text-info">
+              <div className="title text-info mb-4">
                 <span className="page-info">{post.publishDate}</span>
                 <span className="page-info">
                   {timeToRead} min{getPlurals(timeToRead)} read
@@ -48,9 +50,16 @@ class BlogPostTemplate extends React.Component {
                 <br />
                 <span className="page-info">{getTechTags(post.tags)}</span>
               </div>
+              <div className={heroStyles.hero}>
+                <Img
+                  className={heroStyles.heroImage}
+                  alt={post.title}
+                  fluid={post.heroImage.fluid}
+                />
+              </div>
               <div className="d-inline-block">
                 <div
-                  className="pt-3"
+                  className="pt-3 text-justify"
                   dangerouslySetInnerHTML={{
                     __html: post.body.childMarkdownRemark.html,
                   }}
@@ -85,6 +94,13 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
+          fluid{
+              tracedSVG
+              aspectRatio
+              src
+              srcSet
+              sizes
+          }
         file {
           url
         }
