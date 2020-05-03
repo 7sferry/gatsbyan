@@ -101,7 +101,7 @@ function SEO({ description, lang, meta, title, image, url }) {
           content: `1365740643629290`,
         },
         {
-          property: `google-site-verification`,
+          name: `google-site-verification`,
           content: `cwJMiAjJ6equmiWoxPyFPCua6fsv_rs6wMG63kECYxQ`,
         },
       ].concat(meta)}
