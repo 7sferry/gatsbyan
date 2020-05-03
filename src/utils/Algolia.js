@@ -33,7 +33,7 @@ const unnestMarkdown = node => {
 
 const handlePlainText = node => {
   const { plainText, ...rest } = node;
-  const sections = plainText.match(/[\s\S]{1,20000}/g) || [];
+  const sections = plainText.match(/[\s\S]{1,15000}/g) || [];
   return sections.map(section => ({
     ...rest,
     content: section,
