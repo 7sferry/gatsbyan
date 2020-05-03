@@ -556,9 +556,9 @@ li > ul {
 blockquote *:last-child {
   margin-bottom: 0;
 }
-li *:last-child {
-  margin-bottom: 0;
-}
+/*li *:last-child {*/
+  /*margin-bottom: 0;*/
+/*}*/
 p *:last-child {
   margin-bottom: 0;
 }
@@ -647,16 +647,16 @@ pre tt:after {
   }
 }
 .my-emoji::after{
-  content: '\1F60E';
+  content: ' \1F60E';
   /*animation: animate 1.05s infinite;*/
 }
 .my-emoji:hover.my-emoji::after{
-  content: '\1F618';
+  content: ' \1F618';
   animation: animate 1.05s infinite;
 }
 
 @keyframes animate {
   100% {
-    content: '\1F60A';
+    content: ' \1F60A';
   }
 }

@@ -28,7 +28,7 @@ function SEO({ description, lang, meta, title, image, url }) {
   );
 
   const metadata = site.siteMetadata;
-  const metaDescription = description || metadata.description;
+  const metaDescription = description ? `Ferry Suhandri. ${description}` : metadata.description;
   const metaImage = image || `${url}/ferry-suhandri.jpg`;
   const metaUrl = url || metadata.siteUrl;
 
@@ -99,6 +99,10 @@ function SEO({ description, lang, meta, title, image, url }) {
         {
           property: `fb:app_id`,
           content: `1365740643629290`,
+        },
+        {
+          property: `google-site-verification`,
+          content: `cwJMiAjJ6equmiWoxPyFPCua6fsv_rs6wMG63kECYxQ`,
         },
       ].concat(meta)}
     />

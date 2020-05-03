@@ -4,7 +4,7 @@ module.exports = {
   url: "https://ferry.now.sh",
   title: "MR Ferry",
   tagline: "An ISTJ, Type 5, Engineer, Gamer, and Thriller-Movies-Lover",
-  description: `Personal Blog by Ferry Suhandri`,
+  description: `Personal Blog by Ferry Suhandri. Pandangan pribadi, tutorial javascript, java & spring dalam bahasa indonesia`,
   copyright: `© ${new Date().getFullYear()} Ferry Suhandri.`,
   author: {
     name: "Ferry S",

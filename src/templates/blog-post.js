@@ -41,15 +41,8 @@ class BlogPostTemplate extends React.Component {
 
           <div className="post-main">
             <div>
-              <div className={heroStyles.hero}>
-                <Img
-                  className={heroStyles.heroImage}
-                  alt={post.title}
-                  fluid={post.heroImage.fluid}
-                />
-              </div>
               <h3 className="title mt-4">{post.title}</h3>
-              <div className="title text-info">
+              <div className="title text-info mb-2">
                 <span className="page-info">{getDate(post.publishDate)}</span>
                 <span className="page-info">
                   {timeToRead} min{getPlurals(timeToRead)} read
@@ -58,6 +51,13 @@ class BlogPostTemplate extends React.Component {
                 <span className="page-info">{getTechTags(post.tags)}</span>
               </div>
               <div className="d-inline-block">
+                <div className={heroStyles.hero}>
+                  <Img
+                    className={heroStyles.heroImage}
+                    alt={post.title}
+                    fluid={post.heroImage.fluid}
+                  />
+                </div>
                 <div
                   className="pt-3 text-justify"
                   dangerouslySetInnerHTML={{
