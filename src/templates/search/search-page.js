@@ -52,7 +52,7 @@ class SearchPage extends React.Component {
           </div>
           <div className="post-main">
             <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
-              <Configure hitsPerPage={26} />
+              <Configure distinct hitsPerPage={26} />
               {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
               <SearchBox className={"search-box"} showLoadingIndicator={true} searchAsYouType={false} />
               <Paging />
