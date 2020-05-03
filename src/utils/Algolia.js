@@ -31,9 +31,9 @@ const unnestMarkdown = node => {
   };
 };
 
-const handleRawBody = node => {
-  const { rawBody, ...rest } = node;
-  const sections = rawBody.match(/[\s\S]{1,20000}/g) || [];
+const handlePlainText = node => {
+  const { plainText, ...rest } = node;
+  const sections = plainText.match(/[\s\S]{1,20000}/g) || [];
   return sections.map(section => ({
     ...rest,
     content: section,
@@ -51,9 +51,9 @@ const queries = [
       data.allContentfulBlogPost.edges
         .map(edge => edge.node)
         .map(unnestMarkdown)
-        .map(handleRawBody)
+        .map(handlePlainText)
         .reduce((acc, cur) => [...acc, ...cur], []),
   },
 ];
-// "Gw udah nyerah, angkat tangan mengoptimalkan website yang di blogger. Emang udah dari sananya lemot mau gimana lagi. Akhirnya sekarang gw mau pindah haluan. Mending bikin web sendiri daripada pake yg dari blogger. Semuanya bisa diatur sesuka hati sesuai kebutuhan dan lebih cepat loadingnya tentunya"
+
 module.exports = queries;
