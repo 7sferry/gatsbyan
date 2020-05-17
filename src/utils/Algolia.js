@@ -22,10 +22,9 @@ const allContentfulBlogPost = `{
 }`;
 
 const unnestMarkdown = node => {
-  const { description, body, ...rest } = node;
+  const { body, ...rest } = node;
 
   return {
-    ...description,
     ...body.childMarkdownRemark,
     ...rest,
   };
