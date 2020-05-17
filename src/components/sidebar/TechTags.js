@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { getTechTags } from "../../utils/GatsbyanUtils";
 
 const TechTags = props => {
   const posts = props.posts;
@@ -14,22 +14,10 @@ const TechTags = props => {
     });
   }
 
-  const getTechTags = tags => {
-    const techTags = [];
-    tags.forEach(tag => {
-      techTags.push(
-        <div key={tag} className="d-inline-block p-1">
-          <Link to={`/tags/${tag}`}>{tag}</Link>
-        </div>
-      );
-    });
-    return techTags;
-  };
-
   return (
     <>
       <h4 className="mb-1">Tags</h4>
-      <div className="d-block">{getTechTags(tags)}</div>
+      <div className="d-block">{[...getTechTags(tags)].map(o => (<div className="d-inline-block p-1">{o}</div>))}</div>
     </>
   );
 };

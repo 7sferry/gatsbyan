@@ -33,7 +33,7 @@ class IndexPage extends React.Component {
               return (
                 <div id={post.node.id} key={post.node.id} className="container d-block pb-3">
                   <h3 className="title">
-                    <Link to={`/blog/${post.node.slug}/`} className="text-link">
+                    <Link to={`/blog/${post.node.slug}`} className="text-link">
                       {post.node.title}
                     </Link>
                   </h3>
@@ -46,7 +46,13 @@ class IndexPage extends React.Component {
                     <span className="page-info">{getTechTags(tags)}</span>
                   </div>
                   <div className="d-inline-block text-justify pt-1">
-                    {post.node.heroImage ? <Img style={{ maxHeight: "160px", maxWidth: "160px" }} className="index-thumbnail" fixed={post.node.heroImage.fixed} /> : <></>}
+                    {post.node.heroImage && (
+                      <Img
+                        style={{ maxHeight: "160px", maxWidth: "160px" }}
+                        className="index-thumbnail"
+                        fixed={post.node.heroImage.fixed}
+                      />
+                    )}
                     <p>
                       {post.node.body.childMarkdownRemark.excerpt}
                       <Link to={`/blog/${post.node.slug}`} className="text-primary">

@@ -8,7 +8,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import Comment from "../components/Comment";
-import heroStyles from '../components/hero.module.css'
+import heroStyles from "../components/hero.module.css";
 
 class BlogPostTemplate extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class BlogPostTemplate extends React.Component {
     const timeToRead = post.body.childMarkdownRemark.timeToRead;
     const url = `${site.siteUrl}/blog/${post.slug}/`;
 
-    const imageURL = `https:${post.heroImage.file.url}`;
+    const imageURL = post.heroImage?.file?.url;
 
     return (
       <Layout>
@@ -52,11 +52,9 @@ class BlogPostTemplate extends React.Component {
               </div>
               <div className="d-inline-block">
                 <div className={heroStyles.hero}>
-                  <Img
-                    className={heroStyles.heroImage}
-                    alt={post.title}
-                    fluid={post.heroImage.fluid}
-                  />
+                  {post.heroImage?.fluid && (
+                    <Img className={heroStyles.heroImage} alt={post.title} fluid={post.heroImage.fluid} />
+                  )}
                 </div>
                 <div
                   className="pt-3 text-justify"
@@ -67,7 +65,7 @@ class BlogPostTemplate extends React.Component {
               </div>
               <Share title={post.title} siteName={site.title} url={url} />
               <button onClick={this.handleClick}>Show comment</button>
-              {this.state.showComment ? <Comment href={url} /> : <></>}
+              {this.state.showComment && <Comment href={url} />}
             </div>
           </div>
           <div className="sidebar px-4 py-2">{/*<Sidebar />*/}</div>
@@ -94,13 +92,13 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-          fluid {
-              aspectRatio
-              src
-              srcSet
-              sizes
-              tracedSVG
-          }
+        fluid {
+          aspectRatio
+          src
+          srcSet
+          sizes
+          tracedSVG
+        }
         file {
           url
         }

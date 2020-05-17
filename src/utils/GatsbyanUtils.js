@@ -9,14 +9,14 @@ import { kebabCase } from "lodash";
 import { format } from "date-fns"
 
 export const getTechTags = tags => {
-  const techTags = [];
+  const techTags = new Set();
   if (tags !== undefined && tags !== null) {
     tags.forEach((tag, i) => {
       const kebabTag = kebabCase(tag);
-      techTags.push(
+      techTags.add(
         <span key={kebabTag}>
           {i > 0 ? ", " : ""}
-          <Link to={`/tags/${kebabTag}/`}>{tag}</Link>
+          <Link to={`/tags/${kebabTag}`}>{tag}</Link>
         </span>
       );
     });
@@ -31,3 +31,5 @@ export const getPlurals = count => {
 };
 
 export const PAGE_COUNT = 5;
+
+export const DEFAULT_ICON_SIZE = 20;
