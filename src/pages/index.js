@@ -96,13 +96,10 @@ export const pageQuery = graphql`
           title
           publishDate
           heroImage {
-            fixed(width: 160) {
+            fixed(width: 160, toFormat: WEBP) {
               width
               height
               src
-              srcSet
-              srcSetWebp
-              srcWebp
               tracedSVG
             }
           }
