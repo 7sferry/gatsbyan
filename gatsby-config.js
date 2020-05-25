@@ -100,20 +100,20 @@ module.exports = {
               zIndex: 0,
             },
           },
-          // {
-          //   resolve: `gatsby-remark-images-contentful`,
-          //   options: {
-          //     // It's important to specify the maxWidth (in pixels) of
-          //     // the content container as this plugin uses this as the
-          //     // base for generating different widths of each image.
-          //     maxWidth: 1200,
-          //     linkImagesToOriginal: false,
-          //     withWebp: true,
-          //     showCaptions: true,
-          //     backgroundColor: "transparent",
-          //     loading: 'lazy'
-          //   },
-          // },
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 1200,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              showCaptions: true,
+              backgroundColor: "transparent",
+              loading: 'lazy'
+            },
+          },
         ],
       },
     },
