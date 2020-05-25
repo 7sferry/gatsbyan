@@ -101,6 +101,7 @@ module.exports = {
               withWebp: true,
               showCaptions: true,
               backgroundColor: "transparent",
+              loading: 'lazy'
             },
           },
         ],
@@ -144,6 +145,7 @@ module.exports = {
     //     trackingId: "UA-165368793-1",
     //     // Defines where to place the tracking script - `true` in the head and `false` in the body
     //     head: false,
+    //     pageTransitionDelay: 250,
     //     // Enables Google Optimize using your container Id
     //     // optimizeId: "OPT-P5SQMN6",
     //     // Enables Google Optimize Experiment ID
