@@ -21,7 +21,6 @@
     "gatsby-plugin-manifest": "^2.3.3",
     "gatsby-plugin-minify": "^0.2.0",
     "gatsby-plugin-offline": "^2.1.1",
-    "gatsby-plugin-preload-fonts": "^1.2.8",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.5.4",
     "gatsby-plugin-sitemap": "^2.3.1",
@@ -70,8 +69,7 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "preload-fonts": "gatsby-preload-fonts"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "repository": {
     "type": "git",

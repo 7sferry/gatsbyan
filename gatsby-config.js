@@ -30,7 +30,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-remark-plaintext`,
-    `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-minify`,
     {
       resolve: `gatsby-plugin-sitemap`,
@@ -117,16 +116,16 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [
-          `Raleway`,
-          `source sans pro\:300,400,400i,700`, // you can also specify font weights and styles
-        ],
-        display: 'swap'
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       `Raleway`,
+    //       `source sans pro\:300,400,400i,700`, // you can also specify font weights and styles
+    //     ],
+    //     display: 'swap'
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
