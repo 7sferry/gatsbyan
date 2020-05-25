@@ -30,7 +30,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-remark-plaintext`,
-    `gatsby-transformer-sqip`,
+    // `gatsby-transformer-sqip`,
     `gatsby-plugin-minify`,
     {
       resolve: `gatsby-plugin-sitemap`,
@@ -138,28 +138,28 @@ module.exports = {
         endDate: `today`
       }
     },
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     // The property ID; the tracking code won't be generated without it
-    //     trackingId: "UA-165368793-1",
-    //     // Defines where to place the tracking script - `true` in the head and `false` in the body
-    //     head: false,
-    //     pageTransitionDelay: 250,
-    //     // Enables Google Optimize using your container Id
-    //     // optimizeId: "OPT-P5SQMN6",
-    //     // Enables Google Optimize Experiment ID
-    //     // experimentId: "xgp72D0ZQaKYe3dWfy0L0Q",
-    //     // Set Variation ID. 0 for original 1,2,3....
-    //     // variationId: "YOUR_GOOGLE_OPTIMIZE_VARIATION_ID",
-    //     // Defers execution of google analytics script after page load
-    //     // defer: false,
-    //     // Any additional optional fields
-    //     // sampleRate: 5,
-    //     // siteSpeedSampleRate: 10,
-    //     // cookieDomain: "example.com",
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: "UA-165368793-1",
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+        pageTransitionDelay: 250,
+        // Enables Google Optimize using your container Id
+        // optimizeId: "OPT-P5SQMN6",
+        // Enables Google Optimize Experiment ID
+        // experimentId: "xgp72D0ZQaKYe3dWfy0L0Q",
+        // Set Variation ID. 0 for original 1,2,3....
+        // variationId: "YOUR_GOOGLE_OPTIMIZE_VARIATION_ID",
+        // Defers execution of google analytics script after page load
+        // defer: false,
+        // Any additional optional fields
+        // sampleRate: 5,
+        // siteSpeedSampleRate: 10,
+        // cookieDomain: "example.com",
+      },
+    },
     // {
     //   resolve: "gatsby-plugin-google-tagmanager",
     //   options: {
