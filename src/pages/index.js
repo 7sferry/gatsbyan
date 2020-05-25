@@ -48,7 +48,7 @@ class IndexPage extends React.Component {
                   <div className="d-inline-block text-justify pt-1">
                     {/*{post.node.heroImage && (*/}
                       <Img
-                        style={{ maxHeight: "160px", maxWidth: "160px" }}
+                        style={{ maxWidth: "160px" }}
                         className="index-thumbnail"
                         fixed={post.node.heroImage.fixed}
                       />
@@ -96,14 +96,14 @@ export const pageQuery = graphql`
           publishDate
           heroImage {
             fixed(width: 160) {
-              base64
+#              base64
               width
               height
               src
               srcSet
-              srcSetWebp
-              srcWebp
-              tracedSVG
+#              srcSetWebp
+#              srcWebp
+#              tracedSVG
             }
           }
           id
