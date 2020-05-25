@@ -143,7 +143,7 @@ module.exports = {
         // The property ID; the tracking code won't be generated without it
         trackingId: "UA-165368793-1",
         // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: true,
+        head: false,
         // Enables Google Optimize using your container Id
         // optimizeId: "OPT-P5SQMN6",
         // Enables Google Optimize Experiment ID
