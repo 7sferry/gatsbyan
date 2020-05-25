@@ -101,8 +101,8 @@ export const pageQuery = graphql`
               height
               src
               srcSet
-              srcSetWebp
-              srcWebp
+#              srcSetWebp
+#              srcWebp
               tracedSVG
             }
           }
