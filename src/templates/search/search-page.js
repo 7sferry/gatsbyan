@@ -5,7 +5,6 @@
 
 import Layout from "../../components/Layout";
 import SEO from "../../components/SEO";
-import Sidebar from "../../components/sidebar/Sidebar";
 import React from "react";
 import algoliasearch from "algoliasearch/lite";
 import Hits from "./hits";
@@ -46,10 +45,6 @@ class SearchPage extends React.Component {
     return (
       <Layout>
         <SEO title="Pencarian" />
-        <div className="index-main">
-          <div className="sidebar border-right px-4 py-2">
-            <Sidebar />
-          </div>
           <div className="post-main">
             <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
               <Configure distinct hitsPerPage={26} />
@@ -59,8 +54,6 @@ class SearchPage extends React.Component {
               <Hits />
             </InstantSearch>
           </div>
-          <div className="sidebar px-4 py-2">{/*<Sidebar />*/}</div>
-        </div>
       </Layout>
     );
   }

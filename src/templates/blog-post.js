@@ -1,7 +1,6 @@
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import "./blog-post.css";
-import Sidebar from "../components/sidebar/Sidebar";
 import Share from "../components/Share";
 import { getPlurals, getTechTags, getDate } from "../utils/GatsbyanUtils";
 import React from "react";
@@ -34,11 +33,6 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout>
         <SEO title={post.title} description={post.description.description} image={imageURL} url={url} />
-        <div className="index-main">
-          <div className="sidebar border-right px-4 py-2">
-            <Sidebar />
-          </div>
-
           <div className="post-main">
             <div>
               <h3 className="title mt-4">{post.title}</h3>
@@ -68,8 +62,6 @@ class BlogPostTemplate extends React.Component {
               {this.state.showComment && <Comment href={url} />}
             </div>
           </div>
-          <div className="sidebar px-4 py-2">{/*<Sidebar />*/}</div>
-        </div>
       </Layout>
     );
   }

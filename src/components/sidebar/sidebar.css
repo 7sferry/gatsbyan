@@ -11,7 +11,7 @@
 .page-links, .tech-tags {
     margin-top: 3rem;
     padding-top: 7rem;
-    font-family: "Raleway";
+    font-family: "Raleway", serif;
 }
 
 .mobile-tech-tags{
@@ -24,7 +24,7 @@
 }
 
 small, h3, p, li {
-    font-family: 'Raleway';
+    font-family: "Raleway", serif;
     
 }
 

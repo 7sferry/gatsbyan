@@ -7,6 +7,8 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import LeftSidebar from "../components/sidebar/LeftSidebar";
+import RightSidebar from "../components/sidebar/RightSidebar";
 import { StaticQuery, graphql } from "gatsby";
 import "bootstrap/dist/css/bootstrap.css";
 import Header from "./header/Header";
@@ -51,11 +53,7 @@ const Layout = ({ children }) => {
         return (
           <>
             <Header siteTitle={metadata.title} />
-            <MobileBio
-              author={metadata.author}
-              tagline={metadata.tagline}
-              contacts={metadata.contacts}
-            />
+            <MobileBio author={metadata.author} tagline={metadata.tagline} contacts={metadata.contacts} />
             <div
               style={{
                 margin: `0 auto`,
@@ -63,27 +61,27 @@ const Layout = ({ children }) => {
                 paddingTop: 0,
               }}
             >
-              <main className="main-layout">{children}</main>
+              <main className="main-layout">
+                <div className="index-main">
+                  <div className="sidebar border-right px-4 py-2">
+                    <LeftSidebar />
+                  </div>
+                  {children}
+                  <div className="sidebar px-4 py-2">
+                    <RightSidebar />
+                  </div>
+                </div>
+              </main>
               <footer className="text-center">
                 <div className="mobile-tech-tags mt-4">
                   <TechTags posts={data.allContentfulBlogPost.edges} />
                 </div>
                 <hr />
-                <p className="d-inline my-emoji">
-                  {metadata.copyright}
-                </p>
-                {/*<p className="mt-5 text-muted d-inline">*/}
-                  {/*<i>*/}
-                    {/*{" Powered By "}*/}
-                    {/*<a className="text-info" href="https://www.gatsbyjs.org">*/}
-                      {/*Gatsby*/}
-                    {/*</a>*/}
-                  {/*</i>*/}
-                {/*</p>*/}
+                <p className="d-inline my-emoji">{metadata.copyright}</p>
               </footer>
             </div>
           </>
-        )
+        );
       }}
     />
   );

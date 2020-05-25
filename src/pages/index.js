@@ -1,9 +1,10 @@
 import React from "react";
 import Img from "gatsby-image";
 import { Link, graphql } from "gatsby";
+import { kebabCase } from "lodash";
+
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
-import Sidebar from "../components/sidebar/Sidebar";
 import Pagination from "../components/Pagination";
 import { getPlurals, getTechTags, getDate } from "../utils/GatsbyanUtils";
 import "bootstrap/dist/css/bootstrap.css";
@@ -16,16 +17,12 @@ class IndexPage extends React.Component {
     const posts = contents.edges;
     const pageInfo = contents.pageInfo;
     const tag = this.props.pageContext.tag;
-    const url = tag ? `/tags/${tag}` : ``;
+    const url = tag ? `/tags/${kebabCase(tag)}` : ``;
 
     const metadata = this.props.data.site.siteMetadata;
     return (
       <Layout>
         <SEO title="Home" url={metadata.siteUrl} />
-        <div className="index-main">
-          <div className="sidebar border-right px-4 py-2">
-            <Sidebar />
-          </div>
           <div className="post-main">
             {posts.map(post => {
               const tags = post.node.tags;
@@ -51,7 +48,6 @@ class IndexPage extends React.Component {
                         style={{ maxWidth: "160px" }}
                         className="index-thumbnail"
                         fixed={post.node.heroImage.fixed}
-                        loading="lazy"
                       />
                      )}
                     <p>
@@ -68,8 +64,6 @@ class IndexPage extends React.Component {
               <Pagination totalPageCount={pageInfo.pageCount} url={url} currentPage={pageInfo.currentPage} />
             </div>
           </div>
-          <div className="sidebar px-4 py-2">{/*<Sidebar />*/}</div>
-        </div>
       </Layout>
     );
   }
@@ -96,20 +90,12 @@ export const pageQuery = graphql`
           title
           publishDate
           heroImage {
-              description
-              resize(width: 160, toFormat: JPG, quality: 100) {
-              src
-          }
             fixed(width: 160) {
-              base64
               width
               height
               src
               srcSet
               tracedSVG
-              srcSetWebp
-              srcWebp
-              aspectRatio
             }
           }
           id

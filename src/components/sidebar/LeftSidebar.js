@@ -6,7 +6,7 @@ import "./sidebar.css";
 import Socials from "../Socials";
 import TechTags from "./TechTags";
 
-const Sidebar = () => {
+const LeftSidebar = () => {
   return (
     <StaticQuery
       query={graphql`
@@ -37,7 +37,6 @@ const Sidebar = () => {
       `}
       render={data => (
         <>
-          {/*<div style={{position: 'fixed', overflowX: 'hidden', display: 'grid', gridTemplateColumns: '1fr 2fr 1fr',  }}>*/}
           <div className="sidebar-main ">
             <Bio author={data.site.siteMetadata.author} tagline={data.site.siteMetadata.tagline} />
             <Socials mobile={false} contacts={data.site.siteMetadata.contacts} />
@@ -45,11 +44,10 @@ const Sidebar = () => {
               <TechTags posts={data.allContentfulBlogPost.edges} />
             </div>
           </div>
-        {/*</div>*/}
         </>
       )}
     />
   );
 };
 
-export default Sidebar;
+export default LeftSidebar;

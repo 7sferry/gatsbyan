@@ -6,7 +6,7 @@ import Img from "gatsby-image";
 const Bio = ({ author, tagline }) => {
   const { fixed: photo } = Photo();
   return (
-    <div className="bio-main w-75">
+    <div>
       <Img className="profile-img" fixed={photo} alt="Ferry" title="Ferry Suhandri" />
       <h3 className="mt-2 author-bio">{author}</h3>
       <small className="text-muted">{tagline}</small>

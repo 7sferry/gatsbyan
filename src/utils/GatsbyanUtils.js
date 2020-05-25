@@ -16,7 +16,7 @@ export const getTechTags = tags => {
       techTags.add(
         <span key={kebabTag}>
           {i > 0 ? ", " : ""}
-          <Link to={`/tags/${kebabTag}`}>{tag}</Link>
+          <Link to={`/tags/${kebabTag}/`}>{tag}</Link>
         </span>
       );
     });
