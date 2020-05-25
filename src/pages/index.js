@@ -51,6 +51,7 @@ class IndexPage extends React.Component {
                         style={{ maxWidth: "160px" }}
                         className="index-thumbnail"
                         fixed={post.node.heroImage.fixed}
+                        loading="lazy"
                       />
                     {/*)}*/}
                     <p>
@@ -101,9 +102,9 @@ export const pageQuery = graphql`
               height
               src
               srcSet
-#              srcSetWebp
-#              srcWebp
-#              tracedSVG
+              srcSetWebp
+              srcWebp
+              tracedSVG
             }
           }
           id
