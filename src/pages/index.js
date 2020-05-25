@@ -46,14 +46,14 @@ class IndexPage extends React.Component {
                     <span className="page-info">{getTechTags(tags)}</span>
                   </div>
                   <div className="d-inline-block text-justify pt-1">
-                    {/*{post.node.heroImage && (*/}
+                    {post.node.heroImage && (
                       <Img
-                        style={{ maxWidth: "160px" }}
+                        style={{ maxHeight: "160px", maxWidth: "160px" }}
                         className="index-thumbnail"
                         fixed={post.node.heroImage.fixed}
                         loading="lazy"
                       />
-                    {/*)}*/}
+                    )}
                     <p>
                       {post.node.body.childMarkdownRemark.excerpt}
                       <Link to={`/blog/${post.node.slug}`} className="text-primary">
@@ -97,7 +97,6 @@ export const pageQuery = graphql`
           publishDate
           heroImage {
             fixed(width: 160) {
-#              base64
               width
               height
               src
