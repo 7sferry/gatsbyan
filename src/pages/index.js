@@ -53,7 +53,7 @@ class IndexPage extends React.Component {
                         fixed={post.node.heroImage.fixed}
                         loading="lazy"
                       />
-                    )}
+                     )}
                     <p>
                       {post.node.body.childMarkdownRemark.excerpt}
                       <Link to={`/blog/${post.node.slug}`} className="text-primary">
@@ -96,11 +96,20 @@ export const pageQuery = graphql`
           title
           publishDate
           heroImage {
-            fixed(width: 160, toFormat: WEBP) {
+              description
+              resize(width: 160, toFormat: JPG, quality: 100) {
+              src
+          }
+            fixed(width: 160) {
+              base64
               width
               height
               src
+              srcSet
               tracedSVG
+              srcSetWebp
+              srcWebp
+              aspectRatio
             }
           }
           id

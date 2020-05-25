@@ -17,7 +17,7 @@ const TechTags = props => {
   return (
     <>
       <h4 className="mb-1">Tags</h4>
-      <div className="d-block">{[...getTechTags(tags)].map(o => (<div className="d-inline-block p-1">{o}</div>))}</div>
+      <div className="d-block">{[...getTechTags(tags)].map((o,i) => (<div key={i} className="d-inline-block p-1">{o}</div>))}</div>
     </>
   );
 };
