@@ -30,7 +30,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-remark-plaintext`,
-    // `gatsby-transformer-sqip`,
+    `gatsby-plugin-preload-fonts`,
     `gatsby-plugin-minify`,
     {
       resolve: `gatsby-plugin-sitemap`,

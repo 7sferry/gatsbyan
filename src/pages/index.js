@@ -48,7 +48,7 @@ class IndexPage extends React.Component {
                   <div className="d-inline-block text-justify pt-1">
                     {post.node.heroImage && (
                       <Img
-                        style={{ maxHeight: "160px", maxWidth: "160px" }}
+                        style={{ maxWidth: "160px" }}
                         className="index-thumbnail"
                         fixed={post.node.heroImage.fixed}
                         loading="lazy"
