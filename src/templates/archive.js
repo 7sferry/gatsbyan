@@ -89,7 +89,7 @@ class ArchivePage extends React.Component {
     return (
       <Layout>
         <div>
-          <ul className="container parent-container">
+          <ul className="archive-container parent-archive-container">
             {Array.from(postByYear.entries()).map((post, i) => {
               const year = post[0];
               return (
@@ -101,7 +101,7 @@ class ArchivePage extends React.Component {
                     <span>{year}</span>
                   </button>
 
-                  <ul className={`container ${this.state.activeYear.includes(year) ? "visible" : ""}`}>
+                  <ul className={`archive-container ${this.state.activeYear.includes(year) ? "visible" : ""}`}>
                     {post[1].map(contents => {
                       const month = contents.date.split("-")[1];
                       return (
@@ -110,7 +110,7 @@ class ArchivePage extends React.Component {
                             <span>{month}</span>
                           </button>
                           <ul
-                            className={`container ${this.state.activeMonth.includes(contents.date) ? "visible" : ""}`}
+                            className={`archive-container ${this.state.activeMonth.includes(contents.date) ? "visible" : ""}`}
                           >
                             {contents.object.map(content => {
                               return (

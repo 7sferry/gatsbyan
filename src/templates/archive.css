@@ -3,7 +3,7 @@
  * on May 2020          *
  ************************/
 
-.parent-container {
+.parent-archive-container {
   background: #1c1e1f;
 }
 
@@ -21,10 +21,10 @@
   width: 100%;
   text-align: left;
 }
-.metismenu > .container > .item > .archive-link {
+.metismenu > .archive-container > .item > .archive-link {
   line-height: 2.5em;
 }
-.metismenu > .container > .item > .archive-link .metismenu-state-icon {
+.metismenu > .archive-container > .item > .archive-link .metismenu-state-icon {
   line-height: 2.5em;
 }
 .metismenu::after {
@@ -38,35 +38,35 @@
   right: 0;
   top: 0;
 }
-.container,
+.archive-container,
 .item {
   margin: 0;
   padding: 0;
 }
-.container {
+.archive-container {
   list-style: none;
 }
-.container .container {
+.archive-container .archive-container {
   box-shadow: 0 0.3em 0.3em -0.3em #0c0d0e inset, 0 -0.3em 0.3em -0.3em #0c0d0e inset;
   -webkit-box-shadow: 0 0.3em 0.3em -0.3em #0c0d0e inset, 0 -0.3em 0.3em -0.3em #0c0d0e inset;
   transition: padding 300ms;
   -webkit-transition: padding 300ms;
   background: rgba(255, 255, 255, 0.05);
 }
-.container .container .item > .archive-link {
+.archive-container .archive-container .item > .archive-link {
   height: 0;
   overflow: hidden;
 }
-.container .container .archive-link {
+.archive-container .archive-container .archive-link {
   padding-left: 1em;
 }
-.container .container .container .archive-link {
+.archive-container .archive-container .archive-container .archive-link {
   padding-left: 2em;
 }
-.container.visible {
+.archive-container.visible {
   padding: 0.5em 0;
 }
-.container.visible > .item > .archive-link {
+.archive-container.visible > .item > .archive-link {
   height: 2.5em;
 }
 .archive-link {
