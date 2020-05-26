@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { FaSearchengin, FaHome } from "react-icons/fa";
+import { FaSearchengin, FaHome, FaArchive } from "react-icons/fa";
 import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
 
 const Menu = () => {
@@ -10,17 +10,18 @@ const Menu = () => {
 export const menus = Array.of(
   {
     link: "/",
-    icon: (<FaHome title={"Homepage"} size={DEFAULT_ICON_SIZE} />),
-    text: 'Home',
+    icon: <FaHome title={"Homepage"} size={DEFAULT_ICON_SIZE} />,
+    text: "Home",
   },
-  // {
-  //   link: "about",
-  //   text: "About",
-  // },
+  {
+    link: "/archive",
+    icon: <FaArchive title={"Archive page"} size={DEFAULT_ICON_SIZE} />,
+    text: "Archive",
+  },
   {
     link: "/search",
-    icon: (<FaSearchengin title={"Search page"} size={DEFAULT_ICON_SIZE} /> ),
-    text: 'Search',
+    icon: <FaSearchengin title={"Search page"} size={DEFAULT_ICON_SIZE} />,
+    text: "Search",
   }
 ).map(menu => {
   return (

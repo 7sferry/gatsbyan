@@ -24,7 +24,9 @@ export const getTechTags = tags => {
   return techTags;
 };
 
-export const getDate = date => format(Date.parse(date), "MMM do, yyyy");
+export const getPublishDate = date => format(Date.parse(date), "MMM do, yyyy");
+
+export const getMonthYearDate = date => format(Date.parse(date), "yyyy-MMMM");
 
 export const getPlurals = count => {
   return count > 1 ? "s" : "";

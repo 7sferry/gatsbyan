@@ -36,7 +36,7 @@ exports.createPages = ({ graphql, actions }) => {
             });
           }
           createPage({
-            path: `/blog/${post.node.slug}/`,
+            path: `/blog/${post.node.slug}`,
             component: path.resolve("./src/templates/blog-post.js"),
             context: {
               slug: post.node.slug,
@@ -61,7 +61,7 @@ exports.createPages = ({ graphql, actions }) => {
           const numTags = Math.ceil(size / postsPerPage);
           Array.from({ length: numTags }).forEach((value, i) => {
             createPage({
-              path: `/tags/${_.kebabCase(tag)}/` + (i === 0 ? `` : `${i + 1}`),
+              path: `/tags/${_.kebabCase(tag)}` + (i === 0 ? `` : `${i + 1}`),
               component: path.resolve("./src/pages/index.js"),
               context: {
                 tag: tag,
@@ -73,8 +73,13 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         createPage({
-          path: `/search/`,
+          path: `/search`,
           component: path.resolve("./src/templates/search/search-page.js"),
+        });
+
+        createPage({
+          path: `/archive`,
+          component: path.resolve("./src/templates/archive.js"),
         });
       })
     );
