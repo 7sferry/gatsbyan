@@ -29,7 +29,7 @@ function SEO({ description, lang, meta, title, image, url }) {
 
   const metadata = site.siteMetadata;
   const metaDescription = description ? `Ferry Suhandri. ${description}` : metadata.description;
-  const metaImage = image ? `https:${image}` : `${url}/ferry-suhandri.jpg`;
+  const metaImage = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri.jpg`;
   const metaUrl = url || metadata.siteUrl;
 
   return (

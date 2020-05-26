@@ -36,9 +36,9 @@ Share.propTypes = {
 };
 
 Share.defaultProps = {
-  url: "https://mywebsite.com/page-to-share/",
-  title: "Default value of title",
-  siteName: "Default value of excerpt",
+  url: "https://ferry.now.sh/",
+  title: "Ferry Suhandri",
+  siteName: "MR Ferry",
 };
 
 export default Share;

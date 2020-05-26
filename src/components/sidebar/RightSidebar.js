@@ -23,7 +23,7 @@ const RightSidebar = () => {
               path
             }
           }
-          allContentfulBlogPost(filter: { rating: { eq: 5 } }) {
+          allContentfulBlogPost(filter: { rating: { eq: 5 } }, sort: { order: DESC, fields: createdAt }) {
             nodes {
               slug
               title
@@ -35,7 +35,7 @@ const RightSidebar = () => {
         <>
           <div className="sidebar-main ">
             <ul>
-              <h3>Top</h3>
+              <h3>Top Rated</h3>
               {data.allContentfulBlogPost.nodes.map(node => {
                 return (
                   <li key={node.slug}>
@@ -45,7 +45,8 @@ const RightSidebar = () => {
                   </li>
                 );
               })}
-            </ul><ul>
+            </ul>
+            <ul>
               <h3>Most Viewed</h3>
               {data.allPageViews.nodes.map(node => {
                 return (

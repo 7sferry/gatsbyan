@@ -26,42 +26,42 @@ class BlogPostTemplate extends React.Component {
     const post = this.props.data.contentfulBlogPost;
     const site = this.props.data.site.siteMetadata;
     const timeToRead = post.body.childMarkdownRemark.timeToRead;
-    const url = `${site.siteUrl}/blog/${post.slug}/`;
+    const url = `${site.siteUrl}/blog/${post.slug}`;
 
     const imageURL = post.heroImage?.file?.url;
 
     return (
       <Layout>
         <SEO title={post.title} description={post.description.description} image={imageURL} url={url} />
-          <div className="post-main">
-            <div>
-              <h3 className="title mt-4">{post.title}</h3>
-              <div className="title text-info mb-2">
-                <span className="page-info">{getDate(post.publishDate)}</span>
-                <span className="page-info">
-                  {timeToRead} min{getPlurals(timeToRead)} read
-                </span>
-                <br />
-                <span className="page-info">{getTechTags(post.tags)}</span>
-              </div>
-              <div className="d-inline-block">
-                <div className={heroStyles.hero}>
-                  {post.heroImage?.fluid && (
-                    <Img className={heroStyles.heroImage} alt={post.title} fluid={post.heroImage.fluid} />
-                  )}
-                </div>
-                <div
-                  className="pt-3 text-justify"
-                  dangerouslySetInnerHTML={{
-                    __html: post.body.childMarkdownRemark.html,
-                  }}
-                />
-              </div>
-              <Share title={post.title} siteName={site.title} url={url} />
-              <button onClick={this.handleClick}>Show comment</button>
-              {this.state.showComment && <Comment href={url} />}
+        <div className="post-main">
+          <div>
+            <h3 className="title mt-4">{post.title}</h3>
+            <div className="title text-info mb-2">
+              <span className="page-info">{getDate(post.publishDate)}</span>
+              <span className="page-info">
+                {timeToRead} min{getPlurals(timeToRead)} read
+              </span>
+              <br />
+              <span className="page-info">{getTechTags(post.tags)}</span>
             </div>
+            <div className="d-inline-block">
+              <div className={heroStyles.hero}>
+                {post.heroImage?.fluid && (
+                  <Img className={heroStyles.heroImage} alt={post.title} fluid={post.heroImage.fluid} />
+                )}
+              </div>
+              <div
+                className="pt-3 text-justify"
+                dangerouslySetInnerHTML={{
+                  __html: post.body.childMarkdownRemark.html,
+                }}
+              />
+            </div>
+            <Share title={post.title} siteName={site.title} url={url} />
+            <button onClick={this.handleClick}>Show comment</button>
+            {this.state.showComment && <Comment href={url} />}
           </div>
+        </div>
       </Layout>
     );
   }
