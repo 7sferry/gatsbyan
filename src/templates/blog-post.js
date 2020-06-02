@@ -47,7 +47,7 @@ class BlogPostTemplate extends React.Component {
             <div className="d-inline-block">
               <div className={heroStyles.hero}>
                 {post.heroImage?.fluid && (
-                  <Img className={heroStyles.heroImage} alt={post.title} fluid={post.heroImage.fluid} />
+                  <Img className={`${heroStyles.heroImage} mb-3`} alt={post.title} fluid={post.heroImage.fluid} />
                 )}
               </div>
               <div
