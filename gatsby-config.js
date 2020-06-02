@@ -137,7 +137,7 @@ module.exports = {
         // Defines where to place the tracking script - `true` in the head and `false` in the body
         head: false,
         pageTransitionDelay: 250,
-        exclude: ["/tags/**", "/search", "/404", "/404.html"],
+        exclude: ["/tags/**", "/search", "/archive", "/404", "/404.html"],
         // Enables Google Optimize using your container Id
         // optimizeId: "OPT-P5SQMN6",
         // Enables Google Optimize Experiment ID
