@@ -26,6 +26,8 @@ export const getTechTags = tags => {
 
 export const getPublishDate = date => format(Date.parse(date), "MMM do, yyyy");
 
+export const getPublishDateTime = date => format(Date.parse(date), "MMM do, yyyy hh:mm a");
+
 export const getMonthYearDate = date => format(Date.parse(date), "yyyy-MMMM");
 
 export const getPlurals = count => {
@@ -35,3 +37,4 @@ export const getPlurals = count => {
 export const PAGE_COUNT = 5;
 
 export const DEFAULT_ICON_SIZE = 20;
+

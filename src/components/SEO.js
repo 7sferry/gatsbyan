@@ -125,5 +125,3 @@ SEO.propTypes = {
 };
 
 export default SEO;
-
-// todo delete keywords
