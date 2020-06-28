@@ -81,6 +81,7 @@
 }
 .archive-link:hover {
   background: rgba(255, 255, 255, 0.05);
+  transition: none;
   color: #f7f7f7;
 }
 .archive-link.active {
