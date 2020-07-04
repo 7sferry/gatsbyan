@@ -53,7 +53,7 @@ class IndexPage extends React.Component {
                     <p>
                       {post.node.body.childMarkdownRemark.excerpt}
                       <Link to={`/blog/${post.node.slug}`} className="text-primary">
-                        <small className="d-inline ml-1"> Read full post</small>
+                        <small className="d-inline ml-1"> Read more</small>
                       </Link>
                     </p>
                   </div>
