@@ -8,6 +8,7 @@ body.medium-zoom--opened #___gatsby{
     filter: blur(3px);
     transition-delay: 0.1s;
 }
+
 .medium-zoom-image{
     transition: transform 0.5s cubic-bezier(.2,0,.2,1) !important;
 }
@@ -40,11 +41,19 @@ body.medium-zoom--opened #___gatsby{
 .post-main{
     -ms-grid-column: 2;
 }
+.right-sidebar{
+    width: 90%;
+    -ms-grid-column: 3;
+}
 
 
 .text-link, a{
     color: #8ba2d2;
     transition: 9s;
+}
+
+.text-link{
+    line-height: 1.25em;
 }
 
 .text-side{
@@ -92,7 +101,7 @@ a, a:hover, .text-side:hover, .text-link:link, .text-link:hover, .text-link:visi
 }
 
 @media only screen and (max-width: 850px) {
-  .sidebar{display: none;}
+  .sidebar, .right-sidebar{display: none;}
   .index-main{
     display: flex;
     flex-direction: row;
