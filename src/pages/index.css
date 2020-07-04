@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
 p, .title {
-    font-family: "Nunito", serif;
+    font-family: "Work Sans", serif;
 }
 
 body.medium-zoom--opened #___gatsby{
