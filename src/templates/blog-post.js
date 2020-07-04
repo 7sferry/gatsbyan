@@ -34,7 +34,7 @@ class BlogPostTemplate extends React.Component {
       <Layout>
         <SEO title={post.title} description={post.description.description} image={imageURL} url={url} />
         <div className="post-main">
-          <div>
+          <div className="blog-content">
             <h3 className="title mt-4">{post.title}</h3>
             <div className="title text-info mb-2">
               <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
@@ -44,14 +44,14 @@ class BlogPostTemplate extends React.Component {
               <br />
               <span className="page-info">{getTechTags(post.tags)}</span>
             </div>
-            <div className="d-inline-block">
+            <div className="post-container">
               <div className={heroStyles.hero}>
                 {post.heroImage?.fluid && (
                   <Img className={`${heroStyles.heroImage} mb-3`} alt={post.title} fluid={post.heroImage.fluid} />
                 )}
               </div>
               <div
-                className="pt-3 text-justify"
+                className="pt-3"
                 dangerouslySetInnerHTML={{
                   __html: post.body.childMarkdownRemark.html,
                 }}

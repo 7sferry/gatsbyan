@@ -17,6 +17,17 @@ body.medium-zoom--opened #___gatsby{
     padding: 3rem;
 }
 
+.post-container{
+    display: inline-block;
+    text-align: justify;
+    width: 100%;
+    padding: 0 3rem;
+}
+
+.blog-content{
+    text-align: center;
+}
+
 .page-info{
     padding: 3px 10px;
     font-size: 85%;
@@ -44,6 +55,7 @@ body.medium-zoom--opened #___gatsby{
 .right-sidebar{
     width: 90%;
     -ms-grid-column: 3;
+    padding-left: 2rem;
 }
 
 
@@ -107,7 +119,16 @@ a, a:hover, .text-side:hover, .text-link:link, .text-link:hover, .text-link:visi
     flex-direction: row;
     justify-content: space-around;
   }
+  .post-container{
+      padding: unset;
+  }
   .main-layout{
       padding: 1.5rem 0 0;
+  }
+  .head-elements{
+      padding: .25rem;
+  }
+  .head-logo{
+      font-size: 1.25rem;
   }
 }

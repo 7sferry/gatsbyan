@@ -67,7 +67,7 @@ const Layout = ({ children }) => {
                     <LeftSidebar />
                   </div>
                   {children}
-                  <div className="right-sidebar px-4 py-2">
+                  <div className="right-sidebar">
                     <RightSidebar />
                   </div>
                 </div>

@@ -66,6 +66,7 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
               return (
                 <li key={page} className={className}>
                   <PagingLink
+                    disabled={className}
                     className={`page-number ${className}`}
                     to={createURL(page === 1 ? "" : page)}
                     style={{ textDecoration: `none` }}

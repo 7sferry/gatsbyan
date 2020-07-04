@@ -88,7 +88,7 @@ class ArchivePage extends React.Component {
 
     return (
       <Layout>
-        <div>
+        <div className="post-main">
           <ul className="archive-container parent-archive-container">
             {Array.from(postByYear.entries()).map((post, i) => {
               const year = post[0];
