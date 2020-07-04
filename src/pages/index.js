@@ -29,7 +29,7 @@ class IndexPage extends React.Component {
               const timeToRead = post.node.body.childMarkdownRemark.timeToRead;
               return (
                 <div id={post.node.id} key={post.node.id} className="container d-block pb-3 blog-content">
-                  <h3 className="title">
+                  <div className="post-container"><h3 className="title">
                     <Link to={`/blog/${post.node.slug}`} className="text-link">
                       {post.node.title}
                     </Link>
@@ -42,7 +42,7 @@ class IndexPage extends React.Component {
                     <br />
                     <span className="page-info">{getTechTags(tags)}</span>
                   </div>
-                  <div className="post-container pt-1">
+                  <div className="pt-1">
                     {post.node.heroImage && (
                       <Img
                         style={{ maxHeight: "160px" }}
@@ -56,7 +56,7 @@ class IndexPage extends React.Component {
                         <small className="d-inline ml-1"> Read more</small>
                       </Link>
                     </p>
-                  </div>
+                  </div></div>
                 </div>
               );
             })}

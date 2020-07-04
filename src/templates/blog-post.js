@@ -44,14 +44,14 @@ class BlogPostTemplate extends React.Component {
               <br />
               <span className="page-info">{getTechTags(post.tags)}</span>
             </div>
-            <div className="post-container">
+            <div className="">
               <div className={heroStyles.hero}>
                 {post.heroImage?.fluid && (
                   <Img className={`${heroStyles.heroImage} mb-3`} alt={post.title} fluid={post.heroImage.fluid} />
                 )}
               </div>
               <div
-                className="pt-3"
+                className="post-container pt-3"
                 dangerouslySetInnerHTML={{
                   __html: post.body.childMarkdownRemark.html,
                 }}
