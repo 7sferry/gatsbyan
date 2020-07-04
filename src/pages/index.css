@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 p, .title {
-    font-family: "Raleway", serif;
+    font-family: "Nunito", serif;
 }
 
 body.medium-zoom--opened #___gatsby{
@@ -51,6 +51,7 @@ body.medium-zoom--opened #___gatsby{
 }
 .post-main{
     -ms-grid-column: 2;
+    width: 100%;
 }
 .right-sidebar{
     width: 90%;
