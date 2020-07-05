@@ -22,41 +22,43 @@ class IndexPage extends React.Component {
     const metadata = this.props.data.site.siteMetadata;
     return (
       <Layout>
-        <SEO title="Home" url={metadata.siteUrl} />
+        <SEO title="Ferry Suhandri" url={metadata.siteUrl} />
           <div className="post-main">
             {posts.map(post => {
               const tags = post.node.tags;
               const timeToRead = post.node.body.childMarkdownRemark.timeToRead;
               return (
                 <div id={post.node.id} key={post.node.id} className="container d-block pb-3 blog-content">
-                  <div className="post-container"><h3 className="title">
-                    <Link to={`/blog/${post.node.slug}`} className="text-link">
-                      {post.node.title}
-                    </Link>
-                  </h3>
-                  <div className="title text-info">
-                    <span className="page-info">{getPublishDate(post.node.publishDate)}</span>
-                    <span className="page-info">
-                      {timeToRead} min{getPlurals(timeToRead)} read
-                    </span>
-                    <br />
-                    <span className="page-info">{getTechTags(tags)}</span>
-                  </div>
-                  <div className="pt-1">
-                    {post.node.heroImage && (
-                      <Img
-                        style={{ maxHeight: "160px" }}
-                        className="index-thumbnail"
-                        fixed={post.node.heroImage.fixed}
-                      />
-                     )}
-                    <p>
-                      {post.node.body.childMarkdownRemark.excerpt}
-                      <Link to={`/blog/${post.node.slug}`} className="text-primary">
-                        <small className="d-inline ml-1"> Read more</small>
+                  <div className="post-container">
+                    <h3 className="title">
+                      <Link to={`/blog/${post.node.slug}`} className="text-link">
+                        {post.node.title}
                       </Link>
-                    </p>
-                  </div></div>
+                    </h3>
+                    <div className="title text-info">
+                      <span className="page-info">{getPublishDate(post.node.publishDate)}</span>
+                      <span className="page-info">
+                        {timeToRead} min{getPlurals(timeToRead)} read
+                      </span>
+                      <br />
+                      <span className="page-info">{getTechTags(tags)}</span>
+                    </div>
+                    <div className="pt-1">
+                      {post.node.heroImage && (
+                        <Img
+                          style={{ maxHeight: "160px" }}
+                          className="index-thumbnail"
+                          fixed={post.node.heroImage.fixed}
+                        />
+                      )}
+                      <p>
+                        {post.node.body.childMarkdownRemark.excerpt}
+                        <Link to={`/blog/${post.node.slug}`} className="text-primary">
+                          <small className="d-inline ml-1"> Read more</small>
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               );
             })}
