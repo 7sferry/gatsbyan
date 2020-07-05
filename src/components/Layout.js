@@ -73,10 +73,14 @@ const Layout = ({ children }) => {
                 </div>
               </main>
               <footer className="text-center">
-                <div className="mobile-tech-tags mt-4">
+                <div className="mobile-footer mt-4">
                   <TechTags posts={data.allContentfulBlogPost.edges} />
+                  <hr />
                 </div>
-                <hr />
+                <div className="mobile-footer mt-4">
+                  <RightSidebar />
+                  <hr />
+                </div>
                 <p className="d-inline my-emoji">{metadata.copyright}</p>
               </footer>
             </div>

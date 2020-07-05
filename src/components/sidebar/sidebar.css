@@ -14,7 +14,7 @@
     font-family: "Work Sans", serif;
 }
 
-.mobile-tech-tags{
+.mobile-footer{
     display: none;
 }
 
@@ -34,7 +34,7 @@ small, h3, p, li {
 
 
 @media only screen and (max-width: 850px) {
-    .mobile-tech-tags{
+    .mobile-footer{
         display: inline-block;
     }
 }
