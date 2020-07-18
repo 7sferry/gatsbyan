@@ -31,8 +31,8 @@ exports.createPages = ({ graphql, actions }) => {
         posts.forEach(post => {
           if(post.node.tags){
             post.node.tags.forEach(tag =>{
-              let count = postSizeByTag.has(tag) ? postSizeByTag.get(tag) + 1 : 1;
-              postSizeByTag.set(tag, count);
+              let tagCount = postSizeByTag.get(tag);
+              postSizeByTag.set(tag, tagCount ? tagCount + 1 : 1);
             });
           }
           createPage({

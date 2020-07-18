@@ -12,13 +12,13 @@ import heroStyles from "../components/hero.module.css";
 class BlogPostTemplate extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { showComment: false };
-    this.handleClick = this.handleClick.bind(this);
+    this.state = { commentShown: false };
+    this.showComment = this.showComment.bind(this);
   }
-  handleClick() {
+  showComment() {
     this.setState(() => ({
       // showComment: !prevState.showComment,
-      showComment: true,
+      commentShown: true,
     }));
   }
 
@@ -58,8 +58,8 @@ class BlogPostTemplate extends React.Component {
               />
             </div>
             <Share title={post.title} siteName={site.title} url={url} />
-            <button onClick={this.handleClick}>Show comment</button>
-            {this.state.showComment && <Comment href={url} />}
+            <button onClick={this.showComment}>Show comment</button>
+            {this.state.commentShown && <Comment href={url} />}
           </div>
         </div>
       </Layout>

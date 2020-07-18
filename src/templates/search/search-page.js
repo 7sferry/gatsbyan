@@ -4,7 +4,6 @@
  ************************/
 
 import Layout from "../../components/Layout";
-import SEO from "../../components/SEO";
 import React from "react";
 import algoliasearch from "algoliasearch/lite";
 import Hits from "./hits";
@@ -44,16 +43,15 @@ class SearchPage extends React.Component {
 
     return (
       <Layout>
-        <SEO title="Pencarian" />
-          <div className="post-main">
-            <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
-              <Configure distinct hitsPerPage={26} />
-              {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
-              <SearchBox className={"search-box"} showLoadingIndicator={true} searchAsYouType={false} />
-              <Paging />
-              <Hits />
-            </InstantSearch>
-          </div>
+        <div className="post-main">
+          <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
+            <Configure distinct hitsPerPage={26} />
+            {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
+            <SearchBox className={"search-box"} showLoadingIndicator={true} searchAsYouType={false} />
+            <Paging />
+            <Hits />
+          </InstantSearch>
+        </div>
       </Layout>
     );
   }

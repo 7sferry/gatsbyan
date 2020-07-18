@@ -6,5 +6,5 @@
 
 // You can delete this file if you're not using it
 
-require("./src/templates/codeblock.css")
-require("./src/templates/prism.css")
+require("./src/templates/codeblock.css");
+require("./src/templates/prism.css");
