@@ -22,14 +22,6 @@
   text-align: center;
 }
 
-.token.operator{
-    background: unset;
-}
-
-pre[class*="language-"]{
-  max-width: 550px;
-}
-
 @media only screen and (max-width: 850px) {
   .sidebar {
     display: none;
