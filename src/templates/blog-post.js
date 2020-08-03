@@ -30,6 +30,7 @@ class BlogPostTemplate extends React.Component {
 
     const imageURL = post.heroImage?.file?.url;
 
+    const hasImage = post.heroImage?.fluid;
     return (
       <Layout>
         <SEO title={post.title} description={post.description.description} image={imageURL} url={url} />
@@ -44,9 +45,9 @@ class BlogPostTemplate extends React.Component {
               <br />
               <span className="page-info">{getTechTags(post.tags)}</span>
             </div>
-            <div className="">
+            <div>
               <div className={heroStyles.hero}>
-                {post.heroImage?.fluid && (
+                {hasImage && (
                   <Img className={`${heroStyles.heroImage} mb-3`} alt={post.title} fluid={post.heroImage.fluid} />
                 )}
               </div>

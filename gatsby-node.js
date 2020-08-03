@@ -29,8 +29,8 @@ exports.createPages = ({ graphql, actions }) => {
         const postSizeByTag = new Map();
         const posts = result.data.allContentfulBlogPost.edges;
         posts.forEach(post => {
-          if(post.node.tags){
-            post.node.tags.forEach(tag =>{
+          if (post.node.tags) {
+            post.node.tags.forEach(tag => {
               let tagCount = postSizeByTag.get(tag);
               postSizeByTag.set(tag, tagCount ? tagCount + 1 : 1);
             });

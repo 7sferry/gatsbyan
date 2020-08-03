@@ -26,12 +26,10 @@ module.exports = {
     },
   },
   plugins: [
-    // `react-spinkit`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-remark-plaintext`,
-    `gatsby-plugin-minify`,
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
@@ -60,7 +58,6 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          `gatsby-remark-responsive-iframe`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -91,7 +88,7 @@ module.exports = {
               withWebp: true,
               showCaptions: true,
               backgroundColor: "transparent",
-              loading: 'lazy'
+              loading: "lazy",
             },
           },
         ],
@@ -102,6 +99,8 @@ module.exports = {
       options: {
         name: siteConfig.author.realName,
         short_name: siteConfig.author.name,
+        description: siteConfig.description,
+        lang: `id`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#3948DF`,
@@ -112,12 +111,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics-reporter`,
       options: {
-        email: 'ferry-now-sh@gatsbyan-1585301142869.iam.gserviceaccount.com',
-        privateKey: '-----BEGIN PRIVATE KEY-----\\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDaWzEx1lgM2+vM\\nawnpeWsRXx5Hu35VtZ/wFVym4LFwfAp//LmpK1JpgLo6MRdpW/Kh6TlrkydiD8r4\\nBDivUpeXUMqPwFOde9WXUAnf4JMxcIoHVUm4vERE3DsGwenxbQEiDICyKH+LSlkm\\n4zRJVSwtCm57VkKwzj2qtVyBDgLRTbUe4i0JplEM0AfSlSDAAlL+25H0AJZsEd1U\\nLCGj015EBK1hADbW3M+ooF5GnRGFnpf+velnbXExSsM3mQTYpq9NN+VmH25ywzMi\\nU7i0JC++mkBZ5vDRvztlnxruffbi3It+L0y/bTgTDj3jOvw6eJk0eVwBv/XMQMjJ\\nkyisALfpAgMBAAECggEAGBuq6A16DbtnQpvLzZ0D+vhFQ9a52VUy+iMlpmAW/ywW\\nzbA1wG2BzRezF/MtGksWVBWHqy6lUcCcIHt41bSY+5ImNy5dHP1b5Peni3IEVlhO\\nSQZ72/tfTzoAg1u8DFWEY0G9oM3zXQnho3dA4drXRIbLEW+B7/rpWJRrCO2m1nxZ\\nbJQZLxp5PKx+CIqSyDI46ocSGxc3FNN/XDuU8+23GkNIPZlOU7wUc6bq5nRuOH/v\\n+ug8UBbQzbtIHctsJ0KrLsCqmxw4wJWI+WcRJyIkD+JwulTsrLAz6vVDvR0oSqoz\\nFqY+t2p/p2E0crY3OSzGwqscyyIzNlxfftv/vxuGAQKBgQDwdPla4dtHHjWQBuAu\\nb9Gq3HWbSPkCkDtbwLLM6UmVCOo9w9csBQfRBxZPrXzqlMdQa0/fcGP7SyNWlRc+\\nOxlsqRI6xr22u+dHGeChJQZpzmLOGjn9biSBr2TWYLpBn3isem4mwsoYXlluYOMD\\nYR2tG/h5s3Mm2aJiO81lLJdxAQKBgQDoeIAqsf/Crjr87dX2VALM66zHz4D1uhUs\\nznsVpV3DdvhY7AL3n+fK3vIZO/w1cvHiz4YW5wyvFIHp7hFyUP77bJ1qKxgY0j3l\\nS5uk7hMJjqgOdYAtYa43S77SBkfoiPTE9DF3cX+JvmM/k/B4c1HQcH9qxmo7cmPj\\nKZFqVize6QKBgBM29boadEBRnKwesIllbBbAOTGoeiWHSwcA9gjD15puNPGslaQx\\n3rcIXvMNBP9l1iuJ977+Jy8siO1hSpMxe82gERHbUcupZkjbO4UFBWctE94uYFXt\\nGEO4tVEgN6II0UbPHcBBLo8V8wWL/ngFqa5snsVy3o/LMluxNa+RCaUBAoGALUMI\\n8Ucm3Oi/Y2+LMSK6SNu6EE0+dpl8dfTd0iEYWG5ZfDa3fS8NGlq+GFuth1qR7e8p\\n1Fu4BH6hrMJFc1SB0MIdBAbP8kU899/4tewEmN/FqMsH4c4a9Xkx9gJzDbtcrNw+\\npVrb0h3XhRFwyILrcwH0TP3EwT5MZHY7cdDFe8ECgYBm6H8WxTbHHsnrLZIqf3og\\niVbgeHzaNmaM2oldC4Mp9YtkvnsYeCUgD/OrdM6b0YorM8z2sz6swqJ7qjdHKa0p\\nCQPG2eWU8A8KQcyvFAkJW/DtevQKwZSPLoY8K46Js4LxtwlKLnT+Ufdsv4hf7IGt\\nMxOHQqGN+/5gHVk3PdDHxA==\\n-----END PRIVATE KEY-----\\n',
-        viewId: '217339696',
+        email: "ferry-now-sh@gatsbyan-1585301142869.iam.gserviceaccount.com",
+        privateKey:
+          "-----BEGIN PRIVATE KEY-----\\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDaWzEx1lgM2+vM\\nawnpeWsRXx5Hu35VtZ/wFVym4LFwfAp//LmpK1JpgLo6MRdpW/Kh6TlrkydiD8r4\\nBDivUpeXUMqPwFOde9WXUAnf4JMxcIoHVUm4vERE3DsGwenxbQEiDICyKH+LSlkm\\n4zRJVSwtCm57VkKwzj2qtVyBDgLRTbUe4i0JplEM0AfSlSDAAlL+25H0AJZsEd1U\\nLCGj015EBK1hADbW3M+ooF5GnRGFnpf+velnbXExSsM3mQTYpq9NN+VmH25ywzMi\\nU7i0JC++mkBZ5vDRvztlnxruffbi3It+L0y/bTgTDj3jOvw6eJk0eVwBv/XMQMjJ\\nkyisALfpAgMBAAECggEAGBuq6A16DbtnQpvLzZ0D+vhFQ9a52VUy+iMlpmAW/ywW\\nzbA1wG2BzRezF/MtGksWVBWHqy6lUcCcIHt41bSY+5ImNy5dHP1b5Peni3IEVlhO\\nSQZ72/tfTzoAg1u8DFWEY0G9oM3zXQnho3dA4drXRIbLEW+B7/rpWJRrCO2m1nxZ\\nbJQZLxp5PKx+CIqSyDI46ocSGxc3FNN/XDuU8+23GkNIPZlOU7wUc6bq5nRuOH/v\\n+ug8UBbQzbtIHctsJ0KrLsCqmxw4wJWI+WcRJyIkD+JwulTsrLAz6vVDvR0oSqoz\\nFqY+t2p/p2E0crY3OSzGwqscyyIzNlxfftv/vxuGAQKBgQDwdPla4dtHHjWQBuAu\\nb9Gq3HWbSPkCkDtbwLLM6UmVCOo9w9csBQfRBxZPrXzqlMdQa0/fcGP7SyNWlRc+\\nOxlsqRI6xr22u+dHGeChJQZpzmLOGjn9biSBr2TWYLpBn3isem4mwsoYXlluYOMD\\nYR2tG/h5s3Mm2aJiO81lLJdxAQKBgQDoeIAqsf/Crjr87dX2VALM66zHz4D1uhUs\\nznsVpV3DdvhY7AL3n+fK3vIZO/w1cvHiz4YW5wyvFIHp7hFyUP77bJ1qKxgY0j3l\\nS5uk7hMJjqgOdYAtYa43S77SBkfoiPTE9DF3cX+JvmM/k/B4c1HQcH9qxmo7cmPj\\nKZFqVize6QKBgBM29boadEBRnKwesIllbBbAOTGoeiWHSwcA9gjD15puNPGslaQx\\n3rcIXvMNBP9l1iuJ977+Jy8siO1hSpMxe82gERHbUcupZkjbO4UFBWctE94uYFXt\\nGEO4tVEgN6II0UbPHcBBLo8V8wWL/ngFqa5snsVy3o/LMluxNa+RCaUBAoGALUMI\\n8Ucm3Oi/Y2+LMSK6SNu6EE0+dpl8dfTd0iEYWG5ZfDa3fS8NGlq+GFuth1qR7e8p\\n1Fu4BH6hrMJFc1SB0MIdBAbP8kU899/4tewEmN/FqMsH4c4a9Xkx9gJzDbtcrNw+\\npVrb0h3XhRFwyILrcwH0TP3EwT5MZHY7cdDFe8ECgYBm6H8WxTbHHsnrLZIqf3og\\niVbgeHzaNmaM2oldC4Mp9YtkvnsYeCUgD/OrdM6b0YorM8z2sz6swqJ7qjdHKa0p\\nCQPG2eWU8A8KQcyvFAkJW/DtevQKwZSPLoY8K46Js4LxtwlKLnT+Ufdsv4hf7IGt\\nMxOHQqGN+/5gHVk3PdDHxA==\\n-----END PRIVATE KEY-----\\n",
+        viewId: "217339696",
         // startDate: `30daysAgo`,
-        endDate: `today`
-      }
+        endDate: `today`,
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
