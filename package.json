@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "author": "Ferry",
   "dependencies": {
-    "@loadable/component": "^5.12.0",
+    "@loadable/component": "^5.13.1",
     "algoliasearch": "^4.3.0",
     "bootstrap": "^4.5.0",
     "date-fns": "^2.14.0",
