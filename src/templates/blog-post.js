@@ -33,7 +33,13 @@ class BlogPostTemplate extends React.Component {
     const hasImage = post.heroImage?.fluid;
     return (
       <Layout>
-        <SEO title={post.title} description={post.description.description} image={imageURL} url={url} />
+        <SEO
+          title={post.title}
+          description={post.description.description}
+          lang={post.lang}
+          image={imageURL}
+          url={url}
+        />
         <div className="post-main">
           <div className="blog-content">
             <h3 className="title mt-4">{post.title}</h3>

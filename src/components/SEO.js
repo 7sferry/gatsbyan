@@ -38,7 +38,7 @@ function SEO({ description, lang, meta, title, image, url }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${metaUrl === metadata.siteUrl ? '' : metadata.realName}`}
+      titleTemplate={`%s | ${metaUrl === metadata.siteUrl ? "" : metadata.realName}`}
       meta={[
         {
           name: `description`,
@@ -110,7 +110,7 @@ function SEO({ description, lang, meta, title, image, url }) {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: `id`,
   meta: [],
   description: ``,
 };
