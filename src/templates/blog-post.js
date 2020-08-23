@@ -36,7 +36,7 @@ class BlogPostTemplate extends React.Component {
         <SEO
           title={post.title}
           description={post.description.description}
-          lang={post.lang}
+          lang={post.lang?.[0]}
           image={imageURL}
           url={url}
         />
@@ -81,6 +81,7 @@ export const pageQuery = graphql`
     contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishDate
+      lang
       body {
         childMarkdownRemark {
           html
