@@ -13,7 +13,6 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   tags
-                  title
                   slug
                 }
               }
@@ -35,6 +34,7 @@ exports.createPages = ({ graphql, actions }) => {
               postSizeByTag.set(tag, tagCount ? tagCount + 1 : 1);
             });
           }
+
           createPage({
             path: `/blog/${post.node.slug}`,
             component: path.resolve("./src/templates/blog-post.js"),
@@ -49,7 +49,7 @@ exports.createPages = ({ graphql, actions }) => {
         Array.from({ length: numPages }).forEach((value, i) => {
           createPage({
             path: `/${i === 0 ? "" : i + 1}`,
-            component: path.resolve("./src/pages/index.js"),
+            component: path.resolve("./src/templates/index.js"),
             context: {
               limit: postsPerPage,
               skip: i * postsPerPage,
@@ -61,8 +61,8 @@ exports.createPages = ({ graphql, actions }) => {
           const numTags = Math.ceil(size / postsPerPage);
           Array.from({ length: numTags }).forEach((value, i) => {
             createPage({
-              path: `/tags/${_.kebabCase(tag)}` + (i === 0 ? `` : `${i + 1}`),
-              component: path.resolve("./src/pages/index.js"),
+              path: `/tags/${_.kebabCase(tag)}` + (i === 0 ? `` : `/${i + 1}`),
+              component: path.resolve("./src/templates/index.js"),
               context: {
                 tag: tag,
                 limit: postsPerPage,
