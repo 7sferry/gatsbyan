@@ -6,7 +6,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { kebabCase } from "lodash";
-import { format } from "date-fns"
+import { format } from "date-fns";
 
 export const getTechTags = tags => {
   const techTags = new Set();
@@ -26,7 +26,7 @@ export const getTechTags = tags => {
 
 export const getPublishDate = date => format(Date.parse(date), "MMM do, yyyy");
 
-export const getPublishDateTime = date => format(Date.parse(date), "MMM do, yyyy hh:mm a");
+export const getPublishDateTime = date => format(Date.parse(date), "EE, MMM do, yyyy hh:mm a");
 
 export const getMonthYearDate = date => format(Date.parse(date), "yyyy-MMMM");
 
@@ -37,4 +37,3 @@ export const getPlurals = count => {
 export const PAGE_COUNT = 5;
 
 export const DEFAULT_ICON_SIZE = 20;
-
