@@ -49,7 +49,7 @@ small {
 
 
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1024px) {
   .bottom-bar{display: flex;}
   .social-links{display: none;}
   .mobile-pages-main{display: block;}

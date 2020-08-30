@@ -82,6 +82,8 @@ a {
 .index-thumbnail {
   float: left;
   margin: 0 10px 5px 0;
+  max-width: 15vw;
+  max-height: 20vh;
 }
 
 .marginb5 {
@@ -125,7 +127,8 @@ a:hover,
   scrollbar-color: #2a2c2e #1c1e1f;
 }
 
-@media only screen and (max-width: 850px) {
+
+@media only screen and (max-width: 1024px) {
   .sidebar,
   .right-sidebar {
     display: none;
@@ -134,17 +137,43 @@ a:hover,
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    padding: 1rem 0 0;
   }
   .post-container {
     padding: unset;
   }
   .main-layout {
-    padding: 1.5rem 0 0;
+    padding: 0;
   }
   .head-elements {
     padding: 0.25rem;
   }
   .head-logo {
     font-size: 1.25rem;
+  }
+  .index-thumbnail {
+    max-width: 26vw;
+    max-height: 10vh;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .index-thumbnail {
+    max-width: 36vw;
+    max-height: 20vh;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .index-thumbnail {
+    max-width: 33vw;
+    max-height: 15vh;
+  }
+}
+
+@media only screen and (min-width: 3000px) {
+  .index-thumbnail {
+    max-width: 30vw;
+    max-height: 12vh;
   }
 }

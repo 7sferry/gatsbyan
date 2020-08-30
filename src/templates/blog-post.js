@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import "./blog-post.css";
 import Share from "../components/Share";
-import { getPlurals, getTechTags, getPublishDateTime } from "../utils/GatsbyanUtils";
+import { getPlurals, getPublishDateTime, getTechTags } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -23,9 +23,10 @@ class BlogPostTemplate extends React.Component {
   }
 
   render() {
-    const post = this.props.data.contentfulBlogPost;
+    const { contentfulBlogPost: post } = this.props.data;
     const site = this.props.data.site.siteMetadata;
-    const timeToRead = post.body.childMarkdownRemark.timeToRead;
+    const {childMarkdownRemark} = post.body;
+    const timeToRead = childMarkdownRemark.timeToRead;
     const url = `${site.siteUrl}/blog/${post.slug}`;
 
     const imageURL = post.heroImage?.file?.url;
@@ -42,7 +43,7 @@ class BlogPostTemplate extends React.Component {
         />
         <div className="post-main">
           <div className="blog-content">
-            <h3 className="title mt-4">{post.title}</h3>
+            <h3 className="title">{post.title}</h3>
             <div className="title text-info mb-2">
               <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
               <span className="page-info">
@@ -58,9 +59,9 @@ class BlogPostTemplate extends React.Component {
                 )}
               </div>
               <div
-                className="post-container pt-3"
+                className="post-container pt-0"
                 dangerouslySetInnerHTML={{
-                  __html: post.body.childMarkdownRemark.html,
+                  __html: childMarkdownRemark.html,
                 }}
               />
             </div>
@@ -92,7 +93,7 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        fluid {
+        fluid(quality: 100) {
           aspectRatio
           src
           srcSet

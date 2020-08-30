@@ -50,6 +50,7 @@ const Layout = ({ children }) => {
       `}
       render={data => {
         const metadata = data.site.siteMetadata;
+        const { allContentfulBlogPost: post } = data;
         return (
           <>
             <Header siteTitle={metadata.title} />
@@ -74,14 +75,16 @@ const Layout = ({ children }) => {
               </main>
               <footer className="text-center">
                 <div className="mobile-footer mt-4">
-                  <TechTags posts={data.allContentfulBlogPost.edges} />
+                  <TechTags posts={post.edges} />
                   <hr />
                 </div>
                 <div className="mobile-footer mt-4">
                   <RightSidebar />
                   <hr />
                 </div>
-                <p className="d-inline my-emoji">{metadata.copyright}</p>
+                <div>
+                  <p className="d-inline my-emoji">{metadata.copyright}</p>
+                </div>
               </footer>
             </div>
           </>

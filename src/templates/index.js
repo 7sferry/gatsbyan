@@ -13,9 +13,8 @@ import "../components/pagination.css";
 
 class IndexPage extends React.Component {
   render() {
-    const contents = this.props.data.allContentfulBlogPost;
-    const posts = contents.edges;
-    const pageInfo = contents.pageInfo;
+    const { allContentfulBlogPost: contents } = this.props.data;
+    const { edges: posts, pageInfo } = contents;
     const tag = this.props.pageContext.tag;
     const url = tag ? `/tags/${kebabCase(tag)}` : ``;
 
@@ -26,7 +25,8 @@ class IndexPage extends React.Component {
         <div className="post-main">
           {posts.map(post => {
             const tags = post.node.tags;
-            const timeToRead = post.node.body.childMarkdownRemark.timeToRead;
+            const { childMarkdownRemark } = post.node.body;
+            const timeToRead = childMarkdownRemark.timeToRead;
             return (
               <div id={post.node.id} key={post.node.id} className="container d-block pb-3 blog-content">
                 <div className="post-container">
@@ -44,15 +44,9 @@ class IndexPage extends React.Component {
                     <span className="page-info">{getTechTags(tags)}</span>
                   </div>
                   <div className="pt-1">
-                    {post.node.heroImage && (
-                      <Img
-                        style={{ maxHeight: "160px" }}
-                        className="index-thumbnail"
-                        fixed={post.node.heroImage.fixed}
-                      />
-                    )}
+                    {post.node.heroImage && <Img className="index-thumbnail" fixed={post.node.heroImage.fixed} />}
                     <p>
-                      {post.node.body.childMarkdownRemark.excerpt}
+                      {childMarkdownRemark.excerpt}
                       <Link to={`/blog/${post.node.slug}`} className="text-primary">
                         <small className="d-inline ml-1"> Read more</small>
                       </Link>
@@ -92,12 +86,12 @@ export const pageQuery = graphql`
           title
           publishDate
           heroImage {
-            fixed(width: 160, toFormat: JPG) {
+            fixed(resizingBehavior: THUMB, toFormat: WEBP, cropFocus: FACES) {
               width
               height
               src
               srcSet
-              tracedSVG
+              base64
             }
           }
           id

@@ -33,8 +33,8 @@ small, h3, p, li {
 }
 
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1024px) {
     .mobile-footer{
-        display: inline-block;
+        display: block;
     }
 }
