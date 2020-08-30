@@ -14,20 +14,7 @@
   max-height: 55vh;
 }
 
-.heroDetails {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.7);
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 0);
-  font-size: 14px;
-  padding: 0 0.5em;
-}
-
 @media (max-width: 1024px) {
-  .heroDetails {
-    font-size: 16px;
-  }
   .heroImage {
     max-height: 45vh;
   }
@@ -36,12 +23,6 @@
 @media (max-width: 450px) {
   .heroImage {
     max-height: 30vh;
-  }
-}
-
-@media (min-width: 1000px) {
-  .heroDetails {
-    font-size: 20px;
   }
 }
 
