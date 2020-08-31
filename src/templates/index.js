@@ -1,3 +1,8 @@
+/************************
+ * Author: [MR FERRY™]  *
+ * August 2020          *
+ ************************/
+
 import React from "react";
 import Img from "gatsby-image";
 import { graphql, Link } from "gatsby";
@@ -28,7 +33,7 @@ class IndexPage extends React.Component {
             const { childMarkdownRemark } = post.node.body;
             const timeToRead = childMarkdownRemark.timeToRead;
             return (
-              <div id={post.node.id} key={post.node.id} className="container d-block pb-3 blog-content">
+              <div id={post.node.id} key={post.node.id} className="d-block pb-3 blog-content">
                 <div className="post-container">
                   <div className="title posted">
                     <Link to={`/blog/${post.node.slug}`} className="text-link">
