@@ -23,9 +23,9 @@ const allContentfulBlogPost = `{
 
 const unnestMarkdown = node => {
   const { body, ...rest } = node;
-
+  const { childMarkdownRemark } = body;
   return {
-    ...body.childMarkdownRemark,
+    ...childMarkdownRemark,
     ...rest,
   };
 };
@@ -47,7 +47,7 @@ const queries = [
       distinct: true,
     },
     transformer: ({ data }) =>
-      data.allContentfulBlogPost.edges
+      data["allContentfulBlogPost"].edges
         .map(edge => edge.node)
         .map(unnestMarkdown)
         .map(handlePlainText)
