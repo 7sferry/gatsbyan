@@ -1,12 +1,12 @@
 import React from "react";
 import Img from "gatsby-image";
-import { Link, graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { kebabCase } from "lodash";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Pagination from "../components/Pagination";
-import { getPlurals, getTechTags, getPublishDate } from "../utils/GatsbyanUtils";
+import { getPlurals, getPublishDate, getTechTags } from "../utils/GatsbyanUtils";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 import "../components/pagination.css";
@@ -30,11 +30,11 @@ class IndexPage extends React.Component {
             return (
               <div id={post.node.id} key={post.node.id} className="container d-block pb-3 blog-content">
                 <div className="post-container">
-                  <h3 className="title">
+                  <div className="title posted">
                     <Link to={`/blog/${post.node.slug}`} className="text-link">
                       {post.node.title}
                     </Link>
-                  </h3>
+                  </div>
                   <div className="title text-info">
                     <span className="page-info">{getPublishDate(post.node.publishDate)}</span>
                     <span className="page-info">
@@ -47,9 +47,11 @@ class IndexPage extends React.Component {
                     {post.node.heroImage && <Img className="index-thumbnail" fixed={post.node.heroImage.fixed} />}
                     <p>
                       {childMarkdownRemark.excerpt}
-                      <Link to={`/blog/${post.node.slug}`} className="text-primary">
-                        <small className="d-inline ml-1"> Read more</small>
-                      </Link>
+                      <small className="d-inline ml-1">
+                        <Link to={`/blog/${post.node.slug}`} className="text-second-link">
+                          Read more
+                        </Link>
+                      </small>
                     </p>
                   </div>
                 </div>

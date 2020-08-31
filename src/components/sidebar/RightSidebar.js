@@ -4,8 +4,7 @@
  ************************/
 
 import React from "react";
-import { StaticQuery, graphql } from "gatsby";
-import { Link } from "gatsby";
+import { graphql, Link, StaticQuery } from "gatsby";
 import "./sidebar.css";
 import { startCase } from "lodash";
 
@@ -31,36 +30,43 @@ const RightSidebar = () => {
           }
         }
       `}
-      render={data => (
-        <>
-          <div className="sidebar-main ">
-            <ul>
+      render={data => {
+        const { allPageViews } = data;
+        const { allContentfulBlogPost } = data;
+        return (
+          <>
+            <div className="sidebar-main ">
               <h3>Most Viewed</h3>
-              {data.allPageViews.nodes.map(node => {
-                return (
-                  <li key={node.path}>
-                    <Link className="text-link" to={`${node.path}`}>
-                      <small className="title">{startCase(node.path.replace(/^\/blog\/+/i, ""))}</small>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <ul>
+              <ul>
+                {allPageViews.nodes.map(node => {
+                  return (
+                    <li key={node.path}>
+                      <small className="title">
+                        <Link className="text-link" to={`${node.path}`}>
+                          {startCase(node.path.replace(/^\/blog\/+/i, ""))}
+                        </Link>
+                      </small>
+                    </li>
+                  );
+                })}
+              </ul>
+
               <h3>Top Rated</h3>
-              {data.allContentfulBlogPost.nodes.map(node => {
-                return (
-                  <li key={node.slug}>
-                    <Link className="text-link" to={`/blog/${node.slug}`}>
-                      <small className="title">{node.title}</small>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </>
-      )}
+              <ul>
+                {allContentfulBlogPost.nodes.map(node => {
+                  return (
+                    <li key={node.slug}>
+                      <Link className="text-link" to={`/blog/${node.slug}`}>
+                        <small className="title">{node.title}</small>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </>
+        );
+      }}
     />
   );
 };

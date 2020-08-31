@@ -105,7 +105,14 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#3948DF`,
         display: `minimal-ui`,
-        icon: `src/images/avatar.png`, // This path is relative to the root of the site.
+        crossOrigin: `use-credentials`,
+        icon_options: {
+          // For all the options available, please see:
+          // https://developer.mozilla.org/en-US/docs/Web/Manifest
+          // https://w3c.github.io/manifest/#purpose-member
+          purpose: `maskable`
+        },
+        icon: `src/images/avatar.png` // This path is relative to the root of the site.
       },
     },
     {
