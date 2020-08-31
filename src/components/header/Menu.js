@@ -26,7 +26,7 @@ export const menus = Array.of(
 ).map(menu => {
   return (
     <Link key={menu.link} to={menu.link}>
-      <span className="side-menu d-block ml-4">
+      <span className="text-white d-block ml-4">
         {menu.icon} {menu.text}
       </span>
     </Link>

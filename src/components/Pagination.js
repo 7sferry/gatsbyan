@@ -34,88 +34,90 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
 
   return (
     <ReactPagination total={totalPageCount} limit={limit} pageCount={PAGE_COUNT} currentPage={currentPage}>
-      {({ pages, currentPage, hasNextPage, hasPreviousPage, previousPage, nextPage, totalPages }) => (
-        <nav data-pagination="">
-          <span>
-            <PagingLink
-              className={"page-number text-second-link"}
-              disabled={currentPage === 1 || totalPages < 1}
-              to={createURL("")}
-              style={{ textDecoration: `none` }}
-              onClick={e => {
-                click(e, 1);
-              }}
-            >
-              First
-            </PagingLink>
-          </span>
+      {({ pages, currentPage, hasNextPage, hasPreviousPage, previousPage, nextPage, totalPages }) => {
+        return (
+          <nav data-pagination="">
+            <span>
+              <PagingLink
+                className={`page-number text-second-link`}
+                disabled={currentPage === 1 || totalPages < 1}
+                to={createURL("")}
+                style={{ textDecoration: `none` }}
+                onClick={e => {
+                  click(e, 1);
+                }}
+              >
+                First
+              </PagingLink>
+            </span>
 
-          <span>
-            <PagingLink
-              disabled={!hasPreviousPage}
-              className={"page-number text-second-link"}
-              style={{ textDecoration: `none` }}
-              to={createURL(previousPage === 1 ? "" : previousPage)}
-              onClick={e => {
-                click(e, previousPage);
-              }}
-            >
-              Prev
-            </PagingLink>
-          </span>
+            <span>
+              <PagingLink
+                disabled={!hasPreviousPage}
+                className={`page-number text-second-link`}
+                style={{ textDecoration: `none` }}
+                to={createURL(previousPage === 1 ? "" : previousPage)}
+                onClick={e => {
+                  click(e, previousPage);
+                }}
+              >
+                Prev
+              </PagingLink>
+            </span>
 
-          <ul>
-            {pages.map(page => {
-              const className = currentPage === page ? "current" : "";
-              return (
-                <li key={page} className={className}>
-                  <span>
-                    <PagingLink
-                      disabled={className}
-                      className={`text-second-link page-number ${className}`}
-                      to={createURL(page === 1 ? "" : page)}
-                      style={{ textDecoration: `none` }}
-                      onClick={e => {
-                        click(e, page);
-                      }}
-                    >
-                      {page}
-                    </PagingLink>
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+            <ul>
+              {pages.map(page => {
+                const className = currentPage === page ? "current" : "";
+                return (
+                  <li key={page} className={className}>
+                    <span>
+                      <PagingLink
+                        disabled={className}
+                        className={`text-second-link page-number ${className}`}
+                        to={createURL(page === 1 ? "" : page)}
+                        style={{ textDecoration: `none` }}
+                        onClick={e => {
+                          click(e, page);
+                        }}
+                      >
+                        {page}
+                      </PagingLink>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
 
-          <span>
-            <PagingLink
-              disabled={!hasNextPage}
-              className={"page-number text-second-link"}
-              style={{ textDecoration: `none` }}
-              to={createURL(nextPage)}
-              onClick={e => {
-                click(e, nextPage);
-              }}
-            >
-              Next
-            </PagingLink>
-          </span>
+            <span>
+              <PagingLink
+                disabled={!hasNextPage}
+                className={"page-number text-second-link"}
+                style={{ textDecoration: `none` }}
+                to={createURL(nextPage)}
+                onClick={e => {
+                  click(e, nextPage);
+                }}
+              >
+                Next
+              </PagingLink>
+            </span>
 
-          <span>
-            <PagingLink
-              disabled={currentPage === totalPages || totalPages < 1}
-              className={"page-number text-second-link"}
-              style={{ textDecoration: `none` }}
-              to={createURL(totalPages)}
-              onClick={e => {
-                click(e, totalPages);
-              }}
-            >
-              Last
-            </PagingLink>
-          </span>
-        </nav>
-      )}
+            <span>
+              <PagingLink
+                disabled={currentPage === totalPages || totalPages < 1}
+                className={"page-number text-second-link"}
+                style={{ textDecoration: `none` }}
+                to={createURL(totalPages)}
+                onClick={e => {
+                  click(e, totalPages);
+                }}
+              >
+                Last
+              </PagingLink>
+            </span>
+          </nav>
+        );
+      }}
     </ReactPagination>
   );
 };
