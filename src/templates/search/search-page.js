@@ -14,10 +14,9 @@ import SEO from "../../components/SEO";
 class SearchPage extends React.Component {
   render() {
     const algoliaClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY);
-    const { webstore } = window?.chrome;
     const chrome =
       typeof window !== "undefined"
-        ? !!window.chrome && (!!webstore || !!window.chrome.runtime)
+        ? !!window.chrome && (!!window.chrome["webstore"] || !!window.chrome.runtime)
         : undefined;
 
     const searchClient = {
