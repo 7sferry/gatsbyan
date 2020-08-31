@@ -47,11 +47,6 @@ class IndexPage extends React.Component {
                     {post.node.heroImage && <Img className="index-thumbnail" fixed={post.node.heroImage.fixed} />}
                     <p>
                       {childMarkdownRemark.excerpt}
-                      <small className="d-inline ml-1">
-                        <Link to={`/blog/${post.node.slug}`} className="text-second-link">
-                          Read more
-                        </Link>
-                      </small>
                     </p>
                   </div>
                 </div>

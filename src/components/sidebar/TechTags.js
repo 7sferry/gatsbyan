@@ -28,7 +28,7 @@ const TechTags = props => {
 
   return (
     <>
-      <h4 className="mb-1">Tags</h4>
+      <div className="second-header mb-1">Tags</div>
       {presentAllTags()}
     </>
   );

@@ -70,6 +70,7 @@
 [data-pagination] [hidden],
 [data-pagination] [disabled] {
     opacity: .5;
+    color: #f60 !important;
     pointer-events: none;
 }
 @media (min-width: 350px) {

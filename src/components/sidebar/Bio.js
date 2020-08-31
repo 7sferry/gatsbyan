@@ -8,8 +8,8 @@ const Bio = ({ author, tagline }) => {
   return (
     <div>
       <Img className="profile-img" fixed={photo} alt="Ferry" title="Ferry Suhandri" />
-      <h3 className="mt-2 author-bio">{author}</h3>
-      <small className="text-muted">{tagline}</small>
+      <div className="mt-2 author-bio second-header">{author}</div>
+      <small className="muted">{tagline}</small>
     </div>
   );
 };

@@ -36,7 +36,7 @@ const RightSidebar = () => {
         return (
           <>
             <div className="sidebar-main ">
-              <h3>Most Viewed</h3>
+              <div className="second-header">Most Viewed</div>
               <ul>
                 {allPageViews.nodes.map(node => {
                   return (
@@ -51,7 +51,7 @@ const RightSidebar = () => {
                 })}
               </ul>
 
-              <h3>Top Rated</h3>
+              <div className="second-header">Top Rated</div>
               <ul>
                 {allContentfulBlogPost.nodes.map(node => {
                   return (

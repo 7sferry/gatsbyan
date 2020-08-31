@@ -7,16 +7,17 @@ import Layout from "../../components/Layout";
 import React from "react";
 import algoliasearch from "algoliasearch/lite";
 import Hits from "./hits";
-import { InstantSearch, SearchBox, VoiceSearch, Configure, connectPagination } from "react-instantsearch-dom";
+import { Configure, connectPagination, InstantSearch, SearchBox, VoiceSearch } from "react-instantsearch-dom";
 import Pagination from "../../components/Pagination";
+import SEO from "../../components/SEO";
 
 class SearchPage extends React.Component {
   render() {
     const algoliaClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY);
-
+    const { webstore } = window?.chrome;
     const chrome =
       typeof window !== "undefined"
-        ? !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)
+        ? !!window.chrome && (!!webstore || !!window.chrome.runtime)
         : undefined;
 
     const searchClient = {
@@ -35,7 +36,7 @@ class SearchPage extends React.Component {
       },
     };
 
-    const Paging = connectPagination(({ createURL, currentRefinement, nbPages, refine }) => {
+    const Paging = connectPagination(({ currentRefinement, nbPages, refine }) => {
       const url = "/search";
 
       return <Pagination totalPageCount={nbPages} currentPage={currentRefinement} url={url} refine={refine} />;
@@ -43,6 +44,11 @@ class SearchPage extends React.Component {
 
     return (
       <Layout>
+        <SEO
+          title={"Searh Page"}
+          description={"Search Engine to search something at https://ferry.now.sh/ Powered By Algolia"}
+          lang={"en"}
+        />
         <div className="post-main">
           <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
             <Configure distinct hitsPerPage={26} />

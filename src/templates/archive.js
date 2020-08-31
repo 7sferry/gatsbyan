@@ -4,11 +4,12 @@
  ************************/
 
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { MdArchive } from "react-icons/md";
 import "./archive.css";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
 import Layout from "../components/Layout";
+import SEO from "../components/SEO";
 
 class ArchivePage extends React.Component {
   constructor(props) {
@@ -54,14 +55,15 @@ class ArchivePage extends React.Component {
     }));
   }
 
-  render() {
-    const posts = this.props.data.allContentfulBlogPost.nodes;
+  render(){
+    const { allContentfulBlogPost } = this.props.data;
+    const posts = allContentfulBlogPost.nodes;
     let postByMonth = new Map();
-    if (posts) {
+    if(posts){
       let lastDate = getMonthYearDate(posts[0].publishDate);
       this.state.firstOpen &&
-        this.state.activeYear.push(lastDate.split("-")[0]) &&
-        this.state.activeMonth.push(lastDate);
+      this.state.activeYear.push(lastDate.split("-")[0]) &&
+      this.state.activeMonth.push(lastDate);
 
       posts.forEach(o => {
         const monthYearDate = getMonthYearDate(o.publishDate);
@@ -91,6 +93,11 @@ class ArchivePage extends React.Component {
 
     return (
       <Layout>
+        <SEO
+          title={"Archived Posts"}
+          description={"Every Post at https://ferry.now.sh/"}
+          lang={"en"}
+        />
         <div className="post-main">
           <ul className="archive-container parent-archive-container">
             {Array.from(postByYear.entries()).map((post, i) => {

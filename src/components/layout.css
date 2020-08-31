@@ -501,17 +501,20 @@ tt:after {
   letter-spacing: -0.2em;
   content: " ";
 }
+
 pre code:before,
 pre code:after,
 pre tt:before,
 pre tt:after {
   content: "";
 }
+
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
   }
 }
+
 @media only screen and (min-width: 3000px) {
   html {
     font-size: 140%;

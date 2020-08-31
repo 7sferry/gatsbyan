@@ -43,7 +43,7 @@ class BlogPostTemplate extends React.Component {
         />
         <div className="post-main">
           <div className="blog-content">
-            <h3 className="title">{post.title}</h3>
+            <div className="title posted">{post.title}</div>
             <div className="title text-info mb-2">
               <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
               <span className="page-info">
