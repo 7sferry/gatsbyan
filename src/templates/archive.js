@@ -1,4 +1,9 @@
 /************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
+/************************
  * Made by [MR Ferry™]  *
  * on May 2020          *
  ************************/
@@ -94,7 +99,7 @@ class ArchivePage extends React.Component {
     return (
       <Layout>
         <SEO
-          title={"Archived Posts"}
+          title={"All Posts"}
           description={"Every Post at https://ferry.now.sh/"}
           lang={"en"}
         />

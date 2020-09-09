@@ -1,4 +1,9 @@
 /************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
+/************************
  * Made by [MR Ferry™]  *
  * on April 2020        *
  ************************/
@@ -44,7 +49,7 @@ class SearchPage extends React.Component {
     return (
       <Layout>
         <SEO
-          title={"Searh Page"}
+          title={"Search Page"}
           description={"Search Engine to search something at https://ferry.now.sh/ Powered By Algolia"}
           lang={"en"}
         />

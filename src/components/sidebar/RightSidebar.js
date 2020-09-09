@@ -1,4 +1,9 @@
 /************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
+/************************
  * Made by [MR Ferry™]  *
  * on May 2020          *
  ************************/
@@ -6,13 +11,13 @@
 import React from "react";
 import { graphql, Link, StaticQuery } from "gatsby";
 import "./sidebar.css";
-import { startCase } from "lodash";
+import { capital as startCase } from "case";
 
 const RightSidebar = () => {
   return (
     <StaticQuery
       query={graphql`
-        query RigthSidebarQuery {
+        query RightSidebarQuery {
           allPageViews(
             sort: { order: DESC, fields: totalCount }
             filter: { path: { regex: "/.*(?<!/)$/" }, id: { regex: "/^/blog?/" } }

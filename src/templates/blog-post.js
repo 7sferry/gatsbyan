@@ -1,3 +1,8 @@
+/************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import "./blog-post.css";
@@ -60,8 +65,9 @@ class BlogPostTemplate extends React.Component {
               </div>
               <div
                 className="post-container pt-0"
+                id="content-post"
                 dangerouslySetInnerHTML={{
-                  __html: childMarkdownRemark.html,
+                  __html: childMarkdownRemark.html
                 }}
               />
             </div>

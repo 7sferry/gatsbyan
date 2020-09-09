@@ -1,26 +1,31 @@
 /************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
+/************************
  * Made by [MR Ferry™]  *
  * on March 2020        *
  ************************/
 
 import React from "react";
 import { Link } from "gatsby";
-import { kebabCase } from "lodash";
+import { kebab as kebabCase } from "case";
 import { format } from "date-fns";
 
 export const getTechTags = tags => {
   const techTags = new Set();
-  if (tags !== undefined && tags !== null) {
-    tags.forEach((tag, i) => {
-      const kebabTag = kebabCase(tag);
-      techTags.add(
-        <span key={kebabTag}>
+  // if (tags) {
+  tags && tags.forEach((tag, i) => {
+    const kebabTag = kebabCase(tag);
+    techTags.add(
+      <span key={kebabTag}>
           {i > 0 ? ", " : ""}
-          <Link to={`/tags/${kebabTag}/`}>{tag}</Link>
+        <Link to={`/tags/${kebabTag}/`}>{tag}</Link>
         </span>
-      );
-    });
-  }
+    );
+  });
+  // }
   return techTags;
 };
 

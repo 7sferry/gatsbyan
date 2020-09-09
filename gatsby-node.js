@@ -1,5 +1,10 @@
+/************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
 const path = require(`path`);
-const _ = require("lodash");
+const { kebab: kebabCase } = require("case");
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -26,7 +31,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const postSizeByTag = new Map();
-        const posts = result.data.allContentfulBlogPost.edges;
+        const { allContentfulBlogPost: { edges: posts } } = result.data;
         posts.forEach(post => {
           if (post.node.tags) {
             post.node.tags.forEach(tag => {
@@ -61,13 +66,13 @@ exports.createPages = ({ graphql, actions }) => {
           const numTags = Math.ceil(size / postsPerPage);
           Array.from({ length: numTags }).forEach((value, i) => {
             createPage({
-              path: `/tags/${_.kebabCase(tag)}` + (i === 0 ? `` : `/${i + 1}`),
+              path: `/tags/${kebabCase(tag)}` + (i === 0 ? `` : `/${i + 1}`),
               component: path.resolve("./src/templates/index.js"),
               context: {
                 tag: tag,
                 limit: postsPerPage,
-                skip: i * postsPerPage,
-              },
+                skip: i * postsPerPage
+              }
             });
           });
         });

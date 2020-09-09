@@ -1,12 +1,17 @@
 /************************
  * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
+/************************
+ * Author: [MR FERRY™]  *
  * August 2020          *
  ************************/
 
 import React from "react";
 import Img from "gatsby-image";
 import { graphql, Link } from "gatsby";
-import { kebabCase } from "lodash";
+import { kebab as kebabCase } from "case";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";

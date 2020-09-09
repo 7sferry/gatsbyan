@@ -1,3 +1,8 @@
+/************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
 p,
@@ -15,14 +20,19 @@ body.medium-zoom--opened #___gatsby {
 }
 
 .main-layout {
-  padding: 3rem;
+  padding: 1.5rem;
 }
 
 .post-container {
   display: inline-block;
   text-align: justify;
   width: 100%;
-  padding: 0 3rem;
+  padding: 0 1.5rem;
+}
+
+#content-post {
+  font-size: 1.2rem;
+  text-align: left;
 }
 
 .blog-content {
@@ -37,7 +47,7 @@ body.medium-zoom--opened #___gatsby {
 .title,
 .posted {
   text-align: center;
-  line-height: 18px;
+  line-height: 20px;
 }
 
 .posted {
@@ -70,7 +80,6 @@ body.medium-zoom--opened #___gatsby {
   width: 100%;
 }
 .right-sidebar {
-  width: 90%;
   -ms-grid-column: 3;
   grid-column: 3;
   padding-left: 2rem;
