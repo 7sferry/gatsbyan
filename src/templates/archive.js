@@ -100,7 +100,7 @@ class ArchivePage extends React.Component {
       <Layout>
         <SEO
           title={"All Posts"}
-          description={"Every Post at https://ferry.now.sh/"}
+          description={"Every Post at my blog"}
           lang={"en"}
         />
         <div className="post-main">
