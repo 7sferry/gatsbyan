@@ -3,11 +3,6 @@
  * September 2020       *
  ************************/
 
-/************************
- * Author: [MR FERRY™]  *
- * September 2020       *
- ************************/
-
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import "./blog-post.css";
