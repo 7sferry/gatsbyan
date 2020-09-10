@@ -3,6 +3,11 @@
  * September 2020       *
  ************************/
 
+/************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import "./blog-post.css";
@@ -47,7 +52,6 @@ class BlogPostTemplate extends React.Component {
           url={url}
         />
         <div className="post-main">
-          <div className="blog-content">
             <div className="title posted">{post.title}</div>
             <div className="title text-info mb-2">
               <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
@@ -74,7 +78,6 @@ class BlogPostTemplate extends React.Component {
             <Share title={post.title} siteName={site.title} url={url} />
             <button onClick={this.showComment}>Show comment</button>
             {this.state.commentShown && <Comment href={url} />}
-          </div>
         </div>
       </Layout>
     );

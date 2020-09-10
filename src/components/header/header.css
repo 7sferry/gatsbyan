@@ -1,3 +1,8 @@
+/************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
 .head-main {
   background: #343a40;
   width: 100%;
@@ -22,7 +27,6 @@
 
 .bottom-bar {
   width: 100%;
-  background: black;
   display: none;
   flex-direction: row;
   justify-content: space-around;

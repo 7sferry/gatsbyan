@@ -1,3 +1,8 @@
+/************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
 import React from "react";
 import { Link } from "gatsby";
 import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
@@ -26,7 +31,7 @@ export const menus = Array.of(
 ).map(menu => {
   return (
     <Link key={menu.link} to={menu.link}>
-      <span className="text-white d-block ml-4">
+      <span className="text-white d-block ml-2 mr-2">
         {menu.icon} {menu.text}
       </span>
     </Link>

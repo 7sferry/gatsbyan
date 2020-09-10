@@ -3,6 +3,11 @@
  * September 2020       *
  ************************/
 
+/************************
+ * Author: [MR FERRY™]  *
+ * September 2020       *
+ ************************/
+
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
 p,
@@ -25,18 +30,17 @@ body.medium-zoom--opened #___gatsby {
 
 .post-container {
   display: inline-block;
-  text-align: justify;
+  text-align: left;
   width: 100%;
   padding: 0 1.5rem;
 }
 
 #content-post {
   font-size: 1.2rem;
-  text-align: left;
 }
 
 .blog-content {
-  text-align: center;
+  padding: 0 2.5rem;
 }
 
 .page-info {
@@ -148,50 +152,67 @@ a:hover,
   scrollbar-color: #2a2c2e #1c1e1f;
 }
 
-
+/* ipad pro */
 @media only screen and (max-width: 1024px) {
   .sidebar,
   .right-sidebar {
     display: none;
   }
+
   .index-main {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     padding: 1rem 0 0;
   }
+
   .post-container {
+    padding: 0 5rem;
+  }
+
+  .blog-content {
     padding: unset;
   }
+
   .main-layout {
     padding: 0;
   }
+
   .head-elements {
     padding: 0.25rem;
   }
+
   .head-logo {
     font-size: 1.25rem;
   }
+
   .index-thumbnail {
     max-width: 26vw;
-    max-height: 10vh;
+    max-height: 12vh;
   }
 }
 
+/* ipad */
 @media only screen and (max-width: 850px) {
+  .post-container {
+    padding: unset;
+  }
+
   .index-thumbnail {
-    max-width: 36vw;
-    max-height: 20vh;
+    max-width: 46%;
+    max-height: 19vh;
   }
 }
 
+/*!* iphone *!*/
 @media only screen and (max-width: 450px) {
   .index-thumbnail {
-    max-width: 33vw;
-    max-height: 15vh;
+    max-width: 46%;
+    max-height: 16vh;
   }
 }
 
+/* tv */
 @media only screen and (min-width: 3000px) {
   .index-thumbnail {
     max-width: 30vw;
