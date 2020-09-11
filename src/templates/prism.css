@@ -23,7 +23,7 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  max-width: 43vw;
+  max-width: 42vw;
 }
 
 code[class*="language-"]::-moz-selection,
