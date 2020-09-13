@@ -30,13 +30,15 @@ class BlogPostTemplate extends React.Component {
   render() {
     const { contentfulBlogPost: post } = this.props.data;
     const site = this.props.data.site.siteMetadata;
-    const {childMarkdownRemark} = post.body;
+    const { childMarkdownRemark } = post.body;
     const timeToRead = childMarkdownRemark.timeToRead;
     const url = `${site.siteUrl}/blog/${post.slug}`;
 
-    const imageURL = post.heroImage?.file?.url;
+    const heroImage = post.heroImage;
+    const imageURL = heroImage?.file?.url;
+    const fluid = heroImage?.fluid;
+    const imageTitle = heroImage?.title;
 
-    const hasImage = post.heroImage?.fluid;
     return (
       <Layout>
         <SEO
@@ -47,32 +49,35 @@ class BlogPostTemplate extends React.Component {
           url={url}
         />
         <div className="post-main">
-            <div className="title posted">{post.title}</div>
-            <div className="title text-info mb-2">
-              <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
-              <span className="page-info">
+          <div className="title posted">{post.title}</div>
+          <div className="title text-info mb-2">
+            <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
+            <span className="page-info">
                 {timeToRead} min{getPlurals(timeToRead)} read
               </span>
-              <br />
-              <span className="page-info">{getTechTags(post.tags)}</span>
+            <br />
+            <span className="page-info">{getTechTags(post.tags)}</span>
+          </div>
+          <div>
+            <div className={`${heroStyles.hero} mb-3`}>
+              {fluid && (
+                <Img className={`${heroStyles.heroImage}`} alt={post.title} fluid={heroImage.fluid} />
+              )}
+              {imageTitle && (<p style={{ height: "1px" }}>
+                <small className="text-center" style={{ fontSize: "50%" }}>{`Source: ${imageTitle}`}</small>
+              </p>)}
             </div>
-            <div>
-              <div className={heroStyles.hero}>
-                {hasImage && (
-                  <Img className={`${heroStyles.heroImage} mb-3`} alt={post.title} fluid={post.heroImage.fluid} />
-                )}
-              </div>
-              <div
-                className="post-container pt-0"
-                id="content-post"
-                dangerouslySetInnerHTML={{
-                  __html: childMarkdownRemark.html
-                }}
-              />
-            </div>
-            <Share title={post.title} siteName={site.title} url={url} />
-            <button onClick={this.showComment}>Show comment</button>
-            {this.state.commentShown && <Comment href={url} />}
+            <div
+              className="post-container pt-0"
+              id="content-post"
+              dangerouslySetInnerHTML={{
+                __html: childMarkdownRemark.html
+              }}
+            />
+          </div>
+          <Share title={post.title} siteName={site.title} url={url} />
+          <button onClick={this.showComment}>Show comment</button>
+          {this.state.commentShown && <Comment href={url} />}
         </div>
       </Layout>
     );
@@ -104,6 +109,7 @@ export const pageQuery = graphql`
           sizes
           tracedSVG
         }
+        title
         file {
           url
         }

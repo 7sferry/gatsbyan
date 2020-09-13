@@ -17,6 +17,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0;
+  padding: 0.5rem;
 }
 
 .social-links {
@@ -57,14 +59,26 @@ small {
   .social-links {
     display: none;
   }
+
   .mobile-pages-main {
     display: block;
   }
+
   .mobile-bio-main {
     display: flex;
     flex-direction: row;
   }
+
   .mobile-social {
     justify-content: space-evenly;
   }
+
+  .head-elements {
+    padding: 0.5rem 0 0 0;
+  }
+
+  .head-logo {
+    font-size: 1.25rem;
+  }
+
 }

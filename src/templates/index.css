@@ -173,14 +173,6 @@ a:hover,
     padding: 0;
   }
 
-  .head-elements {
-    padding: 0.25rem;
-  }
-
-  .head-logo {
-    font-size: 1.25rem;
-  }
-
   .index-thumbnail {
     max-width: 26vw;
     max-height: 12vh;

@@ -11,9 +11,6 @@ const Header = ({ siteTitle }) => {
     <header className="head-main">
       <div
         className="head-elements"
-        style={{
-          margin: `0`,
-        }}
       >
         <h1 className="head-logo ml-4 my-emoji" style={{ margin: 0 }}>
           <Link
