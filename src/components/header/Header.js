@@ -13,7 +13,6 @@ const Header = ({ siteTitle }) => {
         className="head-elements"
         style={{
           margin: `0`,
-          padding: `.5rem`,
         }}
       >
         <h1 className="head-logo ml-4 my-emoji" style={{ margin: 0 }}>
