@@ -20,6 +20,7 @@ class BlogPostTemplate extends React.Component {
     this.state = { commentShown: false };
     this.showComment = this.showComment.bind(this);
   }
+
   showComment() {
     this.setState(() => ({
       // showComment: !prevState.showComment,
