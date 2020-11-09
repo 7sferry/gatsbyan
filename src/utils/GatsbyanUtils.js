@@ -10,17 +10,16 @@ import { format } from "date-fns";
 
 export const getTechTags = tags => {
   const techTags = new Set();
-  // if (tags) {
-  tags && tags.forEach((tag, i) => {
-    const kebabTag = kebabCase(tag);
-    techTags.add(
-      <span key={kebabTag}>
+  tags &&
+    tags.forEach((tag, i) => {
+      const kebabTag = kebabCase(tag);
+      techTags.add(
+        <span key={kebabTag}>
           {i > 0 ? ", " : ""}
-        <Link to={`/tags/${kebabTag}/`}>{tag}</Link>
+          <Link to={`/tags/${kebabTag}/`}>{tag}</Link>
         </span>
-    );
-  });
-  // }
+      );
+    });
   return techTags;
 };
 

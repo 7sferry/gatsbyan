@@ -28,23 +28,27 @@ exports.createPages = ({ graphql, actions }) => {
         if (result.errors) {
           console.log(result.errors);
           reject(result.errors);
+          throw "error!";
         }
 
         const postSizeByTag = new Map();
-        const { allContentfulBlogPost: { edges: posts } } = result.data;
+        const {
+          allContentfulBlogPost: { edges: posts },
+        } = result.data;
+
         posts.forEach(post => {
-          if (post.node.tags) {
-            post.node.tags.forEach(tag => {
+          const node = post.node;
+          node.tags &&
+            node.tags.forEach(tag => {
               let tagCount = postSizeByTag.get(tag);
               postSizeByTag.set(tag, tagCount ? tagCount + 1 : 1);
             });
-          }
 
           createPage({
-            path: `/blog/${post.node.slug}`,
+            path: `/blog/${node.slug}`,
             component: path.resolve("./src/templates/blog-post.js"),
             context: {
-              slug: post.node.slug,
+              slug: node.slug,
             },
           });
         });
@@ -71,8 +75,8 @@ exports.createPages = ({ graphql, actions }) => {
               context: {
                 tag: tag,
                 limit: postsPerPage,
-                skip: i * postsPerPage
-              }
+                skip: i * postsPerPage,
+              },
             });
           });
         });

@@ -29,19 +29,20 @@ class IndexPage extends React.Component {
         <SEO title="Ferry Suhandri" url={metadata.siteUrl} />
         <div className="post-main">
           {posts.map(post => {
-            const tags = post.node.tags;
-            const { childMarkdownRemark } = post.node.body;
+            const node = post.node;
+            const tags = node.tags;
+            const { childMarkdownRemark } = node.body;
             const timeToRead = childMarkdownRemark.timeToRead;
             return (
-              <div id={post.node.id} key={post.node.id} className="d-block pb-3 blog-content">
+              <div id={node.id} key={node.id} className="d-block pb-3 blog-content">
                 <div className="post-container">
                   <div className="title posted">
-                    <Link to={`/blog/${post.node.slug}`} className="text-link">
-                      {post.node.title}
+                    <Link to={`/blog/${node.slug}`} className="text-link">
+                      {node.title}
                     </Link>
                   </div>
                   <div className="title text-info">
-                    <span className="page-info">{getPublishDate(post.node.publishDate)}</span>
+                    <span className="page-info">{getPublishDate(node.publishDate)}</span>
                     <span className="page-info">
                       {timeToRead} min{getPlurals(timeToRead)} read
                     </span>
@@ -49,10 +50,8 @@ class IndexPage extends React.Component {
                     <span className="page-info">{getTechTags(tags)}</span>
                   </div>
                   <div className="pt-1">
-                    {post.node.heroImage && <Img className="index-thumbnail" fixed={post.node.heroImage.fixed} />}
-                    <p>
-                      {childMarkdownRemark.excerpt}
-                    </p>
+                    {node.heroImage && <Img className="index-thumbnail" fixed={node.heroImage.fixed} />}
+                    <p>{childMarkdownRemark.excerpt}</p>
                   </div>
                 </div>
               </div>

@@ -54,25 +54,25 @@ class BlogPostTemplate extends React.Component {
           <div className="title text-info mb-2">
             <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
             <span className="page-info">
-                {timeToRead} min{getPlurals(timeToRead)} read
-              </span>
+              {timeToRead} min{getPlurals(timeToRead)} read
+            </span>
             <br />
             <span className="page-info">{getTechTags(post.tags)}</span>
           </div>
           <div>
             <div className={`${heroStyles.hero} mb-3`}>
-              {fluid && (
-                <Img className={`${heroStyles.heroImage}`} alt={post.title} fluid={heroImage.fluid} />
+              {fluid && <Img className={`${heroStyles.heroImage}`} alt={post.title} fluid={heroImage.fluid} />}
+              {imageTitle && (
+                <p>
+                  <small className="text-center" style={{ fontSize: "50%" }}>{`Source: ${imageTitle}`}</small>
+                </p>
               )}
-              {imageTitle && (<p>
-                <small className="text-center" style={{ fontSize: "50%" }}>{`Source: ${imageTitle}`}</small>
-              </p>)}
             </div>
             <div
               className="post-container pt-0"
               id="content-post"
               dangerouslySetInnerHTML={{
-                __html: childMarkdownRemark.html
+                __html: childMarkdownRemark.html,
               }}
             />
           </div>
