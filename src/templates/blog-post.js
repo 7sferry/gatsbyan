@@ -63,9 +63,7 @@ class BlogPostTemplate extends React.Component {
             <div className={`${heroStyles.hero} mb-3`}>
               {fluid && <Img className={`${heroStyles.heroImage}`} alt={post.title} fluid={heroImage.fluid} />}
               {imageTitle && (
-                <p>
                   <small className="text-center" style={{ fontSize: "50%" }}>{`Source: ${imageTitle}`}</small>
-                </p>
               )}
             </div>
             <div
