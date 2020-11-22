@@ -368,8 +368,23 @@ fieldset {
   margin: 0 0 1.45rem;
 }
 blockquote {
-  padding: 0;
-  margin: 0 1.45rem 1.45rem;
+  background-color: rgb(24, 26, 27);
+  box-shadow: rgba(88, 50, 99, 0.7) 0px 2px 0px inset, rgba(0, 0, 0, 0.3) -5px -4px 25px;
+  position: relative;
+  padding: 15px;
+  border-radius: 15px;
+}
+blockquote > :last-child {
+   margin-bottom: 0;
+}
+blockquote > :first-child {
+   margin-top: 0;
+}
+blockquote p {
+  font-family: 'Alegreya', serif;
+  font-size: 24px;
+  font-style: italic;
+  position: relative;
 }
 form {
   padding: 0;
@@ -425,12 +440,6 @@ li > ul {
   margin-bottom: calc(1.45rem / 2);
   margin-top: calc(1.45rem / 2);
 }
-blockquote *:last-child {
-  margin-bottom: 0;
-}
-/*li *:last-child {*/
-/*margin-bottom: 0;*/
-/*}*/
 p *:last-child {
   margin-bottom: 0;
 }
