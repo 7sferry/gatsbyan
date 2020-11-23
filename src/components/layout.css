@@ -367,26 +367,39 @@ fieldset {
   padding: 0;
   margin: 0 0 1.45rem;
 }
-blockquote {
-  background-color: rgb(24, 26, 27);
-  box-shadow: rgba(88, 50, 99, 0.7) 0px 2px 0px inset, rgba(0, 0, 0, 0.3) -5px -4px 25px;
-  position: relative;
-  padding: 15px;
-  border-radius: 15px;
-}
 blockquote > :first-child {
   margin-top: 0;
   text-align: left !important;
 }
-blockquote > :last-child {
-   margin-bottom: 0;
-   text-align: right;
+blockquote > :first-child:before {
+  content: "\201C";
+}
+blockquote > :first-child:after {
+  content: "\201D";
 }
 blockquote p {
-  font-family: 'Alegreya', serif;
-  font-size: 24px;
+  font-family: serif;
+  /*font-size: 24px;*/
   font-style: italic;
   position: relative;
+}
+blockquote {
+  background: #2c3a47;
+  display: inline-block;
+  margin: 0;
+  box-shadow: rgba(88, 50, 99, 0.7) 0 2px 0 inset, rgba(0, 0, 0, 0.3) -5px -4px 25px;
+  position: relative;
+  padding: 15px;
+  border-radius: 15px;
+}
+blockquote > :last-child {
+  display: block;
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+blockquote > :last-child:before {
+  content: "⸛ ";
 }
 form {
   padding: 0;
