@@ -399,7 +399,7 @@ blockquote > :last-child {
   margin-bottom: 0;
 }
 blockquote > :last-child:before {
-  content: "⸛ ";
+  content: "~ ";
 }
 form {
   padding: 0;
