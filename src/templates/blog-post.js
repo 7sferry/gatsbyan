@@ -101,7 +101,7 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        fluid(quality: 100) {
+        fluid(quality: 75, toFormat: JPG) {
           aspectRatio
           src
           srcSet

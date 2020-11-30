@@ -28,18 +28,24 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     `gatsby-transformer-remark-plaintext`,
     `gatsby-plugin-catch-links`,
     {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: true,
+        stripMetadata: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        sitemapSize: 5000
-      }
+        sitemapSize: 5000,
+      },
     },
     {
       resolve: "gatsby-source-contentful",
-      options: contentfulConfig
+      options: contentfulConfig,
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -111,9 +117,9 @@ module.exports = {
           // For all the options available, please see:
           // https://developer.mozilla.org/en-US/docs/Web/Manifest
           // https://w3c.github.io/manifest/#purpose-member
-          purpose: `maskable`
+          purpose: `maskable`,
         },
-        icon: `src/images/avatar.png` // This path is relative to the root of the site.
+        icon: `src/images/avatar.png`, // This path is relative to the root of the site.
       },
     },
     {

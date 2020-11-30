@@ -379,7 +379,6 @@ blockquote > :first-child:after {
 }
 blockquote p {
   font-family: serif;
-  /*font-size: 24px;*/
   font-style: italic;
   position: relative;
 }
