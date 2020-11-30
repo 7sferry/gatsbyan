@@ -1,7 +1,7 @@
 import React from "react";
 import { getTechTags } from "../../utils/GatsbyanUtils";
 
-const TechTags = props => {
+const Tags = props => {
   const posts = props.posts;
   const tags = new Set();
   if (posts) {
@@ -34,4 +34,4 @@ const TechTags = props => {
   );
 };
 
-export default TechTags;
+export default Tags;

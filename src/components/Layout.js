@@ -14,7 +14,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Header from "./header/Header";
 import MobileBio from "./header/MobileBio";
 import "./layout.css";
-import TechTags from "./sidebar/TechTags";
+import Tags from "./sidebar/Tags";
 import { Sign } from "./Sign";
 
 Sign();
@@ -75,7 +75,7 @@ const Layout = ({ children }) => {
               </main>
               <footer className="text-center">
                 <div className="mobile-footer mt-4">
-                  <TechTags posts={post.edges} />
+                  <Tags posts={post.edges} />
                   <hr />
                 </div>
                 <div className="mobile-footer mt-4">

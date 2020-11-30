@@ -4,7 +4,7 @@ import Bio from "./Bio";
 import "./sidebar.css";
 
 import Socials from "../Socials";
-import TechTags from "./TechTags";
+import Tags from "./Tags";
 
 const LeftSidebar = () => {
   return (
@@ -41,7 +41,7 @@ const LeftSidebar = () => {
             <Bio author={data.site.siteMetadata.author} tagline={data.site.siteMetadata.tagline} />
             <Socials mobile={false} contacts={data.site.siteMetadata.contacts} />
             <div className="tech-tags mt-4">
-              <TechTags posts={data.allContentfulBlogPost.edges} />
+              <Tags posts={data.allContentfulBlogPost.edges} />
             </div>
           </div>
         </>
