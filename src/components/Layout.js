@@ -75,11 +75,10 @@ const Layout = ({ children }) => {
               </main>
               <footer className="text-center">
                 <div className="mobile-footer mt-4">
-                  <Tags posts={post.edges} />
-                  <hr />
-                </div>
-                <div className="mobile-footer mt-4">
                   <RightSidebar />
+                </div>
+                <div className="mobile-footer">
+                  <Tags posts={post.edges} />
                   <hr />
                 </div>
                 <div>

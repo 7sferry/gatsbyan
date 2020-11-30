@@ -46,6 +46,21 @@
 .archive-container {
   list-style: none;
 }
+.not-visible {
+  animation: fade_out_show 0.3s;
+  animation-fill-mode: forwards;
+}
+@keyframes fade_out_show {
+  50% {
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
 .archive-container .archive-container {
   box-shadow: 0 0.3em 0.3em -0.3em #0c0d0e inset, 0 -0.3em 0.3em -0.3em #0c0d0e inset;
   -webkit-box-shadow: 0 0.3em 0.3em -0.3em #0c0d0e inset, 0 -0.3em 0.3em -0.3em #0c0d0e inset;

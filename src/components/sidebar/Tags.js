@@ -17,9 +17,9 @@ const Tags = props => {
   function presentAllTags() {
     return (
       <div className="d-block">
-        {[...getTechTags(tags)].map((o, i) => (
-          <div key={i} className="d-inline-block p-1">
-            {o}
+        {[...getTechTags(tags)].map((tag, i) => (
+          <div key={i} className="d-inline-block p-1 tag-link">
+            {tag}
           </div>
         ))}
       </div>

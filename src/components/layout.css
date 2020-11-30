@@ -522,3 +522,9 @@ pre tt:after {
     content: " \1F60A";
   }
 }
+.tag-link{
+  background: #343a40;
+  border-radius: 10px;
+  border-color: transparent;
+  margin: .25em;
+}

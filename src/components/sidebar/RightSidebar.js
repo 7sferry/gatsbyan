@@ -51,7 +51,7 @@ const RightSidebar = () => {
                 })}
               </ul>
 
-              <div className="second-header">Top Rated</div>
+              <div className="second-header">Featured Post</div>
               <ul>
                 {allContentfulBlogPost.nodes.map(node => {
                   return (

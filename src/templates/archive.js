@@ -55,15 +55,15 @@ class ArchivePage extends React.Component {
     }));
   }
 
-  render(){
+  render() {
     const { allContentfulBlogPost } = this.props.data;
     const posts = allContentfulBlogPost.nodes;
     let postByMonth = new Map();
-    if(posts){
+    if (posts) {
       let lastDate = getMonthYearDate(posts[0].publishDate);
       this.state.firstOpen &&
-      this.state.activeYear.push(lastDate.split("-")[0]) &&
-      this.state.activeMonth.push(lastDate);
+        this.state.activeYear.push(lastDate.split("-")[0]) &&
+        this.state.activeMonth.push(lastDate);
 
       posts.forEach(o => {
         const monthYearDate = getMonthYearDate(o.publishDate);
@@ -93,11 +93,7 @@ class ArchivePage extends React.Component {
 
     return (
       <Layout>
-        <SEO
-          title={"All Posts"}
-          description={"Every Post at my blog"}
-          lang={"en"}
-        />
+        <SEO title={"All Posts"} description={"Every Post at my blog"} lang={"en"} />
         <div className="post-main">
           <ul className="archive-container parent-archive-container">
             {Array.from(postByYear.entries()).map((post, i) => {
@@ -111,7 +107,9 @@ class ArchivePage extends React.Component {
                     <span>{year}</span>
                   </button>
 
-                  <ul className={`archive-container ${this.state.activeYear.includes(year) ? "visible" : ""}`}>
+                  <ul
+                    className={`archive-container ${this.state.activeYear.includes(year) ? "visible" : "not-visible"}`}
+                  >
                     {post[1].map(contents => {
                       const month = contents.date.split("-")[1];
                       return (
@@ -121,7 +119,7 @@ class ArchivePage extends React.Component {
                           </button>
                           <ul
                             className={`archive-container ${
-                              this.state.activeMonth.includes(contents.date) ? "visible" : ""
+                              this.state.activeMonth.includes(contents.date) ? "visible" : "not-visible"
                             }`}
                           >
                             {contents.object.map(content => {
