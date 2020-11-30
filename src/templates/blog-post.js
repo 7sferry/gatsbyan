@@ -6,6 +6,7 @@
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import "./blog-post.css";
+import "./blockquote.css";
 import Share from "../components/Share";
 import { getPlurals, getPublishDateTime, getTechTags } from "../utils/GatsbyanUtils";
 import React from "react";

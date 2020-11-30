@@ -156,6 +156,14 @@ module.exports = {
         // cookieDomain: "example.com",
       },
     },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        // printRejected: true, // Print removed selectors and processed file names
+        develop: true, // Enable while using `gatsby develop`
+        ignore: ['/prism.css','/blockquote.css'], // Ignore files/folders
+      }
+    },
     // {
     //   resolve: "gatsby-plugin-google-tagmanager",
     //   options: {

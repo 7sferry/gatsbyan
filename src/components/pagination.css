@@ -9,6 +9,7 @@
 
 .page-number {
   transition: unset !important;
+  margin: 0 1%;
 }
 
 [data-pagination],
@@ -47,6 +48,7 @@
   font-size: 100%;
   width: auto;
   border-radius: 3px;
+  margin: 0 1%;
 }
 [data-pagination] > a {
   font-size: 140%;
