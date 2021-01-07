@@ -67,6 +67,7 @@ p,
   width: 90%;
   -ms-grid-column: 1;
   grid-column: 1;
+  border-right: 1px solid #dee2e6 !important;
 }
 .post-main {
   -ms-grid-column: 2;

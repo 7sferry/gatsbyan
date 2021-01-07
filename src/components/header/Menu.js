@@ -10,7 +10,7 @@ import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
 import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
 
 const Menu = () => {
-  return <div className="social-links float-right mr-4">{menus}</div>;
+  return <div className="social-links">{menus}</div>;
 };
 
 export const menus = Array.of(
