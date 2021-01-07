@@ -3,11 +3,6 @@
  * on November 2020     *
  ************************/
 
-/************************
- * Made by [MR Ferry™]  *
- * on November 2020     *
- ************************/
-
 blockquote > :first-child {
   margin-top: 0;
   text-align: left !important;
@@ -40,14 +35,4 @@ blockquote > :last-child {
 }
 blockquote > :last-child:before {
   content: "~ ";
-}
-
-body.medium-zoom--opened #___gatsby {
-  filter: blur(3px);
-  transition-delay: 0.1s;
-}
-
-.gatsby-resp-image-figcaption{
-  font-size: 0.8rem;
-  text-align: center;
 }

@@ -527,4 +527,5 @@ pre tt:after {
   border-radius: 10px;
   border-color: transparent;
   margin: .25em .25em .25em 0;
+  font-size: 0.9em;
 }

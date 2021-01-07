@@ -161,7 +161,7 @@ module.exports = {
       options: {
         // printRejected: true, // Print removed selectors and processed file names
         develop: true, // Enable while using `gatsby develop`
-        ignore: ['/prism.css','/blockquote.css'], // Ignore files/folders
+        ignore: ['/ignored'], // Ignore files/folders
       }
     },
     // {

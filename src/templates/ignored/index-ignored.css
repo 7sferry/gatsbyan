@@ -1,0 +1,15 @@
+/************************
+ * Made by [MR Ferry™]  *
+ * on January 2021      *
+ ************************/
+
+
+body.medium-zoom--opened #___gatsby {
+	filter: blur(3px);
+	transition-delay: 0.1s;
+}
+
+.gatsby-resp-image-figcaption{
+	font-size: 0.8rem;
+	text-align: center;
+}

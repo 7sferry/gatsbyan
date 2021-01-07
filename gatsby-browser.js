@@ -6,7 +6,7 @@
 
 // You can delete this file if you're not using it
 
-import "./src/templates/prism.css";
+import "./src/templates/ignored/prism.css";
 // import { render } from "react-dom";
 // import { loadableReady } from "@loadable/component";
 
