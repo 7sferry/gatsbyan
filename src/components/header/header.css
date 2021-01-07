@@ -52,6 +52,15 @@ small {
 .mobile-bio-main {
   background: #343a40;
   display: none;
+  padding-bottom: 1.45rem;
+}
+
+.bio-picture {
+  margin: 0.5rem 0 0 1.5rem;
+  max-width: 75px;
+  max-height: 75px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -89,4 +98,12 @@ small {
   color:#fff;
   display: block;
   margin: 0 0.5rem;
+}
+
+.bio-letter {
+  margin: 0.5rem auto 0 1rem;
+}
+
+.bio-name {
+  margin-bottom: 0.25rem;
 }
