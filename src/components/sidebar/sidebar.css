@@ -6,6 +6,7 @@
 .side-social-links {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    float: left;
 }
 
 .page-links, .tech-tags {

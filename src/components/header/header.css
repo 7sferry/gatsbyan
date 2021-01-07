@@ -82,3 +82,9 @@ small {
   }
 
 }
+
+.menu-button {
+  color:#fff;
+  display: block;
+  margin: 0 0.5rem;
+}

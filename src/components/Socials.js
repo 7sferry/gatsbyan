@@ -18,7 +18,7 @@ const buildSocialLink = (contact, title, color, Icon) => {
 
 const Socials = ({ mobile, contacts }) => {
   return (
-    <div className={mobile ? `mobile-bio-main mobile-social pt-1` : "side-social-links float-left mt-3 mb-3"}>
+    <div className={mobile ? `mobile-bio-main mobile-social pt-1` : "side-social-links mt-3 mb-3"}>
       {buildSocialLink(contacts.linkedin, "Linked In", "text-primary", FaLinkedin)}
       {buildSocialLink(contacts.github, "GitHub", "text-light", FaGithubSquare)}
       {buildSocialLink(contacts.facebook, "Facebook", "text-info", FaFacebook)}

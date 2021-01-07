@@ -5,6 +5,7 @@
 
 import React from "react";
 import { Link } from "gatsby";
+import "./header.css"
 import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
 import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
 
@@ -31,7 +32,7 @@ export const menus = Array.of(
 ).map(menu => {
   return (
     <Link key={menu.link} to={menu.link}>
-      <span className="text-white d-block ml-2 mr-2">
+      <span className="menu-button">
         {menu.icon} {menu.text}
       </span>
     </Link>
