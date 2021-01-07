@@ -52,11 +52,11 @@ small {
 .mobile-bio-main {
   background: #343a40;
   display: none;
-  padding-bottom: 1.45rem;
+  padding-bottom: 0.5rem;
 }
 
 .bio-picture {
-  margin: 0.5rem 0 0 1.5rem;
+  margin: 0 0 0 1.5rem;
   max-width: 75px;
   max-height: 75px;
   border-radius: 50%;
@@ -101,7 +101,7 @@ small {
 }
 
 .bio-letter {
-  margin: 0.5rem auto 0 1rem;
+  margin: 0 auto 0 1rem;
 }
 
 .bio-name {
