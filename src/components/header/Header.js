@@ -12,7 +12,7 @@ const Header = ({ siteTitle }) => {
       <div
         className="head-elements"
       >
-        <h1 className="head-logo ml-4 my-emoji" style={{ margin: 0 }}>
+        <h1 className="head-logo my-emoji">
           <Link
             to="/"
             style={{
