@@ -62,12 +62,12 @@ class BlogPostTemplate extends React.Component {
             <span className="page-info">{getTechTags(post.tags)}</span>
           </div>
           <div>
-            <div className={`${heroStyles.hero} mb-3`}>
-              {fluid && <Img className={`${heroStyles.heroImage}`} alt={post.title} fluid={heroImage.fluid} />}
+            <figure className={`${heroStyles.hero}`}>
+              {fluid && <Img className={heroStyles.heroImage} alt={post.title} fluid={fluid} />}
               {imageTitle && (
-                  <small className="text-center" style={{ fontSize: "50%" }}>{`Source: ${imageTitle}`}</small>
+                  <figcaption className="gatsby-resp-image-figcaption" style={{ fontSize: "50%" }}>{`Source: ${imageTitle}`}</figcaption>
               )}
-            </div>
+            </figure>
             <div
               className="post-container pt-0"
               id="content-post"
