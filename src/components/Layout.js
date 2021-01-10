@@ -55,13 +55,7 @@ const Layout = ({ children }) => {
           <>
             <Header siteTitle={metadata.title} />
             <MobileBio author={metadata.author} tagline={metadata.tagline} contacts={metadata.contacts} />
-            <div
-              style={{
-                margin: `0 auto`,
-                padding: `0px 1.0875rem 1.45rem`,
-                paddingTop: 0,
-              }}
-            >
+            <div className="body-content">
               <main className="main-layout">
                 <div className="index-main">
                   <div className="sidebar border-right px-4 py-2">

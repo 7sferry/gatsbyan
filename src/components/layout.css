@@ -510,11 +510,14 @@ pre tt:after {
 }
 .my-emoji::after {
   content: " \1F60E";
-  /*animation: animate 1.05s infinite;*/
 }
 .my-emoji:hover.my-emoji::after {
   content: " \1F618";
   animation: animate 1.05s infinite;
+}
+.body-content {
+  margin: 0 auto;
+  padding: 0 1.0875rem 1.45rem;
 }
 
 @keyframes animate {

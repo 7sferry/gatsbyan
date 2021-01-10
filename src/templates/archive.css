@@ -111,6 +111,7 @@
 i.archive-icon {
   text-align: center;
   width: 3em;
+  display: inline-block;
 }
 i.metismenu-state-icon {
   transition: transform 300ms;

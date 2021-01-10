@@ -10,7 +10,8 @@ const contentfulConfig = {
   spaceId: process.env.SPACEID,
   accessToken: process.env.TOKEN,
 };
-const queries = require("./src/utils/Algolia");
+const algoliaQueries = require("./src/utils/Algolia");
+const exclude = ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**", "^[^?]+(\\?.*)", ".json$"];
 
 module.exports = {
   siteMetadata: {
@@ -46,7 +47,7 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         sitemapSize: 5000,
-        exclude: [`/tags/**`, "/search", "/archive", "/404", "/404.html", "/page/**"],
+        exclude: exclude,
       },
     },
     {
@@ -146,7 +147,7 @@ module.exports = {
         // Defines where to place the tracking script - `true` in the head and `false` in the body
         head: false,
         pageTransitionDelay: 250,
-        exclude: ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**"],
+        exclude: exclude,
         // Enables Google Optimize using your container Id
         // optimizeId: "OPT-P5SQMN6",
         // Enables Google Optimize Experiment ID
@@ -198,7 +199,7 @@ module.exports = {
     //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
     //     apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
     //     indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
-    //     queries,
+    //     algoliaQueries,
     //     enablePartialUpdates: true,
     //     chunkSize: 10000,
     //   },

@@ -22,6 +22,7 @@ export const getTechTags = tags => {
     });
   return techTags;
 };
+
 const timeZone = "Asia/Jakarta";
 
 export const getPublishDate = date => formatToTimeZone(Date.parse(date), "MMM Do, YYYY", { timeZone: timeZone });
@@ -36,5 +37,7 @@ export const getPlurals = count => {
 };
 
 export const PAGE_COUNT = 5;
+
+export const SEARCH_COUNT = 26;
 
 export const DEFAULT_ICON_SIZE = 20;

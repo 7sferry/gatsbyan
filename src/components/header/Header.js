@@ -11,13 +11,7 @@ const Header = ({ siteTitle }) => {
     <header className="head-main">
       <div className="head-elements">
         <h1 className="head-logo my-emoji">
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
+          <Link to="/" className="header-link">
             {siteTitle}
           </Link>
         </h1>

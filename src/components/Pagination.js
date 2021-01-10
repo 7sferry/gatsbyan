@@ -12,14 +12,14 @@ import { PAGE_COUNT } from "../utils/GatsbyanUtils";
 
 const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
   const limit = 1;
-  const createURL = pageNo => `${url}/${pageNo && pageNo}`;
+  const createURL = pageNo => `${url === "/page" && pageNo === "" ? "" : url}/${pageNo}`;
   const PagingLink = ({ to, children, ...rest }) => {
     return refine ? (
-      <a href={to} {...rest}>
+      <a href={createURL(to)} style={{ textDecoration: `none` }} {...rest}>
         {children}
       </a>
     ) : (
-      <Link to={to} {...rest}>
+      <Link to={createURL(to)} style={{ textDecoration: `none` }} {...rest}>
         {children}
       </Link>
     );
@@ -41,8 +41,7 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
               <PagingLink
                 className={`page-number text-second-link`}
                 disabled={currentPage === 1 || totalPages < 1}
-                to={createURL("")}
-                style={{ textDecoration: `none` }}
+                to=""
                 onClick={e => {
                   click(e, 1);
                 }}
@@ -55,8 +54,7 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
               <PagingLink
                 disabled={!hasPreviousPage}
                 className={`page-number text-second-link`}
-                style={{ textDecoration: `none` }}
-                to={createURL(previousPage === 1 ? "" : previousPage)}
+                to={previousPage === 1 ? "" : previousPage}
                 onClick={e => {
                   click(e, previousPage);
                 }}
@@ -74,8 +72,7 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
                       <PagingLink
                         disabled={className}
                         className={`text-second-link page-number ${className}`}
-                        to={createURL(page === 1 ? "" : page)}
-                        style={{ textDecoration: `none` }}
+                        to={page === 1 ? "" : page}
                         onClick={e => {
                           click(e, page);
                         }}
@@ -92,8 +89,7 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
               <PagingLink
                 disabled={!hasNextPage}
                 className={"page-number text-second-link"}
-                style={{ textDecoration: `none` }}
-                to={createURL(nextPage)}
+                to={nextPage}
                 onClick={e => {
                   click(e, nextPage);
                 }}
@@ -106,8 +102,7 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
               <PagingLink
                 disabled={currentPage === totalPages || totalPages < 1}
                 className={"page-number text-second-link"}
-                style={{ textDecoration: `none` }}
-                to={createURL(totalPages)}
+                to={totalPages}
                 onClick={e => {
                   click(e, totalPages);
                 }}

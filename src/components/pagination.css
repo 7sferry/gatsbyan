@@ -9,7 +9,6 @@
 
 .page-number {
   transition: unset !important;
-  margin: 0 1%;
 }
 
 [data-pagination],

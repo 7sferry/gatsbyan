@@ -101,7 +101,7 @@ class ArchivePage extends React.Component {
               return (
                 <li key={i} className={"item"}>
                   <button className={`archive-link`} onClick={() => this.toggleActiveYear(year)}>
-                    <i className="archive-icon" style={{ display: "inline-block" }}>
+                    <i className="archive-icon">
                       <MdArchive />
                     </i>
                     <span>{year}</span>

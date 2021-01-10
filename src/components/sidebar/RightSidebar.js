@@ -15,7 +15,7 @@ const RightSidebar = () => {
         query RightSidebarQuery {
           allPageViews(
             sort: { order: DESC, fields: totalCount }
-            filter: { path: { regex: "/.*(?<!/)$/" }, id: { regex: "/^/blog?/" } }
+            filter: { path: { regex: "/(^/blog?)(?!.*\\\\?)(?!.*.json)(.*(?<!/)$)/" } }
             limit: 5
           ) {
             nodes {

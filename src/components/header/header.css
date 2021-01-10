@@ -99,6 +99,11 @@ small {
   margin: 0 0.5rem;
 }
 
+.header-link {
+  color: white;
+  text-decoration: none;
+}
+
 .bio-letter {
   margin: 0 auto 0 1rem;
 }

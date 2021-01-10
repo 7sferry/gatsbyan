@@ -10,6 +10,7 @@ import Hits from "./hits";
 import { Configure, connectPagination, InstantSearch, SearchBox, VoiceSearch } from "react-instantsearch-dom";
 import Pagination from "../../components/Pagination";
 import SEO from "../../components/SEO";
+import { SEARCH_COUNT } from "../../utils/GatsbyanUtils"
 
 class SearchPage extends React.Component {
   render() {
@@ -50,7 +51,7 @@ class SearchPage extends React.Component {
         />
         <div className="post-main">
           <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
-            <Configure distinct hitsPerPage={26} />
+            <Configure distinct hitsPerPage={SEARCH_COUNT} />
             {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
             <SearchBox isSearchStalled={true} className={"search-box"} showLoadingIndicator={true} searchAsYouType={false} />
             <Paging />
