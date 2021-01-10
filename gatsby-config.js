@@ -46,7 +46,7 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         sitemapSize: 5000,
-        exclude: [`/tags/*`, "/search", "/archive", "/404", "/404.html", "/page/*"],
+        exclude: [`/tags/**`, "/search", "/archive", "/404", "/404.html", "/page/**"],
       },
     },
     {
