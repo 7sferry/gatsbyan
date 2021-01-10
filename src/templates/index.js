@@ -6,7 +6,6 @@
 import React from "react";
 import Img from "gatsby-image";
 import { graphql, Link } from "gatsby";
-import { kebab as kebabCase } from "case";
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -20,8 +19,8 @@ class IndexPage extends React.Component {
   render() {
     const { allContentfulBlogPost: contents } = this.props.data;
     const { edges: posts, pageInfo } = contents;
-    const tag = this.props.pageContext.tag;
-    const url = tag ? `/tags/${kebabCase(tag)}` : `/page`;
+    const kebabTag = this.props.pageContext.kebabTag;
+    const paginationUrl = kebabTag ? `/tags/${kebabTag}` : `/page`;
 
     const metadata = this.props.data.site.siteMetadata;
     return (
@@ -58,7 +57,7 @@ class IndexPage extends React.Component {
             );
           })}
           <div className="text-center mt-4">
-            <Pagination totalPageCount={pageInfo.pageCount} url={url} currentPage={pageInfo.currentPage} />
+            <Pagination totalPageCount={pageInfo.pageCount} url={paginationUrl} currentPage={pageInfo.currentPage} />
           </div>
         </div>
       </Layout>

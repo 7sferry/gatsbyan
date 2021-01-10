@@ -67,13 +67,15 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         postSizeByTag.forEach((size, tag) => {
+          const kebabTag = kebabCase(tag)
           const numTags = Math.ceil(size / postsPerPage);
           Array.from({ length: numTags }).forEach((value, i) => {
             createPage({
-              path: `/tags/${kebabCase(tag)}` + (i === 0 ? `` : `/${i + 1}`),
+              path: `/tags/${kebabTag}` + (i === 0 ? `` : `/${i + 1}`),
               component: path.resolve("./src/templates/index.js"),
               context: {
                 tag: tag,
+                kebabTag: kebabTag,
                 limit: postsPerPage,
                 skip: i * postsPerPage,
               },
