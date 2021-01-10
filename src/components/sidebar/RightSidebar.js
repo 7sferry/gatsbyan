@@ -22,7 +22,7 @@ const RightSidebar = () => {
               path
             }
           }
-          allContentfulBlogPost(filter: { rating: { eq: 5 } }, sort: { order: DESC, fields: createdAt }, limit: 5) {
+          allContentfulBlogPost(filter: { rating: { eq: 5 } }, sort: { order: DESC, fields: createdAt }) {
             nodes {
               slug
               title

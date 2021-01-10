@@ -10,6 +10,6 @@ body.medium-zoom--opened #___gatsby {
 }
 
 .gatsby-resp-image-figcaption{
-	font-size: 0.8rem;
 	text-align: center;
+	font-size: 50%;
 }
