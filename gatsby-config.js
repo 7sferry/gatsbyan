@@ -46,6 +46,7 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         sitemapSize: 5000,
+        exclude: [`/tags/*`, "/search", "/archive", "/404", "/404.html", "/page/*"],
       },
     },
     {
@@ -141,11 +142,11 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         // The property ID; the tracking code won't be generated without it
-        trackingId: "UA-165368793-1",
+        trackingId: process.env.ANALYTICS_TRACKING_ID,
         // Defines where to place the tracking script - `true` in the head and `false` in the body
         head: false,
         pageTransitionDelay: 250,
-        exclude: ["/tags/**", "/search", "/archive", "/404", "/404.html"],
+        exclude: ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**"],
         // Enables Google Optimize using your container Id
         // optimizeId: "OPT-P5SQMN6",
         // Enables Google Optimize Experiment ID
@@ -165,8 +166,8 @@ module.exports = {
       options: {
         // printRejected: true, // Print removed selectors and processed file names
         develop: true, // Enable while using `gatsby develop`
-        ignore: ['/ignored'], // Ignore files/folders
-      }
+        ignore: ["/ignored"], // Ignore files/folders
+      },
     },
     // {
     //   resolve: "gatsby-plugin-google-tagmanager",

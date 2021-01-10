@@ -65,7 +65,7 @@ class BlogPostTemplate extends React.Component {
             <figure className={heroStyles.hero}>
               {fluid && <Img className={heroStyles.heroImage} alt={post.title} fluid={fluid} />}
               {imageTitle && (
-                  <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>
+                <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>
               )}
             </figure>
             <div

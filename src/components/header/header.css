@@ -91,11 +91,10 @@ small {
   .head-logo {
     font-size: 1.25rem;
   }
-
 }
 
 .menu-button {
-  color:#fff;
+  color: #fff;
   display: block;
   margin: 0 0.5rem;
 }

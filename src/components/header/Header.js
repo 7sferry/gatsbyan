@@ -9,9 +9,7 @@ import "./header.css";
 const Header = ({ siteTitle }) => {
   return (
     <header className="head-main">
-      <div
-        className="head-elements"
-      >
+      <div className="head-elements">
         <h1 className="head-logo my-emoji">
           <Link
             to="/"

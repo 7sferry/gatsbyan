@@ -21,7 +21,7 @@ class IndexPage extends React.Component {
     const { allContentfulBlogPost: contents } = this.props.data;
     const { edges: posts, pageInfo } = contents;
     const tag = this.props.pageContext.tag;
-    const url = tag ? `/tags/${kebabCase(tag)}` : ``;
+    const url = tag ? `/tags/${kebabCase(tag)}` : `/page`;
 
     const metadata = this.props.data.site.siteMetadata;
     return (

@@ -1,55 +1,58 @@
 .sidebar-main {
-    width: 100%;
-    
+  width: 100%;
 }
 
 .side-social-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    float: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  float: left;
 }
 
-.page-links, .tech-tags {
-    margin-top: 3rem;
-    padding-top: 7rem;
-    font-family: "Work Sans", serif;
+.page-links,
+.tech-tags {
+  margin-top: 3rem;
+  padding-top: 7rem;
+  font-family: "Work Sans", serif;
 }
 
-.mobile-footer{
-    display: none;
+.mobile-footer {
+  display: none;
 }
 
 .profile-img {
-    border-radius: 50%;
-    box-shadow: 1px 1px 3px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px;
 }
 
-small, h3, p, li {
-    font-family: "Work Sans", serif;
-
+small,
+h3,
+p,
+li {
+  font-family: "Work Sans", serif;
 }
 
 .muted {
-    color: rgb(158, 150, 137);
+  color: rgb(158, 150, 137);
 }
 
 .second-header {
-    font-size: 20px;
-    padding: 0;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-weight: 700;
-    text-rendering: optimizeLegibility;
-    line-height: 1.1;
-    margin: 0 0 .25rem;
+  font-size: 20px;
+  padding: 0;
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+  line-height: 1.1;
+  margin: 0 0 0.25rem;
 }
 
 .author-bio {
-    font-size: 2vw;
+  font-size: 2vw;
 }
 
 @media only screen and (max-width: 1024px) {
-    .mobile-footer {
-        display: block;
-    }
+  .mobile-footer {
+    display: block;
+  }
 }

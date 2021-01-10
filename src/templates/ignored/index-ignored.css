@@ -3,13 +3,12 @@
  * on January 2021      *
  ************************/
 
-
 body.medium-zoom--opened #___gatsby {
-	filter: blur(3px);
-	transition-delay: 0.1s;
+  filter: blur(3px);
+  transition-delay: 0.1s;
 }
 
-.gatsby-resp-image-figcaption{
-	text-align: center;
-	font-size: 50%;
+.gatsby-resp-image-figcaption {
+  text-align: center;
+  font-size: 50%;
 }

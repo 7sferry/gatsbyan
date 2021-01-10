@@ -22,11 +22,12 @@ export const getTechTags = tags => {
     });
   return techTags;
 };
-const timeZone = 'Asia/Jakarta';
+const timeZone = "Asia/Jakarta";
 
 export const getPublishDate = date => formatToTimeZone(Date.parse(date), "MMM Do, YYYY", { timeZone: timeZone });
 
-export const getPublishDateTime = date => formatToTimeZone(Date.parse(date), "dddd, MMM Do, YYYY hh:mm a", { timeZone: timeZone });
+export const getPublishDateTime = date =>
+  formatToTimeZone(Date.parse(date), "dddd, MMM Do, YYYY hh:mm a", { timeZone: timeZone });
 
 export const getMonthYearDate = date => formatToTimeZone(Date.parse(date), "YYYY-MMMM", { timeZone: timeZone });
 
