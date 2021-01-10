@@ -30,7 +30,7 @@ export const getPublishDate = date => formatToTimeZone(Date.parse(date), "MMMM D
 export const getPublishDateTime = date =>
   formatToTimeZone(Date.parse(date), "dddd MMM Do, YYYY hh:mm a", { timeZone: timeZone });
 
-export const getMonthYearDate = date => formatToTimeZone(Date.parse(date), "YYYY-MM", { timeZone: timeZone });
+export const getMonthYearDate = date => formatToTimeZone(Date.parse(date), "YYYY-MMMM", { timeZone: timeZone });
 
 export const getPlurals = count => {
   return count > 1 ? "s" : "";
