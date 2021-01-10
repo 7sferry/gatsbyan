@@ -25,12 +25,12 @@ export const getTechTags = tags => {
 
 const timeZone = "Asia/Jakarta";
 
-export const getPublishDate = date => formatToTimeZone(Date.parse(date), "MMM Do, YYYY", { timeZone: timeZone });
+export const getPublishDate = date => formatToTimeZone(Date.parse(date), "MMMM Do, YYYY", { timeZone: timeZone });
 
 export const getPublishDateTime = date =>
-  formatToTimeZone(Date.parse(date), "dddd, MMM Do, YYYY hh:mm a", { timeZone: timeZone });
+  formatToTimeZone(Date.parse(date), "dddd MMM Do, YYYY hh:mm a", { timeZone: timeZone });
 
-export const getMonthYearDate = date => formatToTimeZone(Date.parse(date), "YYYY-MMMM", { timeZone: timeZone });
+export const getMonthYearDate = date => formatToTimeZone(Date.parse(date), "YYYY-MM", { timeZone: timeZone });
 
 export const getPlurals = count => {
   return count > 1 ? "s" : "";
