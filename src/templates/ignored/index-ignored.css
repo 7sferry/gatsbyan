@@ -12,3 +12,7 @@ body.medium-zoom--opened #___gatsby {
   text-align: center;
   font-size: 50%;
 }
+
+iframe{
+  background: #23232d;
+}
