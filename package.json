@@ -1,6 +1,6 @@
 {
   "name": "gatsbyan",
-  "private": true,
+  "private": false,
   "description": "My personal blog powered by Gatsby JS",
   "version": "0.1.0",
   "author": "Ferry",
