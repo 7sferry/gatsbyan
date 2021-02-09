@@ -10,7 +10,7 @@ export default class Comment extends Component {
   render() {
     return (
       <div style={{ position: "relative" }}>
-        <p style={{ position: "absolute", left: "50%" }}>LOADING...</p>
+        <p style={{ position: "absolute", left: "50%" }}>LOADING COMMENT...</p>
         <div style={{ zIndex: 9 }}>
           <FacebookProvider appId="1365740643629290">
             <Comments
