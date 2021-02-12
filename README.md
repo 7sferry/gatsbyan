@@ -4,7 +4,6 @@ I designed this from [willjw3](https://github.com/willjw3/gatsby-starter-develop
 ## Tech used: 
 - GatsbyJS
 - Contentful CMS
-- Lodash
 - Bootstrap
 
 Many features will be updated soon!
