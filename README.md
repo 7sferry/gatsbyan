@@ -1,6 +1,8 @@
 # gatsbyan
 This is template for GatsbyJS that I used for my personal blog. You can view my blog at https://ferry.now.sh
 
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=7sferry&repo=gatsbyan)](https://github.com/7sferry/gatsbyan)
+
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/example.png?raw=true)
 
 ## Features:
