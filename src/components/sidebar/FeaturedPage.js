@@ -23,20 +23,22 @@ const FeaturedPage = () => {
       render={data => {
         const { allContentfulBlogPost } = data;
         return (
-          <>
-            <div className="second-header">Featured Post</div>
-            <ul>
-              {allContentfulBlogPost.nodes.map(node => {
-                return (
-                  <li key={node.slug}>
-                    <Link className="text-link" to={`/blog/${node.slug}`}>
-                      <small className="title">{node.title}</small>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </>
+          allContentfulBlogPost && (
+            <>
+              <div className="second-header">Featured Post</div>
+              <ul>
+                {allContentfulBlogPost.nodes.map(node => {
+                  return (
+                    <li key={node.slug}>
+                      <Link className="text-link" to={`/blog/${node.slug}`}>
+                        <small className="title">{node.title}</small>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          )
         );
       }}
     />
