@@ -27,19 +27,22 @@ const AnalyticsPage = () => {
       render={data => {
         const { allPageViews } = data;
         return (
-          <ul>
-            {allPageViews.nodes.map(node => {
-              return (
-                <li key={node.path}>
-                  <small className="title">
-                    <Link className="text-link" to={`${node.path}`}>
-                      {startCase(node.path.replace(/^\/blog\/+/i, ""))}
-                    </Link>
-                  </small>
-                </li>
-              );
-            })}
-          </ul>
+          <>
+            <div className="second-header">Most Viewed</div>
+            <ul>
+              {allPageViews.nodes.map(node => {
+                return (
+                  <li key={node.path}>
+                    <small className="title">
+                      <Link className="text-link" to={`${node.path}`}>
+                        {startCase(node.path.replace(/^\/blog\/+/i, ""))}
+                      </Link>
+                    </small>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
         );
       }}
     />

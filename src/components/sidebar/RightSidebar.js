@@ -11,9 +11,7 @@ import FeaturedPage from "./FeaturedPage";
 const RightSidebar = () => {
   return (
     <div className="sidebar-main ">
-      <div className="second-header">Most Viewed</div>
       <AnalyticsPage />
-      <div className="second-header">Featured Post</div>
       <FeaturedPage />
     </div>
   );

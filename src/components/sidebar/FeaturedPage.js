@@ -6,6 +6,7 @@
 import React from "react";
 import { graphql, Link, StaticQuery } from "gatsby";
 import "./sidebar.css";
+import AnalyticsPage from "./AnalyticsPage";
 
 const FeaturedPage = () => {
   return (
@@ -23,17 +24,20 @@ const FeaturedPage = () => {
       render={data => {
         const { allContentfulBlogPost } = data;
         return (
-          <ul>
-            {allContentfulBlogPost.nodes.map(node => {
-              return (
-                <li key={node.slug}>
-                  <Link className="text-link" to={`/blog/${node.slug}`}>
-                    <small className="title">{node.title}</small>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <>
+            <div className="second-header">Featured Post</div>
+            <ul>
+              {allContentfulBlogPost.nodes.map(node => {
+                return (
+                  <li key={node.slug}>
+                    <Link className="text-link" to={`/blog/${node.slug}`}>
+                      <small className="title">{node.title}</small>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
         );
       }}
     />
