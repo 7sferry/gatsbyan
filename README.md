@@ -31,7 +31,8 @@ https://ferry.now.sh
 - Git
 - Contentful CMS account
 - Facebook account - optional for blog comment
-- Google account - optional for analytics and analytics reporter, turn it off on gatsby-config if you don't use it
+- Google account - optional for analytics and analytics reporter, turn it off on gatsby-config & remove 
+  AnalyticsPage.js if you don't use it
 - Algolia account - optional for blog search
 
 ## Step to Install:
