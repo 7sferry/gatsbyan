@@ -65,9 +65,9 @@ Additionally, community organizers are available to help community members engag
 
 ## 8. Addressing Grievances
 
-If you feel you have been falsely or unfairly accused of violating this Code of Conduct, you should notify Republik Ferry with a concise description of your grievance. Your grievance will be handled in accordance with our existing governing policies. [Policy](https://facebook.com/7sferry)
+If you feel you have been falsely or unfairly accused of violating this Code of Conduct, you should notify Ferry Sikumbang with a concise description of your grievance. Your grievance will be handled in accordance with our existing governing policies. [Policy](https://facebook.com/7sferry)
 
-please note this
+this is non-negotiable rules
 
 ## 9. Scope
 
