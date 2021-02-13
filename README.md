@@ -1,4 +1,4 @@
-# Gatsbyan1.0
+# Gatsbyan
 You can view my blog at
 https://ferry.now.sh
 
