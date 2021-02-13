@@ -1,5 +1,7 @@
 # Contributor Covenant Code of Conduct
 
+cheers guys! this is my code of conduct
+
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as
@@ -74,3 +76,10 @@ available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.ht
 
 For answers to common questions about this code of conduct, see
 https://www.contributor-covenant.org/faq
+
+thanks for your attention
+
+
+regards,
+
+Ferry
