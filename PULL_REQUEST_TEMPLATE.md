@@ -13,6 +13,6 @@ _Describe the research stage_
 _Links to blog posts, patterns, libraries or addons used to solve this problem_
 
 #### Blog Posts
-- [How to Pull Request](https://github.com/7sferry/pull-request) Github Repo with Learning focused Pull Request Template.
+- [How to Pull Request](https://github.com/7sferry/gatsbyan/pulls) Github Repo with Learning focused Pull Request Template.
 
 
