@@ -29,7 +29,6 @@ In short, when you submit changes, your submissions are understood to be under t
 - Steps to reproduce
   - Be specific!
   - Share the snapshot, if possible.
-  - GitHub Readme Stats' live link
 - What actually happens
 - What you expected would happen
 - Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
