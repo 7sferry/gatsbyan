@@ -1,4 +1,4 @@
-# gatsbyan [![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=plastic&up_color=green&up_message=online&url=https%3A%2F%2Fferry.now.sh%2F)](https://ferry.now.sh/) ![GitHub top language](https://img.shields.io/github/languages/top/7sferry/gatsbyan?style=plastic) ![GitHub](https://img.shields.io/github/license/7sferry/gatsbyan) 
+# gatsbyan [![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=plastic&up_color=green&up_message=online&url=https%3A%2F%2Fferry.now.sh%2F)](https://ferry.now.sh/) ![GitHub top language](https://img.shields.io/github/languages/top/7sferry/gatsbyan?style=plastic) ![GitHub](https://img.shields.io/github/license/7sferry/gatsbyan?style=plastic) 
 
 This is template for GatsbyJS that I used for my personal blog. You can view my blog at https://ferry.now.sh
 
