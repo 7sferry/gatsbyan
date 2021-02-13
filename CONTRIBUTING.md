@@ -34,7 +34,7 @@ In short, when you submit changes, your submissions are understood to be under t
 - What you expected would happen
 - Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
 
-People _love_ thorough bug reports. I'm not even kidding.
+People  thorough bug reports. I'm not even kidding.
 
 ### Feature Request
 
