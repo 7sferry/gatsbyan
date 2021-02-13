@@ -1,6 +1,5 @@
 # gatsbyan
-You can view my blog at
-https://ferry.now.sh
+This is template for GatsbyJS that I used for my personal blog. You can view my blog at https://ferry.now.sh
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/example.png?raw=true)
 
