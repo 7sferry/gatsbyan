@@ -31,9 +31,8 @@ This is template for GatsbyJS that I used for my personal blog at https://ferry.
 - Git
 - Contentful CMS account
 - Facebook account - optional for blog comment
-- Google account - optional for analytics and analytics reporter, turn it off on gatsby-config & remove 
-  AnalyticsPage.js and AnalyticsPage on RightSidebar.js if you don't use it
-- Algolia account - optional for blog search, turn it off on gatsby-config and gatsby-node & remove search folder on templates and Algolia.js on utils if you don't use it
+- Google account - optional for analytics and analytics reporter
+- Algolia account - optional for blog search
 
 ## Step to Install:
 - run 'npm install'
@@ -42,8 +41,8 @@ This is template for GatsbyJS that I used for my personal blog at https://ferry.
   (you can look at [here](https://github.com/7sferry/Gatsbyan1.0#step-to-get-spaceid-and-token))
 - you could change every properties on config at 'config.js' or modify SEO variables at '/src.components/SEO.js'
 - you also could change facebook appId with your appId for comment section at '/src.components/Comment.js'
-- if you use Algolia, you must specify GATSBY_ALGOLIA_APP_ID, GATSBY_ALGOLIA_INDEX_NAME, GATSBY_ALGOLIA_SEARCH_KEY, GATSBY_ALGOLIA_ADMIN_KEY on '.env'. Or just remove algolia if you don't use it.
-- if you use Analytics & Analytics Reporter, you must specify ANALYTICS_PRIVATE_KEY, ANALYTICS_VIEW_ID, ANALYTICS_TRACKING_ID, ANALYTICS_EMAIL on '.env'. Or just remove analytics & analytics reporters if you don't use it.
+- if you use Algolia, you must specify GATSBY_ALGOLIA_APP_ID, GATSBY_ALGOLIA_INDEX_NAME, GATSBY_ALGOLIA_SEARCH_KEY, GATSBY_ALGOLIA_ADMIN_KEY on '.env'. Or  turn it off on gatsby-config & remove AnalyticsPage.js and AnalyticsPage on RightSidebar.js if you don't use it.
+- if you use Analytics & Analytics Reporter, you must specify ANALYTICS_PRIVATE_KEY, ANALYTICS_VIEW_ID, ANALYTICS_TRACKING_ID, ANALYTICS_EMAIL on '.env'. Or turn it off on gatsby-config and gatsby-node & remove search folder inside 'templates' folder and Algolia.js on utils if you don't use it.
 - execute 'npm run develop' on cli
 - your site would be run on http://localhost:8000
 
