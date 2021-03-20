@@ -10,7 +10,6 @@ const contentfulConfig = {
   spaceId: process.env.SPACEID,
   accessToken: process.env.TOKEN,
 };
-const algoliaQueries = require("./src/utils/Algolia");
 const exclude = ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**", "^[^?]+(\\?.*)", ".json$"];
 
 module.exports = {
@@ -199,7 +198,7 @@ module.exports = {
     //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
     //     apiKey: process.env.GATSBY_ALGOLIA_ADMIN_KEY,
     //     indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
-    //     queries: algoliaQueries,
+    //     queries: require("./src/utils/Algolia"),
     //     enablePartialUpdates: true,
     //     chunkSize: 10000,
     //   },
