@@ -102,7 +102,7 @@ function SEO({ description, lang, meta, title, image, url }) {
         },
         {
           name: `google-site-verification`,
-          content: `cwJMiAjJ6equmiWoxPyFPCua6fsv_rs6wMG63kECYxQ`,
+          content: `zMJIuAagxg8apsDkd_7UPSzDGi7NIo6mwCx_GUcNXNw`,
         },
       ].concat(meta)}
     />
