@@ -36,7 +36,7 @@ Share.propTypes = {
 };
 
 Share.defaultProps = {
-  url: "https://ferry.now.sh/",
+  url: "https://ferry.vercel.app/",
   title: "Ferry Suhandri",
   siteName: "MR Ferry",
 };

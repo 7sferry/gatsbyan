@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  url: "https://ferry.now.sh",
+  url: "https://ferry.vercel.app",
   title: "MR Ferry",
   tagline: "An ISTJ, Type 5, Engineer, Gamer, and Thriller-Movies-Lover",
   description: `Blog by Ferry Suhandri. ISTJ, Type 5 Enneagram, Engineer dari Solok, berpengalaman di Industri Teknologi. Berisi pandangan pribadi, Java, JS, Spring dan pemrograman dalam bahasa indonesia.`,
