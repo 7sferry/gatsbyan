@@ -35,6 +35,10 @@ li {
   color: rgb(158, 150, 137);
 }
 
+.tag-link a {
+  color: #fff;
+}
+
 .second-header {
   font-size: 20px;
   padding: 0;
