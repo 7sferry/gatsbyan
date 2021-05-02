@@ -4,8 +4,8 @@
  ************************/
 
 import React from "react";
-import { FaLinkedin, FaGithubSquare, FaFacebook, FaStackOverflow } from "react-icons/fa";
-import { GiPerson, GiCrystalBall } from "react-icons/gi";
+import { FaLinkedin, FaGithubSquare, FaFacebook, FaStackOverflow, FaUserGraduate } from "react-icons/fa";
+import { GiCrystalBall } from "react-icons/gi";
 import "./sidebar/sidebar.css";
 
 const buildSocialLink = (contact, title, color, Icon) => {
@@ -19,12 +19,12 @@ const buildSocialLink = (contact, title, color, Icon) => {
 const Socials = ({ mobile, contacts }) => {
   return (
     <div className={mobile ? `mobile-bio-main mobile-social pt-1` : "side-social-links mt-3 mb-3"}>
-      {buildSocialLink(contacts.linkedin, "Linked In", "text-primary", FaLinkedin)}
+      {buildSocialLink(contacts.linkedin, "LinkedIn", "text-primary", FaLinkedin)}
       {buildSocialLink(contacts.github, "GitHub", "text-light", FaGithubSquare)}
       {buildSocialLink(contacts.facebook, "Facebook", "text-info", FaFacebook)}
-      {buildSocialLink(contacts.stackOverFlow, "Blogger", "text-warning", FaStackOverflow)}
-      {buildSocialLink(contacts.resume, "Resume", "text-success", GiPerson)}
-      {buildSocialLink(contacts.crystal, "Crystal Knows", "text-danger", GiCrystalBall)}
+      {buildSocialLink(contacts.stackOverFlow, "StackOverFlow", "text-warning", FaStackOverflow)}
+      {buildSocialLink(contacts.resume, "Resume", "text-danger", FaUserGraduate)}
+      {buildSocialLink(contacts.crystal, "CrystalKnows", "text-success", GiCrystalBall)}
     </div>
   );
 };
