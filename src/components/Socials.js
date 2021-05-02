@@ -4,7 +4,7 @@
  ************************/
 
 import React from "react";
-import { FaLinkedin, FaGithubSquare, FaFacebook, FaBloggerB } from "react-icons/fa";
+import { FaLinkedin, FaGithubSquare, FaFacebook, FaStackOverflow } from "react-icons/fa";
 import { GiPerson, GiCrystalBall } from "react-icons/gi";
 import "./sidebar/sidebar.css";
 
@@ -22,7 +22,7 @@ const Socials = ({ mobile, contacts }) => {
       {buildSocialLink(contacts.linkedin, "Linked In", "text-primary", FaLinkedin)}
       {buildSocialLink(contacts.github, "GitHub", "text-light", FaGithubSquare)}
       {buildSocialLink(contacts.facebook, "Facebook", "text-info", FaFacebook)}
-      {buildSocialLink(contacts.blogger, "Blogger", "text-warning", FaBloggerB)}
+      {buildSocialLink(contacts.stackOverFlow, "Blogger", "text-warning", FaStackOverflow)}
       {buildSocialLink(contacts.resume, "Resume", "text-success", GiPerson)}
       {buildSocialLink(contacts.crystal, "Crystal Knows", "text-danger", GiCrystalBall)}
     </div>

@@ -1,23 +1,21 @@
 import React from "react";
-import { getTechTags } from "../../utils/GatsbyanUtils";
+import { graphql, useStaticQuery } from "gatsby";
 
-const Tags = props => {
-  const posts = props.posts;
-  const tags = new Set();
-  if (posts) {
-    posts.forEach(post => {
-      if (post.node.tags) {
-        post.node.tags.forEach(tag => {
-          tags.add(tag);
-        });
+const Tags = () => {
+  const { allContentfulBlogPost } = useStaticQuery(
+    graphql`
+      query Tags {
+        allContentfulBlogPost {
+          tags: distinct(field: tags)
+        }
       }
-    });
-  }
+    `
+  );
 
-  function presentAllTags() {
+  function presentTags() {
     return (
       <div className="d-block">
-        {[...getTechTags(tags)].map((tag, i) => (
+        {allContentfulBlogPost.tags.map((tag, i) => (
           <div key={i} className="d-inline-block p-1 tag-link">
             {tag}
           </div>
@@ -29,7 +27,7 @@ const Tags = props => {
   return (
     <>
       <div className="second-header mb-1">Tags</div>
-      {presentAllTags()}
+      {presentTags()}
     </>
   );
 };

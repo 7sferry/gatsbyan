@@ -74,6 +74,10 @@ p,
   grid-column: 2;
   width: 100%;
 }
+.tag-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
 .right-sidebar {
   -ms-grid-column: 3;
   grid-column: 3;

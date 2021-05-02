@@ -27,6 +27,11 @@ class IndexPage extends React.Component {
       <Layout>
         <SEO title="Ferry Suhandri" url={metadata.siteUrl} />
         <div className="post-main">
+          {kebabTag && (
+            <div className="tag-title">
+              All posts related to <b>{this.props.pageContext.tag}</b>
+            </div>
+          )}
           {posts.map(post => {
             const node = post.node;
             const tags = node.tags;

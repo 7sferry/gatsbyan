@@ -25,7 +25,7 @@ module.exports = {
       linkedin: siteConfig.author.contacts.linkedin,
       github: siteConfig.author.contacts.github,
       crystal: siteConfig.author.contacts.crystal,
-      blogger: siteConfig.author.contacts.blogger,
+      stackOverFlow: siteConfig.author.contacts.stackOverFlow,
       resume: siteConfig.author.contacts.resume,
       facebook: siteConfig.author.contacts.facebook,
     },
@@ -144,13 +144,13 @@ module.exports = {
         // The property ID; the tracking code won't be generated without it
         trackingId: process.env.ANALYTICS_TRACKING_ID,
         // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: false,
+        // head: false,
         pageTransitionDelay: 250,
         exclude: exclude,
         // Enables Google Optimize using your container Id
-        // optimizeId: "OPT-P5SQMN6",
+        optimizeId: "OPT-P5SQMN6",
         // Enables Google Optimize Experiment ID
-        // experimentId: "xgp72D0ZQaKYe3dWfy0L0Q",
+        experimentId: "xgp72D0ZQaKYe3dWfy0L0Q",
         // Set Variation ID. 0 for original 1,2,3....
         // variationId: "YOUR_GOOGLE_OPTIMIZE_VARIATION_ID",
         // Defers execution of google analytics script after page load

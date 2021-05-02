@@ -14,7 +14,7 @@ module.exports = {
       github: "https://github.com/7sferry",
       facebook: "https://facebook.com/7sferry",
       crystal: "https://www.crystalknows.com/p/ferry",
-      blogger: "https://www.mrferry.co.vu/",
+      stackOverFlow: "https://stackoverflow.com/users/14286378/ferry",
       resume: "https://ferry.netlify.com/resume/",
     },
   },
