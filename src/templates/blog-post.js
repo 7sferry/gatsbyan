@@ -4,17 +4,15 @@
  ************************/
 
 import Layout from "../components/Layout";
-import SEO from "../components/SEO";
-import "./blog-post.css";
+import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
-import Share from "../components/Share";
 import { getPlurals, getPublishDateTime, getTechTags } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
-import Img from "gatsby-image";
-import Comment from "../components/Comment";
-import heroStyles from "../components/hero.module.css";
+import { GatsbyImage } from "gatsby-plugin-image";
+import * as heroStyles from "../components/hero.module.css";
+import { Utterances } from "../components/Utterances";
 
 class BlogPostTemplate extends React.Component {
   constructor(props) {
@@ -30,21 +28,39 @@ class BlogPostTemplate extends React.Component {
     }));
   }
 
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const innerHeight = window.innerHeight + document.documentElement.scrollTop;
+    const clientHeight = document.body.clientHeight;
+    const percentage = innerHeight / clientHeight * 100;
+    if (!this.state.commentShown && percentage > 50) {
+      this.showComment();
+    }
+  };
+
   render() {
     const { contentfulBlogPost: post } = this.props.data;
     const site = this.props.data.site.siteMetadata;
     const { childMarkdownRemark } = post.body;
     const timeToRead = childMarkdownRemark.timeToRead;
     const url = `${site.siteUrl}/blog/${post.slug}`;
+    const repo = site.repo;
 
     const heroImage = post.heroImage;
     const imageURL = heroImage?.file?.url;
-    const fluid = heroImage?.fluid;
+    const imageData = heroImage.gatsbyImageData;
     const imageTitle = heroImage?.title;
 
     return (
       <Layout>
-        <SEO
+        <Seo
           title={post.title}
           description={post.description.description}
           lang={post.lang?.[0]}
@@ -63,7 +79,7 @@ class BlogPostTemplate extends React.Component {
           </div>
           <div>
             <figure className={heroStyles.hero}>
-              {fluid && <Img className={heroStyles.heroImage} alt={post.title} fluid={fluid} />}
+              {imageData && <GatsbyImage image={imageData} className={heroStyles.heroImage} alt={post.title} />}
               {imageTitle && (
                 <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>
               )}
@@ -76,9 +92,7 @@ class BlogPostTemplate extends React.Component {
               }}
             />
           </div>
-          <Share title={post.title} siteName={site.title} url={url} />
-          <button onClick={this.showComment}>Show comment</button>
-          {this.state.commentShown && <Comment href={url} />}
+          {this.state.commentShown && repo && <Utterances repo={repo} />}
         </div>
       </Layout>
     );
@@ -103,13 +117,7 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        fluid(quality: 75, toFormat: JPG) {
-          aspectRatio
-          src
-          srcSet
-          sizes
-          tracedSVG
-        }
+        gatsbyImageData(quality: 75, formats: JPG, placeholder: BLURRED, layout: FULL_WIDTH, jpegProgressive: true)
         title
         file {
           url
@@ -121,6 +129,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         siteUrl
+        repo
       }
     }
   }

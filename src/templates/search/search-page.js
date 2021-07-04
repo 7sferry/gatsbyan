@@ -9,8 +9,8 @@ import algoliasearch from "algoliasearch/lite";
 import Hits from "./hits";
 import { Configure, connectPagination, InstantSearch, SearchBox, VoiceSearch } from "react-instantsearch-dom";
 import Pagination from "../../components/Pagination";
-import SEO from "../../components/SEO";
-import { SEARCH_COUNT } from "../../utils/GatsbyanUtils"
+import Seo from "../../components/Seo";
+import { SEARCH_COUNT } from "../../utils/GatsbyanUtils";
 
 class SearchPage extends React.Component {
   render() {
@@ -44,16 +44,17 @@ class SearchPage extends React.Component {
 
     return (
       <Layout>
-        <SEO
-          title={"Search Page"}
-          description={"Search Engine to search something Powered By Algolia"}
-          lang={"en"}
-        />
+        <Seo title={"Search Page"} description={"Search Engine to search something Powered By Algolia"} lang={"en"} />
         <div className="post-main">
           <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
             <Configure distinct hitsPerPage={SEARCH_COUNT} />
             {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
-            <SearchBox isSearchStalled={true} className={"search-box"} showLoadingIndicator={true} searchAsYouType={false} />
+            <SearchBox
+              isSearchStalled={true}
+              className={"search-box"}
+              showLoadingIndicator={true}
+              searchAsYouType={false}
+            />
             <Paging />
             <Hits />
           </InstantSearch>

@@ -4,11 +4,11 @@
  ************************/
 
 import React from "react";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql, Link } from "gatsby";
 
 import Layout from "../components/Layout";
-import SEO from "../components/SEO";
+import Seo from "../components/Seo";
 import Pagination from "../components/Pagination";
 import { getPlurals, getPublishDate, getTechTags } from "../utils/GatsbyanUtils";
 import "bootstrap/dist/css/bootstrap.css";
@@ -25,14 +25,14 @@ class IndexPage extends React.Component {
     const metadata = this.props.data.site.siteMetadata;
     return (
       <Layout>
-        <SEO title="Ferry Suhandri" url={metadata.siteUrl} />
+        <Seo title="Ferry Suhandri" url={metadata.siteUrl} />
         <div className="post-main">
           {kebabTag && (
             <div className="tag-title">
               All posts related to <b>{this.props.pageContext.tag}</b>
             </div>
           )}
-          {posts.map(post => {
+          {posts.map((post) => {
             const node = post.node;
             const tags = node.tags;
             const { childMarkdownRemark } = node.body;
@@ -54,7 +54,9 @@ class IndexPage extends React.Component {
                     <span className="page-info">{getTechTags(tags)}</span>
                   </div>
                   <div className="pt-1">
-                    {node.heroImage && <Img className="index-thumbnail" fixed={node.heroImage.fixed} />}
+                    {node.heroImage && (
+                      <GatsbyImage image={node.heroImage.gatsbyImageData} className="index-thumbnail" alt={"ferr"} />
+                    )}
                     <p>{childMarkdownRemark.excerpt}</p>
                   </div>
                 </div>
@@ -91,13 +93,13 @@ export const pageQuery = graphql`
           title
           publishDate
           heroImage {
-            fixed(resizingBehavior: THUMB, toFormat: WEBP, cropFocus: FACES) {
-              width
-              height
-              src
-              srcSet
-              base64
-            }
+            gatsbyImageData(
+              resizingBehavior: THUMB
+              formats: WEBP
+              cropFocus: FACES
+              placeholder: BLURRED
+              layout: FIXED
+            )
           }
           id
         }

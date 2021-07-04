@@ -1,16 +1,16 @@
 import React from "react";
 import Photo from "../Photo";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import "./header.css";
 import Socials from "../Socials";
 
-const MobileBio = props => {
-  const { fixed: photo } = Photo();
+const MobileBio = (props) => {
+  const { gatsbyImageData: photo } = Photo();
   return (
     <>
       <Socials mobile={true} contacts={props.contacts} />
       <div className="mobile-bio-main">
-        <Img fixed={photo} className="bio-picture" alt="author-pic" />
+        <GatsbyImage image={photo} className="bio-picture" alt="author-pic" />
         <div className="bio-letter">
           <p className="bio-name">{props.author}</p>
           <small>{props.tagline}</small>

@@ -9,7 +9,7 @@ import { MdArchive } from "react-icons/md";
 import "./archive.css";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
 import Layout from "../components/Layout";
-import SEO from "../components/SEO";
+import Seo from "../components/Seo";
 
 class ArchivePage extends React.Component {
   constructor(props) {
@@ -23,8 +23,8 @@ class ArchivePage extends React.Component {
     let activeMonth = this.state.activeMonth;
 
     if (activeYear.includes(index)) {
-      activeYear = activeYear.filter(o => o !== index);
-      activeMonth = activeMonth.filter(o => {
+      activeYear = activeYear.filter((o) => o !== index);
+      activeMonth = activeMonth.filter((o) => {
         const monthYear = o.split("-");
         return monthYear[0] !== index;
       });
@@ -43,7 +43,7 @@ class ArchivePage extends React.Component {
     let activeMonth = this.state.activeMonth;
 
     if (activeMonth.includes(index)) {
-      activeMonth = activeMonth.filter(o => o !== index);
+      activeMonth = activeMonth.filter((o) => o !== index);
     } else {
       activeMonth.push(index);
     }
@@ -65,7 +65,7 @@ class ArchivePage extends React.Component {
         this.state.activeYear.push(lastDate.split("-")[0]) &&
         this.state.activeMonth.push(lastDate);
 
-      posts.forEach(o => {
+      posts.forEach((o) => {
         const monthYearDate = getMonthYearDate(o.publishDate);
         let post = postByMonth.get(monthYearDate);
         if (post) {
@@ -93,7 +93,7 @@ class ArchivePage extends React.Component {
 
     return (
       <Layout>
-        <SEO title={"All Posts"} description={"Every Post at my blog"} lang={"en"} />
+        <Seo title={"All Posts"} description={"Every Post at my blog"} lang={"en"} />
         <div className="post-main">
           <ul className="archive-container parent-archive-container">
             {Array.from(postByYear.entries()).map((post, i) => {
@@ -110,7 +110,7 @@ class ArchivePage extends React.Component {
                   <ul
                     className={`archive-container ${this.state.activeYear.includes(year) ? "visible" : "not-visible"}`}
                   >
-                    {post[1].map(contents => {
+                    {post[1].map((contents) => {
                       const month = contents.date.split("-")[1];
                       return (
                         <li key={month} className={"item"}>
@@ -122,7 +122,7 @@ class ArchivePage extends React.Component {
                               this.state.activeMonth.includes(contents.date) ? "visible" : "not-visible"
                             }`}
                           >
-                            {contents.object.map(content => {
+                            {contents.object.map((content) => {
                               return (
                                 <li className={"item"} key={content.slug}>
                                   <Link className={"archive-link"} to={`/blog/${content.slug}`}>

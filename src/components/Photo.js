@@ -11,15 +11,7 @@ const useSiteMetadata = () => {
       query PhotoBio {
         file(relativePath: { eq: "ferry.jpg" }) {
           childImageSharp {
-            fixed(width: 150, quality: 100) {
-              width
-              height
-              src
-              srcSet
-              srcSetWebp
-              srcWebp
-              base64
-            }
+            gatsbyImageData(width: 150, quality: 100, placeholder: TRACED_SVG, layout: FIXED)
           }
         }
       }

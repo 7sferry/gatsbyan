@@ -7,12 +7,13 @@ const allContentfulBlogPost = `{
   allContentfulBlogPost {
     edges {
         node {
+          id
           publishDate(formatString: "DD MMMM YYYY")
           title
           slug
           body {
             childMarkdownRemark {
-              plainText
+              rawMarkdownBody
               excerpt(pruneLength: 100, truncate: true)
             }
           }
@@ -21,7 +22,7 @@ const allContentfulBlogPost = `{
   }
 }`;
 
-const unnestMarkdown = node => {
+const unnestMarkdown = (node) => {
   const { body, ...rest } = node;
   const { childMarkdownRemark } = body;
   return {
@@ -30,10 +31,10 @@ const unnestMarkdown = node => {
   };
 };
 
-const handlePlainText = node => {
-  const { plainText, ...rest } = node;
-  const sections = plainText.match(/[\s\S]{1,7000}/g) || [];
-  return sections.map(section => ({
+const handlePlainText = (node) => {
+  const { rawMarkdownBody, ...rest } = node;
+  const sections = rawMarkdownBody.match(/[\s\S]{1,7000}/g) || [];
+  return sections.map((section) => ({
     ...rest,
     content: section,
   }));
@@ -48,7 +49,7 @@ const queries = [
     },
     transformer: ({ data }) =>
       data["allContentfulBlogPost"].edges
-        .map(edge => edge.node)
+        .map((edge) => edge.node)
         .map(unnestMarkdown)
         .map(handlePlainText)
         .reduce((acc, cur) => [...acc, ...cur], []),

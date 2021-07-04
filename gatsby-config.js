@@ -9,12 +9,16 @@ const siteConfig = require("./config");
 const contentfulConfig = {
   spaceId: process.env.SPACEID,
   accessToken: process.env.TOKEN,
+  // pageLimit: 100,
+  // assetDownloadWorkers: 25,
+  // downloadLocal: true,
 };
 const exclude = ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**", "^[^?]+(\\?.*)", ".json$"];
 
 module.exports = {
   siteMetadata: {
     siteUrl: siteConfig.url,
+    repo: siteConfig.repo,
     title: siteConfig.title,
     tagline: siteConfig.tagline,
     description: siteConfig.description,
@@ -33,20 +37,24 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark-plaintext`,
     `gatsby-plugin-catch-links`,
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
         useMozJpeg: true,
         stripMetadata: true,
       },
+      defaults: {
+        placeholder: `dominantColor`,
+        backgroundColor: `transparent`,
+      },
     },
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        sitemapSize: 5000,
-        exclude: exclude,
+        entryLimit: 5000,
+        excludes: exclude,
       },
     },
     {
@@ -79,15 +87,6 @@ module.exports = {
               aliases: {},
               showLineNumbers: false,
               noInlineHighlight: false,
-            },
-          },
-          {
-            resolve: `gatsby-remark-images-zoom`,
-            options: {
-              margin: 0,
-              scrollOffset: 0,
-              background: "transparent",
-              zIndex: 0,
             },
           },
           {
