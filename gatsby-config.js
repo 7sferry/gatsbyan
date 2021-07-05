@@ -122,10 +122,22 @@ module.exports = {
           // For all the options available, please see:
           // https://developer.mozilla.org/en-US/docs/Web/Manifest
           // https://w3c.github.io/manifest/#purpose-member
-          purpose: `maskable`,
+          purpose: `any maskable`,
         },
         icon: `src/images/avatar.png`, // This path is relative to the root of the site.
         cache_busting_mode: 'none',
+        icons: [
+          {
+            src: `/favicons/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/favicons/android-chrome-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+        ],
       },
     },
     {
