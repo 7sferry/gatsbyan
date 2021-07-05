@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
-import { getPlurals, getPublishDateTime, getTechTags } from "../utils/GatsbyanUtils";
+import { getPlurals, getPublishDateTime, getPostTags } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -75,7 +75,7 @@ class BlogPostTemplate extends React.Component {
               {timeToRead} min{getPlurals(timeToRead)} read
             </span>
             <br />
-            <span className="page-info">{getTechTags(post.tags)}</span>
+            <span className="page-info">{getPostTags(post.tags)}</span>
           </div>
           <div>
             <figure className={heroStyles.hero}>

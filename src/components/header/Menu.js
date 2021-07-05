@@ -10,10 +10,10 @@ import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
 import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
 
 const Menu = () => {
-  return <div className="social-links">{menus}</div>;
+  return <div className="social-links">{MenuLinks}</div>;
 };
 
-export const menus = Array.of(
+export const MenuLinks = Array.of(
   {
     link: "/",
     icon: <FaHome title={"Homepage"} size={DEFAULT_ICON_SIZE} />,

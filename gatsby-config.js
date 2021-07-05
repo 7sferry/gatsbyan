@@ -116,8 +116,8 @@ module.exports = {
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#3948DF`,
-        display: `minimal-ui`,
-        crossOrigin: `use-credentials`,
+        display: `standalone`,
+        crossOrigin: `anonymous`,
         icon_options: {
           // For all the options available, please see:
           // https://developer.mozilla.org/en-US/docs/Web/Manifest
@@ -125,6 +125,7 @@ module.exports = {
           purpose: `maskable`,
         },
         icon: `src/images/avatar.png`, // This path is relative to the root of the site.
+        cache_busting_mode: 'none',
       },
     },
     {
@@ -190,7 +191,14 @@ module.exports = {
     // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          globPatterns: ['**/icon-path*']
+        }
+      }
+    }
     // {
     //   resolve: "gatsby-plugin-algolia",
     //   options: {

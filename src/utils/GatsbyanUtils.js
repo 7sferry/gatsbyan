@@ -8,7 +8,7 @@ import { Link } from "gatsby";
 import { kebab as kebabCase } from "case";
 import { formatToTimeZone } from "date-fns-timezone";
 
-export const getTechTags = tags => {
+export const getPostTags = tags => {
   const techTags = new Set();
   tags &&
     tags.forEach((tag, i) => {
@@ -22,6 +22,10 @@ export const getTechTags = tags => {
     });
   return techTags;
 };
+
+export const getTags = (tag) => {
+  return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>
+}
 
 const timeZone = "Asia/Jakarta";
 

@@ -6,7 +6,6 @@
 import React from "react";
 import { graphql, Link, StaticQuery } from "gatsby";
 import "./sidebar.css";
-import { capital as startCase } from "case";
 
 const AnalyticsPage = () => {
   return (
@@ -21,29 +20,32 @@ const AnalyticsPage = () => {
           allContentfulBlogPost {
             nodes {
               slug
+              title
             }
           }
         }
       `}
       render={(data) => {
         const { allPageViews } = data;
-        const { nodes } = data?.allContentfulBlogPost;
-        const slugs = nodes?.map((n) => "/blog/" + n.slug);
+        const titleByPath = {};
+        data?.allContentfulBlogPost?.nodes?.forEach((n) => {
+          return (titleByPath["/blog/" + n.slug] = n.title);
+        });
+
         return (
-          allPageViews &&
-          slugs && (
+          allPageViews && (
             <>
               <div className="second-header">Most Viewed</div>
               <ul>
                 {allPageViews.nodes
-                  .filter((view) => slugs.includes(view.path))
+                  .filter((view) => titleByPath[view.path])
                   .slice(0, 5)
-                  .map((node) => {
+                  .map((view) => {
                     return (
-                      <li key={node.path}>
+                      <li key={view.path}>
                         <small className="title">
-                          <Link className="text-link" to={`${node.path}`}>
-                            {startCase(node.path.replace(/^\/blog\/+/i, ""))}
+                          <Link className="text-link" to={`${view.path}`}>
+                            {titleByPath[view.path]}
                           </Link>
                         </small>
                       </li>

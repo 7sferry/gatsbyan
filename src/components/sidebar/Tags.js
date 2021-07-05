@@ -1,6 +1,6 @@
 import React from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
-import { kebab as kebabCase } from "case";
+import { graphql, useStaticQuery } from "gatsby";
+import { getTags } from "../../utils/GatsbyanUtils"
 
 const Tags = () => {
   const { allContentfulBlogPost } = useStaticQuery(
@@ -18,7 +18,7 @@ const Tags = () => {
       <div className="d-block">
         {allContentfulBlogPost.tags.map((tag, i) => (
           <div key={i} className="d-inline-block p-1 tag-link">
-            <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>
+            { getTags(tag) }
           </div>
         ))}
       </div>

@@ -10,7 +10,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import Pagination from "../components/Pagination";
-import { getPlurals, getPublishDate, getTechTags } from "../utils/GatsbyanUtils";
+import { getPlurals, getPublishDate, getPostTags } from "../utils/GatsbyanUtils";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 import "../components/pagination.css";
@@ -51,7 +51,7 @@ class IndexPage extends React.Component {
                       {timeToRead} min{getPlurals(timeToRead)} read
                     </span>
                     <br />
-                    <span className="page-info">{getTechTags(tags)}</span>
+                    <span className="page-info">{getPostTags(tags)}</span>
                   </div>
                   <div className="pt-1">
                     {node.heroImage && (

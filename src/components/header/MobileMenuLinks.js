@@ -1,11 +1,11 @@
 import React from "react";
-import { menus } from "./Menu";
+import { MenuLinks } from "./Menu";
 import "../layout.css";
 
 const MobileMenuLinks = () => {
   return (
     <div className="bottom-bar pb-1">
-      {menus}
+      { MenuLinks }
     </div>
   );
 };
