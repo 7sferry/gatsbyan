@@ -12,7 +12,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import * as heroStyles from "../components/hero.module.css";
-import { Utterances } from "../components/Utterances";
+import { Comment } from "../components/Comment";
 
 class BlogPostTemplate extends React.Component {
   constructor(props) {
@@ -92,7 +92,7 @@ class BlogPostTemplate extends React.Component {
               }}
             />
           </div>
-          {this.state.commentShown && repo && <Utterances repo={repo} />}
+          {this.state.commentShown && repo && <Comment repo={repo} />}
         </div>
       </Layout>
     );

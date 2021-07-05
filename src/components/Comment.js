@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 
 const src = "https://utteranc.es/client.js";
 
-export const Utterances = ({ repo }) => {
+export const Comment = ({ repo }) => {
   const element = React.createRef();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export const Utterances = ({ repo }) => {
       theme: "github-dark-orange",
       label: "komentar",
       async: true,
-      "issue-term": "url",
+      "issue-term": "pathname",
       crossorigin: "anonymous",
     };
 
