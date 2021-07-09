@@ -6,7 +6,7 @@ const Tags = () => {
   const { allContentfulBlogPost } = useStaticQuery(
     graphql`
       query Tags {
-        allContentfulBlogPost(sort: {fields: tags, order: ASC}) {
+        allContentfulBlogPost {
           tags: distinct(field: tags)
         }
       }
