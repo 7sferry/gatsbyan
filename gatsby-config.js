@@ -213,6 +213,7 @@ module.exports = {
     //     queries: require("./src/utils/Algolia"),
     //     enablePartialUpdates: true,
     //     chunkSize: 10000,
+    //     matchFields: ['content'],
     //   },
     // },
   ],
