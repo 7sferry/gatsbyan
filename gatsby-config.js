@@ -160,13 +160,13 @@ module.exports = {
         pageTransitionDelay: 250,
         exclude: exclude,
         // Enables Google Optimize using your container Id
-        optimizeId: "OPT-P5SQMN6",
+        // optimizeId: "OPT-P5SQMN6",
         // Enables Google Optimize Experiment ID
-        experimentId: "xgp72D0ZQaKYe3dWfy0L0Q",
+        // experimentId: "xgp72D0ZQaKYe3dWfy0L0Q",
         // Set Variation ID. 0 for original 1,2,3....
         // variationId: "YOUR_GOOGLE_OPTIMIZE_VARIATION_ID",
         // Defers execution of google analytics script after page load
-        // defer: false,
+        defer: true,
         // Any additional optional fields
         // sampleRate: 5,
         // siteSpeedSampleRate: 10,
