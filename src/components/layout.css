@@ -169,37 +169,7 @@ textarea {
 [type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
-button::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-  margin-top: -2px;
-  margin-bottom: -2px;
-}
-[type="submit"],
-[type="reset"] {
-  border: none;
-  color: navajowhite;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  cursor: pointer;
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-[type="search"] {
-  width: 75%;
-  transition: 0.7s ease-in-out;
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-  border: none;
-  font-size: 20px;
-  height: 30px;
-}
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
+
 .ais-VoiceSearch {
   text-align: center;
 }

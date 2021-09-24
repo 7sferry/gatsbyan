@@ -17,7 +17,7 @@ class SearchPage extends React.Component {
     const algoliaClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY);
     const chrome =
       typeof window !== "undefined"
-        ? !!window.chrome && (!!window.chrome["webstore"] || !!window.chrome.runtime)
+        ? !!window.chrome
         : undefined;
 
     const searchClient = {
@@ -48,7 +48,9 @@ class SearchPage extends React.Component {
         <div className="post-main">
           <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
             <Configure distinct hitsPerPage={SEARCH_COUNT} />
-            {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
+            {chrome ?
+              <VoiceSearch searchAsYouSpeak={false} />
+              : <></>}
             <SearchBox
               isSearchStalled={true}
               className={"search-box"}

@@ -71,7 +71,7 @@ exports.createPages = ({ graphql, actions }) => {
           const numTags = Math.ceil(size / postsPerPage);
           Array.from({ length: numTags }).forEach((value, i) => {
             createPage({
-              path: `/tags/${kebabTag}` + (i === 0 ? `` : `/${i + 1}`),
+              path: `/tags/${kebabTag}${(i === 0 ? `` : `/${i + 1}`)}/`,
               component: path.resolve("./src/templates/index.js"),
               context: {
                 tag: tag,
@@ -84,12 +84,12 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         createPage({
-          path: `/search`,
+          path: `/search/`,
           component: path.resolve("./src/templates/search/search-page.js"),
         });
 
         createPage({
-          path: `/archive`,
+          path: `/archive/`,
           component: path.resolve("./src/templates/archive.js"),
         });
       })
