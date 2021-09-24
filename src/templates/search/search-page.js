@@ -54,7 +54,6 @@ class SearchPage extends React.Component {
             <SearchBox
               isSearchStalled={true}
               className={"search-box"}
-              showLoadingIndicator={true}
               searchAsYouType={false}
             />
             <Paging />
