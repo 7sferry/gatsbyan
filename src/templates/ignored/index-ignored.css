@@ -21,6 +21,10 @@ iframe{
   text-align: center;
 }
 
+.ais-VoiceSearch-button{
+  border: 0;
+}
+
 :root {
   --rad: .7rem;
   --dur: .3s;
