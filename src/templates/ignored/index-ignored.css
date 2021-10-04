@@ -61,6 +61,7 @@ iframe{
   transition: all var(--dur) var(--bez);
   transition-property: width, border-radius;
   position: relative;
+  z-index: 1;
 }
 
 .ais-SearchBox-submit {
