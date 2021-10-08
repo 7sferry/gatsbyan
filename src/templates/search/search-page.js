@@ -15,17 +15,14 @@ import { SEARCH_COUNT } from "../../utils/GatsbyanUtils";
 class SearchPage extends React.Component {
   render() {
     const algoliaClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID, process.env.GATSBY_ALGOLIA_SEARCH_KEY);
-    const chrome =
-      typeof window !== "undefined"
-        ? !!window.chrome
-        : undefined;
+    const chrome = typeof window !== "undefined" ? !!window.chrome : undefined;
 
     const searchClient = {
       search(requests) {
         if (requests.every(({ params }) => !params.query)) {
           return Promise.resolve({
             results: requests.map(() => ({
-              hits: [],
+              hits: null,
               nbHits: 0,
               nbPages: 0,
               processingTimeMS: 0,
@@ -36,10 +33,15 @@ class SearchPage extends React.Component {
       },
     };
 
-    const Paging = connectPagination(({ currentRefinement, nbPages, refine }) => {
+    const SearchResult = connectPagination(({ currentRefinement, nbPages, refine }) => {
       const url = "/search";
 
-      return <Pagination totalPageCount={nbPages} currentPage={currentRefinement} url={url} refine={refine} />;
+      return (
+        <>
+          <Pagination totalPageCount={nbPages} currentPage={currentRefinement} url={url} refine={refine} />
+          <Hits />
+        </>
+      );
     });
 
     return (
@@ -48,16 +50,9 @@ class SearchPage extends React.Component {
         <div className="post-main">
           <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME} searchClient={searchClient}>
             <Configure distinct hitsPerPage={SEARCH_COUNT} />
-            {chrome ?
-              <VoiceSearch searchAsYouSpeak={false} />
-              : <></>}
-            <SearchBox
-              isSearchStalled={true}
-              className={"search-box"}
-              searchAsYouType={false}
-            />
-            <Paging />
-            <Hits />
+            {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
+            <SearchBox isSearchStalled={true} className={"search-box"} searchAsYouType={false} />
+            <SearchResult />
           </InstantSearch>
         </div>
       </Layout>
