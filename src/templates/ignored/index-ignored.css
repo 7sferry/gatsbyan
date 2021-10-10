@@ -40,6 +40,7 @@ iframe{
   position: relative;
   background: var(--color-brand);
   border-radius: var(--rad);
+  margin-bottom: 1em;
 }
 
 .ais-SearchBox-input, .ais-SearchBox-submit {

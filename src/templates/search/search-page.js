@@ -38,8 +38,8 @@ class SearchPage extends React.Component {
 
       return (
         <>
-          <Pagination totalPageCount={nbPages} currentPage={currentRefinement} url={url} refine={refine} />
           <Hits />
+          <Pagination totalPageCount={nbPages} currentPage={currentRefinement} url={url} refine={refine} />
         </>
       );
     });
