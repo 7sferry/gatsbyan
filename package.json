@@ -6,10 +6,7 @@
   "author": "Ferry",
   "dependencies": {
     "algoliasearch": "^4.10.2",
-    "ansi-html": "^0.0.7",
-    "ansi-regex": "^6.0.1",
     "bootstrap": "^5.0.2",
-    "browserslist": "^4.18.1",
     "case": "^1.6.3",
     "date-fns-timezone": "^0.1.4",
     "gatsby": "^3.14.2",
@@ -31,10 +28,7 @@
     "gatsby-source-filesystem": "^3.8.0",
     "gatsby-transformer-remark": "^4.5.0",
     "gatsby-transformer-sharp": "^3.8.0",
-    "immer": "^9.0.7",
     "medium-zoom": "^1.0.6",
-    "nth-check": "^2.0.1",
-    "object-path": "^0.11.8",
     "prismjs": "^1.24.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -42,10 +36,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-instantsearch-dom": "^6.11.2",
-    "react-paginating": "^1.4.0",
-    "sanitize-html": "^2.6.0",
-    "trim": "^1.0.1",
-    "ws": "^8.3.0"
+    "react-paginating": "^1.4.0"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
