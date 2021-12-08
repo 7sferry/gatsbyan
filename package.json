@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Ferry",
   "dependencies": {
+    "@babel/runtime": "^7.16.3",
     "algoliasearch": "^4.10.2",
     "bootstrap": "^5.0.2",
     "case": "^1.6.3",
