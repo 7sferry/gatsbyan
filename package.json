@@ -20,7 +20,7 @@
     "gatsby-plugin-offline": "^4.8.0",
     "gatsby-plugin-purgecss": "^6.0.2",
     "gatsby-plugin-react-helmet": "^4.8.0",
-    "gatsby-plugin-sharp": "^3.8.0",
+    "gatsby-plugin-sharp": "^4.3.0",
     "gatsby-plugin-sitemap": "^4.4.0",
     "gatsby-remark-images-contentful": "^4.5.0",
     "gatsby-remark-prismjs": "^5.5.0",
@@ -36,7 +36,8 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-instantsearch-dom": "^6.11.2",
-    "react-paginating": "^1.4.0"
+    "react-paginating": "^1.4.0",
+    "sharp": "^0.29.3"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
