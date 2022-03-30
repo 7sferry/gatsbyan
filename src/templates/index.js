@@ -86,7 +86,7 @@ export const pageQuery = graphql`
           body {
             childMarkdownRemark {
               timeToRead
-              excerpt(pruneLength: 300)
+              excerpt(pruneLength: 365)
             }
           }
           tags

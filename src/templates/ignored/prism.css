@@ -9,7 +9,7 @@ pre[class*="language-"] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  word-wrap: normal;
+  word-wrap: break-word;
   color: #eee;
   background: #2f2f2f;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
