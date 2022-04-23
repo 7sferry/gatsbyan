@@ -102,8 +102,8 @@ a {
 .index-thumbnail {
   float: left;
   margin: 0 10px 5px 0;
-  max-width: 16vw;
-  max-height: 22.5vh;
+  max-width: 250px;
+  max-height: 180px;
 }
 
 .marginb5 {
