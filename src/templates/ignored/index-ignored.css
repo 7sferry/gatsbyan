@@ -173,3 +173,31 @@ h6 {
 .ais-SearchBox-input:not(:placeholder-shown) + .ais-SearchBox-submit {
   display: block;
 }
+
+table {
+  border-collapse: collapse;
+  margin:50px auto;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+tr:nth-of-type(odd) {
+  background-color: #2f2f2f;
+}
+
+tr:nth-of-type(even) {
+  background-color: #1c1e1f;
+}
+
+th {
+  background-color: #175984;
+  font-weight: bold;
+}
+
+td, th {
+  padding: 10px;
+  border: 1px solid #3E4446;
+  text-align: left;
+  font-size: 18px;
+}

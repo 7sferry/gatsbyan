@@ -21,7 +21,7 @@ blockquote p {
 blockquote {
   background: #2c3a47;
   display: inline-block;
-  margin: 0;
+  margin: 0 0 1.45rem;
   box-shadow: rgba(88, 50, 99, 0.7) 0 2px 0 inset, rgba(0, 0, 0, 0.3) -5px -4px 25px;
   position: relative;
   padding: 15px;
