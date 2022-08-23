@@ -185,6 +185,25 @@ table {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+    max-width: 42vw;
+}
+
+@media only screen and (min-width: 1920px) {
+    table {
+        max-width: 44vw;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    table {
+        max-width: 41vw;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    table {
+        max-width: 100vw;
+    }
 }
 
 tr:nth-of-type(odd) {
