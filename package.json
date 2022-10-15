@@ -16,6 +16,7 @@
     "gatsby-plugin-catch-links": "^3.8.0",
     "gatsby-plugin-google-analytics": "^3.8.0",
     "gatsby-plugin-google-analytics-reporter": "^1.1.1",
+    "gatsby-plugin-google-gtag": "^4.24.0",
     "gatsby-plugin-image": "^1.8.0",
     "gatsby-plugin-manifest": "^3.8.0",
     "gatsby-plugin-offline": "^4.8.0",
@@ -61,7 +62,7 @@
     "develop": "gatsby develop -H 0.0.0.0",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve -H 0.0.0.0",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "repository": {
