@@ -201,7 +201,7 @@ module.exports = {
           // pageTransitionDelay: 250,
           // defer: true,
           // Defaults to https://www.googletagmanager.com
-          origin: "https://ferry.vercel.app",
+          origin: "https://www.googletagmanager.com",
         },
       },
     },
