@@ -38,7 +38,7 @@ function Seo({ description, lang, meta, title, image, url }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${metaUrl === metadata.siteUrl ? "" : metadata.realName}`}
+      titleTemplate={`%s | ${metadata.realName}`}
       meta={[
         {
           name: `description`,
