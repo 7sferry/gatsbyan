@@ -14,7 +14,6 @@
     "gatsby-image": "^3.8.0",
     "gatsby-plugin-algolia": "^0.20.1",
     "gatsby-plugin-catch-links": "^3.8.0",
-    "gatsby-plugin-google-analytics": "^3.8.0",
     "gatsby-plugin-google-analytics-reporter": "^1.1.1",
     "gatsby-plugin-google-gtag": "^4.24.0",
     "gatsby-plugin-image": "^1.8.0",
