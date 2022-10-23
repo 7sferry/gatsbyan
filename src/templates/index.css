@@ -5,9 +5,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
-p,
+p, #content-post,
 .title {
-  font-family: "Work Sans", serif;
+  font-family: "Work Sans", Sans-serif, serif;
 }
 
 .medium-zoom-image {

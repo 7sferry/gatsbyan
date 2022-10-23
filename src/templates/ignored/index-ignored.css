@@ -225,3 +225,88 @@ td, th {
     text-align: left;
     font-size: 18px;
 }
+
+.labels {
+    display: inline-block;
+    text-align: right;
+    width: 45%;
+    padding: 0 5px 5px;
+    vertical-align: middle;
+    margin-top: 10px;
+}
+
+.rightTab {
+    display: inline-block;
+    text-align: left;
+    width: 55%;
+    vertical-align: middle;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-field {
+    height: 30px;
+    width: 70%;
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid #c0c0c0;
+    border-radius: 2px;
+}
+
+#submit {
+    background-color: #107BFF;
+    border-radius: 4px;
+    color: white;
+    font-size: 1em;
+    height: 40px;
+    width: 145px;
+    margin: 10px;
+    border: 0 solid;
+}
+
+#clear {
+    background-color: #ff1078;
+    border-radius: 4px;
+    color: white;
+    font-size: 1em;
+    height: 40px;
+    width: 96px;
+    margin: 10px;
+    border: 0 solid;
+}
+
+.dropdown {
+    color: black;
+    height: 30px;
+    margin: 10px;
+}
+
+@media screen and (max-width: 833px) {
+    .input-field {
+        width: 80%;
+    }
+    select {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .labels {
+        width: 100%;
+        text-align: left;
+    }
+    .rightTab {
+        width: 95%;
+        float: left;
+    }
+    .input-field {
+        width: 100%;
+    }
+    select {
+        width: 100%;
+    }
+}

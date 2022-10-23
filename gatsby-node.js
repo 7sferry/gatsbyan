@@ -89,6 +89,17 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         createPage({
+          path: `/blog/value-averaging-calculator`,
+          component: path.resolve("./src/templates/custom-post.js"),
+          context: {
+            title: "Value Cost Averaging Calculator",
+            description: "Value Averaging Calculator",
+            slug: "/blog/value-averaging-calculator",
+            publishDate: "2022-10-23",
+          },
+        });
+
+        createPage({
           path: `/archive/`,
           component: path.resolve("./src/templates/archive.js"),
         });

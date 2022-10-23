@@ -40,6 +40,29 @@ export const getPlurals = count => {
   return count > 1 ? "s" : "";
 };
 
+export function getNumberValueFromRupiah(input){
+  const split = input.replace("Rp", "").replaceAll(".", "").replaceAll(",", "");
+  let val = parseFloat(split);
+  return isNaN(val) ? 0 : val;
+}
+
+export const onChangeRupiah = event => {
+  let val = getNumberValueFromRupiah(event.target.value);
+  return rp(val);
+};
+
+export function getMonthDifference(startDate, endDate) {
+  return (
+    endDate.getMonth() -
+    startDate.getMonth() +
+    12 * (endDate.getFullYear() - startDate.getFullYear())
+  );
+}
+
+export function rp(val) {
+  return "Rp" + val?.toLocaleString("id-ID") ?? 0;
+}
+
 export const PAGE_COUNT = 5;
 
 export const SEARCH_COUNT = 26;
