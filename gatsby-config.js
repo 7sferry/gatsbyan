@@ -61,13 +61,6 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: contentfulConfig,
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/posts`,
-    //     name: `blog`,
-    //   },
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

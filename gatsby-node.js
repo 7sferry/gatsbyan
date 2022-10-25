@@ -5,6 +5,24 @@
 
 const path = require(`path`);
 const { kebab: kebabCase } = require("case");
+const customPosts = require("./custom-posts").customPosts;
+
+exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
+  const { createNode } = actions
+
+  customPosts.forEach(post =>
+    createNode({
+      ...post,
+      id: createNodeId(`customPost-${post.slug}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: "customPost",
+        contentDigest: createContentDigest(post),
+      },
+    })
+  )
+}
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -88,15 +106,17 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve("./src/templates/search/search-page.js"),
         });
 
-        createPage({
-          path: `/blog/value-averaging-calculator`,
-          component: path.resolve("./src/templates/custom-post.js"),
-          context: {
-            title: "Value Cost Averaging Calculator",
-            description: "Value Averaging Calculator",
-            slug: "/blog/value-averaging-calculator",
-            publishDate: "2022-10-23",
-          },
+        customPosts.forEach(customPost => {
+          createPage({
+            path: customPost.slug,
+            component: path.resolve("./src/templates/custom-post.js"),
+            context: {
+              title: customPost.title,
+              description: customPost.description,
+              slug: customPost.slug,
+              publishDate: customPost.publishDate,
+            },
+          });
         });
 
         createPage({

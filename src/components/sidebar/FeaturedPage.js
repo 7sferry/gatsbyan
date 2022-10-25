@@ -18,16 +18,23 @@ const FeaturedPage = () => {
               title
             }
           }
+          allCustomPost {
+            nodes {
+              slug
+              title
+            }
+          }
         }
       `}
       render={data => {
-        const { allContentfulBlogPost } = data;
+        const { allContentfulBlogPost, allCustomPost } = data;
         return (
           allContentfulBlogPost && (
             <>
               <div className="second-header">Featured Post</div>
               <ul>
-                {allContentfulBlogPost.nodes.map(node => {
+                {
+                  allContentfulBlogPost.nodes.map(node => {
                   return (
                     <li key={node.slug}>
                       <Link className="text-link" to={`/blog/${node.slug}`}>
@@ -35,7 +42,19 @@ const FeaturedPage = () => {
                       </Link>
                     </li>
                   );
-                })}
+                  })
+                }
+                {
+                  allCustomPost.nodes.map(post => {
+                    return (
+                      <li key={post.slug}>
+                        <Link className="text-link" to={post.slug}>
+                          <small className="title">{post.title}</small>
+                        </Link>
+                      </li>
+                    )
+                  })
+                }
               </ul>
             </>
           )
