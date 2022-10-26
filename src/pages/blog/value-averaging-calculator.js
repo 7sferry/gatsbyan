@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { VcaCalculator } from "../../utils/VcaCalculator";
-import { getVcaResult } from "../../utils/VcaFormResult";
+import { getVcaResult } from "../../components/VcaFormResult";
 import { onChangeRupiah } from "../../utils/GatsbyanUtils";
 import CustomPage from "../../components/CustomPage";
 import { graphql, useStaticQuery } from "gatsby";

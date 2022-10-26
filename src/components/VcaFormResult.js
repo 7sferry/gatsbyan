@@ -1,4 +1,4 @@
-import { getMonthDifference, rp } from "./GatsbyanUtils";
+import { getMonthDifference, rp } from "../utils/GatsbyanUtils";
 import React from "react";
 
 /************************
