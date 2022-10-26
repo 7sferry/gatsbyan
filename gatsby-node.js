@@ -5,24 +5,6 @@
 
 const path = require(`path`);
 const { kebab: kebabCase } = require("case");
-const customPosts = require("./custom-posts").customPosts;
-
-exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
-  const { createNode } = actions
-
-  customPosts.forEach(post =>
-    createNode({
-      ...post,
-      id: createNodeId(`customPost-${post.slug}`),
-      parent: null,
-      children: [],
-      internal: {
-        type: "customPost",
-        contentDigest: createContentDigest(post),
-      },
-    })
-  )
-}
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -42,7 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         `
-      ).then(result => {
+      ).then((result) => {
         if (result.errors) {
           console.log(result.errors);
           reject(result.errors);
@@ -54,10 +36,10 @@ exports.createPages = ({ graphql, actions }) => {
           allContentfulBlogPost: { edges: posts },
         } = result.data;
 
-        posts.forEach(post => {
+        posts.forEach((post) => {
           const node = post.node;
           node.tags &&
-            node.tags.forEach(tag => {
+            node.tags.forEach((tag) => {
               let tagCount = postSizeByTag.get(tag);
               postSizeByTag.set(tag, tagCount ? tagCount + 1 : 1);
             });
@@ -85,11 +67,11 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         postSizeByTag.forEach((size, tag) => {
-          const kebabTag = kebabCase(tag)
+          const kebabTag = kebabCase(tag);
           const numTags = Math.ceil(size / postsPerPage);
           Array.from({ length: numTags }).forEach((value, i) => {
             createPage({
-              path: `/tags/${kebabTag}${(i === 0 ? `` : `/${i + 1}`)}/`,
+              path: `/tags/${kebabTag}${i === 0 ? `` : `/${i + 1}`}/`,
               component: path.resolve("./src/templates/index.js"),
               context: {
                 tag: tag,
@@ -104,19 +86,6 @@ exports.createPages = ({ graphql, actions }) => {
         createPage({
           path: `/search/`,
           component: path.resolve("./src/templates/search/search-page.js"),
-        });
-
-        customPosts.forEach(customPost => {
-          createPage({
-            path: customPost.slug,
-            component: path.resolve("./src/templates/custom-post.js"),
-            context: {
-              title: customPost.title,
-              description: customPost.description,
-              slug: customPost.slug,
-              publishDate: customPost.publishDate,
-            },
-          });
         });
 
         createPage({
