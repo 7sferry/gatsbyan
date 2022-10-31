@@ -6,7 +6,6 @@
   "author": "Ferry",
   "dependencies": {
     "algoliasearch": "^4.14.2",
-    "babel-preset-gatsby": "^2.24.0",
     "bootstrap": "^5.2.2",
     "case": "^1.6.3",
     "date-fns-timezone": "^0.1.4",
