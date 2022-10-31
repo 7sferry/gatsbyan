@@ -13,7 +13,6 @@ import Pagination from "../components/Pagination";
 import { getPlurals, getPublishDate, getPostTags } from "../utils/GatsbyanUtils";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
-// import "../components/pagination.css";
 
 class IndexPage extends React.Component{
   render(){
