@@ -16,7 +16,7 @@ export const getPostTags = tags => {
       techTags.add(
         <span key={kebabTag}>
           {i > 0 ? ", " : ""}
-          <Link to={`/tags/${kebabTag}/`}>{tag}</Link>
+          <Link to={`/tags/${kebabTag}`}>{tag}</Link>
         </span>
       );
     });
@@ -24,7 +24,7 @@ export const getPostTags = tags => {
 };
 
 export const getTags = (tag) => {
-  return <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
+  return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>
 }
 
 const timeZone = "Asia/Jakarta";

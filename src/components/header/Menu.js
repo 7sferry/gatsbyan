@@ -20,12 +20,12 @@ export const MenuLinks = Array.of(
     text: "Home",
   },
   {
-    link: "/archive/",
+    link: "/archive",
     icon: <FaArchive title={"Archive page"} size={DEFAULT_ICON_SIZE} />,
     text: "Archive",
   },
   {
-    link: "/search/",
+    link: "/search",
     icon: <FaSearchengin title={"Search page"} size={DEFAULT_ICON_SIZE} />,
     text: "Search",
   }

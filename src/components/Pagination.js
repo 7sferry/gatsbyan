@@ -12,7 +12,7 @@ import { PAGE_COUNT } from "../utils/GatsbyanUtils";
 
 const Pagination = ({ totalPageCount, currentPage, url, refine }) => {
   const limit = 1;
-  const createURL = (pageNo) => `${pageNo === "" ? `${url === '/page' ? "" : url}` : `${url}/${pageNo}`}/`;
+  const createURL = (pageNo) => `${pageNo === "" ? `${url === '/page' ? "" : url}` : `${url}/${pageNo}`}`;
   const PagingLink = ({ to, children, ...rest }) => {
     return refine ? (
       <a href={createURL(to)} style={{ textDecoration: `none` }} {...rest}>

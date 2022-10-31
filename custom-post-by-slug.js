@@ -7,6 +7,7 @@ module.exports = {
         description: "Monthly Value Averaging Calculator",
         slug: "/blog/value-averaging-calculator",
         publishDate: "2022-10-23",
+        lang: 'en',
       },
     ],
   ]),

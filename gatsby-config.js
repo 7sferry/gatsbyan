@@ -13,9 +13,10 @@ const contentfulConfig = {
   // assetDownloadWorkers: 25,
   // downloadLocal: true,
 };
-const exclude = ["/tags/**", "/search", "/archive", "/404", "/search/", "/archive/", "/404/", "/404.html", "/page/**", "^[^?]+(\\?.*)", ".json$"];
+const exclude = ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**", "^[^?]+(\\?.*)", ".json$"];
 
 module.exports = {
+  trailingSlash: 'never',
   siteMetadata: {
     siteUrl: siteConfig.url,
     repo: siteConfig.repo,
