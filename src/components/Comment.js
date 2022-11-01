@@ -11,6 +11,10 @@ export const Comment = ({ repo }) => {
   const element = React.createRef();
 
   useEffect(() => {
+    const elementById = document.getElementsByClassName("utterances");
+    if(elementById.length > 1){
+      return;
+    }
     const utterancesScript = document.createElement("script");
     const utterancesConfig = {
       src,
