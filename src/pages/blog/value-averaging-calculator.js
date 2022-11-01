@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { VcaCalculator } from "../../utils/VcaCalculator";
 import { getVcaResult } from "../../components/VcaFormResult";
-import { onChangeRupiah } from "../../utils/GatsbyanUtils";
 import CustomPage from "../../components/CustomPage";
 import { graphql, useStaticQuery } from "gatsby";
 import { customPostContextByCode } from "/custom-post-by-slug";
+import CurrencyInput from "../../components/CurrencyInput";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -41,9 +41,6 @@ const Vca = () => {
     const vcaResult = getVcaResult(stock);
     ReactDOM.render(vcaResult, divElement);
   };
-
-  const [currentUnitPriceValue, setCurrentUnitPriceValue] = React.useState("");
-  const [monthlyInvestTargetValue, setMonthlyInvestTargetValue] = React.useState("");
 
   const { site } = useStaticQuery(
     graphql`
@@ -145,16 +142,7 @@ const Vca = () => {
             </label>
           </div>
           <div className="rightTab" key={"currentUnitPrice"}>
-            <input
-              type="text"
-              name="currentUnitPrice"
-              id="currentUnitPrice"
-              className="input-field"
-              placeholder={"Rp"}
-              onChange={(e) => setCurrentUnitPriceValue(onChangeRupiah(e))}
-              value={currentUnitPriceValue}
-              required={true}
-            />
+            <CurrencyInput id="currentUnitPrice" name="currentUnitPrice" />
           </div>
         </div>
         <div className="rowTab">
@@ -164,16 +152,7 @@ const Vca = () => {
             </label>
           </div>
           <div className="rightTab" key={"monthlyInvestTarget"}>
-            <input
-              type="text"
-              name="monthlyInvestTarget"
-              id="monthlyInvestTarget"
-              className="input-field"
-              placeholder={"Rp"}
-              onChange={(e) => setMonthlyInvestTargetValue(onChangeRupiah(e))}
-              value={monthlyInvestTargetValue}
-              required={true}
-            />
+            <CurrencyInput id="monthlyInvestTarget" name="monthlyInvestTarget" />
           </div>
         </div>
         <div>
