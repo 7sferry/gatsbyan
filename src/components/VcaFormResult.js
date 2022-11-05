@@ -33,10 +33,10 @@ export const getVcaResult = (stock) => {
       <p>{`sekarang bulan ke-${monthDifference + 1}`}</p>
       <p>
         {lotShouldInvest >= 0
-          ? `maka saya harus investasi sebanyak: ${lotShouldInvest} lot senilai ${rp(
+          ? `maka bulan ini saya harus investasi sebanyak: ${lotShouldInvest} lot senilai ${rp(
               lotShouldInvest * stock?.currentLotPrice
             )}`
-          : `maka sekarang saatnya taking profit dulu ${Math.abs(lotShouldInvest)} lot senilai ${rp(
+          : `maka bulan ini saatnya taking profit dulu ${Math.abs(lotShouldInvest)} lot senilai ${rp(
               Math.abs(lotShouldInvest * stock?.currentLotPrice)
             )}🤑`}
       </p>
