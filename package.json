@@ -29,7 +29,6 @@
     "gatsby-transformer-sharp": "^4.24.0",
     "medium-zoom": "^1.0.6",
     "prismjs": "^1.29.0",
-    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -38,8 +37,14 @@
     "react-paginating": "^1.4.0"
   },
   "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "@types/react-helmet": "^6.1.5",
+    "@types/react-instantsearch-dom": "^6.12.3",
     "dotenv": "^16.0.3",
     "prettier": "^2.7.1",
+    "typescript": "^4.8.4",
     "yarn-upgrade-all": "^0.7.1"
   },
   "keywords": [
