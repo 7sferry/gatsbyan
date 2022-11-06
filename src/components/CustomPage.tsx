@@ -49,7 +49,7 @@ class CustomPage extends React.Component<React.PropsWithChildren<CustomPageProp>
           title={customPost.title}
           description={customPost.description}
           lang={customPost.lang}
-          image={`${site.url}/ferry-suhandri.jpg`}
+          image={customPost.image}
           url={customPost.slug}
         />
         <div>

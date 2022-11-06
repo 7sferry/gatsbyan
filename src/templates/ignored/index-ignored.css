@@ -258,9 +258,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #submit {
-    background-color: #107BFF;
+    background-color: #00C77F;
     border-radius: 4px;
-    color: white;
+    color: black;
     font-size: 1em;
     height: 40px;
     width: 145px;
@@ -269,9 +269,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #clear {
-    background-color: #ff1078;
+    background-color: #DEA821;
     border-radius: 4px;
-    color: white;
+    color: black;
     font-size: 1em;
     height: 40px;
     width: 96px;

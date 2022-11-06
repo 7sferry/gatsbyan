@@ -106,7 +106,7 @@ interface SeoAttr {
   description?: string;
   lang: string;
   title: string;
-  image?: string;
+  image?: string | null;
   url?: string;
 }
 

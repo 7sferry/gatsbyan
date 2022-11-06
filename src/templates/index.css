@@ -199,6 +199,13 @@ a:hover,
   }
 }
 
+/*!* long screen *!*/
+@media only screen and (min-height: 1000px) {
+  .index-thumbnail {
+    display: none;
+  }
+}
+
 /* tv */
 @media only screen and (min-width: 3000px) {
   .index-thumbnail {
