@@ -5,7 +5,8 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
-p, #content-post,
+p,
+#content-post,
 .title {
   font-family: "Work Sans", Sans-serif, serif;
 }
@@ -196,13 +197,6 @@ a:hover,
   .index-thumbnail {
     max-width: 46%;
     max-height: 16vh;
-  }
-}
-
-/*!* long screen *!*/
-@media only screen and (min-height: 1000px) {
-  .index-thumbnail, .post-container  .gatsby-image-wrapper [data-main-image] {
-    display: none;
   }
 }
 

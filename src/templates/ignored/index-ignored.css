@@ -4,309 +4,311 @@
  ************************/
 
 body.medium-zoom--opened #___gatsby {
-    filter: blur(3px);
-    transition-delay: 0.1s;
+  filter: blur(3px);
+  transition-delay: 0.1s;
 }
 
 .gatsby-resp-image-figcaption {
-    text-align: center;
-    font-size: 50%;
+  text-align: center;
+  font-size: 50%;
 }
 
 iframe {
-    background: #23232d;
+  background: #23232d;
 }
 
 .ais-VoiceSearch {
-    text-align: center;
+  text-align: center;
 }
 
 .ais-VoiceSearch-button {
-    border: 0;
+  border: 0;
 }
 
 :root {
-    --rad: .7rem;
-    --dur: .3s;
-    --color-dark: #2f2f2f;
-    --color-light: #fff;
-    --color-brand: #57bd84;
-    --height: 3rem;
-    --btn-width: 6rem;
-    --bez: cubic-bezier(0, 0, 0.43, 1.49);
+  --rad: 0.7rem;
+  --dur: 0.3s;
+  --color-dark: #2f2f2f;
+  --color-light: #fff;
+  --color-brand: #57bd84;
+  --height: 3rem;
+  --btn-width: 6rem;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
 }
 
 h1 {
-    padding: 0;
-    margin: 0 0 1.45rem;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+  padding: 0;
+  margin: 0 0 1.45rem;
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 2.25rem;
-    line-height: 1.1;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 2.25rem;
+  line-height: 1.1;
 }
 
 h2 {
-    margin: 0 0 20px;
-    padding: 0;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+  margin: 0 0 20px;
+  padding: 0;
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 1.62671rem;
-    line-height: 1.1;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 1.62671rem;
+  line-height: 1.1;
 }
 
 h3 {
-    margin: 0 0 20px;
-    padding: 0;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+  margin: 0 0 20px;
+  padding: 0;
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 20px;
-    line-height: 1.1;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 20px;
+  line-height: 1.1;
 }
 
 h4 {
-    padding: 0;
-    margin: 0 0 20px;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+  padding: 0;
+  margin: 0 0 20px;
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 1rem;
-    line-height: 1.1;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 1rem;
+  line-height: 1.1;
 }
 
 h5 {
-    padding: 0;
-    margin: 0 0 20px;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+  padding: 0;
+  margin: 0 0 20px;
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 0.85028rem;
-    line-height: 1.1;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 0.85028rem;
+  line-height: 1.1;
 }
 
 h6 {
-    padding: 0;
-    margin: 0 0 20px;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+  padding: 0;
+  margin: 0 0 20px;
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 0.78405rem;
-    line-height: 1.1;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 0.78405rem;
+  line-height: 1.1;
 }
 
 .ais-SearchBox-form {
-    position: relative;
-    background: var(--color-brand);
-    border-radius: var(--rad);
-    margin-bottom: 1em;
+  position: relative;
+  background: var(--color-brand);
+  border-radius: var(--rad);
+  margin-bottom: 1em;
 }
 
-.ais-SearchBox-input, .ais-SearchBox-submit {
-    height: var(--height);
-    border: 0;
-    color: var(--color-dark);
-    font-size: 1rem;
+.ais-SearchBox-input,
+.ais-SearchBox-submit {
+  height: var(--height);
+  border: 0;
+  color: var(--color-dark);
+  font-size: 1rem;
 }
 
 .ais-SearchBox-input {
-    outline: 0;
-    width: 100%;
-    background: var(--color-light);
-    padding: 0 1.6rem;
-    border-radius: var(--rad);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    transition: all var(--dur) var(--bez);
-    transition-property: width, border-radius;
-    position: relative;
-    z-index: 1;
+  outline: 0;
+  width: 100%;
+  background: var(--color-light);
+  padding: 0 1.6rem;
+  border-radius: var(--rad);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transition: all var(--dur) var(--bez);
+  transition-property: width, border-radius;
+  position: relative;
+  z-index: 1;
 }
 
 .ais-SearchBox-submit {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: var(--btn-width);
-    font-weight: bold;
-    background: var(--color-brand);
-    border-radius: 0 var(--rad) var(--rad) 0;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--btn-width);
+  font-weight: bold;
+  background: var(--color-brand);
+  border-radius: 0 var(--rad) var(--rad) 0;
 }
 
 .ais-SearchBox-reset {
-    display: none;
+  display: none;
 }
 
 .ais-SearchBox-input:not(:-moz-placeholder-shown) {
-    border-radius: var(--rad) 0 0 var(--rad);
-    width: calc(100% - var(--btn-width));
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
 }
 
 .ais-SearchBox-input:not(:-ms-input-placeholder) {
-    border-radius: var(--rad) 0 0 var(--rad);
-    width: calc(100% - var(--btn-width));
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
 }
 
 .ais-SearchBox-input:not(:placeholder-shown) {
-    border-radius: var(--rad) 0 0 var(--rad);
-    width: calc(100% - var(--btn-width));
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
 }
 
 .ais-SearchBox-input:not(:-moz-placeholder-shown) + .ais-SearchBox-submit {
-    display: block;
+  display: block;
 }
 
 .ais-SearchBox-input:not(:-ms-input-placeholder) + .ais-SearchBox-submit {
-    display: block;
+  display: block;
 }
 
 .ais-SearchBox-input:not(:placeholder-shown) + .ais-SearchBox-submit {
-    display: block;
+  display: block;
 }
 
 table {
-    border-collapse: collapse;
-    margin: 0 0 1.45rem;
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-    max-width: 42vw;
+  border-collapse: collapse;
+  margin: 0 0 1.45rem;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 42vw;
 }
 
 @media only screen and (min-width: 1920px) {
-    table {
-        max-width: 44vw;
-    }
+  table {
+    max-width: 44vw;
+  }
 }
 
 @media only screen and (max-width: 1400px) {
-    table {
-        max-width: 41vw;
-    }
+  table {
+    max-width: 41vw;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
-    table {
-        max-width: 100vw;
-    }
+  table {
+    max-width: 100vw;
+  }
 }
 
 tr:nth-of-type(odd) {
-    background-color: #2f2f2f;
+  background-color: #2f2f2f;
 }
 
 tr:nth-of-type(even) {
-    background-color: #1c1e1f;
+  background-color: #1c1e1f;
 }
 
 th {
-    background-color: #175984;
-    font-weight: bold;
+  background-color: #175984;
+  font-weight: bold;
 }
 
-td, th {
-    padding: 10px;
-    border: 1px solid #3E4446;
-    text-align: left;
-    font-size: 18px;
+td,
+th {
+  padding: 10px;
+  border: 1px solid #3e4446;
+  text-align: left;
+  font-size: 18px;
 }
 
 .labels {
-    display: inline-block;
-    text-align: right;
-    width: 45%;
-    padding: 0 5px 5px;
-    vertical-align: middle;
-    margin-top: 10px;
+  display: inline-block;
+  text-align: right;
+  width: 45%;
+  padding: 0 5px 5px;
+  vertical-align: middle;
+  margin-top: 10px;
 }
 
 .rightTab {
-    display: inline-block;
-    text-align: left;
-    width: 55%;
-    vertical-align: middle;
+  display: inline-block;
+  text-align: left;
+  width: 55%;
+  vertical-align: middle;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .input-field {
-    height: 30px;
-    width: 70%;
-    padding: 5px;
-    margin: 10px;
-    border: 1px solid #c0c0c0;
-    border-radius: 2px;
+  height: 30px;
+  width: 70%;
+  padding: 5px;
+  margin: 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
 }
 
 #submit {
-    background-color: #00C77F;
-    border-radius: 4px;
-    color: black;
-    font-size: 1em;
-    height: 40px;
-    width: 145px;
-    margin: 10px;
-    border: 0 solid;
+  background-color: #00c77f;
+  border-radius: 4px;
+  color: black;
+  font-size: 1em;
+  height: 40px;
+  width: 145px;
+  margin: 10px;
+  border: 0 solid;
 }
 
 #clear {
-    background-color: #DEA821;
-    border-radius: 4px;
-    color: black;
-    font-size: 1em;
-    height: 40px;
-    width: 96px;
-    margin: 10px;
-    border: 0 solid;
+  background-color: #dea821;
+  border-radius: 4px;
+  color: black;
+  font-size: 1em;
+  height: 40px;
+  width: 96px;
+  margin: 10px;
+  border: 0 solid;
 }
 
 .dropdown {
-    color: black;
-    height: 30px;
-    margin: 10px;
+  color: black;
+  height: 30px;
+  margin: 10px;
 }
 
 @media screen and (max-width: 833px) {
-    .input-field {
-        width: 80%;
-    }
-    select {
-        width: 90%;
-    }
+  .input-field {
+    width: 80%;
+  }
+  select {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 520px) {
-    .labels {
-        width: 100%;
-        text-align: left;
-    }
-    .rightTab {
-        width: 95%;
-        float: left;
-    }
-    .input-field {
-        width: 100%;
-    }
-    select {
-        width: 100%;
-    }
+  .labels {
+    width: 100%;
+    text-align: left;
+  }
+  .rightTab {
+    width: 95%;
+    float: left;
+  }
+  .input-field {
+    width: 100%;
+  }
+  select {
+    width: 100%;
+  }
 }
