@@ -175,8 +175,7 @@ a:hover,
   }
 
   .index-thumbnail {
-    max-width: 26vw;
-    max-height: 12vh;
+    max-width: 45%;
   }
 }
 
@@ -187,23 +186,36 @@ a:hover,
   }
 
   .index-thumbnail {
-    max-width: 46%;
-    max-height: 19vh;
+    max-width: 45%;
   }
 }
 
 /*!* iphone *!*/
 @media only screen and (max-width: 450px) {
   .index-thumbnail {
-    max-width: 46%;
-    max-height: 16vh;
+    max-width: 100%;
+    float: none;
   }
 }
 
 /* tv */
-@media only screen and (min-width: 3000px) {
+@media only screen and (min-width: 2400px) {
   .index-thumbnail {
-    max-width: 30vw;
-    max-height: 12vh;
+    width: 1200px !important;
+    max-width: 100%;
+    float: none;
+    height: 720px !important;
+    max-height: 100%;
+  }
+}
+
+/* 4k */
+@media only screen and (min-width: 3600px) {
+  .index-thumbnail {
+    width: 2400px !important;
+    max-width: 100%;
+    float: none;
+    height: 1080px !important;
+    max-height: 100%;
   }
 }
