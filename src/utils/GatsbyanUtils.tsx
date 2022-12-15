@@ -54,6 +54,9 @@ export function getNumberValueFromRupiah(input: string) {
 
 export const onChangeRupiah = (event: React.ChangeEvent<HTMLInputElement>) => {
   let input = event?.target?.value;
+  if(input === currencySymbol){
+    return "";
+  }
   if (input === currencySymbol + "0") {
     return input;
   }
