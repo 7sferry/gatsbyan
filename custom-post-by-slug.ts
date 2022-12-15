@@ -7,7 +7,6 @@ export const customPostContextByCode = new Map<string, CustomPostAttr>([
       slug: "/blog/value-averaging-calculator",
       publishDate: new Date("2022-10-23"),
       lang: "id",
-      image: null,
     },
   ],
 ]);
@@ -18,5 +17,5 @@ export interface CustomPostAttr {
   slug: string;
   publishDate: Date;
   lang: string;
-  image: string | null;
+  image?: string | null;
 }
