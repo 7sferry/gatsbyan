@@ -25,7 +25,7 @@
     "gatsby-remark-prismjs": "^6.24.0",
     "gatsby-source-contentful": "^7.22.0",
     "gatsby-source-filesystem": "^4.24.0",
-    "gatsby-transformer-remark": "^5.24.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^4.24.0",
     "medium-zoom": "^1.0.6",
     "prismjs": "^1.29.0",
