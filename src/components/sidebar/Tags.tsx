@@ -7,7 +7,7 @@ const Tags = () => {
     graphql`
       query Tags {
         allContentfulBlogPost {
-          tags: distinct(field: tags)
+          tags: distinct(field: { tags: SELECT })
         }
       }
     `

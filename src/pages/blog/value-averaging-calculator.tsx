@@ -60,9 +60,7 @@ const Vca = () => {
   return (
     vcaContext && (
       <CustomPage site={site.siteMetadata} customPost={vcaContext}>
-        <p>
-          Berikut ini adalah kalkulator untuk menghitung investasi secara Value Cost Averaging per-bulan
-        </p>
+        <p>Berikut ini adalah kalkulator untuk menghitung investasi secara Value Cost Averaging per-bulan</p>
         <form id="survey-form" onSubmit={calculate}>
           <div className="rowTab">
             <div className="labels">

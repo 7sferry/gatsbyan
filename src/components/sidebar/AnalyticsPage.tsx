@@ -12,7 +12,7 @@ const AnalyticsPage = () => {
     <StaticQuery
       query={graphql`
         query AnalyticsPageQuery {
-          allPageViews(sort: { order: DESC, fields: totalCount }, filter: { path: { regex: "/(^/blog?)(?!.*=)/" } }) {
+          allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/(^/blog?)(?!.*=)/" } }) {
             nodes {
               path
             }

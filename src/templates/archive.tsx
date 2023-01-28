@@ -148,7 +148,7 @@ class ArchivePage extends React.Component<ArchiveProp, ArchiveState> {
 
 export const pageQuery = graphql`
   query ArchiveQuery {
-    allContentfulBlogPost(sort: { order: DESC, fields: publishDate }) {
+    allContentfulBlogPost(sort: { publishDate: DESC }) {
       nodes {
         slug
         title

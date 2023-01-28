@@ -127,12 +127,7 @@ interface IndexContextProp {
 
 export const pageQuery = graphql`
   query HomeQuery($skip: Int, $limit: Int, $tag: String) {
-    allContentfulBlogPost(
-      skip: $skip
-      limit: $limit
-      sort: { fields: publishDate, order: DESC }
-      filter: { tags: { eq: $tag } }
-    ) {
+    allContentfulBlogPost(skip: $skip, limit: $limit, sort: { publishDate: DESC }, filter: { tags: { eq: $tag } }) {
       nodes {
         slug
         body {

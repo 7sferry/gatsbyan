@@ -13,7 +13,7 @@ const FeaturedPage = () => {
     <StaticQuery
       query={graphql`
         query FeaturedPageQuery {
-          allContentfulBlogPost(filter: { rating: { eq: 5 } }, sort: { order: DESC, fields: createdAt }) {
+          allContentfulBlogPost(filter: { rating: { eq: 5 } }, sort: { createdAt: DESC }) {
             nodes {
               slug
               title
