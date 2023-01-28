@@ -11,6 +11,7 @@ const CurrencyInput = ({ id, name, required, className, placeHolder = "Rp" }: Cu
       id={id}
       className={className}
       placeholder={placeHolder}
+      autoComplete={"off"}
       onChange={(e) => setCurrentUnitPriceValue(onChangeRupiah(e))}
       value={currentUnitPriceValue}
       required={required}

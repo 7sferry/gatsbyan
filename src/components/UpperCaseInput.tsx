@@ -14,7 +14,7 @@ const UpperCaseInput = ({ id, name, required, placeholder, className }: UpperCas
       name={name}
       id={id}
       className={className}
-      placeholder={placeholder}
+      autoComplete={"off"}
       required={required}
       onChange={(e) => setUpperCase(handleChange(e))}
       value={upperCase}
