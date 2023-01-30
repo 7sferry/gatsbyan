@@ -4,7 +4,6 @@
  ************************/
 
 import Layout from "./Layout";
-import Seo from "./Seo";
 import React from "react";
 import { Comment } from "./Comment";
 import { getPostTags, getPublishDateTime } from "../utils/GatsbyanUtils";
@@ -45,13 +44,6 @@ class CustomPage extends React.Component<React.PropsWithChildren<CustomPageProp>
     const repo = site.repo;
     return (
       <Layout>
-        <Seo
-          title={customPost.title}
-          description={customPost.description}
-          lang={customPost.lang}
-          image={customPost.image}
-          url={customPost.slug}
-        />
         <div>
           <div className="post-main">
             <div className="title posted">{customPost.title}</div>
@@ -70,14 +62,14 @@ class CustomPage extends React.Component<React.PropsWithChildren<CustomPageProp>
   }
 }
 
-interface CustomPageProp{
-  customPost: CustomPostAttr,
-  site: CustomSiteAttr,
+interface CustomPageProp {
+  customPost: CustomPostAttr;
+  site: CustomSiteAttr;
 }
 
-export interface CustomSiteAttr{
-  url: string,
-  repo: string,
+export interface CustomSiteAttr {
+  url: string;
+  repo: string;
 }
 
 interface CustomPageState {

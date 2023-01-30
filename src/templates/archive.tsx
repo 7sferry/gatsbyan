@@ -93,7 +93,6 @@ class ArchivePage extends React.Component<ArchiveProp, ArchiveState> {
 
     return (
       <Layout>
-        <Seo title={"All Posts"} description={"Every Post at my blog"} lang={"en"} />
         <div className="post-main">
           <ul className="archive-container parent-archive-container">
             {Array.from(postByYear.entries()).map((post, i) => {
@@ -186,3 +185,7 @@ interface DateObject {
 }
 
 export default ArchivePage;
+
+export function Head({ location }: any) {
+  return <Seo title={"Archive"} path={location?.pathname} />;
+}

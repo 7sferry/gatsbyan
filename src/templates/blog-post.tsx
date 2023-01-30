@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
-import { getPlurals, getPublishDateTime, getPostTags } from "../utils/GatsbyanUtils";
+import { getPlurals, getPostTags, getPublishDateTime } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
@@ -51,23 +51,14 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
     const site = siteProp.siteMetadata;
     const { childMarkdownRemark } = post.body;
     const timeToRead = childMarkdownRemark.timeToRead;
-    const url = `${site.siteUrl}/blog/${post.slug}`;
     const repo = site.repo;
 
     const heroImage = post.heroImage;
-    const imageURL = heroImage?.file?.url;
     const imageData = heroImage.gatsbyImageData;
     const imageTitle = heroImage?.title;
 
     return (
       <Layout>
-        <Seo
-          title={post.title}
-          description={post.description.description}
-          lang={post.lang?.[0]}
-          image={imageURL}
-          url={url}
-        />
         <div className="post-main">
           <div className="title posted">{post.title}</div>
           <div className="title text-info mb-2">
@@ -104,38 +95,41 @@ interface BlogPostState {
   commentShown: boolean;
 }
 
-interface BlogPostProp{
+interface BlogPostProp {
   data: {
     contentfulBlogPost: {
-      title: string,
-      publishDate: Date,
-      lang: string,
+      title: string;
+      publishDate: Date;
+      lang: string;
       body: {
         childMarkdownRemark: {
-          html: string,
-          timeToRead: number,
-        }
-      },
+          html: string;
+          timeToRead: number;
+        };
+      };
       description: {
-        description: string,
-      },
+        description: string;
+      };
       heroImage: {
-        gatsbyImageData: IGatsbyImageData,
-        title: string,
+        gatsbyImageData: IGatsbyImageData;
+        title: string;
         file: {
-          url: string,
-        }
-      },
-      tags: Array<string>,
-      slug: string,
-    },
+          url: string;
+        };
+      };
+      tags: Array<string>;
+      slug: string;
+    };
     site: {
       siteMetadata: {
-        siteUrl: string,
-        repo: string,
-      }
-    }
-  }
+        siteUrl: string;
+        repo: string;
+      };
+    };
+  };
+  location: {
+    pathname: string;
+  };
 }
 
 export default BlogPostTemplate;
@@ -173,3 +167,16 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export function Head({ data, location }: React.PropsWithRef<BlogPostProp>) {
+  const post = data?.contentfulBlogPost;
+  return (
+    <Seo
+      title={post?.title}
+      description={post?.description?.description}
+      lang={post?.lang?.[0]}
+      image={post?.heroImage?.file?.url}
+      path={location?.pathname}
+    />
+  );
+}

@@ -7,13 +7,14 @@ import { graphql, useStaticQuery } from "gatsby";
 import { customPostContextByCode } from "../../../custom-post-by-slug";
 import CurrencyInput from "../../components/CurrencyInput";
 import UpperCaseInput from "../../components/UpperCaseInput";
+import Seo from "../../components/Seo";
 
 /************************
  * Made by [MR Ferry™]  *
  * on Oktober 2022      *
  ************************/
 
-const vcaContext = customPostContextByCode.get("vca");
+const postContext = customPostContextByCode.get("vca");
 
 const Vca = () => {
   const element: React.RefObject<HTMLDivElement> = React.createRef();
@@ -58,8 +59,8 @@ const Vca = () => {
   );
 
   return (
-    vcaContext && (
-      <CustomPage site={site.siteMetadata} customPost={vcaContext}>
+    postContext && (
+      <CustomPage site={site.siteMetadata} customPost={postContext}>
         <p>Berikut ini adalah kalkulator untuk menghitung investasi secara Value Cost Averaging per-bulan</p>
         <form id="survey-form" onSubmit={calculate}>
           <div className="rowTab">
@@ -170,7 +171,6 @@ const Vca = () => {
               <button id="submit" type="submit">
                 Calculate
               </button>
-              {/*<button id="clear" type="reset">Reset</button>*/}
               <button id="clear" onClick={clearResult}>
                 Clear
               </button>
@@ -184,3 +184,14 @@ const Vca = () => {
 };
 
 export default Vca;
+
+export function Head({ location }: any) {
+  return (
+    <Seo
+      title={postContext?.title}
+      description={postContext?.description}
+      lang={postContext?.lang}
+      path={location?.pathname}
+    />
+  );
+}

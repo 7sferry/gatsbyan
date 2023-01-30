@@ -9,13 +9,16 @@ import algoliasearch from "algoliasearch/lite";
 import Hits from "./hits";
 import { Configure, connectPagination, InstantSearch, SearchBox, VoiceSearch } from "react-instantsearch-dom";
 import Pagination from "../../components/Pagination";
-import Seo from "../../components/Seo";
 import { SEARCH_COUNT } from "../../utils/GatsbyanUtils";
+import Seo from "../../components/Seo";
 
 class SearchPage extends React.Component {
   render() {
-    const algoliaClient = algoliasearch(process.env.GATSBY_ALGOLIA_APP_ID ?? '', process.env.GATSBY_ALGOLIA_SEARCH_KEY ?? '');
-    const chrome = typeof window !== "undefined" ? !!window.chrome : undefined;
+    const algoliaClient = algoliasearch(
+      process.env.GATSBY_ALGOLIA_APP_ID ?? "",
+      process.env.GATSBY_ALGOLIA_SEARCH_KEY ?? ""
+    );
+    const chrome = !!window?.chrome;
 
     const searchClient = {
       search(requests: any) {
@@ -46,9 +49,8 @@ class SearchPage extends React.Component {
 
     return (
       <Layout>
-        <Seo title={"Search Page"} description={"Search Engine to search something Powered By Algolia"} lang={"en"} />
         <div className="post-main">
-          <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME ?? ''} searchClient={searchClient}>
+          <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME ?? ""} searchClient={searchClient}>
             <Configure distinct hitsPerPage={SEARCH_COUNT} />
             {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
             <SearchBox className={"search-box"} searchAsYouType={false} />
@@ -67,3 +69,7 @@ declare global {
 }
 
 export default SearchPage;
+
+export function Head({ location }: any) {
+  return <Seo title={"Search"} path={location?.pathname} />;
+}

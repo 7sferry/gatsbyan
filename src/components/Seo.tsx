@@ -1,8 +1,12 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import Helmet from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
 
-function Seo({ description, lang, title, image, url }: SeoAttr) {
+/************************
+ * Made by [MR Ferry™]  *
+ * on Januari 2023      *
+ ************************/
+
+export default function Seo({ description, lang = "id", title = "", image, path = "" }: SeoAttr) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,95 +23,39 @@ function Seo({ description, lang, title, image, url }: SeoAttr) {
     `
   );
 
-  let meta: any = [];
   const metadata = site.siteMetadata;
-  const metaDescription = description ? description : metadata.description;
+  const metaDescription = description || metadata.description;
   const metaImage = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri.jpg`;
-  const metaUrl = url || metadata.siteUrl;
+  const metaUrl = metadata.siteUrl + path;
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${metadata.realName}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          property: `og:url`,
-          content: metaUrl,
-        },
-        {
-          property: `og:image`,
-          content: metaImage,
-        },
-        {
-          property: `og:image:type`,
-          content: "metaImage/jpg",
-        },
-        {
-          property: `og:image:width`,
-          content: "338",
-        },
-        {
-          property: `og:image:height`,
-          content: "463",
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: metadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:image`,
-          content: metaImage,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          property: `fb:app_id`,
-          content: `1365740643629290`,
-        },
-        {
-          name: `google-site-verification`,
-          content: `zMJIuAagxg8apsDkd_7UPSzDGi7NIo6mwCx_GUcNXNw`,
-        },
-      ].concat(meta)}
-    />
+    <>
+      <html lang={lang} />
+      <title>{`${title} | ${metadata.realName}`}</title>
+      <meta name="description" content={metaDescription} />
+      <meta name="og:title" content={title} />
+      <meta name="og:description" content={metaDescription} />
+      <meta name="og:type" content={`website`} />
+      <meta name="og:url" content={metaUrl} />
+      <meta name="og:image" content={metaImage} />
+      <meta name="og:image:type" content={`metaImage/jpg`} />
+      <meta name="og:image:width" content={`338`} />
+      <meta name="og:image:height" content={`463`} />
+      <meta name="twitter:card" content={`summary`} />
+      <meta name="twitter:creator" content={metadata.author} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content={metaImage} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="fb:app_id" content={`1365740643629290`} />
+      <meta name="google-site-verification" content={`zMJIuAagxg8apsDkd_7UPSzDGi7NIo6mwCx_GUcNXNw`} />
+    </>
   );
 }
 
 interface SeoAttr {
   description?: string;
-  lang: string;
-  title: string;
-  image?: string | null;
-  url?: string;
+  lang?: string;
+  title?: string;
+  image?: string;
+  path?: string;
 }
-
-export default Seo;

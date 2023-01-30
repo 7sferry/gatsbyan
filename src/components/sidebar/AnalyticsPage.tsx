@@ -4,59 +4,54 @@
  ************************/
 
 import React from "react";
-import { graphql, Link, StaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import "./sidebar.css";
 
 const AnalyticsPage = () => {
-  return (
-    <StaticQuery
-      query={graphql`
-        query AnalyticsPageQuery {
-          allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/(^/blog?)(?!.*=)/" } }) {
-            nodes {
-              path
-            }
-          }
-          allContentfulBlogPost {
-            nodes {
-              slug
-              title
-            }
-          }
+  const data: AnalyticsData = useStaticQuery(graphql`
+    query AnalyticsPageQuery {
+      allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/(^/blog?)(?!.*=)/" } }) {
+        nodes {
+          path
         }
-      `}
-      render={(data: AnalyticsData) => {
-        const { allPageViews } = data;
-        const titleByPath = new Map<string, string>();
-        data?.allContentfulBlogPost?.nodes?.forEach((n) => {
-          titleByPath.set("/blog/" + n.slug, n.title);
-        });
+      }
+      allContentfulBlogPost {
+        nodes {
+          slug
+          title
+        }
+      }
+    }
+  `);
 
-        return (
-          allPageViews && (
-            <>
-              <div className="second-header">Most Viewed</div>
-              <ul>
-                {allPageViews.nodes
-                  .filter((view) => titleByPath.get(view.path))
-                  .slice(0, 5)
-                  .map((view) => {
-                    return (
-                      <li key={view.path}>
-                        <small className="title">
-                          <Link className="text-link" to={`${view.path}`}>
-                            {titleByPath.get(view.path)}
-                          </Link>
-                        </small>
-                      </li>
-                    );
-                  })}
-              </ul>
-            </>
-          )
-        );
-      }}
-    />
+  const { allPageViews } = data;
+  const titleByPath = new Map<string, string>();
+  data?.allContentfulBlogPost?.nodes?.forEach((n) => {
+    titleByPath.set("/blog/" + n.slug, n.title);
+  });
+
+  return (
+    allPageViews && (
+      <>
+        <div className="second-header">Most Viewed</div>
+        <ul>
+          {allPageViews.nodes
+            .filter((view) => titleByPath.get(view.path))
+            .slice(0, 5)
+            .map((view) => {
+              return (
+                <li key={view.path}>
+                  <small className="title">
+                    <Link className="text-link" to={`${view.path}`}>
+                      {titleByPath.get(view.path)}
+                    </Link>
+                  </small>
+                </li>
+              );
+            })}
+        </ul>
+      </>
+    )
   );
 };
 

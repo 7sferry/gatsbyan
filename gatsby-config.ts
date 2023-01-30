@@ -36,7 +36,6 @@ module.exports = {
     },
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-image`,
@@ -45,10 +44,6 @@ module.exports = {
       options: {
         useMozJpeg: true,
         stripMetadata: true,
-      },
-      defaults: {
-        placeholder: `dominantColor`,
-        backgroundColor: `transparent`,
       },
     },
     {

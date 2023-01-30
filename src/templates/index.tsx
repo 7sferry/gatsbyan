@@ -10,7 +10,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import Pagination from "../components/Pagination";
-import { getPlurals, getPublishDate, getPostTags } from "../utils/GatsbyanUtils";
+import { getPlurals, getPostTags, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
 
 class IndexPage extends React.Component<IndexProp> {
@@ -20,20 +20,9 @@ class IndexPage extends React.Component<IndexProp> {
     const { nodes: posts, pageInfo } = contents;
     const kebabTag = pageContext.kebabTag;
     const paginationUrl = kebabTag ? `/tags/${kebabTag}` : `/page`;
-    const title = () => {
-      if (paginationUrl.startsWith("/tags")) {
-        return pageContext.tag;
-      }
-      if (paginationUrl.startsWith("/page") && pageInfo.currentPage !== 1) {
-        return "Page " + pageInfo.currentPage;
-      }
-      return "Blog";
-    };
 
-    const metadata = this.props.data.site.siteMetadata;
     return (
       <Layout>
-        <Seo title={title()} url={metadata.siteUrl} lang={"id"} />
         <div className="post-main">
           {kebabTag && (
             <div className="tag-title">
@@ -162,3 +151,7 @@ export const pageQuery = graphql`
 `;
 
 export default IndexPage;
+
+export function Head({ location }: any) {
+  return <Seo title={"Blog"} path={location?.pathname} />;
+}
