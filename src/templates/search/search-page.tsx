@@ -18,7 +18,7 @@ class SearchPage extends React.Component {
       process.env.GATSBY_ALGOLIA_APP_ID ?? "",
       process.env.GATSBY_ALGOLIA_SEARCH_KEY ?? ""
     );
-    const chrome = !!window?.chrome;
+    const chrome = window ? !!window.chrome : null;
 
     const searchClient = {
       search(requests: any) {
