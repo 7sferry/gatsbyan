@@ -19,7 +19,6 @@ const Hits = connectHits(({ hits }) => {
                   <Link className="text-link" to={`/blog/${hit.slug}`}>
                     <h3>{hit.title}</h3>
                   </Link>
-                  <span className="page-info">{hit.publishDate}</span>
                 </div>
                 <div>
                   <p>{hit.excerpt}</p>

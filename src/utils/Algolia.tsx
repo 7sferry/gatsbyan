@@ -5,19 +5,19 @@
 
 const allContentfulBlogPost = `{
   allContentfulBlogPost {
-    edges {
-        node {
-          id
-          publishDate(formatString: "DD MMMM YYYY")
-          title
-          slug
-          body {
-            childMarkdownRemark {
-              rawMarkdownBody
-              excerpt(pruneLength: 100, truncate: true)
-            }
+    nodes {
+      id
+      title
+      slug
+      body {
+        childMarkdownRemark {
+          rawMarkdownBody
+          excerpt(pruneLength: 100, truncate: true)
+          internal {
+            contentDigest
           }
         }
+      }
     }
   }
 }`;
@@ -48,8 +48,7 @@ const queries = [
       distinct: true,
     },
     transformer: ({ data }: AlgoliaData) =>
-      data.allContentfulBlogPost.edges
-        .map((edge) => edge.node)
+      data.allContentfulBlogPost.nodes
         .map(unnestMarkdown)
         .map(handlePlainText)
         .reduce((acc, cur) => [...acc, ...cur], []),
@@ -59,16 +58,13 @@ const queries = [
 interface AlgoliaData {
   data: {
     allContentfulBlogPost: {
-      edges: Array<{
-        node: AlgoliaNode;
-      }>;
+      nodes: Array<AlgoliaNode>;
     };
   };
 }
 
 interface AlgoliaNode {
   id: string;
-  publishDate: string;
   title: string;
   slug: string;
   body: {
