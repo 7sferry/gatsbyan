@@ -22,7 +22,7 @@ const allContentfulBlogPost = `{
   }
 }`;
 
-const unnestMarkdown = (node: AlgoliaNode): FlattenAlgoliaNode => {
+const flatNode = (node: AlgoliaNode): FlattenAlgoliaNode => {
   const { body, ...rest } = node;
   const { childMarkdownRemark } = body;
   return {
@@ -31,12 +31,26 @@ const unnestMarkdown = (node: AlgoliaNode): FlattenAlgoliaNode => {
   };
 };
 
-const handlePlainText = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
+function constructSubContents(rawMarkdownBody: string): string[] {
+  const contents = rawMarkdownBody.match(/[\s\S]{1,8500}/g) || [];
+  let lastWord = "";
+  const resultContents = [];
+  for (let i = 0; i < contents.length; i++) {
+    let content = contents[i];
+    content = lastWord + content;
+    const number = content.lastIndexOf(" ");
+    lastWord = content.substr(number + 1, content.length);
+    resultContents[i] = content.substr(0, number);
+  }
+  return resultContents;
+}
+
+const splitNode = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
   const { rawMarkdownBody, ...rest } = node;
-  const sections = rawMarkdownBody.match(/[\s\S]{1,8500}/g) || [];
-  return sections.map((section, index) => ({
+  const subContents = constructSubContents(rawMarkdownBody);
+  return subContents.map((content, index) => ({
     ...rest,
-    rawMarkdownBody: section,
+    rawMarkdownBody: content,
     id: rest.id + "_" + index,
   }));
 };
@@ -48,8 +62,7 @@ const queries = [
       attributeForDistinct: "slug",
       distinct: true,
     },
-    transformer: ({ data }: AlgoliaData) =>
-      data.allContentfulBlogPost.nodes.map(unnestMarkdown).map(handlePlainText).flat(1),
+    transformer: ({ data }: AlgoliaData) => data.allContentfulBlogPost.nodes.map(flatNode).map(splitNode).flat(1),
   },
 ];
 
