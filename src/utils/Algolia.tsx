@@ -22,7 +22,7 @@ const allContentfulBlogPost = `{
   }
 }`;
 
-const unnestMarkdown = (node: AlgoliaNode) => {
+const unnestMarkdown = (node: AlgoliaNode): FlattenAlgoliaNode => {
   const { body, ...rest } = node;
   const { childMarkdownRemark } = body;
   return {
@@ -31,12 +31,13 @@ const unnestMarkdown = (node: AlgoliaNode) => {
   };
 };
 
-const handlePlainText = (node: AlgoliaChildMarkdownRemark) => {
+const handlePlainText = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
   const { rawMarkdownBody, ...rest } = node;
-  const sections = rawMarkdownBody.match(/[\s\S]{1,7000}/g) || [];
-  return sections.map((section) => ({
+  const sections = rawMarkdownBody.match(/[\s\S]{1,8500}/g) || [];
+  return sections.map((section, index) => ({
     ...rest,
-    content: section,
+    rawMarkdownBody: section,
+    id: rest.id + "_" + index,
   }));
 };
 
@@ -48,10 +49,7 @@ const queries = [
       distinct: true,
     },
     transformer: ({ data }: AlgoliaData) =>
-      data.allContentfulBlogPost.nodes
-        .map(unnestMarkdown)
-        .map(handlePlainText)
-        .reduce((acc, cur) => [...acc, ...cur], []),
+      data.allContentfulBlogPost.nodes.map(unnestMarkdown).map(handlePlainText).flat(1),
   },
 ];
 
@@ -73,6 +71,14 @@ interface AlgoliaNode {
 }
 
 interface AlgoliaChildMarkdownRemark {
+  rawMarkdownBody: string;
+  excerpt: string;
+}
+
+interface FlattenAlgoliaNode {
+  id: string;
+  title: string;
+  slug: string;
   rawMarkdownBody: string;
   excerpt: string;
 }
