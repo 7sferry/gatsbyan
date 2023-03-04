@@ -130,13 +130,11 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics-reporter`,
+      resolve: `gatsby-plugin-google-analytics-data-reporting-api`,
       options: {
-        email: process.env.ANALYTICS_EMAIL,
+        serviceAccountEmail: process.env.ANALYTICS_EMAIL,
         privateKey: process.env.ANALYTICS_PRIVATE_KEY,
-        viewId: process.env.ANALYTICS_VIEW_ID,
-        // startDate: `30daysAgo`,
-        endDate: `today`,
+        property: process.env.ANALYTICS_GA4,
       },
     },
     {
