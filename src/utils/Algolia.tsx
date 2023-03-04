@@ -38,12 +38,13 @@ function constructSubContents(rawMarkdownBody: string): string[] {
   contents.forEach((content) => {
     content = lastWord + content;
     const number = content.lastIndexOf(" ");
-    lastWord = content.substring(number + 1, content.length);
+    lastWord = content.slice(number + 1);
     if (number < 0) {
       return;
     }
     resultContents.push(content.substring(0, number));
   });
+  resultContents.push(lastWord);
   return resultContents;
 }
 
