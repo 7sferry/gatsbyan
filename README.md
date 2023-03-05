@@ -9,7 +9,7 @@ For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
 ## Features:
 
 - Contentful CMS
-- Facebook Comment
+- Comment
 - Tags
 - SEO
 - Archives by date
@@ -35,7 +35,6 @@ For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
 - Gatsby CLI - I used gatsby-cli v2.10.10
 - Git
 - Contentful CMS account
-- Facebook account - optional for blog comment
 - Google account - optional for analytics and analytics reporter
 - Algolia account - optional for blog search
 
