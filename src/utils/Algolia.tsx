@@ -33,21 +33,33 @@ const flatNode = (node: AlgoliaNode): FlattenAlgoliaNode => {
 
 function constructSubContents(rawMarkdownBody: string): string[] {
   const contents = rawMarkdownBody.match(/[\s\S]{1,8500}/g) || [];
+  if (contents.length === 1) {
+    return contents;
+  }
   let lastWord = "";
-  const resultContents: string[] = [];
-  contents.forEach((content) => {
-    content = lastWord + content;
-    if (content.length <= 8500) {
-      resultContents.push(content);
+  const resultContents = [];
+  for (let content of contents) {
+    const lastWordPlusContent = lastWord + content;
+    if (content.length < 8500) {
+      resultContents.push(lastWordPlusContent);
       return resultContents;
     }
-    const number = content.lastIndexOf(" ");
-    lastWord = content.slice(number + 1);
-    if (number < 0) {
-      return;
+    const lastSpace = lastWordPlusContent.lastIndexOf(" ");
+    const lastNewLine = lastWordPlusContent.lastIndexOf("\n");
+    const number = Math.max(lastSpace, lastNewLine);
+    if (number <= 0) {
+      lastWord = "";
+      if (lastWordPlusContent.length > 9000) {
+        const subContents = constructSubContents(lastWordPlusContent);
+        resultContents.push(...subContents);
+        continue;
+      }
+      resultContents.push(lastWordPlusContent);
+      continue;
     }
-    resultContents.push(content.substring(0, number));
-  });
+    lastWord = lastWordPlusContent.substring(number, lastWordPlusContent.length);
+    resultContents.push(lastWordPlusContent.substring(0, number));
+  }
   return resultContents;
 }
 
