@@ -37,6 +37,10 @@ function constructSubContents(rawMarkdownBody: string): string[] {
   const resultContents: string[] = [];
   contents.forEach((content) => {
     content = lastWord + content;
+    if (content.length <= 8500) {
+      resultContents.push(content);
+      return resultContents;
+    }
     const number = content.lastIndexOf(" ");
     lastWord = content.slice(number + 1);
     if (number < 0) {
@@ -44,7 +48,6 @@ function constructSubContents(rawMarkdownBody: string): string[] {
     }
     resultContents.push(content.substring(0, number));
   });
-  resultContents.push(lastWord);
   return resultContents;
 }
 
