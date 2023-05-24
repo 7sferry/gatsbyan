@@ -57,8 +57,11 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
     const imageData = heroImage.gatsbyImageData;
     const imageTitle = heroImage?.title;
     let htmlWithAnchor = childMarkdownRemark.html.replace(/<h2>(.*?)<\/h2>/g, function (match, capturedSubstr1) {
-      let hrefValue = capturedSubstr1.replace(/\s/g, "-").toLowerCase();
-      return `<a href="${"#" + hrefValue}" id="${hrefValue}">${match}</a>`;
+      if (capturedSubstr1.startsWith("<") && capturedSubstr1.endsWith(">")) {
+        return match;
+      }
+      let hrefValue = capturedSubstr1.replace(/\s/g, "-").trim().toLowerCase();
+      return `<h2 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h2>`;
     });
 
     return (

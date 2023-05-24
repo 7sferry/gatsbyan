@@ -329,3 +329,12 @@ ais-highlight-0000000000 {
   font-weight: bolder;
   font-size: 1.5rem;
 }
+
+.anchor-subtitle {
+  color: unset !important;
+  transition: unset !important;
+}
+
+.anchor-subtitle:hover.anchor-subtitle::before {
+  content: "⚓ ";
+}
