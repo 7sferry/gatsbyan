@@ -12,7 +12,7 @@ import Pagination from "../../components/Pagination";
 import { SEARCH_COUNT } from "../../utils/GatsbyanUtils";
 import Seo from "../../components/Seo";
 
-class SearchPage extends React.Component {
+class SearchPage extends React.Component<{}, {}> {
   render() {
     const algoliaClient = algoliasearch(
       process.env.GATSBY_ALGOLIA_APP_ID ?? "",

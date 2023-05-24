@@ -13,7 +13,7 @@ import Pagination from "../components/Pagination";
 import { getPlurals, getPostTags, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
 
-class IndexPage extends React.Component<IndexProp> {
+class IndexPage extends React.Component<IndexProp, { }> {
   render() {
     const { pageContext, data } = this.props;
     const { allContentfulBlogPost: contents } = data;
