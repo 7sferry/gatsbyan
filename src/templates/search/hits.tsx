@@ -12,16 +12,20 @@ const Hit = connectHits(({ hits }) => {
     <div>
       {hits.length > 0 ? (
         <>
-          {hits.map(hit => {
+          {hits.map((hit) => {
+            const highlightResult = hit._highlightResult;
+            const title = highlightResult?.title?.value;
+            const excerpt = highlightResult?.excerpt?.value?.trim();
+
             return (
               <div key={hit.objectID} className="search-result-container">
                 <div className="title">
                   <Link className="text-link" to={`/blog/${hit.slug}`}>
-                    <h3>{hit.title}</h3>
+                    <h3 dangerouslySetInnerHTML={{ __html: title }} />
                   </Link>
                 </div>
                 <div className="ellipsis">
-                  <p>{hit.excerpt}</p>
+                  <p dangerouslySetInnerHTML={{ __html: excerpt }} />
                 </div>
               </div>
             );

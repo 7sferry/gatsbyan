@@ -162,8 +162,6 @@ module.exports = {
           // respectDNT: true,
           // Avoids sending pageview hits from custom paths
           exclude: exclude,
-          pageTransitionDelay: 250,
-          defer: true,
           // Defaults to https://www.googletagmanager.com
           // origin: "https://www.googletagmanager.com",
         },
