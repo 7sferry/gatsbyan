@@ -56,6 +56,10 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
     const heroImage = post.heroImage;
     const imageData = heroImage.gatsbyImageData;
     const imageTitle = heroImage?.title;
+    let htmlWithAnchor = childMarkdownRemark.html.replace(/<h2>(.*?)<\/h2>/g, function (match, capturedSubstr1) {
+      let hrefValue = capturedSubstr1.replace(/\s/g, "-").toLowerCase();
+      return `<a href="${"#" + hrefValue}" id="${hrefValue}">${match}</a>`;
+    });
 
     return (
       <Layout>
@@ -80,7 +84,7 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
               className="post-container pt-0"
               id="content-post"
               dangerouslySetInnerHTML={{
-                __html: childMarkdownRemark.html,
+                __html: htmlWithAnchor,
               }}
             />
           </div>

@@ -92,6 +92,6 @@ export function rp(val: number) {
 
 export const PAGE_COUNT = 5;
 
-export const SEARCH_COUNT = 26;
+export const SEARCH_COUNT = 10;
 
 export const DEFAULT_ICON_SIZE = 20;

@@ -11,8 +11,7 @@ const allContentfulBlogPost = `{
       slug
       body {
         childMarkdownRemark {
-          rawMarkdownBody
-          excerpt(pruneLength: 100, truncate: true)
+          excerpt(pruneLength: 50000)
           internal {
             contentDigest
           }
@@ -31,8 +30,8 @@ const flatNode = (node: AlgoliaNode): FlattenAlgoliaNode => {
   };
 };
 
-function constructSubContents(rawMarkdownBody: string): string[] {
-  const contents = rawMarkdownBody.match(/[\s\S]{1,8500}/g) || [];
+function constructSubContents(excerpt: string): string[] {
+  const contents = excerpt.match(/[\s\S]{1,8500}/g) || [];
   if (contents.length === 1) {
     return contents;
   }
@@ -64,12 +63,13 @@ function constructSubContents(rawMarkdownBody: string): string[] {
 }
 
 const splitNode = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
-  const { rawMarkdownBody, ...rest } = node;
-  const subContents = constructSubContents(rawMarkdownBody);
-  return subContents.map((content, index) => ({
+  const { excerpt, ...rest } = node;
+  const subContents = constructSubContents(excerpt);
+  let subContentsLength = subContents.length;
+  return subContents.map((content) => ({
     ...rest,
-    rawMarkdownBody: content,
-    id: rest.id + "_" + index,
+    excerpt: content,
+    id: rest.id + "_" + subContentsLength--,
   }));
 };
 
@@ -102,7 +102,6 @@ interface AlgoliaNode {
 }
 
 interface AlgoliaChildMarkdownRemark {
-  rawMarkdownBody: string;
   excerpt: string;
 }
 
@@ -110,7 +109,6 @@ interface FlattenAlgoliaNode {
   id: string;
   title: string;
   slug: string;
-  rawMarkdownBody: string;
   excerpt: string;
 }
 

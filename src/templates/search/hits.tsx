@@ -7,20 +7,20 @@ import React from "react";
 import { Link } from "gatsby";
 import { connectHits } from "react-instantsearch-dom";
 
-const Hits = connectHits(({ hits }) => {
+const Hit = connectHits(({ hits }) => {
   return (
     <div>
       {hits.length > 0 ? (
         <>
           {hits.map(hit => {
             return (
-              <div key={hit.objectID}>
+              <div key={hit.objectID} className="search-result-container">
                 <div className="title">
                   <Link className="text-link" to={`/blog/${hit.slug}`}>
                     <h3>{hit.title}</h3>
                   </Link>
                 </div>
-                <div>
+                <div className="ellipsis">
                   <p>{hit.excerpt}</p>
                 </div>
               </div>
@@ -36,4 +36,4 @@ const Hits = connectHits(({ hits }) => {
   );
 });
 
-export default Hits;
+export default Hit;
