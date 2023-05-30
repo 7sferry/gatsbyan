@@ -335,6 +335,10 @@ ais-highlight-0000000000 {
   transition: unset !important;
 }
 
-.anchor-subtitle:hover.anchor-subtitle::before {
-  content: "⚓ ";
+.anchor-subtitle:hover.anchor-subtitle::after {
+  content: " ⚓";
+}
+
+h2:hover {
+  text-decoration-line: underline;
 }

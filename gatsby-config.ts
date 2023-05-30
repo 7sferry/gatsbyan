@@ -8,12 +8,13 @@ require("dotenv").config();
 const siteConfig = require("./config");
 const contentfulConfig = {
   spaceId: process.env.SPACEID,
-  accessToken: process.env.TOKEN,
+  accessToken: process.env.PRE_TOKEN || process.env.TOKEN,
+  host: process.env.PRE_HOST || "cdn.contentful.com",
   // pageLimit: 100,
   // assetDownloadWorkers: 25,
   // downloadLocal: true,
 };
-const exclude = ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**", "^[^?]+(\\?.*)", ".json$", "[?]", "[#]"];
+const exclude = ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**", "^[^?]+(\\?.*)", ".json$", "[?]", "[#]", "[%]"];
 
 module.exports = {
   trailingSlash: "never",

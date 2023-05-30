@@ -10,7 +10,7 @@ import "./sidebar.css";
 const AnalyticsPage = () => {
   const data: AnalyticsData = useStaticQuery(graphql`
     query AnalyticsPageQuery {
-      allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/(^/blog?)(?!.*=)/" } }) {
+      allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/^\/blog\/(?!$)(?!.*(%23|%3F|\\?|=|%20)).*$/" } }) {
         nodes {
           path
         }
