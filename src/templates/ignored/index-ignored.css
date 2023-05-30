@@ -339,6 +339,6 @@ ais-highlight-0000000000 {
   content: " ⚓";
 }
 
-h2:hover {
+.anchor-subtitle:hover {
   text-decoration-line: underline;
 }
