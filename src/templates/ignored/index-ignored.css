@@ -321,7 +321,7 @@ input[type="number"]::-webkit-outer-spin-button {
   white-space: pre-wrap; /* let the text wrap preserving spaces */
 }
 
-.search-result-container{
+.search-result-container {
   margin-bottom: 1.5rem;
 }
 
@@ -335,10 +335,10 @@ ais-highlight-0000000000 {
   transition: unset !important;
 }
 
-.anchor-subtitle:hover.anchor-subtitle::after {
-  content: " ⚓";
-}
-
 .anchor-subtitle:hover {
   text-decoration-line: underline;
+}
+
+.anchor-subtitle:before {
+  content: "⚓ ";
 }
