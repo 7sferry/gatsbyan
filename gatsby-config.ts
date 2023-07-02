@@ -8,8 +8,8 @@ require("dotenv").config();
 const siteConfig = require("./config");
 const contentfulConfig = {
   spaceId: process.env.SPACEID,
-  accessToken: process.env.PRE_TOKEN || process.env.TOKEN,
-  host: process.env.PRE_HOST || "cdn.contentful.com",
+  accessToken: process.env.PREVIEW_TOKEN || process.env.TOKEN,
+  host: process.env.PREVIEW_TOKEN ? "preview.contentful.com" : "cdn.contentful.com",
   // pageLimit: 100,
   // assetDownloadWorkers: 25,
   // downloadLocal: true,
