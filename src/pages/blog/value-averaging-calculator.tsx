@@ -26,6 +26,13 @@ const Vca = () => {
     }
   };
 
+  function appendDiv(divElement: HTMLDivElement) {
+    const current: HTMLDivElement | null | undefined = element?.current;
+    if (current) {
+      current.appendChild(divElement);
+    }
+  }
+
   const calculate = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     clearResult(null);
@@ -39,7 +46,7 @@ const Vca = () => {
     });
 
     const divElement: HTMLDivElement = document.createElement("div");
-    element?.current?.appendChild(divElement);
+    appendDiv(divElement);
     const vcaResult = getVcaResult(stock);
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
