@@ -19,6 +19,8 @@ class SearchPage extends React.Component<{}, {}> {
       process.env.GATSBY_ALGOLIA_SEARCH_KEY ?? ""
     );
     const chrome = typeof window !== "undefined" ? !!window.chrome : null;
+    console.log("hihi " + chrome);
+    console.log("huhu " + !process.env.PREVIEW_TOKEN);
 
     const searchClient = {
       search(requests: any) {
@@ -28,7 +30,7 @@ class SearchPage extends React.Component<{}, {}> {
               hits: null,
               nbHits: 0,
               nbPages: 0,
-              processingTimeMS: 0,
+              processingTimeMS: 0
             })),
           });
         }
@@ -62,10 +64,8 @@ class SearchPage extends React.Component<{}, {}> {
   }
 }
 
-declare global {
-  interface Window {
-    chrome: any;
-  }
+declare namespace window {
+  let chrome: any;
 }
 
 export default SearchPage;

@@ -3,13 +3,17 @@
  * on January 2021      *
  ************************/
 
-"use strict";
 require("dotenv").config();
 const siteConfig = require("./config");
+
+function isProduction() {
+  return process.env.NODE_ENV === "production" || !process.env.PREVIEW_TOKEN;
+}
+
 const contentfulConfig = {
   spaceId: process.env.SPACEID,
-  accessToken: process.env.PREVIEW_TOKEN || process.env.TOKEN,
-  host: process.env.PREVIEW_TOKEN ? "preview.contentful.com" : "cdn.contentful.com",
+  accessToken: isProduction() ? process.env.TOKEN : process.env.PREVIEW_TOKEN,
+  host: isProduction() ? "cdn.contentful.com" : "preview.contentful.com"
   // pageLimit: 100,
   // assetDownloadWorkers: 25,
   // downloadLocal: true,

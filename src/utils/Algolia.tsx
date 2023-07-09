@@ -36,7 +36,7 @@ function constructSubContents(excerpt: string): string[] {
     return contents;
   }
   let lastWord = "";
-  const resultContents = [];
+  const resultContents: string[] = [];
   for (let content of contents) {
     const lastWordPlusContent = lastWord + content;
     if (content.length < 8500) {
@@ -45,21 +45,25 @@ function constructSubContents(excerpt: string): string[] {
     }
     const lastSpace = lastWordPlusContent.lastIndexOf(" ");
     const lastNewLine = lastWordPlusContent.lastIndexOf("\n");
-    const number = Math.max(lastSpace, lastNewLine);
-    if (number <= 0) {
+    const splitIndex = Math.max(lastSpace, lastNewLine);
+    if (splitIndex > 0) {
+      lastWord = lastWordPlusContent.substring(splitIndex, lastWordPlusContent.length);
+      resultContents.push(lastWordPlusContent.substring(0, splitIndex));
+    } else {
       lastWord = "";
-      if (lastWordPlusContent.length > 9000) {
-        const subContents = constructSubContents(lastWordPlusContent);
-        resultContents.push(...subContents);
-        continue;
-      }
-      resultContents.push(lastWordPlusContent);
-      continue;
+      handleUnSplittedContent(lastWordPlusContent, resultContents);
     }
-    lastWord = lastWordPlusContent.substring(number, lastWordPlusContent.length);
-    resultContents.push(lastWordPlusContent.substring(0, number));
   }
   return resultContents;
+}
+
+function handleUnSplittedContent(lastWordPlusContent: string, resultContents: string[]) {
+  if (lastWordPlusContent.length > 9000) {
+    const subContents = constructSubContents(lastWordPlusContent);
+    resultContents.push(...subContents);
+  } else {
+    resultContents.push(lastWordPlusContent);
+  }
 }
 
 const splitNode = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
@@ -69,7 +73,7 @@ const splitNode = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
   return subContents.map((content) => ({
     ...rest,
     excerpt: content,
-    id: rest.id + "_" + subContentsLength--,
+    id: rest.id + "_" + subContentsLength--
   }));
 };
 
