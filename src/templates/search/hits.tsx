@@ -43,7 +43,11 @@ const Hit = connectHits(({ hits }) => {
 
 function getStartIndex(excerpt: string) {
   const matchedIndex = excerpt?.indexOf("<ais-highlight-0000000000");
-  return excerpt?.indexOf(" ", matchedIndex - 100) + 1;
+  const lastHundredCharIndex = matchedIndex - 100;
+  if (lastHundredCharIndex <= 0) {
+    return 0;
+  }
+  return excerpt?.indexOf(" ", lastHundredCharIndex) + 1;
 }
 
 export default Hit;
