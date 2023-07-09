@@ -15,7 +15,8 @@ const Hit = connectHits(({ hits }) => {
           {hits.map((hit) => {
             const highlightResult = hit._highlightResult;
             const title = highlightResult?.title?.value;
-            const excerpt = highlightResult?.excerpt?.value?.trim();
+            const excerpt = highlightResult?.excerpt?.value?.trim() ?? "";
+            let matchedStartIndex = getStartIndex(excerpt);
 
             return (
               <div key={hit.objectID} className="search-result-container">
@@ -25,7 +26,7 @@ const Hit = connectHits(({ hits }) => {
                   </Link>
                 </div>
                 <div className="ellipsis">
-                  <p dangerouslySetInnerHTML={{ __html: excerpt }} />
+                  <p dangerouslySetInnerHTML={{ __html: excerpt?.substring(matchedStartIndex) }} />
                 </div>
               </div>
             );
@@ -39,5 +40,10 @@ const Hit = connectHits(({ hits }) => {
     </div>
   );
 });
+
+function getStartIndex(excerpt: string) {
+  const matchedIndex = excerpt?.indexOf("<ais-highlight-0000000000");
+  return excerpt?.indexOf(" ", matchedIndex - 100) + 1;
+}
 
 export default Hit;
