@@ -14,9 +14,11 @@ export class VcaCalculator {
   constructor(stockData: StockData) {
     this.stockName = stockData.stockName;
     this.currentLotPrice = getNumberValueFromRupiah(stockData.currentUnitPrice.toString()) * 100;
-    this.totalLot = getNumberValueFromRupiah(stockData.totalLot.toString());
+    this.totalLot = getNumberValueFromRupiah(
+      String(stockData.unitType === "lot" ? stockData.totalLot : stockData.totalLot / 100)
+    );
     this.monthlyInvestTarget = getNumberValueFromRupiah(stockData.monthlyInvestTarget.toString());
-    this.sinceDate = stockData.since;
+    this.sinceDate = new Date(stockData.sinceYear + "-" + stockData.sinceMonth);
   }
 
   buyLot(lot: number) {
@@ -38,10 +40,12 @@ export class VcaCalculator {
   }
 }
 
-type StockData = {
+export class StockData {
   readonly stockName: string;
   readonly currentUnitPrice: number;
   readonly totalLot: number;
   readonly monthlyInvestTarget: number;
-  readonly since: Date;
-};
+  readonly sinceYear: string;
+  readonly sinceMonth: string;
+  readonly unitType: string;
+}

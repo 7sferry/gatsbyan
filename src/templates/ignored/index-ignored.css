@@ -153,6 +153,7 @@ h6 {
   display: none;
 }
 
+/*noinspection CssInvalidPseudoSelector*/
 .ais-SearchBox-input:not(:-moz-placeholder-shown) {
   border-radius: var(--rad) 0 0 var(--rad);
   width: calc(100% - var(--btn-width));
@@ -168,6 +169,7 @@ h6 {
   width: calc(100% - var(--btn-width));
 }
 
+/*noinspection CssInvalidPseudoSelector*/
 .ais-SearchBox-input:not(:-moz-placeholder-shown) + .ais-SearchBox-submit {
   display: block;
 }
@@ -278,6 +280,16 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 40px;
   width: 96px;
   margin: 10px;
+  border: 0 solid;
+}
+
+#reset {
+  background-color: #bad3ef;
+  border-radius: 4px;
+  color: black;
+  font-size: 1em;
+  height: 40px;
+  width: 96px;
   border: 0 solid;
 }
 

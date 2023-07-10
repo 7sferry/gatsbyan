@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { VcaCalculator } from "../../utils/VcaCalculator";
+import { StockData, VcaCalculator } from "../../utils/VcaCalculator";
 import { getVcaResult } from "../../components/VcaFormResult";
 import CustomPage from "../../components/CustomPage";
 import { graphql, useStaticQuery } from "gatsby";
 import { customPostContextByCode } from "../../../custom-post-by-slug";
-import CurrencyInput from "../../components/CurrencyInput";
-import UpperCaseInput from "../../components/UpperCaseInput";
 import Seo from "../../components/Seo";
+import { onChangeRupiah } from "../../utils/GatsbyanUtils";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -17,13 +16,43 @@ import Seo from "../../components/Seo";
 const postContext = customPostContextByCode.get("vca");
 
 const Vca = () => {
+  const VCA_STORAGE = "vca";
   const element: React.RefObject<HTMLDivElement> = React.createRef();
-  const clearResult = (e: React.BaseSyntheticEvent | null) => {
+  const stockCacheValue = getStockCacheValue();
+  const [stockNameValue, setStockNameValue] = React.useState(stockCacheValue.stockName || "");
+  const [unitPriceValue, setUnitPriceValue] = React.useState(String(stockCacheValue.currentUnitPrice || ""));
+  const [investTargetValue, setInvestTartgetValue] = React.useState(String(stockCacheValue.monthlyInvestTarget || ""));
+  const [sinceYearValue, setSinceYearValue] = React.useState(stockCacheValue.sinceYear || "");
+  const [sinceMonthValue, setSinceMonthValue] = React.useState(stockCacheValue.sinceMonth || "");
+  const [totalLotValue, setTotalLotValue] = React.useState(String(stockCacheValue.totalLot || ""));
+  const [unitTypeValue, setUnitTypeValue] = React.useState(stockCacheValue.unitType || "");
+
+  function getStockCacheValue(): StockData {
+    const stockCache = localStorage.getItem(VCA_STORAGE);
+    if (stockCache) {
+      return JSON.parse(stockCache);
+    }
+    return new StockData();
+  }
+
+  const clearResult = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
     const parentResult: HTMLElement | null = document.getElementById("result");
     while (parentResult?.firstChild) {
       parentResult?.firstChild?.remove();
     }
+  };
+
+  const resetInput = (e?: React.BaseSyntheticEvent) => {
+    e?.preventDefault();
+    localStorage.removeItem(VCA_STORAGE);
+    setStockNameValue("");
+    setUnitPriceValue("");
+    setInvestTartgetValue("");
+    setUnitTypeValue("");
+    setTotalLotValue("");
+    setSinceYearValue("");
+    setSinceMonthValue("");
   };
 
   function appendDiv(divElement: HTMLDivElement) {
@@ -33,35 +62,46 @@ const Vca = () => {
     }
   }
 
+  function constructStockData(e: React.BaseSyntheticEvent) {
+    return {
+      stockName: e.target.stockName.value,
+      currentUnitPrice: e.target.currentUnitPrice.value,
+      unitType: e.target.unitType.value,
+      totalLot: e.target.totalLot.value,
+      monthlyInvestTarget: e.target.monthlyInvestTarget.value,
+      sinceYear: e.target.sinceYear.value,
+      sinceMonth: e.target.sinceMonth.value
+    };
+  }
+
   const calculate = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
-    clearResult(null);
-    const currentUnitPrice = e.target.currentUnitPrice.value;
-    let stock = new VcaCalculator({
-      stockName: e.target.stockName.value,
-      currentUnitPrice: currentUnitPrice,
-      totalLot: e.target.unitType.value === "lot" ? e.target.totalLot.value : e.target.totalLot.value / 100,
-      monthlyInvestTarget: e.target.monthlyInvestTarget.value,
-      since: new Date(e.target.sinceYear.value + "-" + e.target.sinceMonth.value),
-    });
+    clearResult();
+    const stockData = constructStockData(e);
+    const stock = new VcaCalculator(stockData);
 
     const divElement: HTMLDivElement = document.createElement("div");
     appendDiv(divElement);
     const vcaResult = getVcaResult(stock);
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
+    localStorage.setItem(VCA_STORAGE, JSON.stringify(stockData));
+  };
+
+  const toUpperCase = (event: React.ChangeEvent<HTMLInputElement>) => {
+    return event.target.value.toUpperCase();
   };
 
   const { site } = useStaticQuery(
     graphql`
-      query BlogPageSlug {
-        site {
-          siteMetadata {
-            siteUrl
-            repo
-          }
+        query BlogPageSlug {
+            site {
+                siteMetadata {
+                    siteUrl
+                    repo
+                }
+            }
         }
-      }
     `
   );
 
@@ -73,27 +113,38 @@ const Vca = () => {
           <div className="rowTab">
             <div className="labels">
               <label id="name-label" htmlFor="stockName">
-                Nama Emiten:{" "}
+                Nama Emiten:
               </label>
             </div>
             <div className="rightTab">
-              <UpperCaseInput
-                name="stockName"
-                id="stockName"
-                className="input-field"
-                placeholder="BYAN"
+              <input
+                type="text"
+                name={"stockName"}
+                id={"stockName"}
+                className={"input-field"}
+                autoComplete={"off"}
                 required={true}
+                onChange={(e) => setStockNameValue(toUpperCase(e))}
+                value={stockNameValue}
               />
             </div>
           </div>
           <div className="rowTab">
             <div className="labels">
               <label id="email-label" htmlFor="sinceMonth">
-                Mulai sejak:{" "}
+                Mulai sejak:
               </label>
             </div>
             <div className="rightTab" key={"since"}>
-              <select required={true} id="sinceMonth" name="sinceMonth" className="dropdown" style={{ width: "40%" }}>
+              <select
+                required={true}
+                id="sinceMonth"
+                name="sinceMonth"
+                className="dropdown"
+                style={{ width: "40%" }}
+                onChange={(e) => setSinceMonthValue(e.target.value)}
+                value={sinceMonthValue}
+              >
                 <option value="">-</option>
                 <option value="01">Januari</option>
                 <option value="02">Februari</option>
@@ -118,13 +169,15 @@ const Vca = () => {
                 min={1970}
                 max={3000}
                 required={true}
+                onChange={(e) => setSinceYearValue(e.target.value)}
+                value={sinceYearValue}
               />
             </div>
           </div>
           <div className="rowTab">
             <div className="labels">
               <label id="number-label" htmlFor="totalLot">
-                Total stock yang dimiliki saat ini:{" "}
+                Total stock yang dimiliki saat ini:
               </label>
             </div>
             <div className="rightTab" key={"totalLot"}>
@@ -137,8 +190,17 @@ const Vca = () => {
                 min={0}
                 placeholder="total"
                 required={true}
+                onChange={(e) => setTotalLotValue(e.target.value)}
+                value={totalLotValue}
               />
-              <select id="unitType" name="unitType" className="dropdown" style={{ width: "25%" }}>
+              <select
+                onChange={(e) => setUnitTypeValue(e.target.value)}
+                value={unitTypeValue}
+                id="unitType"
+                name="unitType"
+                className="dropdown"
+                style={{ width: "25%" }}
+              >
                 <option value="lot">Lot</option>
                 <option value="unit">Unit</option>
               </select>
@@ -147,39 +209,53 @@ const Vca = () => {
           <div className="rowTab">
             <div className="labels">
               <label id="number-label" htmlFor="currentUnitPrice">
-                Harga saat ini (dalam unit):{" "}
+                Harga saat ini (dalam unit):
               </label>
             </div>
             <div className="rightTab" key={"currentUnitPrice"}>
-              <CurrencyInput id="currentUnitPrice" name="currentUnitPrice" required={true} className={"input-field"} />
+              <input
+                type="text"
+                name={"currentUnitPrice"}
+                id={"currentUnitPrice"}
+                className={"input-field"}
+                placeholder={"Rp"}
+                autoComplete={"off"}
+                onChange={(e) => setInvestTartgetValue(onChangeRupiah(e))}
+                value={investTargetValue}
+                required={true}
+              />
             </div>
           </div>
           <div className="rowTab">
             <div className="labels">
               <label id="number-label" htmlFor="monthlyInvestTarget">
-                Target investasi bulanan:{" "}
+                Target investasi bulanan:
               </label>
             </div>
             <div className="rightTab" key={"monthlyInvestTarget"}>
-              <CurrencyInput
-                id="monthlyInvestTarget"
-                name="monthlyInvestTarget"
-                required={true}
+              <input
+                type="text"
+                name={"monthlyInvestTarget"}
+                id={"monthlyInvestTarget"}
                 className={"input-field"}
+                placeholder={"Rp"}
+                autoComplete={"off"}
+                onChange={(e) => setUnitPriceValue(onChangeRupiah(e))}
+                value={unitPriceValue}
+                required={true}
               />
             </div>
           </div>
           <div>
-            <div
-              style={{
-                textAlign: "center",
-              }}
-            >
+            <div style={{ textAlign: "center" }}>
               <button id="submit" type="submit">
                 Calculate
               </button>
               <button id="clear" onClick={clearResult}>
                 Clear
+              </button>
+              <button id="reset" onClick={resetInput}>
+                reset
               </button>
             </div>
           </div>
