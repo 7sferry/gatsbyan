@@ -16,6 +16,7 @@ import { onChangeRupiah } from "../../utils/GatsbyanUtils";
 const postContext = customPostContextByCode.get("vca");
 
 const Vca = () => {
+  const storage = typeof window !== "undefined" ? window.localStorage : null;
   const VCA_STORAGE = "vca";
   const element: React.RefObject<HTMLDivElement> = React.createRef();
   const stockCacheValue = getStockCacheValue();
@@ -28,7 +29,7 @@ const Vca = () => {
   const [unitTypeValue, setUnitTypeValue] = React.useState(stockCacheValue.unitType || "");
 
   function getStockCacheValue(): StockData {
-    const stockCache = localStorage.getItem(VCA_STORAGE);
+    const stockCache = storage?.getItem(VCA_STORAGE);
     if (stockCache) {
       return JSON.parse(stockCache);
     }
@@ -45,14 +46,14 @@ const Vca = () => {
 
   const resetInput = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    localStorage.removeItem(VCA_STORAGE);
+    storage?.removeItem(VCA_STORAGE);
     setStockNameValue("");
     setUnitPriceValue("");
-    setInvestTartgetValue("");
     setUnitTypeValue("");
     setTotalLotValue("");
     setSinceYearValue("");
     setSinceMonthValue("");
+    setInvestTartgetValue("");
   };
 
   function appendDiv(divElement: HTMLDivElement) {
@@ -85,7 +86,7 @@ const Vca = () => {
     const vcaResult = getVcaResult(stock);
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
-    localStorage.setItem(VCA_STORAGE, JSON.stringify(stockData));
+    storage?.setItem(VCA_STORAGE, JSON.stringify(stockData));
   };
 
   const toUpperCase = (event: React.ChangeEvent<HTMLInputElement>) => {
