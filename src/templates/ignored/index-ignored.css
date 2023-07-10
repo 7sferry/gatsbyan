@@ -351,6 +351,8 @@ ais-highlight-0000000000 {
   text-decoration-line: underline;
 }
 
-.anchor-subtitle:before {
-  content: "⚓ ";
+.anchor-tag:before {
+  content: "⚓";
+  float: left;
+  font-size: 90%;
 }

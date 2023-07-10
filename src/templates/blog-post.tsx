@@ -93,11 +93,11 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
 
 function extractHtmlWithAnchor(childMarkdownRemark: { html: string; timeToRead: number }): string {
   return childMarkdownRemark.html.replace(/<h2>(.*?)<\/h2>/g, function (match: string, capturedSubstr1: string) {
-    if (capturedSubstr1.startsWith("<a ") && capturedSubstr1.endsWith(">")) {
+    if (capturedSubstr1.startsWith("<a ")) {
       return match;
     }
     const hrefValue = getHrefValue(capturedSubstr1);
-    return `<h2 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h2>`;
+    return `<span class="anchor-tag"><h2 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h2></span>`;
   });
 }
 
