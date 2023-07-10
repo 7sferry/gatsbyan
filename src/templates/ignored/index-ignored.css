@@ -261,7 +261,7 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 2px;
 }
 
-#submit {
+.submit-vca {
   background-color: #00c77f;
   border-radius: 4px;
   color: black;
@@ -272,7 +272,7 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 0 solid;
 }
 
-#clear {
+.clear-vca {
   background-color: #dea821;
   border-radius: 4px;
   color: black;
@@ -283,7 +283,7 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 0 solid;
 }
 
-#reset {
+.reset-vca {
   background-color: #bad3ef;
   border-radius: 4px;
   color: black;

@@ -34,11 +34,6 @@
   flex-direction: row;
   justify-content: space-around;
 }
-.mobile-pages-main {
-  width: 100%;
-  background: white;
-  display: none;
-}
 .head-logo {
   font-family: "Work Sans", serif;
   font-size: 1.75rem;
@@ -69,10 +64,6 @@ small {
   }
   .social-links {
     display: none;
-  }
-
-  .mobile-pages-main {
-    display: block;
   }
 
   .mobile-bio-main {

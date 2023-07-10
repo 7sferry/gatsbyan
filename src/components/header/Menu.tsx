@@ -10,7 +10,11 @@ import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
 import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
 
 const Menu = () => {
-  return <div className="social-links">{MenuLinks}</div>;
+  return (
+    <div className="social-links">
+      <MenuLinks />
+    </div>
+  );
 };
 
 const MenuObjects: Array<MenuAttr> = [
@@ -31,15 +35,19 @@ const MenuObjects: Array<MenuAttr> = [
   },
 ];
 
-export const MenuLinks = MenuObjects.map((menu) => {
-  return (
-    <Link key={menu.link} to={menu.link}>
-      <span className="menu-button">
-        {menu.icon} {menu.text}
-      </span>
-    </Link>
-  );
-});
+export const MenuLinks = () => (
+  <>
+    {MenuObjects.map((menu) => {
+      return (
+        <Link key={menu.link} to={menu.link}>
+          <span className="menu-button">
+            {menu.icon} {menu.text}
+          </span>
+        </Link>
+      );
+    })}
+  </>
+);
 
 interface MenuAttr {
   link: string;

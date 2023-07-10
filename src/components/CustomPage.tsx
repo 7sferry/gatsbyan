@@ -51,9 +51,7 @@ class CustomPage extends React.Component<React.PropsWithChildren<CustomPageProp>
               <span className="page-info">{getPublishDateTime(customPost.publishDate)}</span>
               <span className="page-info">{getPostTags(null)}</span>
             </div>
-            <div className="post-container pt-0" id="content-post">
-              {children}
-            </div>
+            <div className="post-container pt-0 content-post">{children}</div>
             {this.state.commentShown && repo && <Comment repo={repo} />}
           </div>
         </div>

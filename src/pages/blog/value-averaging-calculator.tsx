@@ -56,14 +56,7 @@ const Vca = () => {
     setInvestTartgetValue("");
   };
 
-  function appendDiv(divElement: HTMLDivElement) {
-    const current: HTMLDivElement | null | undefined = element?.current;
-    if (current) {
-      current.appendChild(divElement);
-    }
-  }
-
-  function constructStockData(e: React.BaseSyntheticEvent) {
+  function constructStockData(e: React.BaseSyntheticEvent): StockData {
     return {
       stockName: e.target.stockName.value,
       currentUnitPrice: e.target.currentUnitPrice.value,
@@ -71,7 +64,7 @@ const Vca = () => {
       totalLot: e.target.totalLot.value,
       monthlyInvestTarget: e.target.monthlyInvestTarget.value,
       sinceYear: e.target.sinceYear.value,
-      sinceMonth: e.target.sinceMonth.value
+      sinceMonth: e.target.sinceMonth.value,
     };
   }
 
@@ -82,7 +75,7 @@ const Vca = () => {
     const stock = new VcaCalculator(stockData);
 
     const divElement: HTMLDivElement = document.createElement("div");
-    appendDiv(divElement);
+    element?.current?.appendChild(divElement);
     const vcaResult = getVcaResult(stock);
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
@@ -95,14 +88,14 @@ const Vca = () => {
 
   const { site } = useStaticQuery(
     graphql`
-        query BlogPageSlug {
-            site {
-                siteMetadata {
-                    siteUrl
-                    repo
-                }
-            }
+      query BlogPageSlug {
+        site {
+          siteMetadata {
+            siteUrl
+            repo
+          }
         }
+      }
     `
   );
 
@@ -249,13 +242,13 @@ const Vca = () => {
           </div>
           <div>
             <div style={{ textAlign: "center" }}>
-              <button id="submit" type="submit">
+              <button className="submit-vca" type="submit">
                 Calculate
               </button>
-              <button id="clear" onClick={clearResult}>
+              <button className="clear-vca" onClick={clearResult}>
                 Clear
               </button>
-              <button id="reset" onClick={resetInput}>
+              <button className="reset-vca" onClick={resetInput}>
                 reset
               </button>
             </div>

@@ -78,8 +78,7 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
               )}
             </figure>
             <div
-              className="post-container pt-0"
-              id="content-post"
+              className="post-container pt-0 content-post"
               dangerouslySetInnerHTML={{
                 __html: htmlWithAnchor,
               }}

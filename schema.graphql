@@ -1,8 +1,48 @@
-# This file was generated based on ".graphqlconfig". Do not edit manually.
+# This file was generated. Do not edit manually.
 
 schema {
     query: Query
 }
+
+"Define parent-child relations between types. This is used to add `child*` and `children*` convenience fields like `childImageSharp`."
+directive @childOf(
+    "A list of mime-types this type is a child of. Usually these are the mime-types handled by a transformer plugin."
+    mimeTypes: [String!]! = [],
+    "A list of types this type is a child of. Usually these are the types handled by a transformer plugin."
+    types: [String!]! = ["contentfulBlogPostDescriptionTextNode", "contentfulBlogPostBodyTextNode"]
+) on OBJECT
+
+"Add date formatting options."
+directive @dateformat(difference: String, formatString: String, fromNow: Boolean, locale: String) on FIELD_DEFINITION
+
+"Do not infer field types from field values."
+directive @dontInfer on OBJECT
+
+"Link to File node by relative path."
+directive @fileByRelativePath(from: String) on FIELD_DEFINITION
+
+"Infer field types from field values."
+directive @infer on OBJECT
+
+"Link to node by foreign-key relation."
+directive @link(by: String! = "id", from: String, on: String) on FIELD_DEFINITION
+
+"Define the mime-types handled by this type."
+directive @mimeTypes(
+    "The mime-types handled by this type."
+    types: [String!]! = []
+) on OBJECT
+
+"""
+
+DEPRECATED: Use interface inheritance instead, i.e. "interface Foo implements Node".
+
+Adds root query fields for an interface. All implementing types must also implement the Node interface.
+"""
+directive @nodeInterface on INTERFACE
+
+"Proxy resolver from another field."
+directive @proxy(from: String!, fromNode: Boolean! = false) on FIELD_DEFINITION
 
 interface ContentfulEntry {
     children: [Node!]!
@@ -640,8 +680,8 @@ type Directory implements Node {
         "Configures the locale Moment.js will use to format the date."
         locale: String
     ): Date!
-    birthtime: Date @deprecated(reason : "Use `birthTime` instead")
-    birthtimeMs: Float @deprecated(reason : "Use `birthTime` instead")
+    birthtime: Date @deprecated(reason: "Use `birthTime` instead")
+    birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
     changeTime(
         "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
         difference: String,
@@ -773,8 +813,8 @@ type File implements Node {
         "Configures the locale Moment.js will use to format the date."
         locale: String
     ): Date!
-    birthtime: Date @deprecated(reason : "Use `birthTime` instead")
-    birthtimeMs: Float @deprecated(reason : "Use `birthTime` instead")
+    birthtime: Date @deprecated(reason: "Use `birthTime` instead")
+    birthtimeMs: Float @deprecated(reason: "Use `birthTime` instead")
     blksize: Int
     blocks: Int
     changeTime(
@@ -1776,6 +1816,14 @@ enum SortOrderEnum {
     ASC
     DESC
 }
+
+"A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
+scalar Date
+
+scalar GatsbyImageData
+
+"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
+scalar JSON
 
 input AVIFOptions {
     lossless: Boolean
@@ -3257,12 +3305,3 @@ input contentfulBlogPostDescriptionTextNodeSysFilterInput {
 input contentfulBlogPostDescriptionTextNodeSysSortInput {
     type: SortOrderEnum
 }
-
-
-"A date string, such as 2007-12-03, compliant with the ISO 8601 standard for representation of dates and times using the Gregorian calendar."
-scalar Date
-
-"The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf)."
-scalar JSON
-
-scalar GatsbyImageData

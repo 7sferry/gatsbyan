@@ -14,7 +14,7 @@ const Hit = connectHits(({ hits }) => {
         <>
           {hits.map((hit) => {
             const highlightResult = hit._highlightResult;
-            const title = highlightResult?.title?.value;
+            const title = highlightResult?.title?.value ?? "";
             const excerpt = highlightResult?.excerpt?.value?.trim() ?? "";
             let matchedStartIndex = getStartIndex(excerpt);
 

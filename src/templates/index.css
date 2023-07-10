@@ -6,7 +6,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
 p,
-#content-post,
+.content-post,
 .title {
   font-family: "Work Sans", Sans-serif, serif;
 }
@@ -26,7 +26,7 @@ p,
   padding: 0 1.5rem;
 }
 
-#content-post {
+.content-post {
   font-size: 1.2rem;
 }
 
@@ -105,10 +105,6 @@ a {
   margin: 0 10px 5px 0;
   max-width: 250px;
   max-height: 180px;
-}
-
-.marginb5 {
-  margin-bottom: 30px;
 }
 
 a:hover,

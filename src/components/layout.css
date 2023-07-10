@@ -169,9 +169,6 @@ textarea {
   height: auto;
 }
 
-.ais-VoiceSearch {
-  text-align: center;
-}
 ::-webkit-input-placeholder {
   color: inherit;
   opacity: 0.54;

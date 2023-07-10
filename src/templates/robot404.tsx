@@ -8,8 +8,8 @@ const text = `Looks like page you entered does not exist. Please make sure you'v
 
 const robot = `<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In  -->
 <svg class="svg"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="206.5px"  viewBox="0 0 326.5 592" style="enable-background:new 0 0 326.5 592;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" width="206.5px"  viewBox="0 0 326.5 592"
 	 xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FFFFFF;}
