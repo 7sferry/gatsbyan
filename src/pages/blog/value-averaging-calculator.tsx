@@ -22,7 +22,7 @@ const Vca = () => {
   const stockCacheValue = getStockCacheValue();
   const [stockNameValue, setStockNameValue] = React.useState(stockCacheValue.stockName || "");
   const [unitPriceValue, setUnitPriceValue] = React.useState(String(stockCacheValue.currentUnitPrice || ""));
-  const [investTargetValue, setInvestTartgetValue] = React.useState(String(stockCacheValue.monthlyInvestTarget || ""));
+  const [investTargetValue, setInvestTargetValue] = React.useState(String(stockCacheValue.monthlyInvestTarget || ""));
   const [sinceYearValue, setSinceYearValue] = React.useState(stockCacheValue.sinceYear || "");
   const [sinceMonthValue, setSinceMonthValue] = React.useState(stockCacheValue.sinceMonth || "");
   const [totalLotValue, setTotalLotValue] = React.useState(String(stockCacheValue.totalLot || ""));
@@ -53,7 +53,7 @@ const Vca = () => {
     setTotalLotValue("");
     setSinceYearValue("");
     setSinceMonthValue("");
-    setInvestTartgetValue("");
+    setInvestTargetValue("");
   };
 
   function constructStockData(e: React.BaseSyntheticEvent): StockData {
@@ -214,7 +214,7 @@ const Vca = () => {
                 className={"input-field"}
                 placeholder={"Rp"}
                 autoComplete={"off"}
-                onChange={(e) => setInvestTartgetValue(onChangeRupiah(e))}
+                onChange={(e) => setInvestTargetValue(onChangeRupiah(e))}
                 value={investTargetValue}
                 required={true}
               />
