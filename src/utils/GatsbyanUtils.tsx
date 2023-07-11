@@ -90,7 +90,7 @@ export function getMonthDifference(startDate: Date, endDate: Date) {
 }
 
 export function rp(val: number) {
-  return currencySymbol + (val?.toLocaleString(locales, { maximumFractionDigits: 15 }) ?? 0);
+  return currencySymbol + (val?.toLocaleString(locales, { maximumFractionDigits: 2 }) ?? 0);
 }
 
 export const PAGE_COUNT = 5;
