@@ -9,18 +9,18 @@ import "./sidebar.css";
 
 const AnalyticsPage = () => {
   const data: AnalyticsData = useStaticQuery(graphql`
-    query AnalyticsPageQuery {
-      allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/^\/blog\/(?!$)(?!.*(%|\\?|=|&)).*$/" } }) {
-        nodes {
-          path
-        }
-      }
-      allContentfulBlogPost {
-        nodes {
-          slug
-          title
-        }
-      }
+      query AnalyticsPageQuery {
+          allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/^\/blog\/(?!$)(?!.*(%|\\?|=|&)).*$/" } }, limit: 5) {
+              nodes {
+                  path
+              }
+          }
+          allContentfulBlogPost {
+              nodes {
+                  slug
+                  title
+              }
+          }
     }
   `);
 
@@ -35,20 +35,20 @@ const AnalyticsPage = () => {
       <>
         <div className="second-header">Most Viewed</div>
         <ul>
-          {allPageViews.nodes
-            .filter((view) => titleByPath.get(view.path))
-            .slice(0, 5)
-            .map((view) => {
-              return (
+          {allPageViews.nodes?.map((view) => {
+            let result = titleByPath.get(view.path);
+            return (
+              result && (
                 <li key={view.path}>
                   <small className="title">
                     <Link className="text-link" to={`${view.path}`}>
-                      {titleByPath.get(view.path)}
+                      {result}
                     </Link>
                   </small>
                 </li>
-              );
-            })}
+              )
+            );
+          })}
         </ul>
       </>
     )

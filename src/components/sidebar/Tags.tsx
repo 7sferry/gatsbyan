@@ -13,8 +13,9 @@ const Tags = () => {
     `
   );
 
-  function presentTags() {
-    return (
+  return (
+    <>
+      <div className="second-header mb-1">Tags</div>
       <div className="d-block">
         {allContentfulBlogPost.tags.map((tag, i) => (
           <div key={i} className="d-inline-block p-1 tag-link">
@@ -22,13 +23,6 @@ const Tags = () => {
           </div>
         ))}
       </div>
-    );
-  }
-
-  return (
-    <>
-      <div className="second-header mb-1">Tags</div>
-      {presentTags()}
     </>
   );
 };

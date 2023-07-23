@@ -8,35 +8,30 @@ import { Link } from "gatsby";
 import { connectHits } from "react-instantsearch-dom";
 
 const Hit = connectHits(({ hits }) => {
+  if (hits.length <= 0) {
+    return <p>There were no results yet.</p>;
+  }
   return (
     <div>
-      {hits.length > 0 ? (
-        <>
-          {hits.map((hit) => {
-            const highlightResult = hit._highlightResult;
-            const title = highlightResult?.title?.value ?? "";
-            const excerpt = highlightResult?.excerpt?.value?.trim() ?? "";
-            let matchedStartIndex = getStartIndex(excerpt);
+      {hits.map((hit) => {
+        const highlightResult = hit._highlightResult;
+        const title = highlightResult?.title?.value ?? "";
+        const excerpt = highlightResult?.excerpt?.value?.trim() ?? "";
+        let matchedStartIndex = getStartIndex(excerpt);
 
-            return (
-              <div key={hit.objectID} className="search-result-container">
-                <div className="title">
-                  <Link className="text-link" to={`/blog/${hit.slug}`}>
-                    <h3 dangerouslySetInnerHTML={{ __html: title }} />
-                  </Link>
-                </div>
-                <div className="ellipsis">
-                  <p dangerouslySetInnerHTML={{ __html: excerpt?.substring(matchedStartIndex) }} />
-                </div>
-              </div>
-            );
-          })}
-        </>
-      ) : (
-        <>
-          <p>There were no results yet.</p>
-        </>
-      )}
+        return (
+          <div key={hit.objectID} className="search-result-container">
+            <div className="title">
+              <Link className="text-link" to={`/blog/${hit.slug}`}>
+                <h3 dangerouslySetInnerHTML={{ __html: title }} />
+              </Link>
+            </div>
+            <div className="ellipsis">
+              <p dangerouslySetInnerHTML={{ __html: excerpt?.substring(matchedStartIndex) }} />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 });
