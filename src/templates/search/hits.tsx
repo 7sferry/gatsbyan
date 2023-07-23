@@ -42,7 +42,10 @@ function getStartIndex(excerpt: string) {
   if (lastHundredCharIndex <= 0) {
     return 0;
   }
-  return excerpt?.indexOf(" ", lastHundredCharIndex) + 1;
+  if (excerpt.length - lastHundredCharIndex > 3 * 100) {
+    return excerpt?.indexOf(" ", lastHundredCharIndex) + 1;
+  }
+  return excerpt?.indexOf(" ", matchedIndex - 3 * 100) + 1;
 }
 
 export default Hit;
