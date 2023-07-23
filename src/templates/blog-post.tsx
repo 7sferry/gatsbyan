@@ -64,11 +64,10 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
           <div className="title posted">{post.title}</div>
           <div className="title text-info mb-2">
             <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
-            <span className="page-info">
+            <span className="page-info" style={{ display: "inline-block" }}>
               {timeToRead} min{getPlurals(timeToRead)} read
             </span>
-            <br />
-            <span className="page-info">{getPostTags(post.tags)}</span>
+            <div className="page-info">{getPostTags(post.tags)}</div>
           </div>
           <div>
             <figure className={heroStyles.hero}>
