@@ -56,7 +56,7 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
     const heroImage = post.heroImage;
     const imageData = heroImage.gatsbyImageData;
     const imageTitle = heroImage?.title;
-    const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark);
+    const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
 
     return (
       <Layout>
@@ -90,8 +90,8 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
   }
 }
 
-function extractHtmlWithAnchor(childMarkdownRemark: { html: string; timeToRead: number }): string {
-  return childMarkdownRemark.html.replace(/<h2>(.*?)<\/h2>/g, function (match: string, capturedSubstr1: string) {
+function extractHtmlWithAnchor(html: string): string {
+  return html.replace(/<h2>(.*?)<\/h2>/g, function (match: string, capturedSubstr1: string) {
     if (capturedSubstr1.startsWith("<a ")) {
       return match;
     }
