@@ -62,11 +62,8 @@ function getStartIndex(excerpt: string) {
     return lastHundredCharIndex;
   }
   if (excerpt.length - lastHundredCharIndex > LIMIT_CHAR_ALTERNATE) {
-    console.log("l" + lastHundredCharIndex);
-    console.log(excerpt.length);
     return excerpt?.indexOf(" ", lastHundredCharIndex) + 1;
   }
-  console.log("m" + matchedIndex);
   return excerpt?.indexOf(" ", matchedIndex - LIMIT_CHAR_ALTERNATE) + 1;
 }
 
