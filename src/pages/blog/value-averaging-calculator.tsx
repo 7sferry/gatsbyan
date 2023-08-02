@@ -214,8 +214,8 @@ const Vca = () => {
                 className={"input-field"}
                 placeholder={"Rp"}
                 autoComplete={"off"}
-                onChange={(e) => setInvestTargetValue(onChangeRupiah(e))}
-                value={investTargetValue}
+                onChange={(e) => setUnitPriceValue(onChangeRupiah(e))}
+                value={unitPriceValue}
                 required={true}
               />
             </div>
@@ -234,8 +234,8 @@ const Vca = () => {
                 className={"input-field"}
                 placeholder={"Rp"}
                 autoComplete={"off"}
-                onChange={(e) => setUnitPriceValue(onChangeRupiah(e))}
-                value={unitPriceValue}
+                onChange={(e) => setInvestTargetValue(onChangeRupiah(e))}
+                value={investTargetValue}
                 required={true}
               />
             </div>
