@@ -54,7 +54,7 @@ class BlogPostTemplate extends React.Component<BlogPostProp, BlogPostState> {
     const repo = site.repo;
 
     const heroImage = post.heroImage;
-    const imageData = heroImage.gatsbyImageData;
+    const imageData = heroImage?.gatsbyImageData;
     const imageTitle = heroImage?.title;
     const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
 
