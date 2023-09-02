@@ -2,7 +2,7 @@ export const customPostContextByCode = new Map<string, CustomPostAttr>([
   [
     "vca",
     {
-      title: "Value Cost Averaging Calculator",
+      title: "Value Averaging Calculator",
       description: "Monthly Value Averaging Calculator. Kalkulator untuk menghitung Value Averaging secara bulanan",
       slug: "/blog/value-averaging-calculator",
       publishDate: new Date("2022-10-23"),

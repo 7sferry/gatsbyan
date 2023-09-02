@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { StockData, VcaCalculator } from "../../utils/VcaCalculator";
+import { StockData, UnitType, VcaCalculator } from "../../utils/VcaCalculator";
 import { getVcaResult } from "../../components/VcaFormResult";
 import CustomPage from "../../components/CustomPage";
 import { graphql, useStaticQuery } from "gatsby";
@@ -19,14 +19,27 @@ const Vca = () => {
   const storage = typeof window !== "undefined" ? window.localStorage : null;
   const VCA_STORAGE = "vca";
   const element: React.RefObject<HTMLDivElement> = React.createRef();
-  const stockCacheValue = getStockCacheValue();
-  const [stockNameValue, setStockNameValue] = React.useState(stockCacheValue.stockName || "");
-  const [unitPriceValue, setUnitPriceValue] = React.useState(String(stockCacheValue.currentUnitPrice || ""));
-  const [investTargetValue, setInvestTargetValue] = React.useState(String(stockCacheValue.monthlyInvestTarget || ""));
-  const [sinceYearValue, setSinceYearValue] = React.useState(stockCacheValue.sinceYear || "");
-  const [sinceMonthValue, setSinceMonthValue] = React.useState(stockCacheValue.sinceMonth || "");
-  const [totalLotValue, setTotalLotValue] = React.useState(String(stockCacheValue.totalLot || ""));
-  const [unitTypeValue, setUnitTypeValue] = React.useState(stockCacheValue.unitType || "");
+
+  const [stockNameValue, setStockNameValue] = React.useState("");
+  const [unitPriceValue, setUnitPriceValue] = React.useState("");
+  const [investTargetValue, setInvestTargetValue] = React.useState("");
+  const [sinceYearValue, setSinceYearValue] = React.useState("");
+  const [sinceMonthValue, setSinceMonthValue] = React.useState("");
+  const [totalLotValue, setTotalLotValue] = React.useState("");
+  const [unitTypeValue, setUnitTypeValue] = React.useState("");
+
+  React.useEffect(() => {
+    const stockCacheValue = getStockCacheValue();
+    if (stockCacheValue) {
+      setSinceMonthValue(stockCacheValue.sinceMonth || "");
+      setStockNameValue(stockCacheValue.stockName || "");
+      setUnitPriceValue(String(stockCacheValue.currentUnitPrice || ""));
+      setInvestTargetValue(String(stockCacheValue.monthlyInvestTarget || ""));
+      setSinceYearValue(String(stockCacheValue.sinceYear || ""));
+      setTotalLotValue(String(stockCacheValue.totalLot || ""));
+      setUnitTypeValue(String(stockCacheValue.unitType || ""));
+    }
+  }, []);
 
   function getStockCacheValue(): StockData {
     const stockCache = storage?.getItem(VCA_STORAGE);
@@ -102,7 +115,7 @@ const Vca = () => {
   return (
     postContext && (
       <CustomPage site={site.siteMetadata} customPost={postContext}>
-        <p>Berikut ini adalah kalkulator untuk menghitung investasi secara Value Cost Averaging per-bulan</p>
+        <p>Berikut ini adalah kalkulator untuk menghitung investasi secara Value Averaging per-bulan</p>
         <form id="survey-form" onSubmit={calculate}>
           <div className="rowTab">
             <div className="labels">
@@ -195,8 +208,8 @@ const Vca = () => {
                 className="dropdown"
                 style={{ width: "25%" }}
               >
-                <option value="lot">Lot</option>
-                <option value="unit">Unit</option>
+                <option value={UnitType.LOT}>Lot</option>
+                <option value={UnitType.UNIT}>Unit</option>
               </select>
             </div>
           </div>
@@ -249,7 +262,7 @@ const Vca = () => {
                 Clear
               </button>
               <button className="reset-vca" onClick={resetInput}>
-                reset
+                Reset
               </button>
             </div>
           </div>
