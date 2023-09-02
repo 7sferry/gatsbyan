@@ -74,9 +74,9 @@ const Vca = () => {
       stockName: e.target.stockName.value,
       currentUnitPrice: e.target.currentUnitPrice.value,
       unitType: e.target.unitType.value,
-      totalLot: e.target.totalLot.value,
+      totalLot: parseInt(e.target.totalLot.value),
       monthlyInvestTarget: e.target.monthlyInvestTarget.value,
-      sinceYear: e.target.sinceYear.value,
+      sinceYear: parseInt(e.target.sinceYear.value),
       sinceMonth: e.target.sinceMonth.value,
     };
   }
