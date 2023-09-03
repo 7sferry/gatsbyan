@@ -55,13 +55,21 @@ const BlogPostTemplate = (props: BlogPostProp) => {
 };
 
 function extractHtmlWithAnchor(html: string): string {
-  return html.replace(/<h2>(.*?)<\/h2>/g, function (match: string, capturedSubstr1: string) {
-    if (capturedSubstr1.startsWith("<a ")) {
-      return match;
-    }
-    const hrefValue = getHrefValue(capturedSubstr1);
-    return `<span class="anchor-tag"><h2 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h2></span>`;
-  });
+  return html
+    .replace(/<h2>(.*?)<\/h2>/g, function (match: string, capturedSubstr1: string) {
+      if (capturedSubstr1.startsWith("<a ")) {
+        return match;
+      }
+      const hrefValue = getHrefValue(capturedSubstr1);
+      return `<span class="anchor-tag"><h2 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h2></span>`;
+    })
+    .replace(/<h3>(.*?)<\/h3>/g, function (match: string, capturedSubstr1: string) {
+      if (capturedSubstr1.startsWith("<a ")) {
+        return match;
+      }
+      const hrefValue = getHrefValue(capturedSubstr1);
+      return `<span class="anchor-tag"><h3 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h3></span>`;
+    });
 }
 
 function getHrefValue(capturedSubstr1: string): string {
