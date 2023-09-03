@@ -2140,11 +2140,6 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@react-buddy/ide-toolbox@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@react-buddy/ide-toolbox/-/ide-toolbox-2.4.0.tgz#8c986491f061334c0da6e7c77b65b88ef915ef8d"
-  integrity sha512-TWHX6gwa0Gop7215uHhjFMbYLLdjM/b9rr0wYE3E0m7GNJ56gbPpbZiq86w9uI8zksl827acqGeT437MkuO64w==
-
 "@sideway/address@^4.1.3":
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.4.tgz#03dccebc6ea47fdc226f7d3d1ad512955d4783f0"
@@ -3652,11 +3647,6 @@ capital-case@^1.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
     upper-case-first "^2.0.2"
-
-case@^1.6.3:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
-  integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
 ccount@^1.0.0:
   version "1.1.0"

@@ -1,6 +1,6 @@
 import { getMonthDifference, rp } from "../utils/GatsbyanUtils";
 import React from "react";
-import { VcaCalculator } from "../utils/VcaCalculator";
+import { ValueAveragingStockCalculator } from "../utils/ValueAveragingStockCalculator";
 import { format } from "date-fns";
 import id from "date-fns/locale/id";
 
@@ -9,7 +9,7 @@ import id from "date-fns/locale/id";
  * on Oktober 2022      *
  ************************/
 
-export const getVcaResult = (stock: VcaCalculator) => {
+export const getVcaResult = (stock: ValueAveragingStockCalculator) => {
   const monthDifference = getMonthDifference(stock.sinceDate, new Date());
   const lotShouldInvest = stock.countLotShouldInvest(stock.monthlyInvestTarget, monthDifference + 1);
   if (stock.totalLot <= 0 && stock.monthlyInvestTarget < stock.currentLotPrice) {

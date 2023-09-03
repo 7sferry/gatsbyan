@@ -5,9 +5,12 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { kebab as kebabCase } from "case";
 import { formatToTimeZone } from "date-fns-timezone";
 import { format } from "date-fns";
+
+export const kebabCase = (str: string) => {
+  return str.trim().toLowerCase().replace(" ", "-");
+};
 
 export const getPostTags = (tags: Array<string> | null) => {
   const techTags = new Set<React.ReactNode>();
@@ -98,3 +101,33 @@ export const PAGE_COUNT = 5;
 export const SEARCH_COUNT = 20;
 
 export const DEFAULT_ICON_SIZE = 20;
+
+export interface CustomPostAttr {
+  title: string;
+  description: string;
+  publishDate: Date;
+  lang: string;
+  image?: string | null;
+}
+
+export function isCommentShown() {
+  const [commentShown, setCommentShown] = React.useState(false);
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const innerHeight = window.innerHeight + document.documentElement.scrollTop;
+    const clientHeight = document.body.clientHeight;
+    const percentage = (innerHeight / clientHeight) * 100;
+    if (!commentShown && percentage > 50) {
+      setCommentShown(true);
+    }
+  };
+  return commentShown;
+}

@@ -6,7 +6,6 @@
 import React from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import "./sidebar.css";
-import { customPostContextByCode } from "../../../custom-post-by-slug";
 
 const FeaturedPage = () => {
   const data: FeaturedPageData = useStaticQuery(graphql`
@@ -35,15 +34,11 @@ const FeaturedPage = () => {
               </li>
             );
           })}
-          {Array.from(customPostContextByCode.values()).map((vcaContext) => {
-            return (
-              <li key={vcaContext.slug}>
-                <Link className="text-link" to={vcaContext.slug}>
-                  <small className="title">{vcaContext.title}</small>
-                </Link>
-              </li>
-            );
-          })}
+          <li>
+            <Link className="text-link" to={"/blog/value-averaging-calculator"}>
+              <small className="title">{"Value Averaging Calculator"}</small>
+            </Link>
+          </li>
         </ul>
       </>
     )

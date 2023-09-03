@@ -4,7 +4,7 @@
  ************************/
 import { getNumberValueFromRupiah } from "./GatsbyanUtils";
 
-export class VcaCalculator {
+export class ValueAveragingStockCalculator {
   readonly stockName: string;
   readonly sinceDate: Date;
   currentLotPrice: number;

@@ -1,23 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { StockData, UnitType, VcaCalculator } from "../../utils/VcaCalculator";
-import { getVcaResult } from "../../components/VcaFormResult";
+import { StockData, UnitType, ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator";
+import { getVcaResult } from "../../components/ValueAveragingFormResult";
 import CustomPage from "../../components/CustomPage";
-import { graphql, useStaticQuery } from "gatsby";
-import { customPostContextByCode } from "../../../custom-post-by-slug";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import Seo from "../../components/Seo";
-import { onChangeRupiah } from "../../utils/GatsbyanUtils";
+import { CustomPostAttr, onChangeRupiah } from "../../utils/GatsbyanUtils";
 
 /************************
  * Made by [MR Ferry™]  *
  * on Oktober 2022      *
  ************************/
 
-const postContext = customPostContextByCode.get("vca");
+const pageContext: CustomPostAttr = {
+  title: "Value Averaging Calculator",
+  description: "Monthly Value Averaging Calculator. Kalkulator untuk menghitung Value Averaging secara bulanan",
+  publishDate: new Date("2022-10-23"),
+  lang: "id",
+};
 
-const Vca = () => {
+const ValueAveragingCalculator = () => {
+  const storageKey = "vca";
   const storage = typeof window !== "undefined" ? window.localStorage : null;
-  const VCA_STORAGE = "vca";
   const element: React.RefObject<HTMLDivElement> = React.createRef();
 
   const [stockNameValue, setStockNameValue] = React.useState("");
@@ -42,7 +46,7 @@ const Vca = () => {
   }, []);
 
   function getStockCacheValue(): StockData {
-    const stockCache = storage?.getItem(VCA_STORAGE);
+    const stockCache = storage?.getItem(storageKey);
     if (stockCache) {
       return JSON.parse(stockCache);
     }
@@ -59,7 +63,7 @@ const Vca = () => {
 
   const resetInput = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    storage?.removeItem(VCA_STORAGE);
+    storage?.removeItem(storageKey);
     setStockNameValue("");
     setUnitPriceValue("");
     setUnitTypeValue("");
@@ -85,14 +89,14 @@ const Vca = () => {
     e.preventDefault();
     clearResult();
     const stockData = constructStockData(e);
-    const stock = new VcaCalculator(stockData);
+    const stock = new ValueAveragingStockCalculator(stockData);
 
     const divElement: HTMLDivElement = document.createElement("div");
     element?.current?.appendChild(divElement);
     const vcaResult = getVcaResult(stock);
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
-    storage?.setItem(VCA_STORAGE, JSON.stringify(stockData));
+    storage?.setItem(storageKey, JSON.stringify(stockData));
   };
 
   const toUpperCase = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -104,7 +108,6 @@ const Vca = () => {
       query BlogPageSlug {
         site {
           siteMetadata {
-            siteUrl
             repo
           }
         }
@@ -113,9 +116,13 @@ const Vca = () => {
   );
 
   return (
-    postContext && (
-      <CustomPage site={site.siteMetadata} customPost={postContext}>
-        <p>Berikut ini adalah kalkulator untuk menghitung investasi secara Value Averaging per-bulan</p>
+    pageContext && (
+      <CustomPage site={site.siteMetadata} customPost={pageContext}>
+        <p>
+          Berikut ini adalah kalkulator untuk menghitung investasi secara Value Averaging per-bulan. Untuk penjelasan
+          mengenai strategi ini bisa dibaca tulisan tentang{" "}
+          <Link to={"/blog/pengalaman-investasi-saham-selama-4-bulan#value-averaging"}> strategi saham</Link>
+        </p>
         <form id="survey-form" onSubmit={calculate}>
           <div className="rowTab">
             <div className="labels">
@@ -273,14 +280,14 @@ const Vca = () => {
   );
 };
 
-export default Vca;
+export default ValueAveragingCalculator;
 
 export function Head({ location }: any) {
   return (
     <Seo
-      title={postContext?.title}
-      description={postContext?.description}
-      lang={postContext?.lang}
+      title={pageContext?.title}
+      description={pageContext?.description}
+      lang={pageContext?.lang}
       path={location?.pathname}
     />
   );

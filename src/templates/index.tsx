@@ -13,59 +13,57 @@ import Pagination from "../components/Pagination";
 import { getPlurals, getPostTags, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
 
-class IndexPage extends React.Component<IndexProp, { }> {
-  render() {
-    const { pageContext, data } = this.props;
-    const { allContentfulBlogPost: contents } = data;
-    const { nodes: posts, pageInfo } = contents;
-    const kebabTag = pageContext.kebabTag;
-    const paginationUrl = kebabTag ? `/tags/${kebabTag}` : `/page`;
+function IndexPage(props: IndexProp) {
+  const { pageContext, data } = props;
+  const { allContentfulBlogPost: contents } = data;
+  const { nodes: posts, pageInfo } = contents;
+  const kebabTag = pageContext.kebabTag;
+  const paginationUrl = kebabTag ? `/tags/${kebabTag}` : `/page`;
 
-    return (
-      <Layout>
-        <div className="post-main">
-          {kebabTag && (
-            <div className="tag-title">
-              All posts related to <b>{pageContext.tag}</b>
-            </div>
-          )}
-          {posts.map((post) => {
-            const tags = post.tags;
-            const { childMarkdownRemark } = post.body;
-            const timeToRead = childMarkdownRemark.timeToRead;
-            return (
-              <div id={post.id} key={post.id} className="d-block pb-3 blog-content">
-                <div className="post-container">
-                  <div className="title posted">
-                    <Link to={`/blog/${post.slug}`} className="text-link">
-                      {post.title}
-                    </Link>
-                  </div>
-                  <div className="title text-info">
-                    <span className="page-info">{getPublishDate(post.publishDate)}</span>
-                    <span className="page-info">
-                      {timeToRead} min{getPlurals(timeToRead)} read
-                    </span>
-                    <br />
-                    <span className="page-info">{getPostTags(tags)}</span>
-                  </div>
-                  <div className="pt-1">
-                    {post.heroImage && (
-                      <GatsbyImage image={post.heroImage.gatsbyImageData} className="index-thumbnail" alt={"ferr"} />
-                    )}
-                    <p>{childMarkdownRemark.excerpt}</p>
-                  </div>
+  return (
+    <Layout>
+      <div className="post-main">
+        {kebabTag && (
+          <div className="tag-title">
+            All posts related to <b>{pageContext.tag}</b>
+          </div>
+        )}
+        {posts.map((post) => {
+          const tags = post.tags;
+          const { childMarkdownRemark } = post.body;
+          const timeToRead = childMarkdownRemark.timeToRead;
+          return (
+            <div id={post.id} key={post.id} className="d-block pb-3 blog-content">
+              <div className="post-container">
+                <div className="title posted">
+                  <Link to={`/blog/${post.slug}`} className="text-link">
+                    {post.title}
+                  </Link>
+                </div>
+                <div className="title text-info">
+                  <span className="page-info">{getPublishDate(post.publishDate)}</span>
+                  <span className="page-info">
+                    {timeToRead} min{getPlurals(timeToRead)} read
+                  </span>
+                  <br />
+                  <span className="page-info">{getPostTags(tags)}</span>
+                </div>
+                <div className="pt-1">
+                  {post.heroImage && (
+                    <GatsbyImage image={post.heroImage.gatsbyImageData} className="index-thumbnail" alt={"ferr"} />
+                  )}
+                  <p>{childMarkdownRemark.excerpt}</p>
                 </div>
               </div>
-            );
-          })}
-          <div className="text-center mt-4">
-            <Pagination totalPageCount={pageInfo.pageCount} url={paginationUrl} currentPage={pageInfo.currentPage} />
-          </div>
+            </div>
+          );
+        })}
+        <div className="text-center mt-4">
+          <Pagination totalPageCount={pageInfo.pageCount} url={paginationUrl} currentPage={pageInfo.currentPage} />
         </div>
-      </Layout>
-    );
-  }
+      </div>
+    </Layout>
+  );
 }
 
 interface IndexProp {

@@ -3,8 +3,8 @@
  * September 2020       *
  ************************/
 
-const path = require(`path`);
-const { kebab: kebabCase } = require("case");
+import path from "path";
+import { kebabCase } from "./src/utils/GatsbyanUtils";
 
 export interface AllContentfulBlogPost {
   allContentfulBlogPost: {
@@ -66,7 +66,8 @@ exports.createPages = ({ graphql, actions }: any) => {
 
         const postsPerPage = 10;
         const numPages = Math.ceil(posts.length / postsPerPage);
-        Array.from({ length: numPages }).forEach((value, i) => {
+        Array.from({ length: numPages }).forEach((_value, i) => {
+          console.log(_value);
           createPage({
             path: `/${i === 0 ? "" : "page/" + (i + 1)}`,
             component: path.resolve("./src/templates/index.tsx"),
