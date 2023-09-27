@@ -18,7 +18,7 @@ export interface AllContentfulBlogPost {
 }
 
 exports.createPages = ({ graphql, actions }: any) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
 
   return new Promise((resolve, reject) => {
     resolve(
@@ -103,6 +103,48 @@ exports.createPages = ({ graphql, actions }: any) => {
         createPage({
           path: `/archive`,
           component: path.resolve("./src/templates/archive.tsx"),
+        });
+
+        createRedirect({
+          fromPath: `/blog/download-gatsby-blog-starters-and-contentful-cms-template`,
+          toPath: `/blog/migrasi-blog-ke-gatsby`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
+
+        createRedirect({
+          fromPath: `/blog/orang-padang-vs-orang-minangkabau`,
+          toPath: `/blog/fakta-unik-minangkabau`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
+
+        createRedirect({
+          fromPath: `/blog/t-e-r-c-o-l-o-n-g/`,
+          toPath: `/blog/tercolong`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
+
+        createRedirect({
+          fromPath: `/blog/acid-pada-database-consistency`,
+          toPath: `/blog/acid-pada-database#consistency`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
+
+        createRedirect({
+          fromPath: `/blog/acid-pada-database-atomicity`,
+          toPath: `/blog/acid-pada-database#atomicity`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
+
+        createRedirect({
+          fromPath: `/blog/acid-pada-database-durability`,
+          toPath: `/blog/acid-pada-database#durability`,
+          redirectInBrowser: true,
+          isPermanent: true,
         });
       })
     );
