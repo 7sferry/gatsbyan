@@ -31,7 +31,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   return (
     <>
       <html lang={lang} />
-      <title>{`${title} | ${metadata.realName}`}</title>
+      <title>{`${title} [${metadata.realName}]`}</title>
       <meta name="description" content={metaDescription} />
       <meta name="og:title" content={title} />
       <meta name="og:description" content={metaDescription} />
