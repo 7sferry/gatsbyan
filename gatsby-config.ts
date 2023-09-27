@@ -13,12 +13,24 @@ function isProduction() {
 const contentfulConfig = {
   spaceId: process.env.SPACEID,
   accessToken: isProduction() ? process.env.TOKEN : process.env.PREVIEW_TOKEN,
-  host: isProduction() ? "cdn.contentful.com" : "preview.contentful.com"
+  host: isProduction() ? "cdn.contentful.com" : "preview.contentful.com",
   // pageLimit: 100,
   // assetDownloadWorkers: 25,
   // downloadLocal: true,
 };
-const exclude = ["/tags/**", "/search", "/archive", "/404", "/404.html", "/page/**", "^[^?]+(\\?.*)", ".json$", "[?]", "[#]", "[%]"];
+const exclude = [
+  "/tags/**",
+  "/search",
+  "/archive",
+  "/404",
+  "/404.html",
+  "/page/**",
+  "^[^?]+(\\?.*)",
+  ".json$",
+  "[?]",
+  "[#]",
+  "[%]",
+];
 
 module.exports = {
   trailingSlash: "never",
