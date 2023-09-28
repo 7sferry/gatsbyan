@@ -10,48 +10,47 @@
     }
   },
   "version": 2,
-  "routes": [
+  "redirects": [
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
+      "destination": "/blog/migrasi-blog-ke-gatsby",
+      "permanent": true
     },
     {
-      "handle": "filesystem"
+      "source": "/blog/orang-padang-vs-orang-minangkabau",
+      "destination": "/blog/fakta-unik-minangkabau",
+      "permanent": true
     },
     {
-      "src": "/.*",
-      "status": 404,
-      "dest": "/404"
+      "source": "/blog/t-e-r-c-o-l-o-n-g/",
+      "destination": "/blog/tercolong",
+      "permanent": true
     },
     {
-      "src": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
-      "status": 301,
-      "dest": "/blog/migrasi-blog-ke-gatsby"
+      "source": "/blog/acid-pada-database-consistency",
+      "destination": "/blog/acid-pada-database#consistency",
+      "permanent": true
     },
     {
-      "src": "/blog/orang-padang-vs-orang-minangkabau",
-      "status": 301,
-      "dest": "/blog/fakta-unik-minangkabau"
+      "source": "/blog/acid-pada-database-atomicity",
+      "destination": "/blog/acid-pada-database#atomicity",
+      "permanent": true
     },
     {
-      "src": "/blog/t-e-r-c-o-l-o-n-g/",
-      "status": 301,
-      "dest": "/blog/tercolong"
+      "source": "/blog/acid-pada-database-durability",
+      "destination": "/blog/acid-pada-database#durability",
+      "permanent": true
     },
     {
-      "src": "/blog/acid-pada-database-consistency",
-      "status": 301,
-      "dest": "/blog/acid-pada-database#consistency"
-    },
+      "source": "/.*",
+      "destination": "/404",
+      "statusCode": 404
+    }
+  ],
+  "rewrites": [
     {
-      "src": "/blog/acid-pada-database-atomicity",
-      "status": 301,
-      "dest": "/blog/acid-pada-database#atomicity"
-    },
-    {
-      "src": "/blog/acid-pada-database-durability",
-      "status": 301,
-      "dest": "/blog/acid-pada-database#durability"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
