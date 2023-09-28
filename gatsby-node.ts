@@ -116,7 +116,7 @@ exports.createPages = ({ graphql, actions }: any) => {
           fromPath: `/blog/orang-padang-vs-orang-minangkabau`,
           toPath: `/blog/fakta-unik-minangkabau`,
           redirectInBrowser: isNotProduction,
-          isPermanent: true,
+          statusCode: 301,
         });
 
         createRedirect({

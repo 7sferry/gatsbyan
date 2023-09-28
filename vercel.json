@@ -14,7 +14,7 @@
     {
       "source": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
       "destination": "/blog/migrasi-blog-ke-gatsby",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/blog/orang-padang-vs-orang-minangkabau",
@@ -46,6 +46,11 @@
     {
       "source": "/(.*)",
       "destination": "/404"
+    },
+    {
+      "source": "/*",
+      "destination": "/index.html"
     }
-  ]
+  ],
+  "trailingSlash": false
 }
