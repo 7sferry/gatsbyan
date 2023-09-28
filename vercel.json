@@ -48,7 +48,7 @@
       "destination": "/404"
     },
     {
-      "source": "/*",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
