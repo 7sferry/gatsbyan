@@ -130,7 +130,7 @@ exports.createPages = ({ graphql, actions }: any) => {
           fromPath: `/blog/acid-pada-database-consistency`,
           toPath: `/blog/acid-pada-database#consistency`,
           redirectInBrowser: isNotProduction,
-          isPermanent: tru,
+          isPermanent: true,
         });
 
         createRedirect({
