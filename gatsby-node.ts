@@ -116,7 +116,7 @@ exports.createPages = ({ graphql, actions }: any) => {
           fromPath: `/blog/orang-padang-vs-orang-minangkabau`,
           toPath: `/blog/fakta-unik-minangkabau`,
           redirectInBrowser: isNotProduction,
-          isPermanent: tru,
+          isPermanent: true,
         });
 
         createRedirect({
@@ -144,7 +144,7 @@ exports.createPages = ({ graphql, actions }: any) => {
           fromPath: `/blog/acid-pada-database-durability`,
           toPath: `/blog/acid-pada-database#durability`,
           redirectInBrowser: isNotProduction,
-          isPermanent: tru,
+          isPermanent: true,
         });
       })
     );
