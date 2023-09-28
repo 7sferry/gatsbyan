@@ -16,42 +16,42 @@
       "dest": "/$1"
     },
     {
-      "src": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
-      "dest": "/blog/migrasi-blog-ke-gatsby",
-      "status": 301
-    },
-    {
-      "src": "/blog/orang-padang-vs-orang-minangkabau",
-      "dest": "/blog/fakta-unik-minangkabau",
-      "status": 301
-    },
-    {
-      "src": "/blog/t-e-r-c-o-l-o-n-g/",
-      "dest": "/blog/tercolong",
-      "status": 301
-    },
-    {
-      "src": "/blog/acid-pada-database-consistency",
-      "dest": "/blog/acid-pada-database#consistency",
-      "status": 301
-    },
-    {
-      "src": "/blog/acid-pada-database-atomicity",
-      "dest": "/blog/acid-pada-database#atomicity",
-      "status": 301
-    },
-    {
-      "src": "/blog/acid-pada-database-durability",
-      "dest": "/blog/acid-pada-database#durability",
-      "status": 301
-    },
-    {
       "handle": "filesystem"
     },
     {
       "src": "/.*",
       "status": 404,
       "dest": "/404"
+    },
+    {
+      "src": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
+      "status": 301,
+      "dest": "/blog/migrasi-blog-ke-gatsby"
+    },
+    {
+      "src": "/blog/orang-padang-vs-orang-minangkabau",
+      "status": 301,
+      "dest": "/blog/fakta-unik-minangkabau"
+    },
+    {
+      "src": "/blog/t-e-r-c-o-l-o-n-g/",
+      "status": 301,
+      "dest": "/blog/tercolong"
+    },
+    {
+      "src": "/blog/acid-pada-database-consistency",
+      "status": 301,
+      "dest": "/blog/acid-pada-database#consistency"
+    },
+    {
+      "src": "/blog/acid-pada-database-atomicity",
+      "status": 301,
+      "dest": "/blog/acid-pada-database#atomicity"
+    },
+    {
+      "src": "/blog/acid-pada-database-durability",
+      "status": 301,
+      "dest": "/blog/acid-pada-database#durability"
     }
   ]
 }
