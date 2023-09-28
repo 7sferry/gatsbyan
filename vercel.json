@@ -40,13 +40,14 @@
       "source": "/blog/acid-pada-database-durability",
       "destination": "/blog/acid-pada-database#durability",
       "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/404",
+      "statusCode": 404
     }
   ],
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/404"
-    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
