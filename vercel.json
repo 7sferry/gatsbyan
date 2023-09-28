@@ -11,8 +11,49 @@
   },
   "version": 2,
   "routes": [
-    { "src": "/(.*)", "dest": "/$1" },
-    { "handle": "filesystem" },
-    { "src": "/.*", "status": 404, "dest": "/404" }
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "status": 404,
+      "dest": "/404"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
+      "destination": "/blog/migrasi-blog-ke-gatsby",
+      "permanent": true
+    },
+    {
+      "source": "/blog/orang-padang-vs-orang-minangkabau",
+      "destination": "/blog/fakta-unik-minangkabau",
+      "permanent": true
+    },
+    {
+      "source": "/blog/t-e-r-c-o-l-o-n-g/",
+      "destination": "/blog/tercolong",
+      "permanent": true
+    },
+    {
+      "source": "/blog/acid-pada-database-consistency",
+      "destination": "/blog/acid-pada-database#consistency",
+      "permanent": true
+    },
+    {
+      "source": "/blog/acid-pada-database-atomicity",
+      "destination": "/blog/acid-pada-database#atomicity",
+      "permanent": true
+    },
+    {
+      "source": "/blog/acid-pada-database-durability",
+      "destination": "/blog/acid-pada-database#durability",
+      "permanent": true
+    }
   ]
 }
