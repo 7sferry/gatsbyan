@@ -40,10 +40,6 @@
       "source": "/blog/acid-pada-database-durability",
       "destination": "/blog/acid-pada-database#durability",
       "permanent": true
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ],
   "rewrites": [
