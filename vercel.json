@@ -10,18 +10,37 @@
     }
   },
   "version": 2,
-  "routes": [
+  "redirects": [
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
+      "destination": "/blog/migrasi-blog-ke-gatsby",
+      "statusCode": 301
     },
     {
-      "handle": "filesystem"
+      "source": "/blog/orang-padang-vs-orang-minangkabau",
+      "destination": "/blog/fakta-unik-minangkabau",
+      "permanent": true
     },
     {
-      "src": "/.*",
-      "status": 404,
-      "dest": "/404"
+      "source": "/blog/t-e-r-c-o-l-o-n-g/",
+      "destination": "/blog/tercolong",
+      "permanent": true
+    },
+    {
+      "source": "/blog/acid-pada-database-consistency",
+      "destination": "/blog/acid-pada-database#consistency",
+      "permanent": true
+    },
+    {
+      "source": "/blog/acid-pada-database-atomicity",
+      "destination": "/blog/acid-pada-database#atomicity",
+      "permanent": true
+    },
+    {
+      "source": "/blog/acid-pada-database-durability",
+      "destination": "/blog/acid-pada-database#durability",
+      "permanent": true
     }
-  ]
+  ],
+  "trailingSlash": false
 }
