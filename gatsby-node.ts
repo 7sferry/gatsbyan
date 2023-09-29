@@ -104,47 +104,46 @@ exports.createPages = ({ graphql, actions }: any) => {
           component: path.resolve("./src/templates/archive.tsx"),
         });
 
-        let isNotProduction = process.env.NODE_ENV !== "production";
         createRedirect({
           fromPath: `/blog/download-gatsby-blog-starters-and-contentful-cms-template`,
           toPath: `/blog/migrasi-blog-ke-gatsby`,
-          redirectInBrowser: isNotProduction,
+          redirectInBrowser: true,
           isPermanent: true,
         });
 
         createRedirect({
           fromPath: `/blog/orang-padang-vs-orang-minangkabau`,
           toPath: `/blog/fakta-unik-minangkabau`,
-          redirectInBrowser: isNotProduction,
-          statusCode: 301,
+          redirectInBrowser: true,
+          statusCode: 30,
         });
 
         createRedirect({
           fromPath: `/blog/t-e-r-c-o-l-o-n-g/`,
           toPath: `/blog/tercolong`,
-          redirectInBrowser: isNotProduction,
+          redirectInBrowser: true,
           isPermanent: true,
         });
 
         createRedirect({
           fromPath: `/blog/acid-pada-database-consistency`,
           toPath: `/blog/acid-pada-database#consistency`,
-          redirectInBrowser: isNotProduction,
-          isPermanent: true,
+          redirectInBrowser: true,
+          isPermanent: tru,
         });
 
         createRedirect({
           fromPath: `/blog/acid-pada-database-atomicity`,
           toPath: `/blog/acid-pada-database#atomicity`,
-          redirectInBrowser: isNotProduction,
+          redirectInBrowser: true,
           isPermanent: true,
         });
 
         createRedirect({
           fromPath: `/blog/acid-pada-database-durability`,
           toPath: `/blog/acid-pada-database#durability`,
-          redirectInBrowser: isNotProduction,
-          isPermanent: true,
+          redirectInBrowser: true,
+          isPermanent: tru,
         });
       })
     );
