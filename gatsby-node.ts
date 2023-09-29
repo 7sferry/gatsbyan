@@ -115,7 +115,7 @@ exports.createPages = ({ graphql, actions }: any) => {
           fromPath: `/blog/orang-padang-vs-orang-minangkabau`,
           toPath: `/blog/fakta-unik-minangkabau`,
           redirectInBrowser: true,
-          statusCode: 30,
+          statusCode: 301,
         });
 
         createRedirect({
@@ -129,7 +129,7 @@ exports.createPages = ({ graphql, actions }: any) => {
           fromPath: `/blog/acid-pada-database-consistency`,
           toPath: `/blog/acid-pada-database#consistency`,
           redirectInBrowser: true,
-          isPermanent: tru,
+          isPermanent: true,
         });
 
         createRedirect({
@@ -143,7 +143,7 @@ exports.createPages = ({ graphql, actions }: any) => {
           fromPath: `/blog/acid-pada-database-durability`,
           toPath: `/blog/acid-pada-database#durability`,
           redirectInBrowser: true,
-          isPermanent: tru,
+          isPermanent: true,
         });
       })
     );
