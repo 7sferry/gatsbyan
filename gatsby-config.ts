@@ -152,6 +152,7 @@ module.exports = {
         serviceAccountEmail: process.env.ANALYTICS_EMAIL,
         privateKey: process.env.ANALYTICS_PRIVATE_KEY,
         property: process.env.ANALYTICS_GA4,
+        metric: `scrolledUsers`,
       },
     },
     {
