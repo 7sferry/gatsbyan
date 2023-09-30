@@ -7,11 +7,12 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
-import { getPlurals, getPostTags, getPublishDateTime, isCommentShown } from "../utils/GatsbyanUtils";
+import { getPlurals, getPostTags, getPublishDateTime } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Comment } from "../components/Comment";
+import { BlogPostProp } from "../types/DataTypes";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
   const { contentfulBlogPost: post, site: siteProp } = props.data;
@@ -48,7 +49,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
             }}
           />
         </div>
-        {isCommentShown() && repo && <Comment repo={repo} />}
+        <Comment repo={repo} />
       </div>
     </Layout>
   );
@@ -84,43 +85,6 @@ function getHrefValue(capturedSubstr1: string): string {
     hrefValue = hrefValue.substring(0, hrefValue.length - 1);
   }
   return hrefValue;
-}
-
-interface BlogPostProp {
-  data: {
-    contentfulBlogPost: {
-      title: string;
-      publishDate: Date;
-      lang: string;
-      body: {
-        childMarkdownRemark: {
-          html: string;
-          timeToRead: number;
-        };
-      };
-      description: {
-        description: string;
-      };
-      heroImage: {
-        gatsbyImageData: IGatsbyImageData;
-        title: string;
-        file: {
-          url: string;
-        };
-      };
-      tags: Array<string>;
-      slug: string;
-    };
-    site: {
-      siteMetadata: {
-        siteUrl: string;
-        repo: string;
-      };
-    };
-  };
-  location: {
-    pathname: string;
-  };
 }
 
 export default BlogPostTemplate;

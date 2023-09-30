@@ -8,6 +8,7 @@ import { Link } from "gatsby";
 import "./header.css";
 import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
 import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
+import { MenuAttr } from "../../types/DataTypes";
 
 const Menu = () => {
   return (
@@ -48,11 +49,5 @@ export const MenuLinks = () => (
     })}
   </>
 );
-
-interface MenuAttr {
-  link: string;
-  icon: React.ReactNode;
-  text: string;
-}
 
 export default Menu;

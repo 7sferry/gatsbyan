@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { getTags } from "../../utils/GatsbyanUtils";
+import { TagsData } from "../../types/DataTypes";
 
 const Tags = () => {
   const { allContentfulBlogPost }: TagsData = useStaticQuery(
@@ -26,11 +27,5 @@ const Tags = () => {
     </>
   );
 };
-
-interface TagsData {
-  allContentfulBlogPost: {
-    tags: Array<string>;
-  };
-}
 
 export default Tags;

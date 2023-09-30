@@ -3,6 +3,8 @@
  * on April 2020        *
  ************************/
 
+import { AlgoliaData, AlgoliaNode, FlattenAlgoliaNode } from "../types/DataTypes";
+
 const allContentfulBlogPost = `{
   allContentfulBlogPost {
     nodes {
@@ -73,7 +75,7 @@ const splitNode = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
   return subContents.map((content) => ({
     ...rest,
     excerpt: content,
-    id: rest.id + "_" + subContentsLength--
+    id: rest.id + "_" + subContentsLength--,
   }));
 };
 
@@ -87,33 +89,5 @@ const queries = [
     transformer: ({ data }: AlgoliaData) => data.allContentfulBlogPost.nodes.map(flatNode).map(splitNode).flat(1),
   },
 ];
-
-interface AlgoliaData {
-  data: {
-    allContentfulBlogPost: {
-      nodes: Array<AlgoliaNode>;
-    };
-  };
-}
-
-interface AlgoliaNode {
-  id: string;
-  title: string;
-  slug: string;
-  body: {
-    childMarkdownRemark: AlgoliaChildMarkdownRemark;
-  };
-}
-
-interface AlgoliaChildMarkdownRemark {
-  excerpt: string;
-}
-
-interface FlattenAlgoliaNode {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-}
 
 module.exports = queries;

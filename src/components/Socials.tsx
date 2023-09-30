@@ -4,10 +4,11 @@
  ************************/
 
 import React from "react";
-import { FaLinkedin, FaGithubSquare, FaFacebook, FaStackOverflow, FaUserGraduate } from "react-icons/fa";
+import { FaFacebook, FaGithubSquare, FaLinkedin, FaStackOverflow, FaUserGraduate } from "react-icons/fa";
 import { GiCrystalBall } from "react-icons/gi";
 import "./sidebar/sidebar.css";
 import { IconType } from "react-icons/lib";
+import { SocialAttr } from "../types/DataTypes";
 
 const buildSocialLink = (contact: string, title: string, color: string, Icon: IconType) => {
   return (
@@ -29,19 +30,5 @@ const Socials = ({ mobile, contacts }: SocialAttr) => {
     </div>
   );
 };
-
-interface SocialAttr {
-  mobile: boolean;
-  contacts: ContactsAttr;
-}
-
-export interface ContactsAttr {
-  linkedin: string;
-  github: string;
-  facebook: string;
-  stackOverFlow: string;
-  resume: string;
-  crystal: string;
-}
 
 export default Socials;

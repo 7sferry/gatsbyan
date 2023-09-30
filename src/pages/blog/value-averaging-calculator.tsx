@@ -1,11 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { StockData, UnitType, ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator";
+import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator";
 import { getVcaResult } from "../../components/ValueAveragingFormResult";
 import CustomPage from "../../components/CustomPage";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import Seo from "../../components/Seo";
-import { CustomPostAttr, onChangeRupiah } from "../../utils/GatsbyanUtils";
+import { InvestTargetValueInput } from "../../components/value-averaging/InvestTargetValueInput";
+import { UnitTypeValueInput } from "../../components/value-averaging/UnitTypeValueInput";
+import { TotalLotValueInput } from "../../components/value-averaging/TotalLotValueInput";
+import { SinceMonthValueInput } from "../../components/value-averaging/SinceMonthValueInput";
+import { SinceYearValueInput } from "../../components/value-averaging/SinceYearValueInput";
+import { UnitPriceValueInput } from "../../components/value-averaging/UnitPriceValueInput";
+import { StockNameValueInput } from "../../components/value-averaging/StockNameValueInput";
+import { CustomPostAttr, StockData } from "../../types/DataTypes";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -23,27 +30,7 @@ const ValueAveragingCalculator = () => {
   const storageKey = "vca";
   const storage = typeof window !== "undefined" ? window.localStorage : null;
   const element: React.RefObject<HTMLDivElement> = React.createRef();
-
-  const [stockNameValue, setStockNameValue] = React.useState("");
-  const [unitPriceValue, setUnitPriceValue] = React.useState("");
-  const [investTargetValue, setInvestTargetValue] = React.useState("");
-  const [sinceYearValue, setSinceYearValue] = React.useState("");
-  const [sinceMonthValue, setSinceMonthValue] = React.useState("");
-  const [totalLotValue, setTotalLotValue] = React.useState("");
-  const [unitTypeValue, setUnitTypeValue] = React.useState("");
-
-  React.useEffect(() => {
-    const stockCacheValue = getStockCacheValue();
-    if (stockCacheValue) {
-      setSinceMonthValue(stockCacheValue.sinceMonth || "");
-      setStockNameValue(stockCacheValue.stockName || "");
-      setUnitPriceValue(String(stockCacheValue.currentUnitPrice || ""));
-      setInvestTargetValue(String(stockCacheValue.monthlyInvestTarget || ""));
-      setSinceYearValue(String(stockCacheValue.sinceYear || ""));
-      setTotalLotValue(String(stockCacheValue.totalLot || ""));
-      setUnitTypeValue(String(stockCacheValue.unitType || ""));
-    }
-  }, []);
+  const [stockCacheValue, setStockCacheValue] = React.useState(getStockCacheValue());
 
   function getStockCacheValue(): StockData {
     const stockCache = storage?.getItem(storageKey);
@@ -64,13 +51,7 @@ const ValueAveragingCalculator = () => {
   const resetInput = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
     storage?.removeItem(storageKey);
-    setStockNameValue("");
-    setUnitPriceValue("");
-    setUnitTypeValue("");
-    setTotalLotValue("");
-    setSinceYearValue("");
-    setSinceMonthValue("");
-    setInvestTargetValue("");
+    setStockCacheValue(new StockData());
   };
 
   function constructStockData(e: React.BaseSyntheticEvent): StockData {
@@ -97,10 +78,6 @@ const ValueAveragingCalculator = () => {
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
     storage?.setItem(storageKey, JSON.stringify(stockData));
-  };
-
-  const toUpperCase = (event: React.ChangeEvent<HTMLInputElement>) => {
-    return event.target.value.toUpperCase();
   };
 
   const { site } = useStaticQuery(
@@ -131,16 +108,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab">
-              <input
-                type="text"
-                name={"stockName"}
-                id={"stockName"}
-                className={"input-field"}
-                autoComplete={"off"}
-                required={true}
-                onChange={(e) => setStockNameValue(toUpperCase(e))}
-                value={stockNameValue}
-              />
+              <StockNameValueInput stockCacheValue={stockCacheValue} />
             </div>
           </div>
           <div className="rowTab">
@@ -150,42 +118,8 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"since"}>
-              <select
-                required={true}
-                id="sinceMonth"
-                name="sinceMonth"
-                className="dropdown"
-                style={{ width: "40%" }}
-                onChange={(e) => setSinceMonthValue(e.target.value)}
-                value={sinceMonthValue}
-              >
-                <option value="">-</option>
-                <option value="01">Januari</option>
-                <option value="02">Februari</option>
-                <option value="03">Maret</option>
-                <option value="04">April</option>
-                <option value="05">Mei</option>
-                <option value="06">Juni</option>
-                <option value="07">Juli</option>
-                <option value="08">Agustus</option>
-                <option value="09">September</option>
-                <option value="10">Oktober</option>
-                <option value="11">November</option>
-                <option value="12">Desember</option>
-              </select>
-              <input
-                type="number"
-                name="sinceYear"
-                id="sinceYear"
-                className="input-field"
-                placeholder="year"
-                style={{ width: "25%" }}
-                min={1970}
-                max={3000}
-                required={true}
-                onChange={(e) => setSinceYearValue(e.target.value)}
-                value={sinceYearValue}
-              />
+              <SinceMonthValueInput stockCacheValue={stockCacheValue} />
+              <SinceYearValueInput stockCacheValue={stockCacheValue} />
             </div>
           </div>
           <div className="rowTab">
@@ -195,29 +129,8 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"totalLot"}>
-              <input
-                type="number"
-                name="totalLot"
-                id="totalLot"
-                className="input-field"
-                style={{ width: "40%" }}
-                min={0}
-                placeholder="total"
-                required={true}
-                onChange={(e) => setTotalLotValue(e.target.value)}
-                value={totalLotValue}
-              />
-              <select
-                onChange={(e) => setUnitTypeValue(e.target.value)}
-                value={unitTypeValue}
-                id="unitType"
-                name="unitType"
-                className="dropdown"
-                style={{ width: "25%" }}
-              >
-                <option value={UnitType.LOT}>Lot</option>
-                <option value={UnitType.UNIT}>Unit</option>
-              </select>
+              <TotalLotValueInput stockCacheValue={stockCacheValue} />
+              <UnitTypeValueInput stockCacheValue={stockCacheValue} />
             </div>
           </div>
           <div className="rowTab">
@@ -227,17 +140,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"currentUnitPrice"}>
-              <input
-                type="text"
-                name={"currentUnitPrice"}
-                id={"currentUnitPrice"}
-                className={"input-field"}
-                placeholder={"Rp"}
-                autoComplete={"off"}
-                onChange={(e) => setUnitPriceValue(onChangeRupiah(e))}
-                value={unitPriceValue}
-                required={true}
-              />
+              <UnitPriceValueInput stockCacheValue={stockCacheValue} />
             </div>
           </div>
           <div className="rowTab">
@@ -247,17 +150,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"monthlyInvestTarget"}>
-              <input
-                type="text"
-                name={"monthlyInvestTarget"}
-                id={"monthlyInvestTarget"}
-                className={"input-field"}
-                placeholder={"Rp"}
-                autoComplete={"off"}
-                onChange={(e) => setInvestTargetValue(onChangeRupiah(e))}
-                value={investTargetValue}
-                required={true}
-              />
+              <InvestTargetValueInput stockCacheValue={stockCacheValue} />
             </div>
           </div>
           <div>

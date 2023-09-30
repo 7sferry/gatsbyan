@@ -6,6 +6,7 @@
 import React from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import "./sidebar.css";
+import { FeaturedPageData } from "../../types/DataTypes";
 
 const FeaturedPage = () => {
   const data: FeaturedPageData = useStaticQuery(graphql`
@@ -44,14 +45,5 @@ const FeaturedPage = () => {
     )
   );
 };
-
-interface FeaturedPageData {
-  allContentfulBlogPost: {
-    nodes: Array<{
-      slug: string;
-      title: string;
-    }>;
-  };
-}
 
 export default FeaturedPage;

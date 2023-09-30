@@ -6,7 +6,8 @@
 import Layout from "./Layout";
 import React from "react";
 import { Comment } from "./Comment";
-import { CustomPostAttr, getPostTags, getPublishDateTime, isCommentShown } from "../utils/GatsbyanUtils";
+import { getPostTags, getPublishDateTime } from "../utils/GatsbyanUtils";
+import { CustomPageProp } from "../types/DataTypes";
 
 const CustomPage = ({ children, site, customPost }: React.PropsWithChildren<CustomPageProp>) => {
   const repo = site.repo;
@@ -20,25 +21,11 @@ const CustomPage = ({ children, site, customPost }: React.PropsWithChildren<Cust
             <span className="page-info">{getPostTags(null)}</span>
           </div>
           <div className="post-container pt-0 content-post">{children}</div>
-          {isCommentShown() && repo && <Comment repo={repo} />}
+          <Comment repo={repo} />
         </div>
       </div>
     </Layout>
   );
 };
-
-interface CustomPageProp {
-  customPost: CustomPostAttr;
-  site: CustomSiteAttr;
-}
-
-export interface CustomSiteAttr {
-  url: string;
-  repo: string;
-}
-
-interface CustomPageState {
-  commentShown: boolean;
-}
 
 export default CustomPage;

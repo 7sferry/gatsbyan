@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import MobileMenuLinks from "./MobileMenuLinks";
 import Menu from "./Menu";
 import "./header.css";
+import { HeaderAttr } from "../../types/DataTypes";
 
 const Header = ({ siteTitle }: HeaderAttr) => {
   return (
@@ -20,9 +21,5 @@ const Header = ({ siteTitle }: HeaderAttr) => {
     </header>
   );
 };
-
-interface HeaderAttr {
-  siteTitle: string;
-}
 
 export default Header;

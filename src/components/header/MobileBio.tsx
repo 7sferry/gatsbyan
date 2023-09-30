@@ -2,8 +2,9 @@ import React from "react";
 import Photo from "../Photo";
 import { GatsbyImage } from "gatsby-plugin-image";
 import "./header.css";
-import Socials, { ContactsAttr } from "../Socials";
+import Socials from "../Socials";
 import { Link } from "gatsby";
+import { MobileBioAttr } from "../../types/DataTypes";
 
 const MobileBio = (props: MobileBioAttr) => {
   const { gatsbyImageData: photo } = Photo();
@@ -22,11 +23,5 @@ const MobileBio = (props: MobileBioAttr) => {
     </>
   );
 };
-
-export interface MobileBioAttr {
-  contacts: ContactsAttr;
-  author: string;
-  tagline: string;
-}
 
 export default MobileBio;

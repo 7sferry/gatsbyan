@@ -5,17 +5,7 @@
 
 import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
-
-export interface AllContentfulBlogPost {
-  allContentfulBlogPost: {
-    edges: Array<{
-      node: {
-        tags: Array<string>;
-        slug: string;
-      };
-    }>;
-  };
-}
+import { AllContentfulBlogPost } from "./src/types/DataTypes";
 
 exports.createPages = ({ graphql, actions }: any) => {
   const { createPage, createRedirect } = actions;

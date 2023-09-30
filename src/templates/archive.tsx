@@ -10,6 +10,7 @@ import "./archive.css";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
+import { ArchiveAttr, ArchiveNode, ArchiveProp, ArchiveState, DateObject } from "../types/DataTypes";
 
 class ArchivePage extends React.Component<ArchiveProp, ArchiveState> {
   constructor(props: ArchiveProp) {
@@ -156,33 +157,6 @@ export const pageQuery = graphql`
     }
   }
 `;
-
-interface ArchiveProp {
-  data: ArchiveAttr;
-}
-
-interface ArchiveAttr {
-  allContentfulBlogPost: {
-    nodes: Array<ArchiveNode>;
-  };
-}
-
-interface ArchiveNode {
-  slug: string;
-  title: string;
-  publishDate: Date;
-}
-
-interface ArchiveState {
-  activeYear: Array<string>;
-  activeMonth: Array<string>;
-  firstOpen: boolean;
-}
-
-interface DateObject {
-  date: string;
-  archiveNodes: Array<ArchiveNode>;
-}
 
 export default ArchivePage;
 

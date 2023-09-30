@@ -6,7 +6,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import { formatToTimeZone } from "date-fns-timezone";
-import { format } from "date-fns";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -39,8 +38,6 @@ export const getPublishDateTime = (date: Date) =>
   formatToTimeZone(date, "dddd MMM Do, YYYY hh:mm a", { timeZone: timeZone });
 
 export const getMonthYearDate = (date: Date) => formatToTimeZone(date, "YYYY-MMMM", { timeZone: timeZone });
-
-export const formateDate = (date: Date, pattern: string) => format(date, pattern);
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
@@ -101,14 +98,6 @@ export const PAGE_COUNT = 5;
 export const SEARCH_COUNT = 20;
 
 export const DEFAULT_ICON_SIZE = 20;
-
-export interface CustomPostAttr {
-  title: string;
-  description: string;
-  publishDate: Date;
-  lang: string;
-  image?: string | null;
-}
 
 export function isCommentShown() {
   const [commentShown, setCommentShown] = React.useState(false);

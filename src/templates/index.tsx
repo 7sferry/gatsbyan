@@ -4,7 +4,7 @@
  ************************/
 
 import React from "react";
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { graphql, Link } from "gatsby";
 
 import Layout from "../components/Layout";
@@ -12,6 +12,7 @@ import Seo from "../components/Seo";
 import Pagination from "../components/Pagination";
 import { getPlurals, getPostTags, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
+import { IndexProp } from "../types/DataTypes";
 
 function IndexPage(props: IndexProp) {
   const { pageContext, data } = props;
@@ -64,52 +65,6 @@ function IndexPage(props: IndexProp) {
       </div>
     </Layout>
   );
-}
-
-interface IndexProp {
-  data: IndexData;
-  pageContext: IndexContextProp;
-}
-
-interface IndexData {
-  allContentfulBlogPost: {
-    nodes: Array<{
-      slug: string;
-      body: {
-        childMarkdownRemark: {
-          timeToRead: number;
-          excerpt: string;
-        };
-      };
-      tags: Array<string>;
-      title: string;
-      publishDate: Date;
-      heroImage: {
-        gatsbyImageData: IGatsbyImageData;
-      };
-      id: string;
-    }>;
-    pageInfo: {
-      hasNextPage: boolean;
-      hasPreviousPage: boolean;
-      perPage: number;
-      currentPage: number;
-      pageCount: number;
-      itemCount: number;
-    };
-  };
-  site: {
-    siteMetadata: {
-      siteUrl: string;
-    };
-  };
-}
-
-interface IndexContextProp {
-  limit: number;
-  skip: number;
-  tag: string;
-  kebabTag: string;
 }
 
 export const pageQuery = graphql`

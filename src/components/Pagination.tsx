@@ -8,6 +8,7 @@ import { Link } from "gatsby";
 import ReactPagination from "react-paginating";
 import "./pagination.css";
 import { PAGE_COUNT } from "../utils/GatsbyanUtils";
+import { PaginationAttr, PagingLinkAttr } from "../types/DataTypes";
 
 const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr) => {
   const limit = 1;
@@ -119,19 +120,5 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr
     </ReactPagination>
   );
 };
-
-interface PaginationAttr {
-  totalPageCount: number;
-  currentPage: number;
-  url: string;
-  refine?: Function;
-}
-
-interface PagingLinkAttr {
-  disabled: boolean;
-  className: string;
-  pageNo: number | null;
-  onClick: React.MouseEventHandler;
-}
 
 export default Pagination;

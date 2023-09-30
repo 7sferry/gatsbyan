@@ -3,6 +3,7 @@
  * on Oktober 2022      *
  ************************/
 import { getNumberValueFromRupiah } from "./GatsbyanUtils";
+import { StockData, UnitType } from "../types/DataTypes";
 
 export class ValueAveragingStockCalculator {
   readonly stockName: string;
@@ -40,19 +41,4 @@ export class ValueAveragingStockCalculator {
   private getTotalLot(stockData: StockData) {
     return String(stockData.unitType) === UnitType.LOT.toString() ? stockData.totalLot : stockData.totalLot / 100;
   }
-}
-
-export class StockData {
-  readonly stockName?: string;
-  readonly currentUnitPrice?: number;
-  readonly totalLot: number = 0;
-  readonly monthlyInvestTarget?: number;
-  readonly sinceYear?: number;
-  readonly sinceMonth?: string;
-  readonly unitType?: UnitType;
-}
-
-export enum UnitType {
-  LOT,
-  UNIT,
 }

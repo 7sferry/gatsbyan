@@ -6,6 +6,7 @@
 import React from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import "./sidebar.css";
+import { AnalyticsData } from "../../types/DataTypes";
 
 const AnalyticsPage = () => {
   const data: AnalyticsData = useStaticQuery(graphql`
@@ -54,19 +55,5 @@ const AnalyticsPage = () => {
     )
   );
 };
-
-interface AnalyticsData {
-  allPageViews: {
-    nodes: Array<{
-      path: string;
-    }>;
-  };
-  allContentfulBlogPost: {
-    nodes: Array<{
-      slug: string;
-      title: string;
-    }>;
-  };
-}
 
 export default AnalyticsPage;

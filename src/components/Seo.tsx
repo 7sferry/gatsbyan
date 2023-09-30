@@ -1,5 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import { SeoAttr } from "../types/DataTypes";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -50,12 +51,4 @@ export default function Seo({ description, lang = "id", title = "", image, path 
       <meta name="google-site-verification" content={`zMJIuAagxg8apsDkd_7UPSzDGi7NIo6mwCx_GUcNXNw`} />
     </>
   );
-}
-
-interface SeoAttr {
-  description?: string;
-  lang?: string;
-  title?: string;
-  image?: string;
-  path?: string;
 }

@@ -4,13 +4,19 @@
  ************************/
 
 import React, { useEffect } from "react";
+import { CommentAttr } from "../types/DataTypes";
+import { isCommentShown } from "../utils/GatsbyanUtils";
 
 const src = "https://utteranc.es/client.js";
 
 export const Comment = ({ repo }: CommentAttr) => {
   const element: React.RefObject<HTMLDivElement> = React.createRef();
+  let commentShown = isCommentShown();
 
   useEffect(() => {
+    if (!commentShown) {
+      return;
+    }
     const elementById = document.getElementsByClassName("utterances");
     if (elementById.length > 1) {
       return;
@@ -30,11 +36,7 @@ export const Comment = ({ repo }: CommentAttr) => {
     });
 
     element?.current?.appendChild(utterancesScript);
-  }, [repo, element]);
+  }, [commentShown, repo, element]);
 
   return <div className="utterances" ref={element} />;
 };
-
-interface CommentAttr {
-  repo: string;
-}
