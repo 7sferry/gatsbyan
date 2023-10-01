@@ -61,6 +61,8 @@
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
     "start": "npm run develop",
     "serve": "gatsby serve -H 0.0.0.0",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "repository": {
