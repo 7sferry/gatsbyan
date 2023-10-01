@@ -2,7 +2,7 @@
   "name": "gatsbyan",
   "private": false,
   "description": "My personal blog powered by Gatsby JS",
-  "version": "0.1.0",
+  "version": "2.1.1",
   "author": "Ferry",
   "dependencies": {
     "algoliasearch": "^4.17.0",
@@ -56,14 +56,14 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop -H 0.0.0.0",
+    "build": "tsc --noEmit && gatsby build",
+    "develop": "tsc --noEmit && gatsby develop -H 0.0.0.0",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
-    "start": "npm run develop",
+    "start": "tsc --noEmit && npm run develop",
     "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "tsc --noEmit && echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "repository": {
     "type": "git",
