@@ -3,8 +3,11 @@
  * on January 2021      *
  ************************/
 
-require("dotenv").config();
-const siteConfig = require("./config");
+import type { GatsbyConfig } from "gatsby";
+import siteConfig from "./config";
+import { config } from "dotenv";
+
+config();
 
 function isProduction() {
   return process.env.NODE_ENV === "production" || !process.env.PREVIEW_TOKEN;
@@ -32,7 +35,7 @@ const exclude = [
   "[%]",
 ];
 
-module.exports = {
+const gatsbyConfig: GatsbyConfig = {
   trailingSlash: "never",
   siteMetadata: {
     siteUrl: siteConfig.url,
@@ -208,3 +211,5 @@ module.exports = {
     // },
   ],
 };
+
+export default gatsbyConfig;
