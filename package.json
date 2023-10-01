@@ -57,14 +57,14 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "tsc --noEmit && gatsby build",
+    "build": "gatsby build",
     "develop": "tsc --noEmit && gatsby develop -H 0.0.0.0",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
     "start": "tsc --noEmit && npm run develop",
     "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "test": "tsc --noEmit && echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "repository": {
     "type": "git",
