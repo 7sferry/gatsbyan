@@ -22,6 +22,7 @@ For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
 ## Tech used:
 
 - GatsbyJS
+- Typescript
 - Contentful CMS
 - Bootstrap
 - Algolia
@@ -33,6 +34,7 @@ For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
 
 - Node JS - I used Node v18.8.1
 - Gatsby CLI - I used gatsby-cli v2.10.10
+- Typescript - I used Typescript 5.0.4
 - Git
 - Contentful CMS account
 - Google account - optional for analytics and analytics reporter
