@@ -3,6 +3,8 @@
  * on January 2021      *
  ************************/
 
+import { GatsbyConfig } from "gatsby";
+
 require("dotenv").config();
 // import siteConfig from "./config";
 const siteConfig = {
@@ -52,7 +54,7 @@ const exclude = [
   "[%]",
 ];
 
-module.exports = {
+const config: GatsbyConfig = {
   trailingSlash: "never",
   siteMetadata: {
     siteUrl: siteConfig.url,
@@ -229,3 +231,5 @@ module.exports = {
     // },
   ],
 };
+
+export default config;
