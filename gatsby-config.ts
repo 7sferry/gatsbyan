@@ -3,7 +3,7 @@
  * on January 2021      *
  ************************/
 
-import { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from "gatsby";
 
 require("dotenv").config();
 // import siteConfig from "./config";

@@ -6,7 +6,7 @@
 import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
-import { GatsbyNode } from "gatsby";
+import type { GatsbyNode } from "gatsby";
 
 export const sourceNodes: GatsbyNode["createPages"] = ({ graphql, actions }: any) => {
   const { createPage, createRedirect } = actions;
