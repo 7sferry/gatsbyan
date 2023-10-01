@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = {
+const siteConfig = {
   url: "https://ferry.vercel.app",
   repo: "7sferry/gatsbyan",
   title: "MR Ferry",
@@ -20,3 +20,5 @@ module.exports = {
     },
   },
 };
+
+export default siteConfig;

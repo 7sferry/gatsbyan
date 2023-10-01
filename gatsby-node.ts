@@ -6,8 +6,9 @@
 import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
+import type { GatsbyNode } from "gatsby";
 
-exports.createPages = ({ graphql, actions }: any) => {
+export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any) => {
   const { createPage, createRedirect } = actions;
 
   return new Promise((resolve, reject) => {
