@@ -32,6 +32,7 @@ For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
 ## Requirements:
 
 - Node JS - I used Node v18.8.1
+- Gatsby CLI - I used gatsby-cli v2.10.10
 - Git
 - Contentful CMS account
 - Google account - optional for analytics and analytics reporter
