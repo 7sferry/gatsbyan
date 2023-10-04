@@ -110,7 +110,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any
         });
 
         createRedirect({
-          fromPath: `/blog/t-e-r-c-o-l-o-n-g/`,
+          fromPath: `/blog/t-e-r-c-o-l-o-n-g`,
           toPath: `/blog/tercolong`,
           redirectInBrowser: true,
           isPermanent: true,
