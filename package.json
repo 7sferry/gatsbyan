@@ -55,6 +55,7 @@
     "software engineer"
   ],
   "license": "MIT",
+  "homepage": "https://ferry.vercel.app",
   "scripts": {
     "build": "gatsby build",
     "develop": "tsc --noEmit && gatsby develop -H 0.0.0.0",
