@@ -5864,10 +5864,10 @@ gatsby-plugin-catch-links@^5.10.0:
     "@babel/runtime" "^7.20.13"
     escape-string-regexp "^1.0.5"
 
-gatsby-plugin-google-analytics-data-reporting-api@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics-data-reporting-api/-/gatsby-plugin-google-analytics-data-reporting-api-1.1.0.tgz#1b7e0616c5c5143906c0d330ac6eaadfd2c16c5f"
-  integrity sha512-6Jw4evRAfOPEfwhqhJ/cF/CAlNtoy4++vZgK/rTvs7xVuop3rd1cuLnLB7PWEgvgHujzISPQOjBzQLElm+WI9A==
+gatsby-plugin-google-analytics-data-reporting-api@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics-data-reporting-api/-/gatsby-plugin-google-analytics-data-reporting-api-1.2.1.tgz#70c89cab249aeccc742ef141a8a78281ff3c0714"
+  integrity sha512-IL+l/ikYnEQtMPPu9xixHyDYltzw3lGR8x+pa2EGsqpmLeYVCH9lBBbzOAjAZqLi619vofq8ZZ7HEbDoceU8pQ==
   dependencies:
     googleapis "^126.0.1"
 
