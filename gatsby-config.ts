@@ -156,7 +156,7 @@ const gatsbyConfig: GatsbyConfig = {
         privateKey: process.env.ANALYTICS_PRIVATE_KEY,
         property: process.env.ANALYTICS_GA4,
         metric: `scrolledUsers`,
-        startDate: `2021-01-01`,
+        startDate: `2020-01-01`,
         endDate: `today`,
       },
     },
