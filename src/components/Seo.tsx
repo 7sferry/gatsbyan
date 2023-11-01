@@ -25,7 +25,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   );
 
   const metadata = site.siteMetadata;
-  const metaDescription = description || metadata.description;
+  const metaDescription = description || (path === "/" ? metadata.description : "");
   const metaImage = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri.jpg`;
   const metaUrl = metadata.siteUrl + path;
 
