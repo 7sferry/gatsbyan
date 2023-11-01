@@ -3,11 +3,6 @@
  * on September 2023    *
  ************************/
 
-/************************
- * Made by [MR Ferry™]  *
- * on September 2023    *
- ************************/
-
 import React from "react";
 
 import { StockCacheInputProps, UnitType } from "../../types/DataTypes";
@@ -28,7 +23,7 @@ export const UnitTypeValueInput = ({ stockCacheValue }: StockCacheInputProps) =>
       style={{ width: "25%" }}
     >
       <option value={UnitType.LOT}>Lot</option>
-      <option value={UnitType.UNIT}>Unit</option>
+      {/*<option value={UnitType.UNIT}>Unit</option>*/}
     </select>
   );
 };
