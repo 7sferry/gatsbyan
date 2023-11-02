@@ -29,10 +29,11 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   const metaImage = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri.jpg`;
   const metaUrl = metadata.siteUrl + path;
 
+  let name = path === "/" || path?.startsWith("/blog") ? `[${metadata.realName}]` : "";
   return (
     <>
       <html lang={lang} />
-      <title>{`${title} [${metadata.realName}]`}</title>
+      <title>{`${title} ${name}`}</title>
       <meta name="description" content={metaDescription} />
       <meta name="og:title" content={title} />
       <meta name="og:description" content={metaDescription} />
