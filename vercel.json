@@ -27,6 +27,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/normalisasi-database",
+      "destination": "/blog/contoh-normalisasi-database",
+      "permanent": true
+    },
+    {
       "source": "/blog/acid-pada-database-consistency",
       "destination": "/blog/acid-pada-database#consistency",
       "permanent": true
