@@ -62,14 +62,14 @@ function extractHtmlWithAnchor(html: string): string {
         return match;
       }
       const hrefValue = getHrefValue(capturedSubstr1);
-      return `<span class="anchor-tag"><h2 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h2></span>`;
+      return `<div class="anchor-tag"><h2 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h2></div>`;
     })
     .replace(/<h3>(.*?)<\/h3>/g, function (match: string, capturedSubstr1: string) {
       if (capturedSubstr1.startsWith("<a ")) {
         return match;
       }
       const hrefValue = getHrefValue(capturedSubstr1);
-      return `<span class="anchor-tag"><h3 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h3></span>`;
+      return `<div class="anchor-tag"><h3 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h3></div>`;
     });
 }
 
