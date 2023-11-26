@@ -59,6 +59,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "tsc --noEmit && gatsby develop -H 0.0.0.0",
+    "clean-develop": "gatsby clean && tsc --noEmit && gatsby develop -H 0.0.0.0",
+    "clean-build": "gatsby clean && gatsby build",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
     "start": "tsc --noEmit && npm run develop",
     "serve": "gatsby serve -H 0.0.0.0",
@@ -68,9 +70,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/7sferry/gatsbyan"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/7sferry/gatsbyan/issues"
   }
 }
