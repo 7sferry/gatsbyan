@@ -155,7 +155,7 @@ const gatsbyConfig: GatsbyConfig = {
         serviceAccountEmail: process.env.ANALYTICS_EMAIL,
         privateKey: process.env.ANALYTICS_PRIVATE_KEY,
         property: process.env.ANALYTICS_GA4,
-        metric: `scrolledUsers`,
+        metric: `activeUsers`,
         startDate: `2020-01-01`,
         endDate: `today`,
       },
