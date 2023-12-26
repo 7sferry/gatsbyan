@@ -357,7 +357,7 @@ th {
 }
 
 li {
-  margin-bottom: calc(1.45rem / 2);
+  margin-bottom: calc(1.45rem / 5);
 }
 
 ol li {
@@ -370,14 +370,14 @@ ul li {
 
 li > ol {
   margin-left: 1.45rem;
-  margin-bottom: calc(1.45rem / 2);
-  margin-top: calc(1.45rem / 2);
+  margin-bottom: calc(1.45rem / 5);
+  margin-top: calc(1.45rem / 5);
 }
 
 li > ul {
   margin-left: 1.45rem;
-  margin-bottom: calc(1.45rem / 2);
-  margin-top: calc(1.45rem / 2);
+  margin-bottom: calc(1.45rem / 5);
+  margin-top: calc(1.45rem / 5);
 }
 
 p *:last-child {
@@ -385,7 +385,7 @@ p *:last-child {
 }
 
 li > p {
-  margin-bottom: calc(1.45rem / 2);
+  margin-bottom: calc(1.45rem / 5);
 }
 
 code {
