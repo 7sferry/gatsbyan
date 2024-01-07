@@ -458,8 +458,6 @@ pre code {
   line-height: 1.42;
 }
 
-code:before,
-code:after,
 tt:before,
 tt:after {
   letter-spacing: -0.2em;
