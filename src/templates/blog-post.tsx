@@ -76,6 +76,8 @@ function extractHtmlWithAnchor(html: string): string {
 function getHrefValue(capturedSubstr1: string): string {
   let hrefValue = capturedSubstr1
     .trim()
+      .replace(/<code(.*?)>/g, "")
+      .replace("</code>", "")
     .replace(/[^a-z0-9]+/gi, "-")
     .toLowerCase();
   if (hrefValue.startsWith("-")) {
