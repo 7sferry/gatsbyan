@@ -51,7 +51,7 @@ function IndexPage(props: IndexProp) {
                 </div>
                 <div className="pt-1">
                   {post.heroImage && (
-                    <GatsbyImage image={post.heroImage.gatsbyImageData} className="index-thumbnail" alt={"ferr"} />
+                    <GatsbyImage image={post.heroImage.gatsbyImageData} className="index-thumbnail" alt={post.heroImage.title} />
                   )}
                   <p>{childMarkdownRemark.excerpt}</p>
                 </div>
@@ -83,6 +83,7 @@ export const pageQuery = graphql`
         publishDate
         heroImage {
           gatsbyImageData(resizingBehavior: THUMB, cropFocus: FACES, placeholder: BLURRED, layout: FIXED)
+          title
         }
         id
       }
