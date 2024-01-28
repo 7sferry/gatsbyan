@@ -67,6 +67,7 @@
     "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
+    "upgrade-all": "yarn yarn-upgrade-all",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "repository": {
