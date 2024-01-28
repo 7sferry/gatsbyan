@@ -63,7 +63,7 @@
     "clean-build": "gatsby clean && gatsby build",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
     "build-serve": "tsc --noEmit && gatsby build && gastby serve -H 0.0.0.0",
-    "clean-build-serve": "gatsby clean && tsc --noEmit && gatsby build && gastby serve -H 0.0.0.0",
+    "clean-build-serve": "gatsby clean && tsc --noEmit && gatsby build && gatsby serve -H 0.0.0.0",
     "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
