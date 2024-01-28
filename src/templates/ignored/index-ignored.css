@@ -40,11 +40,9 @@ h1 {
   padding: 0;
   margin: 0 0 1.45rem;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 2.25rem;
+  font-size: 1.75rem;
   line-height: 1.1;
 }
 
@@ -52,11 +50,9 @@ h2 {
   margin: 0 0 7px;
   padding: 0;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 1.62671rem;
+  font-size: 1.5rem;
   line-height: 1.1;
 }
 
@@ -64,11 +60,9 @@ h3 {
   margin: 0 0 10px;
   padding: 0;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-  Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 20px;
+  font-size: 1.3rem;
   line-height: 1.1;
 }
 
@@ -76,8 +70,6 @@ h4 {
   padding: 0;
   margin: 0 0 20px;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -88,8 +80,6 @@ h5 {
   padding: 0;
   margin: 0 0 20px;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -100,8 +90,6 @@ h6 {
   padding: 0;
   margin: 0 0 20px;
   color: inherit;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
@@ -354,7 +342,7 @@ ais-highlight-0000000000 {
 .anchor-tag:before {
   content: "⚓";
   float: left;
-  font-size: 90%;
+  font-size: 70%;
 }
 
 iframe {
