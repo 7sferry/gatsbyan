@@ -3,21 +3,21 @@
  * on April 2020        *
  ************************/
 
-import Layout from "../../components/Layout";
+import Layout from "../components/Layout.tsx";
 import React from "react";
 import algoliasearch, { SearchClient } from "algoliasearch/lite";
 import { connectPagination } from "instantsearch.js/es/connectors";
 import { Configure, InstantSearch, SearchBox, useConnector } from "react-instantsearch";
-import Seo from "../../components/Seo";
+import Seo from "../components/Seo.tsx";
 import { MultipleQueriesQuery } from "@algolia/client-search";
-import { PaginationElement } from "../../components/PaginationElement.tsx";
+import { PaginationElement } from "../components/PaginationElement.tsx";
 import {
   PaginationConnectorParams,
   PaginationRenderState,
   PaginationWidgetDescription,
 } from "instantsearch.js/es/connectors/pagination/connectPagination";
-import HitsElement from "./hits-element.tsx";
-import { SEARCH_COUNT } from "../../utils/GatsbyanUtils.tsx";
+import SearchHitsElement from "../components/SearchHitsElement.tsx";
+import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
 
 const SearchPage = () => {
   const algoliaClient = algoliasearch(
@@ -58,7 +58,7 @@ const SearchPage = () => {
 
     return (
       <>
-        <HitsElement />
+        <SearchHitsElement />
         <PaginationElement
           totalPageCount={pagination.nbPages}
           currentPage={pagination.currentRefinement}
