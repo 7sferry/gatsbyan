@@ -34,7 +34,7 @@ function IndexPage(props: IndexProp) {
           const { childMarkdownRemark } = post.body;
           const timeToRead = childMarkdownRemark.timeToRead;
           return (
-            <div id={post.id} key={post.id} className="d-block pb-3 blog-content">
+            <div id={post.id} key={post.id} className="d-block blog-content">
               <div className="post-container">
                 <div className="title posted">
                   <Link to={`/blog/${post.slug}`} className="text-link">
@@ -59,7 +59,7 @@ function IndexPage(props: IndexProp) {
             </div>
           );
         })}
-        <div className="text-center mt-4">
+        <div className="text-center">
           <PaginationElement
             totalPageCount={pageInfo.pageCount}
             url={paginationUrl}

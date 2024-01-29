@@ -16,7 +16,7 @@ p,
 }
 
 .main-layout {
-  padding: 1.5rem;
+  padding: 0 0 1rem;
 }
 
 .post-container {
@@ -31,7 +31,7 @@ p,
 }
 
 .blog-content {
-  padding: 0 2.5rem;
+  padding: 0 2rem;
 }
 
 .page-info {
@@ -155,7 +155,6 @@ a:hover,
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    padding: 1rem 0 0;
   }
 
   .post-container {
@@ -164,10 +163,6 @@ a:hover,
 
   .blog-content {
     padding: unset;
-  }
-
-  .main-layout {
-    padding: 0;
   }
 
   .index-thumbnail {

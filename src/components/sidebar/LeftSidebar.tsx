@@ -13,7 +13,7 @@ const LeftSidebar = () => {
       <div className="sidebar-main ">
         <Bio author={metadata.author} tagline={metadata.tagline} />
         <Socials mobile={false} contacts={metadata.contacts} />
-        <div className="tech-tags mt-4">
+        <div className="tech-tags mt-3">
           <Tags />
         </div>
       </div>
