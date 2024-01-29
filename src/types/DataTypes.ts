@@ -137,7 +137,7 @@ export interface PaginationAttr {
   readonly totalPageCount: number;
   readonly currentPage: number;
   readonly url: string;
-  readonly refine?: Function;
+  readonly refine: Function;
 }
 
 export interface AnalyticsData {
@@ -193,7 +193,8 @@ export interface PagingLinkAttr {
   readonly disabled: boolean;
   readonly className: string;
   readonly pageNo: number | null;
-  readonly onClick: React.MouseEventHandler;
+  readonly onClick?: React.MouseEventHandler;
+  readonly text: string;
 }
 
 export interface MenuAttr {
@@ -265,6 +266,13 @@ export interface AlgoliaNode {
   readonly body: {
     readonly childMarkdownRemark: AlgoliaChildMarkdownRemark;
   };
+}
+
+export interface AlgoliaNodeResult {
+  readonly id: string;
+  readonly title: string;
+  readonly slug: string;
+  readonly excerpt: string;
 }
 
 export interface AlgoliaChildMarkdownRemark {

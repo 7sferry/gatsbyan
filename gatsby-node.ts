@@ -13,22 +13,20 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any
 
   return new Promise((resolve, reject) => {
     resolve(
-      graphql(
-        `
-          {
-            allContentfulBlogPost {
-              edges {
-                node {
-                  tags
-                  slug
-                }
+      graphql(`
+        {
+          allContentfulBlogPost {
+            edges {
+              node {
+                tags
+                slug
               }
             }
           }
-        `
-      ).then((result: { errors: any; data: AllContentfulBlogPost }) => {
+        }
+      `).then((result: { errors: any; data: AllContentfulBlogPost }) => {
         if (result.errors) {
-          console.log(result.errors);
+          console.log("errors: " + result.errors);
           reject(result.errors);
           throw "error!";
         }
@@ -87,7 +85,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any
 
         createPage({
           path: `/search`,
-          component: path.resolve("./src/templates/search/search-page.tsx"),
+          component: path.resolve("./src/templates/search-page.tsx"),
         });
 
         createPage({
