@@ -12,6 +12,9 @@ import { SearchResultsApi } from "react-instantsearch-core/dist/es/lib/useSearch
 
 const SearchHitsResult = (): React.JSX.Element => {
   const { results }: SearchResultsApi = useInstantSearch();
+  if (!results.query) {
+    return <></>;
+  }
 
   let hits = results.hits;
   if (hits.length <= 0) {

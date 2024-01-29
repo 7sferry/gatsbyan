@@ -5,13 +5,14 @@
 
 import Layout from "../components/Layout.tsx";
 import React from "react";
-import algoliasearch, { SearchClient } from "algoliasearch/lite";
+import algoliasearch from "algoliasearch/lite";
 import { Configure, InstantSearch, SearchBox } from "react-instantsearch";
 import Seo from "../components/Seo.tsx";
-import { MultipleQueriesQuery } from "@algolia/client-search";
 import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
 import VoiceSearchElement from "../components/search/VoiceSearchElement.tsx";
 import PaginationSearchResult from "../components/search/PaginationSearchResult.tsx";
+import { SearchClient } from "algoliasearch-helper/types/algoliasearch";
+import { MultipleQueriesQuery } from "@algolia/client-search";
 
 const SearchPage = () => {
   const algoliaClient = algoliasearch(
@@ -20,8 +21,7 @@ const SearchPage = () => {
   );
 
   const searchClient: SearchClient = {
-    ...algoliaClient,
-    search(queries: readonly MultipleQueriesQuery[]): Readonly<Promise<any>> {
+    search(queries: readonly MultipleQueriesQuery[]): Promise<any> {
       if (queries.every(({ params }: any) => !params.query)) {
         return Promise.resolve({
           results: queries.map(() => ({

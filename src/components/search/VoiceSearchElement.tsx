@@ -42,9 +42,6 @@ export function VoiceSearchElement(props: VoiceSearchConnectorParams) {
           <line x1="8" y1="23" x2="16" y2="23"></line>
         </svg>
       </button>
-      <div className="ais-VoiceSearch-status">
-        <p></p>
-      </div>
     </div>
   );
 }

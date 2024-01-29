@@ -26,7 +26,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any
         }
       `).then((result: { errors: any; data: AllContentfulBlogPost }) => {
         if (result.errors) {
-          console.log(result.errors);
+          console.log("errors: " + result.errors);
           reject(result.errors);
           throw "error!";
         }

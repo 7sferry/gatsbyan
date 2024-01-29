@@ -64,6 +64,7 @@ function IndexPage(props: IndexProp) {
             totalPageCount={pageInfo.pageCount}
             url={paginationUrl}
             currentPage={pageInfo.currentPage}
+            refine={() => {}}
           />
         </div>
       </div>

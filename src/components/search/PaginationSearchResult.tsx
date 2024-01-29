@@ -11,7 +11,7 @@ import { useConnector } from "react-instantsearch";
 import { connectPagination } from "instantsearch.js/es/connectors";
 import React from "react";
 import SearchHitsResult from "./SearchHitsResult.tsx";
-import PaginationElement from "../PaginationElement.tsx";
+import PaginationSearch from "./PaginationSearch.tsx";
 
 const usePagination = (props: PaginationConnectorParams, additionalWidgetProperties: any): PaginationRenderState =>
   useConnector<PaginationConnectorParams, PaginationWidgetDescription>(
@@ -22,19 +22,18 @@ const usePagination = (props: PaginationConnectorParams, additionalWidgetPropert
 
 const PaginationSearchResult = (props: PaginationConnectorParams): React.JSX.Element => {
   let pagination: PaginationRenderState = usePagination(props, {});
-  if (pagination.nbPages <= 0) {
-    return <></>;
-  }
 
   return (
     <>
       <SearchHitsResult />
-      <PaginationElement
-        totalPageCount={pagination.nbPages}
-        currentPage={pagination.currentRefinement}
-        url={"/search"}
-        refine={pagination.refine}
-      />
+      {pagination.canRefine && (
+        <PaginationSearch
+          totalPageCount={pagination.nbPages}
+          currentPage={pagination.currentRefinement + 1}
+          url={"/search"}
+          refine={pagination.refine}
+        />
+      )}
     </>
   );
 };
