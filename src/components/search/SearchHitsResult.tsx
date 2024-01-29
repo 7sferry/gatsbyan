@@ -7,10 +7,10 @@ import React from "react";
 import { Link } from "gatsby";
 import { useInstantSearch } from "react-instantsearch";
 import type { HighlightResult } from "algoliasearch-helper/types/algoliasearch";
-import { AlgoliaNodeResult } from "../types/DataTypes.ts";
+import { AlgoliaNodeResult } from "../../types/DataTypes.ts";
 import { SearchResultsApi } from "react-instantsearch-core/dist/es/lib/useSearchResults";
 
-const SearchHitsElement = (): React.JSX.Element => {
+const SearchHitsResult = (): React.JSX.Element => {
   const { results }: SearchResultsApi = useInstantSearch();
 
   let hits = results.hits;
@@ -72,4 +72,4 @@ const LIMIT_CHAR = 100;
 
 const LIMIT_CHAR_ALTERNATE = 3 * LIMIT_CHAR;
 
-export default SearchHitsElement;
+export default SearchHitsResult;
