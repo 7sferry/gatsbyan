@@ -5,12 +5,18 @@
 
 import Layout from "../../components/Layout";
 import React from "react";
-import algoliasearch from "algoliasearch/lite";
-import Hits from "./hits";
-import { Configure, connectPagination, InstantSearch, SearchBox, VoiceSearch } from "react-instantsearch-dom";
-import Pagination from "../../components/Pagination";
-import { SEARCH_COUNT } from "../../utils/GatsbyanUtils";
+import algoliasearch, { SearchClient } from "algoliasearch/lite";
+import { connectPagination } from "instantsearch.js/es/connectors";
+import { Configure, Hits, InstantSearch, SearchBox, useConnector } from "react-instantsearch";
 import Seo from "../../components/Seo";
+import { MultipleQueriesQuery } from "@algolia/client-search";
+import Pagination from "../../components/Pagination.tsx";
+import {
+  PaginationConnectorParams,
+  PaginationRenderState,
+  PaginationWidgetDescription,
+} from "instantsearch.js/es/connectors/pagination/connectPagination";
+import HitsElement from "./hits-element.tsx";
 
 function SearchPage() {
   const algoliaClient = algoliasearch(
@@ -19,41 +25,63 @@ function SearchPage() {
   );
   const chrome = typeof window !== "undefined" ? !!window.chrome : null;
 
-  const searchClient = {
-    search(requests: any) {
-      if (requests.every(({ params }: any) => !params.query)) {
+  const searchClient: SearchClient = {
+    ...algoliaClient,
+    search(queries: readonly MultipleQueriesQuery[]): Readonly<Promise<any>> {
+      console.log("masuk " + JSON.stringify(queries));
+      if (queries.every(({ params }: any) => !params.query)) {
+        console.log("masuk lagi " + JSON.stringify(queries));
         return Promise.resolve({
-          results: requests.map(() => ({
-            hits: null,
+          results: queries.map(() => ({
+            hits: "lululu",
             nbHits: 0,
             nbPages: 0,
             processingTimeMS: 0,
           })),
         });
       }
-      return algoliaClient.search(requests);
+      return algoliaClient.search(queries);
     },
   };
 
-  const SearchResult = connectPagination(({ currentRefinement, nbPages, refine }) => {
-    const url = "/search";
+  function usePagination(props: PaginationConnectorParams, additionalWidgetProperties: any): PaginationRenderState {
+    return useConnector<PaginationConnectorParams, PaginationWidgetDescription>(
+      connectPagination,
+      props,
+      additionalWidgetProperties
+    );
+  }
+
+  function PaginationSearchResult(props: PaginationConnectorParams) {
+    let pagination: PaginationRenderState = usePagination(props, {});
+    console.log("pag " + JSON.stringify(pagination));
+    console.log("props " + JSON.stringify(props));
 
     return (
       <>
-        <Hits />
-        <Pagination totalPageCount={nbPages} currentPage={currentRefinement} url={url} refine={refine} />
+        <Hits hitComponent={HitsElement} />
+        <Pagination
+          totalPageCount={pagination.nbPages}
+          currentPage={pagination.currentRefinement}
+          url={"/search"}
+          refine={pagination.refine}
+        />
       </>
     );
-  });
+  }
 
   return (
     <Layout>
       <div className="post-main">
-        <InstantSearch indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME ?? ""} searchClient={searchClient}>
-          <Configure distinct hitsPerPage={SEARCH_COUNT} />
-          {chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}
+        <InstantSearch
+          initialUiState={{}}
+          indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME ?? ""}
+          searchClient={searchClient}
+        >
+          <Configure distinct hitsPerPage={2} />
+          {/*{chrome ? <VoiceSearch searchAsYouSpeak={false} /> : <></>}*/}
           <SearchBox className={"search-box"} searchAsYouType={false} />
-          <SearchResult />
+          <PaginationSearchResult />
         </InstantSearch>
       </div>
     </Layout>

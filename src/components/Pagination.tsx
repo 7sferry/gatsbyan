@@ -10,19 +10,19 @@ import "./pagination.css";
 import { PAGE_COUNT } from "../utils/GatsbyanUtils";
 import { PaginationAttr, PagingLinkAttr } from "../types/DataTypes";
 
-const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr) => {
+export const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr): React.JSX.Element => {
   const limit = 1;
   const createURL = (pageNo: number | null) => {
     return `${pageNo === null ? `${url === "/page" ? "/" : url}` : `${url}/${pageNo}`}`;
   };
-  const PagingLink = ({ pageNo, children, ...rest }: React.PropsWithChildren<PagingLinkAttr>) => {
+  const PagingLink = ({ pageNo, text, ...rest }: React.PropsWithChildren<PagingLinkAttr>) => {
     return refine ? (
       <a href={createURL(pageNo)} style={{ textDecoration: `none` }} {...rest}>
-        {children}
+        {text}
       </a>
     ) : (
       <Link to={createURL(pageNo)} style={{ textDecoration: `none` }} {...rest}>
-        {children}
+        {text}
       </Link>
     );
   };
@@ -48,9 +48,8 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr
                   onClick={(e) => {
                     click(e, 1);
                   }}
-                >
-                  First
-                </PagingLink>
+                  text={"First"}
+                />
               </span>
 
               <span>
@@ -61,9 +60,8 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr
                   onClick={(e) => {
                     click(e, previousPage);
                   }}
-                >
-                  Prev
-                </PagingLink>
+                  text={"Prev"}
+                />
               </span>
 
               <ul>
@@ -79,9 +77,8 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr
                           onClick={(e) => {
                             click(e, page);
                           }}
-                        >
-                          {page}
-                        </PagingLink>
+                          text={page.toString()}
+                        />
                       </span>
                     </li>
                   );
@@ -96,9 +93,8 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr
                   onClick={(e) => {
                     click(e, nextPage);
                   }}
-                >
-                  Next
-                </PagingLink>
+                  text={"Next"}
+                />
               </span>
 
               <span>
@@ -109,9 +105,8 @@ const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr
                   onClick={(e) => {
                     click(e, totalPages);
                   }}
-                >
-                  Last
-                </PagingLink>
+                  text={"Last"}
+                />
               </span>
             </nav>
           )

@@ -193,6 +193,7 @@ export interface PagingLinkAttr {
   readonly className: string;
   readonly pageNo: number | null;
   readonly onClick: React.MouseEventHandler;
+  readonly text: string;
 }
 
 export interface MenuAttr {
@@ -264,6 +265,13 @@ export interface AlgoliaNode {
   readonly body: {
     readonly childMarkdownRemark: AlgoliaChildMarkdownRemark;
   };
+}
+
+export interface AlgoliaNodeResult {
+  readonly id: string;
+  readonly title: string;
+  readonly slug: string;
+  readonly excerpt: string;
 }
 
 export interface AlgoliaChildMarkdownRemark {

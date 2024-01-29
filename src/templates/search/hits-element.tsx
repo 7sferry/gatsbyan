@@ -5,10 +5,18 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { BasicDoc, connectStateResults, HighlightResult } from "react-instantsearch-core";
+import { useInstantSearch } from "react-instantsearch";
+import type { HighlightResult } from "algoliasearch-helper/types/algoliasearch";
+import { AlgoliaNodeResult } from "../../types/DataTypes.ts";
 
-const Hit = connectStateResults(({ searchResults }) => {
-  let hits = searchResults.hits;
+const HitsElement = (): React.JSX.Element => {
+  const { results } = useInstantSearch();
+
+  console.log("hhh " + JSON.stringify(results));
+  let hits = results.hits;
+  // if (hits === null || !results.query) {
+  //   return <></>;
+  // }
   if (hits.length <= 0) {
     return <p>There were no results yet.</p>;
   }
@@ -16,9 +24,9 @@ const Hit = connectStateResults(({ searchResults }) => {
   return (
     <div>
       {hits.map((hit) => {
-        const highlightResult = hit._highlightResult;
+        const highlightResult: HighlightResult<AlgoliaNodeResult> = hit._highlightResult;
         const title = highlightResult?.title?.value ?? "";
-        let html = getHtml(highlightResult, searchResults.query);
+        let html = getHtml(highlightResult, results.query);
         return (
           <div key={hit.objectID} className="search-result-container">
             <div className="title">
@@ -34,7 +42,7 @@ const Hit = connectStateResults(({ searchResults }) => {
       })}
     </div>
   );
-});
+};
 
 function reconstructExcerpt(excerpt: string, query: string) {
   const newExcerpt = excerpt.replaceAll(query, `<ais-highlight-0000000000>${query}</ais-highlight-0000000000>`);
@@ -42,7 +50,7 @@ function reconstructExcerpt(excerpt: string, query: string) {
   return newExcerpt.substring(matchedIndex);
 }
 
-function getHtml(highlightResult: HighlightResult<BasicDoc>, query: string) {
+function getHtml(highlightResult: HighlightResult<AlgoliaNodeResult>, query: string) {
   const excerpt = highlightResult?.excerpt?.value?.trim() ?? "";
   const matchedStartIndex = getStartIndex(excerpt);
   if (matchedStartIndex < 0) {
@@ -67,4 +75,4 @@ function getStartIndex(excerpt: string) {
   return excerpt?.indexOf(" ", matchedIndex - LIMIT_CHAR_ALTERNATE) + 1;
 }
 
-export default Hit;
+export default HitsElement;
