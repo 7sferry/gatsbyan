@@ -9,7 +9,7 @@ import { graphql, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import Pagination from "../components/Pagination";
+import PaginationElement from "../components/PaginationElement.tsx";
 import { getPlurals, getPostTags, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
 import { IndexProp } from "../types/DataTypes";
@@ -60,7 +60,11 @@ function IndexPage(props: IndexProp) {
           );
         })}
         <div className="text-center mt-4">
-          <Pagination totalPageCount={pageInfo.pageCount} url={paginationUrl} currentPage={pageInfo.currentPage} />
+          <PaginationElement
+            totalPageCount={pageInfo.pageCount}
+            url={paginationUrl}
+            currentPage={pageInfo.currentPage}
+          />
         </div>
       </div>
     </Layout>

@@ -8,15 +8,12 @@ import { Link } from "gatsby";
 import { useInstantSearch } from "react-instantsearch";
 import type { HighlightResult } from "algoliasearch-helper/types/algoliasearch";
 import { AlgoliaNodeResult } from "../../types/DataTypes.ts";
+import { SearchResultsApi } from "react-instantsearch-core/dist/es/lib/useSearchResults";
 
 const HitsElement = (): React.JSX.Element => {
-  const { results } = useInstantSearch();
+  const { results }: SearchResultsApi = useInstantSearch();
 
-  console.log("hhh " + JSON.stringify(results));
   let hits = results.hits;
-  // if (hits === null || !results.query) {
-  //   return <></>;
-  // }
   if (hits.length <= 0) {
     return <p>There were no results yet.</p>;
   }
@@ -44,26 +41,7 @@ const HitsElement = (): React.JSX.Element => {
   );
 };
 
-function reconstructExcerpt(excerpt: string, query: string) {
-  const newExcerpt = excerpt.replaceAll(query, `<ais-highlight-0000000000>${query}</ais-highlight-0000000000>`);
-  const matchedIndex = getStartIndex(newExcerpt);
-  return newExcerpt.substring(matchedIndex);
-}
-
-function getHtml(highlightResult: HighlightResult<AlgoliaNodeResult>, query: string) {
-  const excerpt = highlightResult?.excerpt?.value?.trim() ?? "";
-  const matchedStartIndex = getStartIndex(excerpt);
-  if (matchedStartIndex < 0) {
-    return reconstructExcerpt(excerpt, query);
-  }
-  return excerpt?.substring(matchedStartIndex);
-}
-
-const LIMIT_CHAR = 100;
-
-const LIMIT_CHAR_ALTERNATE = 3 * LIMIT_CHAR;
-
-function getStartIndex(excerpt: string) {
+const getStartIndex = (excerpt: string) => {
   const matchedIndex = excerpt?.indexOf("<ais-highlight-0000000000");
   const lastHundredCharIndex = matchedIndex - LIMIT_CHAR;
   if (lastHundredCharIndex < 0) {
@@ -73,6 +51,25 @@ function getStartIndex(excerpt: string) {
     return excerpt?.indexOf(" ", lastHundredCharIndex) + 1;
   }
   return excerpt?.indexOf(" ", matchedIndex - LIMIT_CHAR_ALTERNATE) + 1;
-}
+};
+
+const getHtml = (highlightResult: HighlightResult<AlgoliaNodeResult>, query: string) => {
+  const excerpt = highlightResult?.excerpt?.value?.trim() ?? "";
+  const matchedStartIndex = getStartIndex(excerpt);
+  if (matchedStartIndex < 0) {
+    return reconstructExcerpt(excerpt, query);
+  }
+  return excerpt?.substring(matchedStartIndex);
+};
+
+const reconstructExcerpt = (excerpt: string, query: string) => {
+  const newExcerpt = excerpt.replaceAll(query, `<ais-highlight-0000000000>${query}</ais-highlight-0000000000>`);
+  const matchedIndex = getStartIndex(newExcerpt);
+  return newExcerpt.substring(matchedIndex);
+};
+
+const LIMIT_CHAR = 100;
+
+const LIMIT_CHAR_ALTERNATE = 3 * LIMIT_CHAR;
 
 export default HitsElement;

@@ -10,7 +10,7 @@ import "./pagination.css";
 import { PAGE_COUNT } from "../utils/GatsbyanUtils";
 import { PaginationAttr, PagingLinkAttr } from "../types/DataTypes";
 
-export const Pagination = ({ totalPageCount, currentPage, url, refine }: PaginationAttr): React.JSX.Element => {
+export const PaginationElement = ({ totalPageCount, currentPage, url, refine }: PaginationAttr): React.JSX.Element => {
   const limit = 1;
   const createURL = (pageNo: number | null) => {
     return `${pageNo === null ? `${url === "/page" ? "/" : url}` : `${url}/${pageNo}`}`;
@@ -116,4 +116,4 @@ export const Pagination = ({ totalPageCount, currentPage, url, refine }: Paginat
   );
 };
 
-export default Pagination;
+export default PaginationElement;
