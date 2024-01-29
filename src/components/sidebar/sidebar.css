@@ -4,14 +4,11 @@
 
 .side-social-links {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  float: left;
+  grid-template-columns: 0.1fr 0.1fr 0.1fr;
 }
 
 .page-links,
 .tech-tags {
-  margin-top: 3rem;
-  padding-top: 7rem;
   font-family: "Work Sans", serif;
 }
 

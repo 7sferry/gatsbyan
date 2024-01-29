@@ -255,7 +255,7 @@ hgroup {
 
 ul {
   padding: 0;
-  margin: 0 0 1.45rem 1.45rem;
+  margin: 0 0 1rem 1rem;
   list-style-position: outside;
   list-style-image: none;
 }
@@ -496,7 +496,7 @@ pre tt:after {
 
 .body-content {
   margin: 0 auto;
-  padding: 0 1.0875rem 1.45rem;
+  padding: 1rem;
 }
 
 @keyframes animate {

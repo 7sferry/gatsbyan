@@ -29,16 +29,13 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
           </div>
         </main>
         <footer className="text-center">
-          <div className="mobile-footer mt-4">
+          <div className="mobile-footer">
             <RightSidebar />
           </div>
           <div className="mobile-footer">
             <Tags />
-            <hr />
           </div>
-          <div>
-            <p className="d-inline my-emoji">{metadata.copyright}</p>
-          </div>
+          <div className="my-emoji mt-2">{metadata.copyright}</div>
         </footer>
       </div>
     </>
