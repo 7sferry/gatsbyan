@@ -150,6 +150,10 @@ a:hover,
     display: none;
   }
 
+  .post-main {
+    padding: 0;
+  }
+  
   .index-main {
     display: flex;
     flex-direction: row;
