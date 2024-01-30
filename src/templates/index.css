@@ -82,7 +82,6 @@ p,
 .right-sidebar {
   -ms-grid-column: 3;
   grid-column: 3;
-  padding-left: 2rem;
 }
 
 .text-link,
