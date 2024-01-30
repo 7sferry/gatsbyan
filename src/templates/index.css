@@ -23,7 +23,6 @@ p,
   display: inline-block;
   text-align: left;
   width: 100%;
-  padding: 0 1.5rem;
 }
 
 .content-post {
@@ -72,6 +71,7 @@ p,
 }
 .post-main {
   -ms-grid-column: 2;
+  padding: 0 1.5rem 0 0;
   grid-column: 2;
   width: 100%;
 }
