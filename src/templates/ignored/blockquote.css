@@ -26,6 +26,7 @@ blockquote {
   position: relative;
   padding: 15px;
   border-radius: 15px;
+  max-width: 95%;
 }
 blockquote > :last-child {
   display: block;
