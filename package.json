@@ -2,7 +2,7 @@
   "name": "gatsbyan",
   "private": false,
   "description": "My personal blog powered by Gatsby JS",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "author": "Ferry",
   "dependencies": {
     "algoliasearch": "^4.22.1",
