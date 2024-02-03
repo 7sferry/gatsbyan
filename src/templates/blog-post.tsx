@@ -76,8 +76,8 @@ function extractHtmlWithAnchor(html: string): string {
 function getHrefValue(capturedSubstr1: string): string {
   let hrefValue = capturedSubstr1
     .trim()
-      .replace(/<code(.*?)>/g, "")
-      .replace("</code>", "")
+    .replace(/<code(.*?)>/g, "")
+    .replace("</code>", "")
     .replace(/[^a-z0-9]+/gi, "-")
     .toLowerCase();
   if (hrefValue.startsWith("-")) {
@@ -107,7 +107,7 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        gatsbyImageData(quality: 75, placeholder: BLURRED, layout: FULL_WIDTH)
+        gatsbyImageData(quality: 75, placeholder: BLURRED, layout: FULL_WIDTH, resizingBehavior: THUMB, cropFocus: FACE)
         title
         file {
           url
