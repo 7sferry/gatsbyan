@@ -35,7 +35,7 @@ const timeZone = "Asia/Jakarta";
 export const getPublishDate = (date: Date) => formatToTimeZone(date, "MMMM Do, YYYY", { timeZone: timeZone });
 
 export const getPublishDateTime = (date: Date) =>
-  formatToTimeZone(date, "ddd. MMM Do, YYYY hh:mma", { timeZone: timeZone });
+  formatToTimeZone(date, "ddd. MMM Do, YYYY hh:mm a", { timeZone: timeZone });
 
 export const getMonthYearDate = (date: Date) => formatToTimeZone(date, "YYYY-MMMM", { timeZone: timeZone });
 
