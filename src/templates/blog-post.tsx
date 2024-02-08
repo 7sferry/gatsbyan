@@ -107,7 +107,13 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        gatsbyImageData(quality: 75, placeholder: BLURRED, layout: FULL_WIDTH, resizingBehavior: THUMB, cropFocus: FACE)
+        gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: FULL_WIDTH
+          resizingBehavior: THUMB
+          cropFocus: FACES
+        )
         title
         file {
           url
