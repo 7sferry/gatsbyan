@@ -161,7 +161,7 @@ a:hover,
   }
 
   .post-container {
-    padding: 0 5rem;
+    padding: unset;
   }
 
   .blog-content {
