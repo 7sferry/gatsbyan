@@ -161,7 +161,7 @@ a:hover,
   }
 
   .post-container {
-    padding: 0 5rem;
+    padding: unset;
   }
 
   .blog-content {
@@ -170,6 +170,7 @@ a:hover,
 
   .index-thumbnail {
     max-width: 45%;
+    max-height: 200px;
   }
 }
 
@@ -181,6 +182,7 @@ a:hover,
 
   .index-thumbnail {
     max-width: 45%;
+    max-height: 230px;
   }
 }
 
