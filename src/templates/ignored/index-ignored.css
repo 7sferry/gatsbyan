@@ -363,9 +363,9 @@ iframe {
     max-height: 55vh;
 }
 
-@media (max-width: 1024px) {
+@media (min-height: 1024px) {
     .heroImage {
-        max-height: 45vh;
+        max-height: 30vh;
     }
 }
 
