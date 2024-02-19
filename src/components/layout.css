@@ -494,7 +494,7 @@ pre tt:after {
 
 .body-content {
   margin: 0 auto;
-  padding: 1rem;
+  padding: .5rem;
 }
 
 @keyframes animate {
