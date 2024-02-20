@@ -7,13 +7,6 @@
   background: #1c1e1f;
 }
 
-/*.metismenu {*/
-/*  background: #303336;*/
-/*  font-family: "Work Sans", sans-serif;*/
-/*  font-size: 12pt;*/
-/*  overflow: hidden;*/
-/*  position: relative;*/
-/*}*/
 .archive-link {
   cursor: pointer;
   border: none;
@@ -26,20 +19,6 @@
   line-height: 2.5em;
 }
 
-/*.metismenu > .archive-container > .item > .archive-link .metismenu-state-icon {*/
-/*  line-height: 2.5em;*/
-/*}*/
-/*.metismenu::after {*/
-/*  box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5) inset;*/
-/*  -webkit-box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.5) inset;*/
-/*  content: " ";*/
-/*  pointer-events: none;*/
-/*  position: absolute;*/
-/*  bottom: 0;*/
-/*  left: 0;*/
-/*  right: 0;*/
-/*  top: 0;*/
-/*}*/
 .archive-container,
 .item {
   margin: 0;
@@ -105,30 +84,8 @@
   color: #f7f7f7;
 }
 
-/*.archive-link.active {*/
-/*  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);*/
-/*  -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);*/
-/*  background: #f53;*/
-/*  color: #fff;*/
-/*}*/
-/*.archive-link.has-active-child {*/
-/*  color: #f53;*/
-/*}*/
 i.archive-icon {
   text-align: center;
   width: 3em;
   display: inline-block;
 }
-
-/*i.metismenu-state-icon {*/
-/*  transition: transform 300ms;*/
-/*  -webkit-transition: transform 300ms;*/
-/*  float: right;*/
-/*  line-height: 2.5em;*/
-/*  text-align: center;*/
-/*  width: 3em;*/
-/*}*/
-/*i.metismenu-state-icon.rotate-minus-90 {*/
-/*  transform: rotate(-90deg);*/
-/*  -webkit-transform: rotate(-90deg);*/
-/*}*/
