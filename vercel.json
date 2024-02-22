@@ -45,6 +45,11 @@
       "source": "/blog/acid-pada-database-durability",
       "destination": "/blog/acid-pada-database#durability",
       "permanent": true
+    },
+    {
+      "source": "/blog/value-averaging-calculator",
+      "destination": "/features/value-averaging-calculator",
+      "permanent": true
     }
   ],
   "trailingSlash": false

@@ -36,7 +36,7 @@ const FeaturedPage = () => {
             );
           })}
           <li>
-            <Link className="text-link" to={"/blog/value-averaging-calculator"}>
+            <Link className="text-link" to={"/features/value-averaging-calculator"}>
               <small className="title">{"Value Averaging Calculator"}</small>
             </Link>
           </li>
