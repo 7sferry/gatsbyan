@@ -28,9 +28,9 @@ export const getVcaResult = (stock: ValueAveragingStockCalculator) => {
       <p>{`harga saat ini adalah ${rp(stock.currentLotPrice / 100)}/unit atau ${rp(
         stock.currentLotPrice
       )} untuk pembelian satu lot`}</p>
-      <p>{`jumlah stock yang saya miliki sejak ${format(stock.sinceDate, "MMMM YYYY", { locale: id })} adalah
+      <p>{`jumlah stock yang saya miliki sejak ${format(stock.sinceDate, "MMMM yyyy", { locale: id })} adalah
       ${stock.totalLot.toLocaleString("id-ID")} lot (${(stock.totalLot * 100).toLocaleString("id-ID")} unit)`}</p>
-      <p>{`total investasi yang saya miliki sejak ${format(stock.sinceDate, "MMMM YYYY", { locale: id })} adalah
+      <p>{`total investasi yang saya miliki sejak ${format(stock.sinceDate, "MMMM yyyy", { locale: id })} adalah
        ${rp(stock.totalPrice())}`}</p>
       <p>{`sekarang bulan ke-${monthDifference + 1}`}</p>
       <p>
