@@ -77,6 +77,7 @@ export interface BlogPostProp {
     readonly contentfulBlogPost: {
       readonly title: string;
       readonly publishDate: Date;
+      readonly updatedAt: Date;
       readonly lang: string;
       readonly body: {
         readonly childMarkdownRemark: {
