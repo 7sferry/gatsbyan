@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { format } from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -30,13 +30,13 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const myFormat = (date: Date, formatStr: string) => format(date, formatStr);
+export const getPublishDate = (date: Date) => format(date, "MMMM do, yyyy");
 
-export const getPublishDate = (date: Date) => myFormat(date, "MMMM do, yyyy");
+export const getPublishDateTime = (date: Date) => format(date, "eee. MMM do, yyyy hh:mm a");
 
-export const getPublishDateTime = (date: Date) => myFormat(date, "eee. MMM do, yyyy hh:mm a");
+export const getMonthYearDate = (date: Date) => format(date, "yyyy-MMMM");
 
-export const getMonthYearDate = (date: Date) => myFormat(date, "yyyy-MMMM");
+export const toNow = (date: Date) => formatDistanceToNow(date);
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";

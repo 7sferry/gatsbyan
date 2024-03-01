@@ -7,7 +7,7 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
-import { getPlurals, getPostTags, getPublishDateTime } from "../utils/GatsbyanUtils";
+import { getPlurals, getPostTags, getPublishDateTime, toNow } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -31,7 +31,9 @@ const BlogPostTemplate = (props: BlogPostProp) => {
       <div className="post-main">
         <div className="title posted">{post.title}</div>
         <div className="title text-info mb-2">
-          <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
+          <span className="page-info" title={`last updated ${toNow(post.updatedAt)} ago`}>
+            {getPublishDateTime(post.publishDate)}
+          </span>
           <span className="page-info" style={{ display: "inline-block" }}>
             {timeToRead} min{getPlurals(timeToRead)} read
           </span>
@@ -96,6 +98,7 @@ export const pageQuery = graphql`
     contentfulBlogPost(slug: { eq: $slug }) {
       title
       publishDate
+      updatedAt
       lang
       body {
         childMarkdownRemark {
