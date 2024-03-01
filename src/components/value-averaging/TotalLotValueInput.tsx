@@ -16,7 +16,7 @@ export const TotalLotValueInput = ({ stockCacheValue }: StockCacheInputProps) =>
   const [totalLotValue, setTotalLotValue] = React.useState("");
   React.useEffect(() => {
     setTotalLotValue(String(stockCacheValue.totalLot || ""));
-  }, []);
+  }, [stockCacheValue]);
 
   return (
     <input
