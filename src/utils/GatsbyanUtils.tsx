@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { formatToTimeZone } from "date-fns-timezone";
+import { format } from "date-fns";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -30,14 +30,13 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const timeZone = "Asia/Jakarta";
+const myFormat = (date: Date, formatStr: string) => format(date, formatStr);
 
-export const getPublishDate = (date: Date) => formatToTimeZone(date, "MMMM Do, YYYY", { timeZone: timeZone });
+export const getPublishDate = (date: Date) => myFormat(date, "MMMM do, yyyy");
 
-export const getPublishDateTime = (date: Date) =>
-  formatToTimeZone(date, "ddd. MMM Do, YYYY hh:mm a", { timeZone: timeZone });
+export const getPublishDateTime = (date: Date) => myFormat(date, "eee. MMM do, yyyy hh:mm a");
 
-export const getMonthYearDate = (date: Date) => formatToTimeZone(date, "YYYY-MMMM", { timeZone: timeZone });
+export const getMonthYearDate = (date: Date) => myFormat(date, "yyyy-MMMM");
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
