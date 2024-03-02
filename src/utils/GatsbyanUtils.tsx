@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { format, formatDistanceToNow } from "date-fns";
+import { add, format, formatDistanceToNow, isAfter } from "date-fns";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -37,6 +37,10 @@ export const getPublishDateTime = (date: Date) => format(date, "eee. MMM do, yyy
 export const getMonthYearDate = (date: Date) => format(date, "yyyy-MMMM");
 
 export const toNow = (date: Date) => formatDistanceToNow(date);
+
+export const isAfterDate = (date1: Date, date2: Date) => isAfter(date1, date2);
+
+export const plusDays = (date: Date, day: number) => add(date, { days: day });
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
