@@ -35,7 +35,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
             {timeToRead} min{getPlurals(timeToRead)} read
           </span>
           {isAfterDate(post.updatedAt, plusDays(post.publishDate, 30)) && (
-            <span className="page-info">{`edited ${toNow(post.updatedAt)} ago`}</span>
+            <span className="page-info">{`updated ${toNow(post.updatedAt)} ago`}</span>
           )}
           <div className="page-info">{getPostTags(post.tags)}</div>
         </div>
