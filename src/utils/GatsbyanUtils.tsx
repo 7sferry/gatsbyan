@@ -32,7 +32,7 @@ export const getTags = (tag: string) => {
 
 export const getPublishDate = (date: Date) => format(date, "MMMM do, yyyy");
 
-export const getPublishDateTime = (date: Date) => format(date.getTime(), "eee. MMM do, yyyy hh:mm a");
+export const getPublishDateTime = (date: Date | string) => format(date, "eee. MMM do, yyyy hh:mm a");
 
 export const getMonthYearDate = (date: Date) => format(date, "yyyy-MMMM");
 
@@ -40,7 +40,7 @@ export const toNow = (date: Date) => formatDistanceToNow(date);
 
 export const isAfterDate = (date1: Date, date2: Date) => isAfter(date1, date2);
 
-export const plusDays = (date: Date, day: number) => add(date, { days: day });
+export const plusDays = (date: Date | string, day: number) => add(date, { days: day });
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";

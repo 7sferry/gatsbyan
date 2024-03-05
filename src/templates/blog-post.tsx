@@ -25,7 +25,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const imageData = heroImage?.gatsbyImageData;
   const imageTitle = heroImage?.title;
   const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
-  const publishDate = new Date(post.publishDate);
+  const publishDate = new Date(new Date(post.publishDate).toLocaleString("en-US", { timeZone: "Asia/Jakarta" }));
   return (
     <Layout>
       <div className="post-main">
