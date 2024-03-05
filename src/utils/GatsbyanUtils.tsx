@@ -30,7 +30,19 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const reparseDate = (date: Date) => date.toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
+const reparseDate = (date: Date) => {
+  return date.toLocaleString("en-US", { timeZone: getOffsetFromDate(date) });
+};
+
+const getOffsetFromDate = (date: Date) => {
+  const offsetMinutes = -date.getTimezoneOffset();
+
+  const hours = Math.floor(offsetMinutes / 60);
+  const minutes = offsetMinutes % 60;
+
+  const offsetSign = offsetMinutes < 0 ? "-" : "+";
+  return `${offsetSign}${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+};
 
 export const getPublishDate = (date: Date) => format(reparseDate(date), "MMMM do, yyyy");
 
