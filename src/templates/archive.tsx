@@ -61,13 +61,13 @@ class ArchivePage extends React.Component<ArchiveProp, ArchiveState> {
     const posts = allContentfulBlogPost.nodes;
     let postByMonth = new Map<string, Array<ArchiveNode>>();
     if (posts) {
-      let lastDate = getMonthYearDate(posts[0].publishDate);
+      let lastDate = getMonthYearDate(new Date(posts[0].publishDate));
       this.state.firstOpen &&
         this.state.activeYear.push(lastDate.split("-")[0]) &&
         this.state.activeMonth.push(lastDate);
 
       posts.forEach((o) => {
-        const monthYearDate = getMonthYearDate(o.publishDate);
+        const monthYearDate = getMonthYearDate(new Date(o.publishDate));
         let post = postByMonth.get(monthYearDate);
         if (post) {
           post.push(o);

@@ -32,12 +32,15 @@ export const getTags = (tag: string) => {
 
 const reparseDate = (date: Date) => {
   let offsetFromDate = getOffsetFromDate(date);
-  let options = offsetFromDate === "+00:00" ? undefined : { timeZone: offsetFromDate };
+  let options = offsetFromDate === "0" ? undefined : { timeZone: offsetFromDate };
   return date.toLocaleString("en-US", options);
 };
 
 const getOffsetFromDate = (date: Date) => {
   const offsetMinutes = -date.getTimezoneOffset();
+  if (offsetMinutes === 0) {
+    return "0";
+  }
 
   const hours = Math.floor(offsetMinutes / 60);
   const minutes = offsetMinutes % 60;
