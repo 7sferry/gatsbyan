@@ -5,7 +5,8 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, format, formatDistanceToNow, isAfter } from "date-fns";
+import { add, formatDistanceToNow, isAfter, toDate } from "date-fns";
+import { formatToTimeZone } from "date-fns-timezone";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -30,19 +31,20 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const reparseDate = (date: Date) => date.toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
+const timeZone = "Asia/Jakarta";
 
-export const getPublishDate = (date: Date) => format(reparseDate(date), "MMMM do, yyyy");
+export const getPublishDate = (date: Date | string) => formatToTimeZone(date, "MMMM Do, YYYY", { timeZone: timeZone });
 
-export const getPublishDateTime = (date: Date) => format(reparseDate(date), "eee. MMM do, yyyy hh:mm a");
+export const getPublishDateTime = (date: Date | string) =>
+  formatToTimeZone(date, "ddd. MMM Do, YYYY hh:mma", { timeZone: timeZone });
 
-export const getMonthYearDate = (date: Date) => format(reparseDate(date), "yyyy-MMMM");
+export const getMonthYearDate = (date: Date | string) => formatToTimeZone(date, "YYYY-MMMM", { timeZone: timeZone });
 
-export const toNow = (date: Date) => formatDistanceToNow(reparseDate(date));
+export const toNow = (date: string | Date) => formatDistanceToNow(date);
 
-export const isAfterDate = (date1: Date, date2: Date) => isAfter(reparseDate(date1), reparseDate(date2));
+export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(date1, date2);
 
-export const plusDays = (date: Date, day: number) => add(reparseDate(date), { days: day });
+export const plusDays = (date: string | Date, day: number) => add(date, { days: day });
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
