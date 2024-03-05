@@ -33,10 +33,7 @@ export const getTags = (tag: string) => {
 };
 
 const reparseDate = (date: Date) => {
-  let d = new Date(0);
-  d.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
-  d.setHours(date.getHours(), date.getMinutes(), date.getSeconds());
-  return d.toLocaleString("en-US");
+  return date.toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
 };
 
 // const getOffsetFromDate = (date: Date) => {
