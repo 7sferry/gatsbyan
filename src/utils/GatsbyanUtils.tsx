@@ -34,6 +34,7 @@ export const getTags = (tag: string) => {
 
 const reparseDate = (date: Date | string) => {
   let offset = format(date, "xxx");
+  console.log(offset + " off");
   if (offset === "+00:00") {
     return date;
   }
