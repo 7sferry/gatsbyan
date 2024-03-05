@@ -25,16 +25,17 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const imageData = heroImage?.gatsbyImageData;
   const imageTitle = heroImage?.title;
   const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
+  const publishDate = new Date(post.publishDate);
   return (
     <Layout>
       <div className="post-main">
         <div className="title posted">{post.title}</div>
         <div className="title text-info mb-2">
-          <span className="page-info">{getPublishDateTime(post.publishDate)}</span>
+          <span className="page-info">{getPublishDateTime(publishDate)}</span>
           <span className="page-info" style={{ display: "inline-block" }}>
             {timeToRead} min{getPlurals(timeToRead)} read
           </span>
-          {isAfterDate(post.updatedAt, plusDays(post.publishDate, 30)) && (
+          {isAfterDate(post.updatedAt, plusDays(publishDate, 30)) && (
             <span className="page-info">{`updated ${toNow(post.updatedAt)} ago`}</span>
           )}
           <div className="page-info">{getPostTags(post.tags)}</div>
