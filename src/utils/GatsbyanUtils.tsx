@@ -6,7 +6,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { add, formatDistanceToNow, isAfter } from "date-fns";
-import { format, toDate } from "date-fns-tz";
+import { format, toDate } from "@jeromefitz/date-fns-tz";
 
 // const UTC_OFFSET = "0";
 
