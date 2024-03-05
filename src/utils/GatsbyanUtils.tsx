@@ -35,21 +35,21 @@ export const getTags = (tag: string) => {
 const reparseDate = (date: Date) => {
   // let offsetFromDate = getOffsetFromDate(date);
   // let options = { timeZone: "" };
-  return parseISO(date.toUTCString());
+  return date.setUTCDate(date.getTime());
 };
 
-const getOffsetFromDate = (date: Date) => {
-  const offsetMinutes = -date.getTimezoneOffset();
-  if (offsetMinutes === 0) {
-    return UTC_OFFSET;
-  }
-
-  const hours = Math.floor(offsetMinutes / 60);
-  const minutes = offsetMinutes % 60;
-
-  const offsetSign = offsetMinutes < 0 ? "-" : "+";
-  return `${offsetSign}${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
-};
+// const getOffsetFromDate = (date: Date) => {
+//   const offsetMinutes = -date.getTimezoneOffset();
+//   if (offsetMinutes === 0) {
+//     return UTC_OFFSET;
+//   }
+//
+//   const hours = Math.floor(offsetMinutes / 60);
+//   const minutes = offsetMinutes % 60;
+//
+//   const offsetSign = offsetMinutes < 0 ? "-" : "+";
+//   return `${offsetSign}${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+// };
 
 export const getPublishDate = (date: Date) => format(reparseDate(date), "MMMM do, yyyy");
 
