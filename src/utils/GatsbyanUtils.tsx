@@ -7,6 +7,8 @@ import React from "react";
 import { Link } from "gatsby";
 import { add, format, formatDistanceToNow, isAfter } from "date-fns";
 
+const UTC_OFFSET = "0";
+
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
 };
@@ -32,14 +34,14 @@ export const getTags = (tag: string) => {
 
 const reparseDate = (date: Date) => {
   let offsetFromDate = getOffsetFromDate(date);
-  let options = offsetFromDate === "0" ? undefined : { timeZone: offsetFromDate };
+  let options = offsetFromDate === UTC_OFFSET ? undefined : { timeZone: offsetFromDate };
   return date.toLocaleString("en-US", options);
 };
 
 const getOffsetFromDate = (date: Date) => {
   const offsetMinutes = -date.getTimezoneOffset();
   if (offsetMinutes === 0) {
-    return "0";
+    return UTC_OFFSET;
   }
 
   const hours = Math.floor(offsetMinutes / 60);
