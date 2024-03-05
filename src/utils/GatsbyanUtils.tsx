@@ -7,7 +7,7 @@ import React from "react";
 import { Link } from "gatsby";
 import { add, format, formatDistanceToNow, isAfter } from "date-fns";
 
-const UTC_OFFSET = "0";
+// const UTC_OFFSET = "0";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -36,7 +36,7 @@ const reparseDate = (date: Date) => {
   let d = new Date(0);
   d.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
   d.setHours(date.getHours(), date.getMinutes(), date.getSeconds());
-  return d;
+  return d.toUTCString();
 };
 
 // const getOffsetFromDate = (date: Date) => {
