@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, format, formatDistanceToNow, isAfter } from "date-fns";
+import { add, format, formatDistanceToNow, isAfter, parseISO } from "date-fns";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -32,7 +32,11 @@ export const getTags = (tag: string) => {
 
 export const getPublishDate = (date: Date) => format(date, "MMMM do, yyyy");
 
-export const getPublishDateTime = (date: Date) => format(date, "eee. MMM do, yyyy hh:mm a");
+function parseDate(date: Date) {
+  return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes());
+}
+
+export const getPublishDateTime = (date: Date) => format(parseDate(date), "eee. MMM do, yyyy hh:mm a");
 
 export const getMonthYearDate = (date: Date) => format(date, "yyyy-MMMM");
 
