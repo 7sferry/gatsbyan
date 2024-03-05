@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, format, formatDistanceToNow, isAfter, parseISO } from "date-fns";
+import { add, format, formatDistanceToNow, isAfter } from "date-fns";
 
 const UTC_OFFSET = "0";
 
@@ -33,9 +33,10 @@ export const getTags = (tag: string) => {
 };
 
 const reparseDate = (date: Date) => {
-  // let offsetFromDate = getOffsetFromDate(date);
-  // let options = { timeZone: "" };
-  return date.setUTCDate(date.getTime());
+  let d = new Date(0);
+  d.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+  d.setHours(date.getHours(), date.getMinutes(), date.getSeconds());
+  return d;
 };
 
 // const getOffsetFromDate = (date: Date) => {
