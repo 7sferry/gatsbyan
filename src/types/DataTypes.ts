@@ -167,7 +167,7 @@ export interface IndexData {
       };
       readonly tags: Array<string>;
       readonly title: string;
-      readonly publishDate: Date;
+      readonly publishDate: string;
       readonly heroImage: {
         readonly gatsbyImageData: IGatsbyImageData;
         readonly title: string;

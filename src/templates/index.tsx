@@ -42,7 +42,7 @@ function IndexPage(props: IndexProp) {
                   </Link>
                 </div>
                 <div className="title text-info">
-                  <span className="page-info">{getPublishDate(post.publishDate)}</span>
+                  <span className="page-info">{getPublishDate(new Date(post.publishDate))}</span>
                   <span className="page-info">
                     {timeToRead} min{getPlurals(timeToRead)} read
                   </span>
@@ -51,7 +51,11 @@ function IndexPage(props: IndexProp) {
                 </div>
                 <div className="pt-1">
                   {post.heroImage && (
-                    <GatsbyImage image={post.heroImage.gatsbyImageData} className="index-thumbnail" alt={post.heroImage.title} />
+                    <GatsbyImage
+                      image={post.heroImage.gatsbyImageData}
+                      className="index-thumbnail"
+                      alt={post.heroImage.title}
+                    />
                   )}
                   <p>{childMarkdownRemark.excerpt}</p>
                 </div>
