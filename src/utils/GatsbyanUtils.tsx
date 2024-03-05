@@ -35,7 +35,7 @@ export const getTags = (tag: string) => {
 const reparseDate = (date: Date) => {
   // let offsetFromDate = getOffsetFromDate(date);
   // let options = { timeZone: "" };
-  return date.toLocaleString("en-US");
+  return date.toUTCString();
 };
 
 const getOffsetFromDate = (date: Date) => {
