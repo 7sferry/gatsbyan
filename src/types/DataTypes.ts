@@ -223,7 +223,7 @@ export interface IndexContextProp {
 export interface ArchiveNode {
   readonly slug: string;
   readonly title: string;
-  readonly publishDate: Date;
+  readonly publishDate: string;
 }
 
 export interface IndexProp {
