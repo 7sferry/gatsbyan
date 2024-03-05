@@ -8,6 +8,7 @@
     "algoliasearch": "^4.22.1",
     "bootstrap": "^5.3.2",
     "date-fns": "^3.3.1",
+    "date-fns-tz": "^2.0.0",
     "gatsby": "^5.13.3",
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-catch-links": "^5.13.1",

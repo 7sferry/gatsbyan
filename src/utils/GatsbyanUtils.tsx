@@ -5,7 +5,8 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, format, formatDistanceToNow, isAfter } from "date-fns";
+import { add, formatDistanceToNow, isAfter } from "date-fns";
+import { format, toDate } from "date-fns-tz";
 
 // const UTC_OFFSET = "0";
 
@@ -32,14 +33,15 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const reparseDate = (date: Date | string) => {
+const reparseDate = (date: string | Date) => {
   // let offset = format(date, "xxx");
   // console.log(offset + " off");
   // if (offset === "+00:00") {
   //   return date;
   // }
   // return new Date(date).toLocaleString("en-US", { timeZone: offset });
-  return new Date(date).toLocaleString("en-US", { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+  // return new Date(date).toLocaleString("en-US", { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+  return new Date(date);
 };
 
 // const getOffsetFromDate = (date: Date) => {
@@ -55,18 +57,23 @@ const reparseDate = (date: Date | string) => {
 //   return `${offsetSign}${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
 // };
 
-export const getPublishDate = (date: Date | string) => format(reparseDate(date), "MMMM do, yyyy");
+export const getPublishDate = (date: string | Date) => format(reparseDate(date), "MMMM do, yyyy", getOptions());
 
-export const getPublishDateTime = (date: Date | string) => format(reparseDate(date), "eee. MMM do, yyyy hh:mm a");
+export const getPublishDateTime = (date: string | Date) =>
+  format(reparseDate(date), "eee. MMM do, yyyy hh:mm a", getOptions());
 
-export const getMonthYearDate = (date: Date | string) => format(reparseDate(date), "yyyy-MMMM");
+export const getMonthYearDate = (date: string | Date) => format(reparseDate(date), "yyyy-MMMM", getOptions());
 
-export const toNow = (date: Date | string) => formatDistanceToNow(reparseDate(date));
+function getOptions() {
+  return { timeZone: "Asia/Jakarta" };
+}
 
-export const isAfterDate = (date1: Date | string, date2: Date | string) =>
+export const toNow = (date: string | Date) => formatDistanceToNow(toDate(date, getOptions()));
+
+export const isAfterDate = (date1: string | Date, date2: string | Date) =>
   isAfter(reparseDate(date1), reparseDate(date2));
 
-export const plusDays = (date: Date | string, day: number) => add(reparseDate(date), { days: day });
+export const plusDays = (date: string | Date, day: number) => add(reparseDate(date), { days: day });
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
