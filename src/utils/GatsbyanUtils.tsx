@@ -33,7 +33,11 @@ export const getTags = (tag: string) => {
 };
 
 const reparseDate = (date: Date | string) => {
-  return date;
+  let offset = format(date, "xxx");
+  if (offset === "+00:00") {
+    return date;
+  }
+  return new Date(date).toLocaleString("en-US", { timeZone: offset });
   // return date.toLocaleString("en-US", { timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone });
 };
 
