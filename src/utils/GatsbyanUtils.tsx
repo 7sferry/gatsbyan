@@ -30,17 +30,19 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-export const getPublishDate = (date: Date) => format(date, "MMMM do, yyyy");
+const reparseDate = (date: Date) => date.toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
 
-export const getPublishDateTime = (date: Date | string) => format(date, "eee. MMM do, yyyy hh:mm a");
+export const getPublishDate = (date: Date) => format(reparseDate(date), "MMMM do, yyyy");
 
-export const getMonthYearDate = (date: Date) => format(date, "yyyy-MMMM");
+export const getPublishDateTime = (date: Date) => format(reparseDate(date), "eee. MMM do, yyyy hh:mm a");
 
-export const toNow = (date: Date) => formatDistanceToNow(date);
+export const getMonthYearDate = (date: Date) => format(reparseDate(date), "yyyy-MMMM");
 
-export const isAfterDate = (date1: Date, date2: Date) => isAfter(date1, date2);
+export const toNow = (date: Date) => formatDistanceToNow(reparseDate(date));
 
-export const plusDays = (date: Date | string, day: number) => add(date, { days: day });
+export const isAfterDate = (date1: Date, date2: Date) => isAfter(reparseDate(date1), reparseDate(date2));
+
+export const plusDays = (date: Date, day: number) => add(reparseDate(date), { days: day });
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
