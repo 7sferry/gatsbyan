@@ -32,7 +32,7 @@ export const getTags = (tag: string) => {
 
 export const getPublishDate = (date: Date) => format(date, "MMMM do, yyyy");
 
-export const getPublishDateTime = (date: Date) => format(date, "eee. MMM do, yyyy hh:mm a");
+export const getPublishDateTime = (date: Date) => format(date.getTime(), "eee. MMM do, yyyy hh:mm a");
 
 export const getMonthYearDate = (date: Date) => format(date, "yyyy-MMMM");
 
