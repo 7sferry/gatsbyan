@@ -36,7 +36,7 @@ const reparseDate = (date: Date) => {
   let d = new Date(0);
   d.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
   d.setHours(date.getHours(), date.getMinutes(), date.getSeconds());
-  return d.toUTCString();
+  return d.toLocaleString("en-US");
 };
 
 // const getOffsetFromDate = (date: Date) => {
