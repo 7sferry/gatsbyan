@@ -30,7 +30,7 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const reparseDate = (date: Date) => date.toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
+const reparseDate = (date: Date) => date;
 
 export const getPublishDate = (date: Date) => format(reparseDate(date), "MMMM do, yyyy");
 
