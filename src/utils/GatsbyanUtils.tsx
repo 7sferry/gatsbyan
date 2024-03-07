@@ -5,11 +5,8 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, format, formatDistanceToNow, isAfter, toDate } from "date-fns";
-import { formatDate } from "date-fns/format";
-import { findTimeZone, getUTCOffset } from "timezone-support";
-// import { formatToTimeZone } from "date-fns-timezone";
-// import { parse } from "date-fns/parse";
+import { add, format, formatDistanceToNow, isAfter } from "date-fns";
+import { getUTCOffset } from "timezone-support";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -35,64 +32,20 @@ export const getTags = (tag: string) => {
 };
 
 const timeZone = "Asia/Tokyo";
-function formatToTimeZone(argument: string | Date, formatString: string, options: any) {
-  let date = toDate(argument);
-  console.log("date " + date);
-  let { timeZone, convertTimeZone } = options;
-  console.log("convertTimeZone " + convertTimeZone);
-  timeZone = findTimeZone(timeZone);
-  console.log("timezone " + JSON.stringify(timeZone));
-  timeZone = getUTCOffset(date, timeZone);
-  console.log("utc " + JSON.stringify(timeZone));
-  const offset = timeZone.offset - date.getTimezoneOffset();
-  console.log("offset " + offset);
-  date = new Date(date.getTime() - offset * 60 * 1000);
-  console.log("date2 " + date);
-  return format(date, formatString);
+
+function formatToTimeZone(dateType: string | Date, formatString: string) {
+  const date = new Date(dateType);
+  const timeZoneOffset = getUTCOffset(date, { name: timeZone });
+  const offsetDiff = timeZoneOffset.offset - date.getTimezoneOffset();
+  const convertedDate = new Date(date.getTime() - offsetDiff * 60 * 1000);
+  return format(convertedDate, formatString);
 }
 
-// function formatToTimeZone(argument: string | Date, formatString: string, timeZone: string){
-//   let date = toDate(argument);
-//   let offset =
-// }
+export const getPublishDate = (date: Date | string) => formatToTimeZone(date, "MMMM do, yyyy");
 
-function padToTwoDigits(number: number) {
-  return number > 9 ? number : `0${number}`;
-}
+export const getPublishDateTime = (date: Date | string) => formatToTimeZone(date, "eee. MMM do, yyyy hh:mm a");
 
-function formatTimeZoneOffset(offset: number, separator: string) {
-  let sign;
-  if (offset <= 0) {
-    offset = -offset;
-    sign = "+";
-  } else {
-    sign = "-";
-  }
-  const hours = padToTwoDigits(Math.floor(offset / 60));
-  const minutes = padToTwoDigits(offset % 60);
-  return sign + hours + separator + minutes;
-}
-
-function formatTimeZoneTokens(format: string, timeZone: any) {
-  return format.replace(/z|ZZ?/g, (match) => {
-    switch (match) {
-      case "z":
-        return `[${timeZone.abbreviation}]`;
-      case "Z":
-        return formatTimeZoneOffset(timeZone.offset, ":");
-      default: // 'ZZ'
-        return formatTimeZoneOffset(timeZone.offset, "");
-    }
-  });
-}
-export const getPublishDate = (date: Date | string) => {
-  return formatToTimeZone(date, "MMMM do, yyyy", { timeZone: timeZone });
-};
-
-export const getPublishDateTime = (date: Date | string) =>
-  formatToTimeZone(date, "eee. MMM do, yyyy hh:mm a", { timeZone: timeZone });
-
-export const getMonthYearDate = (date: Date | string) => formatToTimeZone(date, "yyyy-MMMM", { timeZone: timeZone });
+export const getMonthYearDate = (date: Date | string) => formatToTimeZone(date, "yyyy-MMMM");
 
 export const toNow = (date: string | Date) => formatDistanceToNow(date);
 
