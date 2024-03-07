@@ -5,7 +5,11 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, formatDistanceToNow, isAfter, format } from "date-fns";
+import { add, formatDistanceToNow, isAfter, toDate } from "date-fns";
+import { formatDate } from "date-fns/format";
+import { findTimeZone, getUTCOffset } from "timezone-support";
+// import { formatToTimeZone } from "date-fns-timezone";
+// import { parse } from "date-fns/parse";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -31,11 +35,56 @@ export const getTags = (tag: string) => {
 };
 
 const timeZone = "Asia/Jakarta";
-
-function formatToTimeZone(date: string | Date, formatString: string, options: any) {
-  return format(date, formatString, options);
+function formatToTimeZone(argument: string | Date, formatString: string, options: any) {
+  let date = toDate(argument);
+  console.log("date " + date);
+  let { timeZone, convertTimeZone } = options;
+  console.log("convertTimeZone " + convertTimeZone);
+  timeZone = findTimeZone(timeZone);
+  console.log("timezone " + JSON.stringify(timeZone));
+  timeZone = getUTCOffset(date, timeZone);
+  console.log("utc " + JSON.stringify(timeZone));
+  if (convertTimeZone !== false) {
+    const offset = timeZone.offset - date.getTimezoneOffset();
+    console.log("offset " + offset);
+    date = new Date(date.getTime() - offset * 60 * 1000);
+    console.log("date2 " + date);
+  }
+  formatString = formatTimeZoneTokens(formatString, timeZone);
+  console.log("fmt str " + formatString);
+  console.log("options " + JSON.stringify(options));
+  return formatDate(date, formatString, options);
 }
 
+function padToTwoDigits(number: number) {
+  return number > 9 ? number : `0${number}`;
+}
+
+function formatTimeZoneOffset(offset: number, separator: string) {
+  let sign;
+  if (offset <= 0) {
+    offset = -offset;
+    sign = "+";
+  } else {
+    sign = "-";
+  }
+  const hours = padToTwoDigits(Math.floor(offset / 60));
+  const minutes = padToTwoDigits(offset % 60);
+  return sign + hours + separator + minutes;
+}
+
+function formatTimeZoneTokens(format: string, timeZone: any) {
+  return format.replace(/z|ZZ?/g, (match) => {
+    switch (match) {
+      case "z":
+        return `[${timeZone.abbreviation}]`;
+      case "Z":
+        return formatTimeZoneOffset(timeZone.offset, ":");
+      default: // 'ZZ'
+        return formatTimeZoneOffset(timeZone.offset, "");
+    }
+  });
+}
 export const getPublishDate = (date: Date | string) => {
   return formatToTimeZone(date, "MMMM do, yyyy", { timeZone: timeZone });
 };
