@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, formatDistanceToNow, isAfter, toDate } from "date-fns";
+import { add, formatDistanceToNow, isAfter } from "date-fns";
 import { formatToTimeZone } from "date-fns-timezone";
 
 export const kebabCase = (str: string) => {
@@ -31,7 +31,7 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const timeZone = "Asia/Jakarta";
+const timeZone = "Asia/Tokyo";
 
 export const getPublishDate = (date: Date | string) => formatToTimeZone(date, "MMMM Do, YYYY", { timeZone: timeZone });
 
