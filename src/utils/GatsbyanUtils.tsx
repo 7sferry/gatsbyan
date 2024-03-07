@@ -5,8 +5,8 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, formatDistanceToNow, isAfter, toDate } from "date-fns";
-import { formatToTimeZone } from "date-fns-timezone";
+import { add, format, formatDistanceToNow, isAfter } from "date-fns";
+import { getUTCOffset, findTimeZone } from "timezone-support";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -31,14 +31,22 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const timeZone = "Asia/Jakarta";
+const defaultTimeZone = "Asia/Jakarta";
 
-export const getPublishDate = (date: Date | string) => formatToTimeZone(date, "MMMM Do, YYYY", { timeZone: timeZone });
+function formatToPattern(dateArg: string | Date, formatString: string, timeZone: string = defaultTimeZone) {
+  const date = typeof dateArg === "string" ? new Date(dateArg) : dateArg;
+  let timeZoneInfo = findTimeZone(timeZone);
+  const utcOffset = getUTCOffset(date, timeZoneInfo);
+  const offsetDiff = utcOffset.offset - date.getTimezoneOffset();
+  const zonedDate = new Date(date.getTime() - offsetDiff * 60 * 1000);
+  return format(zonedDate, formatString);
+}
 
-export const getPublishDateTime = (date: Date | string) =>
-  formatToTimeZone(date, "ddd. MMM Do, YYYY hh:mma", { timeZone: timeZone });
+export const getPublishDate = (date: Date | string) => formatToPattern(date, "MMMM do, yyyy");
 
-export const getMonthYearDate = (date: Date | string) => formatToTimeZone(date, "YYYY-MMMM", { timeZone: timeZone });
+export const getPublishDateTime = (date: Date | string) => formatToPattern(date, "eee. MMM do, yyyy hh:mm a");
+
+export const getMonthYearDate = (date: Date | string) => formatToPattern(date, "yyyy-MMMM");
 
 export const toNow = (date: string | Date) => formatDistanceToNow(date);
 
