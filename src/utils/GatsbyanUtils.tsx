@@ -40,7 +40,7 @@ export const getPublishDateTime = (date: Date | string) =>
 
 export const getMonthYearDate = (date: Date | string) => formatToTimeZone(date, "YYYY-MMMM", { timeZone: timeZone });
 
-export const toNow = (date: string | Date) => formatDistanceToNow(toDate(date));
+export const toNow = (date: string | Date) => formatDistanceToNow(date);
 
 export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(date1, date2);
 
