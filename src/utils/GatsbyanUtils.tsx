@@ -6,7 +6,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { add, format, formatDistanceToNow, isAfter } from "date-fns";
-import { getUTCOffset } from "timezone-support";
+import { getUTCOffset, findTimeZone } from "timezone-support";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -35,8 +35,9 @@ const timeZone = "Asia/Tokyo";
 
 function formatToTimeZone(dateType: string | Date, formatString: string) {
   const date = new Date(dateType);
-  const timeZoneOffset = getUTCOffset(date, { name: timeZone });
-  const offsetDiff = timeZoneOffset.offset - date.getTimezoneOffset();
+  let timeZoneInfo = findTimeZone(timeZone);
+  const utcOffset = getUTCOffset(date, timeZoneInfo);
+  const offsetDiff = utcOffset.offset - date.getTimezoneOffset();
   const convertedDate = new Date(date.getTime() - offsetDiff * 60 * 1000);
   return format(convertedDate, formatString);
 }
