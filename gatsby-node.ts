@@ -134,6 +134,20 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any
           redirectInBrowser: true,
           isPermanent: true,
         });
+
+        createRedirect({
+          fromPath: `/blog/normalisasi-database`,
+          toPath: `/blog/contoh-normalisasi-database`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
+
+        createRedirect({
+          fromPath: `/blog/value-averaging-calculator`,
+          toPath: `/features/value-averaging-calculator`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
       })
     );
   });
