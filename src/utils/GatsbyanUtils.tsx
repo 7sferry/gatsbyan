@@ -5,7 +5,7 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, formatDistanceToNow, isAfter, toDate } from "date-fns";
+import { add, format, formatDistanceToNow, isAfter, toDate } from "date-fns";
 import { formatDate } from "date-fns/format";
 import { findTimeZone, getUTCOffset } from "timezone-support";
 // import { formatToTimeZone } from "date-fns-timezone";
@@ -34,7 +34,7 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-const timeZone = "Asia/Jakarta";
+const timeZone = "Asia/Tokyo";
 function formatToTimeZone(argument: string | Date, formatString: string, options: any) {
   let date = toDate(argument);
   console.log("date " + date);
@@ -44,17 +44,17 @@ function formatToTimeZone(argument: string | Date, formatString: string, options
   console.log("timezone " + JSON.stringify(timeZone));
   timeZone = getUTCOffset(date, timeZone);
   console.log("utc " + JSON.stringify(timeZone));
-  if (convertTimeZone !== false) {
-    const offset = timeZone.offset - date.getTimezoneOffset();
-    console.log("offset " + offset);
-    date = new Date(date.getTime() - offset * 60 * 1000);
-    console.log("date2 " + date);
-  }
-  formatString = formatTimeZoneTokens(formatString, timeZone);
-  console.log("fmt str " + formatString);
-  console.log("options " + JSON.stringify(options));
-  return formatDate(date, formatString, options);
+  const offset = timeZone.offset - date.getTimezoneOffset();
+  console.log("offset " + offset);
+  date = new Date(date.getTime() - offset * 60 * 1000);
+  console.log("date2 " + date);
+  return format(date, formatString);
 }
+
+// function formatToTimeZone(argument: string | Date, formatString: string, timeZone: string){
+//   let date = toDate(argument);
+//   let offset =
+// }
 
 function padToTwoDigits(number: number) {
   return number > 9 ? number : `0${number}`;
