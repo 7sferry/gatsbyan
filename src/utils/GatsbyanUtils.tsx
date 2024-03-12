@@ -5,8 +5,8 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import { add, format, formatDistanceToNow, isAfter } from "date-fns";
-import { getUTCOffset, findTimeZone } from "timezone-support";
+import { add, formatDistanceToNow, isAfter } from "date-fns";
+import { formatToPattern } from "./DateTimeUtils.tsx";
 
 export const kebabCase = (str: string) => {
   return str.trim().toLowerCase().replace(" ", "-");
@@ -30,17 +30,6 @@ export const getPostTags = (tags: Array<string> | null) => {
 export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
-
-const defaultTimeZone = "Asia/Jakarta";
-
-function formatToPattern(dateArg: string | Date, formatString: string, timeZone: string = defaultTimeZone) {
-  const date = typeof dateArg === "string" ? new Date(dateArg) : dateArg;
-  let timeZoneInfo = findTimeZone(timeZone);
-  const utcOffset = getUTCOffset(date, timeZoneInfo);
-  const offsetDiff = utcOffset.offset - date.getTimezoneOffset();
-  const zonedDate = new Date(date.getTime() - offsetDiff * 60 * 1000);
-  return format(zonedDate, formatString);
-}
 
 export const getPublishDate = (date: Date | string) => formatToPattern(date, "MMMM do, yyyy");
 
