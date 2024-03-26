@@ -50,9 +50,9 @@ export const toNow = (dateArg: string | Date) => {
   return formatDistanceToNow(zonedDate);
 };
 
-export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(reparse(date1), reparse(date2));
+export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(date1, date2);
 
-export const plusDays = (date: string | Date, day: number) => add(reparse(date), { days: day });
+export const plusDays = (date: string | Date, day: number) => add(date, { days: day });
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
