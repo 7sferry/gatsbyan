@@ -39,11 +39,11 @@ function reparse(dateArg: Date | string) {
   return date.toLocaleString("en-US", { timeZone: "Asia/Tokyo" });
 }
 
-export const getPublishDate = (date: Date | string) => formatToPattern(date, "MMMM do, yyyy");
+export const getPublishDate = (date: Date | string) => formatToPattern(reparse(date), "MMMM do, yyyy");
 
-export const getPublishDateTime = (date: Date | string) => formatToPattern(date, "eee. MMM do, yyyy hh:mm a");
+export const getPublishDateTime = (date: Date | string) => formatToPattern(reparse(date), "eee. MMM do, yyyy hh:mm a");
 
-export const getMonthYearDate = (date: Date | string) => formatToPattern(date, "yyyy-MMMM");
+export const getMonthYearDate = (date: Date | string) => formatToPattern(reparse(date), "yyyy-MMMM");
 
 export const toNow = (date: string | Date) => formatDistanceToNow(reparse(date));
 
