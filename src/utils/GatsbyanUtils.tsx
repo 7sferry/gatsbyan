@@ -40,7 +40,15 @@ export const getPublishDateTime = (date: Date | string) => formatToPattern(date,
 
 export const getMonthYearDate = (date: Date | string) => formatToPattern(date, "yyyy-MMMM");
 
-export const toNow = (date: string | Date) => formatDistanceToNow(date);
+function reparse(dateArg: string | Date) {
+  const date = typeof dateArg === "string" ? new Date(dateArg) : dateArg;
+  return date.toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
+}
+
+export const toNow = (dateArg: string | Date) => {
+  const zonedDate = reparse(dateArg);
+  return formatDistanceToNow(zonedDate);
+};
 
 export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(date1, date2);
 
