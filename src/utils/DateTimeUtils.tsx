@@ -9,6 +9,6 @@ export function formatToPattern(dateArg: string | Date, formatString: string, ti
   // const { offset } = getUTCOffset(date, timeZoneInfo);
   // const offsetDiff = offset - date.getTimezoneOffset();
   // const zonedDate = new Date(date.getTime() - offsetDiff * 60 * 1000);
-  // const zonedDate = date.toLocaleString("en-US", { timeZone: "Asia/Tokyo" });
-  return format(dateArg, formatString);
+  const zonedDate = date.toLocaleString("en-US", { timeZone: "Asia/Tokyo" });
+  return format(zonedDate, formatString);
 }
