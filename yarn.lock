@@ -8608,6 +8608,18 @@ mkdirp@^0.5.1, mkdirp@^0.5.4:
   dependencies:
     minimist "^1.2.6"
 
+moment-timezone@0.5.39:
+  version "0.5.39"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.39.tgz#342625a3b98810f04c8f4ea917e448d3525e600b"
+  integrity sha512-hoB6suq4ISDj7BDgctiOy6zljBsdYT0++0ZzZm9rtxIvJhIbQ3nmbgSWe7dNFGurl6/7b1OUkHlmN9JWgXVz7w==
+  dependencies:
+    moment ">= 2.9.0"
+
+"moment@>= 2.9.0":
+  version "2.30.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.30.1.tgz#f8c91c07b7a786e30c59926df530b4eac96974ae"
+  integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
+
 moment@^2.29.4:
   version "2.29.4"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
@@ -11216,6 +11228,13 @@ timers-ext@^0.1.7:
   dependencies:
     es5-ext "~0.10.46"
     next-tick "1"
+
+timezone-support@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/timezone-support/-/timezone-support-3.1.0.tgz#49d2b1f119b974ad4771e903b4d1882ad8084704"
+  integrity sha512-N04dOzxt7Bw3PZ5ts8ofkQx6RsqWDo8cUQ/a8fdtywB58NIctmdbUUDWZSrgtI7c2jzA6MZ1Z6jY6OtBvc+CUQ==
+  dependencies:
+    moment-timezone "0.5.39"
 
 title-case@^3.0.3:
   version "3.0.3"

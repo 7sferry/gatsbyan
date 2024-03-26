@@ -25,8 +25,8 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const imageData = heroImage?.gatsbyImageData;
   const imageTitle = heroImage?.title;
   const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
-  const publishDate = post.publishDate;
-  const updatedAt = post.updatedAt;
+  const publishDate = new Date(post.publishDate);
+  const updatedAt = new Date(post.updatedAt);
 
   return (
     <Layout>
