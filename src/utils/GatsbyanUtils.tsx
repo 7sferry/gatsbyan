@@ -34,17 +34,22 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-export const getPublishDate = (date: Date | string) => formatToPattern(date, "MMMM do, yyyy");
+function reparse(dateArg: Date | string) {
+  const date = typeof dateArg === "string" ? new Date(dateArg) : dateArg;
+  return date.toLocaleString("en-US", { timeZone: "Asia/Tokyo" });
+}
 
-export const getPublishDateTime = (date: Date | string) => formatToPattern(date, "eee. MMM do, yyyy hh:mm a");
+export const getPublishDate = (date: Date | string) => formatToPattern(reparse(date), "MMMM do, yyyy");
 
-export const getMonthYearDate = (date: Date | string) => formatToPattern(date, "yyyy-MMMM");
+export const getPublishDateTime = (date: Date | string) => formatToPattern(reparse(date), "eee. MMM do, yyyy hh:mm a");
 
-export const toNow = (date: string | Date) => formatDistanceToNow(date);
+export const getMonthYearDate = (date: Date | string) => formatToPattern(reparse(date), "yyyy-MMMM");
 
-export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(date1, date2);
+export const toNow = (date: string | Date) => formatDistanceToNow(reparse(date));
 
-export const plusDays = (date: string | Date, day: number) => add(date, { days: day });
+export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(reparse(date1), reparse(date2));
+
+export const plusDays = (date: string | Date, day: number) => add(reparse(date), { days: day });
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
