@@ -42,7 +42,7 @@ function IndexPage(props: IndexProp) {
                   </Link>
                 </div>
                 <div className="title text-info">
-                  <span className="page-info">{getPublishDate(new Date(post.publishDate))}</span>
+                  <span className="page-info">{getPublishDate(post.publishDate)}</span>
                   <span className="page-info">
                     {timeToRead} min{getPlurals(timeToRead)} read
                   </span>

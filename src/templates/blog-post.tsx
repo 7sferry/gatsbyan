@@ -8,13 +8,15 @@ import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import { getPlurals, getPostTags, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Comment } from "../components/Comment";
 import { BlogPostProp } from "../types/DataTypes";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
+  const clientRendered = isClientRendered();
+
   const { contentfulBlogPost: post, site: siteProp } = props.data;
   const site = siteProp.siteMetadata;
   const { childMarkdownRemark } = post.body;
@@ -25,8 +27,8 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const imageData = heroImage?.gatsbyImageData;
   const imageTitle = heroImage?.title;
   const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
-  const publishDate = new Date(post.publishDate);
-  const updatedAt = new Date(post.updatedAt);
+  const publishDate = post.publishDate;
+  const updatedAt = post.updatedAt;
 
   return (
     <Layout>
@@ -37,7 +39,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           <span className="page-info" style={{ display: "inline-block" }}>
             {timeToRead} min{getPlurals(timeToRead)} read
           </span>
-          {isAfterDate(updatedAt, plusDays(publishDate, 30)) && (
+          {clientRendered && isAfterDate(updatedAt, plusDays(publishDate, 30)) && (
             <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>
           )}
           <div className="page-info">{getPostTags(post.tags)}</div>
@@ -92,6 +94,15 @@ function getHrefValue(capturedSubstr1: string): string {
     hrefValue = hrefValue.substring(0, hrefValue.length - 1);
   }
   return hrefValue;
+}
+
+function isClientRendered() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  return isClient;
 }
 
 export default BlogPostTemplate;
