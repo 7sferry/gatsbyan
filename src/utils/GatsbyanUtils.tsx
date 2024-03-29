@@ -34,11 +34,11 @@ export const getTags = (tag: string) => {
   return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
-export const getPublishDate = (date: Date | string) => formatToPattern(date, "MMMM do, yyyy");
+export const getPublishDate = (date: string | Date) => formatToPattern(date, "MMMM do, yyyy");
 
-export const getPublishDateTime = (date: Date | string) => formatToPattern(date, "eee. MMM do, yyyy hh:mm a");
+export const getPublishDateTime = (date: string | Date) => formatToPattern(date, "eee. MMM do, yyyy hh:mm a");
 
-export const getMonthYearDate = (date: Date | string) => formatToPattern(date, "yyyy-MMMM");
+export const getMonthYearDate = (date: string | Date) => formatToPattern(date, "yyyy-MMMM");
 
 export const toNow = (date: string | Date) => formatDistanceToNow(date);
 

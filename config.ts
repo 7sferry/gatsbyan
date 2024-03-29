@@ -6,7 +6,7 @@ const siteConfig = {
   title: "MR Ferry",
   tagline: "An ISTJ, Type 5, Engineer, Gamer, and Thriller-Movies-Lover",
   description: `Blog by Ferry Suhandri. An ISTJ, Type 5 Enneagram, & Software Engineer dari Solok. Berisi pandangan pribadi & pemrograman dalam Bahasa Indonesia`,
-  copyright: `© ${new Date().getFullYear()} Ferry Suhandri.`,
+  copyright: `© ${new Date().getFullYear()} · Ferry Suhandri`,
   author: {
     name: "Ferry S",
     realName: "Ferry Suhandri",
