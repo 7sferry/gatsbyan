@@ -50,6 +50,11 @@
       "source": "/blog/value-averaging-calculator",
       "destination": "/features/value-averaging-calculator",
       "permanent": true
+    },
+    {
+      "source": "/blog/fakta-unik-minangkabau-part-ii",
+      "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii",
+      "permanent": true
     }
   ],
   "trailingSlash": false

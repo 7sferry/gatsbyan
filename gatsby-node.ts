@@ -148,6 +148,13 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any
           redirectInBrowser: true,
           isPermanent: true,
         });
+
+        createRedirect({
+          fromPath: `/blog/fakta-unik-minangkabau-part-ii`,
+          toPath: `/blog/fakta-unik-tentang-minangkabau-part-ii`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
       })
     );
   });
