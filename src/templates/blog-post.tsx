@@ -39,7 +39,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           <span className="page-info" style={{ display: "inline-block" }}>
             {timeToRead} min{getPlurals(timeToRead)} read
           </span>
-          {clientRendered && isAfterDate(updatedAt, plusDays(publishDate, 30)) && (
+          {clientRendered && post.sys?.revision > 10 && isAfterDate(updatedAt, plusDays(publishDate, 30)) && (
             <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>
           )}
           <div className="page-info">{getPostTags(post.tags)}</div>
@@ -113,6 +113,9 @@ export const pageQuery = graphql`
       title
       publishDate
       updatedAt
+      sys {
+        revision
+      }
       lang
       body {
         childMarkdownRemark {

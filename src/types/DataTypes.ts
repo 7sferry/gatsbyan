@@ -78,6 +78,9 @@ export interface BlogPostProp {
       readonly title: string;
       readonly publishDate: string;
       readonly updatedAt: string;
+      readonly sys: {
+        readonly revision: number;
+      };
       readonly lang: string;
       readonly body: {
         readonly childMarkdownRemark: {
