@@ -90,12 +90,12 @@ For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
 - execute 'npm run develop' on cli
 - now you should be able to access your content at http://localhost:8000
 
-## DockerFile for development
+## via DockerFile
 
 to run this with docker, execute `docker build -t yarn-gatsbyan .`
 and `docker run -p 8000:8000 --rm -m 2g --cpus 2 yarn-gatsbyan`.
 
-## Docker Compose for production
+## via Docker Compose
 
 to run this using docker compose, execute `docker compose -f compose.yaml up -d`
 
