@@ -3,11 +3,10 @@
  * on Januari 2024      *
  ************************/
 
-import type {
+import connectVoiceSearch, {
   VoiceSearchConnectorParams,
   VoiceSearchWidgetDescription,
 } from "instantsearch.js/es/connectors/voice-search/connectVoiceSearch";
-import connectVoiceSearch from "instantsearch.js/es/connectors/voice-search/connectVoiceSearch";
 import React from "react";
 import { useConnector } from "react-instantsearch";
 

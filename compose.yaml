@@ -10,5 +10,5 @@ services:
       - 9000:9000
     mem_limit: 2g
     cpus: 2
-    entrypoint: yarn build-serve
+    entrypoint: yarn run build-serve
 #    env_file: .env
