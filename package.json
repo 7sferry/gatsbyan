@@ -61,10 +61,11 @@
     "clean-develop": "gatsby clean && tsc --noEmit && gatsby develop -H 0.0.0.0",
     "clean-build": "gatsby clean && gatsby build",
     "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
-    "build-serve": "tsc --noEmit && gatsby build && gastby serve -H 0.0.0.0",
+    "build-serve": "tsc --noEmit && gatsby build && gatsby serve -H 0.0.0.0",
     "clean-build-serve": "gatsby clean && tsc --noEmit && gatsby build && gatsby serve -H 0.0.0.0",
     "serve": "gatsby serve -H 0.0.0.0",
     "clean": "gatsby clean",
+    "disable-telemetry": "gatsby telemetry --disable",
     "typecheck": "tsc --noEmit",
     "upgrade-all": "yarn yarn-upgrade-all",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
