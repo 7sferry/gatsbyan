@@ -16,5 +16,5 @@ COPY --from=install /usr/app .
 RUN yarn run disable-telemetry
 
 # run the app
-EXPOSE 8000
+EXPOSE 8000 9000
 ENTRYPOINT [ "yarn", "run", "develop" ]
