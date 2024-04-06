@@ -6,7 +6,6 @@
 
 // You can delete this file if you're not using it
 
-import "./src/templates/ignored/prism.css";
 import mediumZoom from "medium-zoom";
 // import { render } from "react-dom";
 // import { loadableReady } from "@loadable/component";

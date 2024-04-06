@@ -7,6 +7,7 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
+import "./ignored/prism.css";
 import { getPlurals, getPostTags, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
 import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
@@ -15,8 +16,6 @@ import { Comment } from "../components/Comment";
 import { BlogPostProp } from "../types/DataTypes";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
-  const clientRendered = isClientRendered();
-
   const { contentfulBlogPost: post, site: siteProp } = props.data;
   const site = siteProp.siteMetadata;
   const { childMarkdownRemark } = post.body;
@@ -30,6 +29,10 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const publishDate = post.publishDate;
   const updatedAt = post.updatedAt;
 
+  const showUpdatedText = () => {
+    return isClientRendered() && post.sys?.revision > 5 && isAfterDate(updatedAt, plusDays(publishDate, 30));
+  };
+
   return (
     <Layout>
       <div className="post-main">
@@ -39,9 +42,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           <span className="page-info" style={{ display: "inline-block" }}>
             {timeToRead} min{getPlurals(timeToRead)} read
           </span>
-          {clientRendered && post.sys?.revision > 10 && isAfterDate(updatedAt, plusDays(publishDate, 30)) && (
-            <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>
-          )}
+          {showUpdatedText() && <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>}
           <div className="page-info">{getPostTags(post.tags)}</div>
         </div>
         <div>

@@ -7,13 +7,9 @@ WORKDIR /usr/app
 FROM base AS install
 COPY package.json .
 COPY yarn.lock .
-RUN yarn install --frozen-lockfile
-
-# copy dependencies and source code into final image
-FROM base AS dev
 COPY . .
-COPY --from=install /usr/app .
-RUN yarn run disable-telemetry
+RUN corepack enable
+RUN yarn install
 
 # run the app
 EXPOSE 8000 9000
