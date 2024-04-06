@@ -47,7 +47,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
         </div>
         <div>
           <figure className="hero">
-            {imageData && <GatsbyImage image={imageData} className="heroImage" alt={post.title} />}
+            {imageData && <GatsbyImage sizes={"100vw"} image={imageData} className="heroImage" alt={post.title} />}
             {imageTitle && <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>}
           </figure>
           <div
@@ -134,6 +134,7 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
+          sizes: "100vw"
         )
         title
         file {
