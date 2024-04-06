@@ -42,7 +42,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           <span className="page-info" style={{ display: "inline-block" }}>
             {timeToRead} min{getPlurals(timeToRead)} read
           </span>
-          {showUpdatedText() && <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>}
+          {<span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>}
           <div className="page-info">{getPostTags(post.tags)}</div>
         </div>
         <div>
