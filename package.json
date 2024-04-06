@@ -1,6 +1,5 @@
 {
   "name": "gatsbyan",
-  "private": false,
   "description": "My personal blog powered by Gatsby JS",
   "version": "2.2.0",
   "author": "Ferry",
@@ -76,5 +75,6 @@
   },
   "bugs": {
     "url": "https://github.com/7sferry/gatsbyan/issues"
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
