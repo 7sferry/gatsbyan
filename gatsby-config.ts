@@ -14,7 +14,7 @@ function isProduction() {
 }
 
 const contentfulConfig = {
-  spaceId: process.env.spaceid,
+  spaceId: "7",
   accessToken: isProduction() ? process.env.TOKEN : process.env.PREVIEW_TOKEN,
   host: isProduction() ? "cdn.contentful.com" : "preview.contentful.com",
   // pageLimit: 100,
