@@ -19,7 +19,7 @@ const contentfulConfig = {
   host: isProduction() ? "cdn.contentful.com" : "preview.contentful.com",
   // pageLimit: 100,
   // assetDownloadWorkers: 25,
-  // downloadLocal: true,
+  // downloadLocal: true
 };
 const exclude = [
   "/tags/**",
