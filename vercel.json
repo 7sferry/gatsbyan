@@ -1,14 +1,4 @@
 {
-  "build": {
-    "env": {
-      "SPACEID": "@spaceid",
-      "TOKEN": "@token",
-      "GATSBY_ALGOLIA_APP_ID": "@gatsby_algolia_app_id",
-      "GATSBY_ALGOLIA_INDEX_NAME": "@gatsby_algolia_index_name",
-      "GATSBY_ALGOLIA_SEARCH_KEY": "@gatsby_algolia_search_key",
-      "GATSBY_ALGOLIA_ADMIN_KEY": "@gatsby_algolia_admin_key"
-    }
-  },
   "version": 2,
   "redirects": [
     {
