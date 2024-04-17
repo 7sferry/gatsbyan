@@ -26,6 +26,16 @@ const pageContext: CustomPostAttr = {
   lang: "id",
 };
 
+export async function config() {
+  // Optionally use GraphQL here
+
+  return () => {
+    return {
+      defer: true,
+    };
+  };
+}
+
 const ValueAveragingCalculator = () => {
   const storageKey = "vca";
   const storage = typeof window !== "undefined" ? window.localStorage : null;
@@ -80,17 +90,15 @@ const ValueAveragingCalculator = () => {
     storage?.setItem(storageKey, JSON.stringify(stockData));
   };
 
-  const { site } = useStaticQuery(
-    graphql`
-      query BlogPageSlug {
-        site {
-          siteMetadata {
-            repo
-          }
+  const { site } = useStaticQuery(graphql`
+    query BlogPageSlug {
+      site {
+        siteMetadata {
+          repo
         }
       }
-    `
-  );
+    }
+  `);
 
   return (
     pageContext && (
