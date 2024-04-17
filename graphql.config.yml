@@ -1,0 +1,12 @@
+schema: schema.graphql
+extensions:
+  endpoints:
+    Default Introspection Endpoint:
+      url: http://localhost:8000/___graphql?codeExporterIsOpen=false
+      introspect: true
+      headers:
+        user-agent: JS GraphQL
+    Default (http://localhost:8000/___graphql):
+      url: http://localhost:8000/___graphql
+      headers:
+        user-agent: JS GraphQL
