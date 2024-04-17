@@ -73,6 +73,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any
             createPage({
               path: `/tags/${kebabTag}${i === 0 ? `` : `/${i + 1}`}`,
               component: path.resolve("./src/templates/index.tsx"),
+              defer: true,
               context: {
                 tag: tag,
                 kebabTag: kebabTag,
