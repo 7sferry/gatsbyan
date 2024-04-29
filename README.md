@@ -48,7 +48,7 @@ For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
   (you can look at [here](https://github.com/7sferry/gatsbyan#step-to-get-spaceid-and-token))
 - you could change every properties on config at 'config.ts' or modify SEO variables at '/src.components/SEO.js'
 - you also could change utterances config for comment section at '/src.components/Comment.tsx' or remove it if you don't want.
-- if you use Algolia, you must specify GATSBY_ALGOLIA_APP_ID, GATSBY_ALGOLIA_INDEX_NAME, GATSBY_ALGOLIA_SEARCH_KEY, GATSBY_ALGOLIA_ADMIN_KEY on '.env'. Or turn it off on gatsby-config and gatsby-node & remove search folder inside 'templates' folder and Algolia.tsx on utils if you don't use it.
+- if you use Algolia, you must specify GATSBY_ALGOLIA_APP_ID, GATSBY_ALGOLIA_INDEX_NAME, GATSBY_ALGOLIA_SEARCH_KEY, ALGOLIA_ADMIN_KEY on '.env'. Or turn it off on gatsby-config and gatsby-node & remove search folder inside 'templates' folder and Algolia.tsx on utils if you don't use it.
 - if you use Analytics & Analytics Reporter, you must specify ANALYTICS_PRIVATE_KEY, ANALYTICS_VIEW_ID, 
   ANALYTICS_GA4, ANALYTICS_TRACKING_ID, ANALYTICS_EMAIL on '.env'. Or turn it off on gatsby-config & remove 
   AnalyticsPage.tsx and AnalyticsPage on RightSidebar.tsx if you don't use it.
