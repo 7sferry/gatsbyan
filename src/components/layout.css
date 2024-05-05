@@ -260,13 +260,6 @@ ul {
   list-style-image: none;
 }
 
-ol {
-  padding: 0;
-  margin: 0 0 1.45rem 1.45rem;
-  list-style-position: outside;
-  list-style-image: none;
-}
-
 dl {
   padding: 0;
   margin: 0 0 1.45rem;
@@ -358,10 +351,6 @@ th {
 
 li {
   margin-bottom: calc(1.45rem / 5);
-}
-
-ol li {
-  padding-left: 0;
 }
 
 ul li {
