@@ -11,7 +11,23 @@ import { FeaturedPageData } from "../../types/DataTypes";
 const FeaturedPage = () => {
   const data: FeaturedPageData = useStaticQuery(graphql`
     query FeaturedPageQuery {
-      allContentfulBlogPost(filter: { rating: { eq: 5 } }, sort: { createdAt: DESC }) {
+      allContentfulBlogPost(
+        filter: {
+          slug: {
+            in: [
+              "write-skew-pada-database"
+              "sql-menentukan-primary-key"
+              "pessimistic-vs-optimistic-locking-mencegah-update-anomaly"
+              "fakta-unik-minangkabau"
+              "java-membuat-pdf-dinamis"
+              "diam-itu-gemas"
+              "the-gebetans"
+              "perluas-pengetahuanmu-tentang-offside"
+            ]
+          }
+        }
+        sort: { createdAt: DESC }
+      ) {
         nodes {
           slug
           title
