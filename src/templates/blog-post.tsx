@@ -8,7 +8,15 @@ import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
-import { getPlurals, getPostTags, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
+import {
+  getPlurals,
+  getPostTags,
+  getPublishDateTime,
+  isAfterDate,
+  kebabCase,
+  plusDays,
+  toNow,
+} from "../utils/GatsbyanUtils";
 import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -82,19 +90,8 @@ function extractHtmlWithAnchor(html: string): string {
 }
 
 function getHrefValue(capturedSubstr1: string): string {
-  let hrefValue = capturedSubstr1
-    .trim()
-    .replace(/<code(.*?)>/g, "")
-    .replace("</code>", "")
-    .replace(/[^a-z0-9]+/gi, "-")
-    .toLowerCase();
-  if (hrefValue.startsWith("-")) {
-    hrefValue = hrefValue.substring(1);
-  }
-  if (hrefValue.endsWith("-")) {
-    hrefValue = hrefValue.substring(0, hrefValue.length - 1);
-  }
-  return hrefValue;
+  let hrefValue = capturedSubstr1.replace(/<(.*?)>/g, "").replace("</>", "");
+  return kebabCase(hrefValue);
 }
 
 function isClientRendered() {
