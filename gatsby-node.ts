@@ -8,19 +8,17 @@ import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
 import type { GatsbyNode } from "gatsby";
 
-export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any) => {
-  const { createPage, createRedirect } = actions;
+export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: any) => {
+  const { createPage, createRedirect, createSlice } = actions;
 
   return new Promise((resolve, reject) => {
     resolve(
       graphql(`
         {
           allContentfulBlogPost {
-            edges {
-              node {
-                tags
-                slug
-              }
+            nodes {
+              tags
+              slug
             }
           }
         }
@@ -28,16 +26,46 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any
         if (result.errors) {
           console.log("errors: " + result.errors);
           reject(result.errors);
-          throw "error!";
+          reporter.panicOnBuild(`There was an error loading your Contentful posts`, result.errors);
+          return;
         }
 
-        const postSizeByTag = new Map();
+        createSlice({
+          id: `Header`,
+          component: path.resolve(`./src/components/header/Header.tsx`),
+        });
+
+        // createSlice({
+        //   id: `MobileBio`,
+        //   component: path.resolve(`./src/components/header/MobileBio.tsx`),
+        // });
+        //
+        createSlice({
+          id: `LeftSidebar`,
+          component: path.resolve(`./src/components/sidebar/LeftSidebar.tsx`),
+        });
+        //
+        // createSlice({
+        //   id: `RightSidebar`,
+        //   component: path.resolve(`./src/components/sidebar/RightSidebar.tsx`),
+        // });
+        //
+        createSlice({
+          id: `Comment`,
+          component: path.resolve(`./src/components/Comment.tsx`),
+        });
+        //
+        createSlice({
+          id: `PaginationElement`,
+          component: path.resolve(`./src/components/PaginationElement.tsx`),
+        });
+
+        const postSizeByTag = new Map<string, number>();
         const {
-          allContentfulBlogPost: { edges: posts },
+          allContentfulBlogPost: { nodes: posts },
         } = result.data;
 
-        posts.forEach((post) => {
-          const node = post.node;
+        posts.forEach((node) => {
           node.tags &&
             node.tags.forEach((tag) => {
               let tagCount = postSizeByTag.get(tag);
