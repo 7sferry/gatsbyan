@@ -7,12 +7,10 @@ import React from "react";
 import { Link } from "gatsby";
 import { add, formatDistanceToNow, isAfter } from "date-fns";
 import { formatToPattern } from "./DateTimeUtils.tsx";
+import slugify from "@sindresorhus/slugify";
 
 export const kebabCase = (str: string) => {
-  return str
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/gi, "-");
+  return slugify(str);
 };
 
 export const getPostTags = (tags: Array<string> | null) => {
