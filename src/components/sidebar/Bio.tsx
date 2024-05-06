@@ -8,7 +8,12 @@ const Bio = ({ author, tagline }: BioAttr) => {
   // const { gatsbyImageData: photo } = Photo();
   return (
     <div>
-      <StaticImage src={"/ferry-suhandri.jpg"} className="profile-img" alt="Ferry" title="Ferry Suhandri" />
+      <StaticImage
+        src={"https://ferry.vercel.app/ferry-suhandri.jpg"}
+        className="profile-img"
+        alt="Ferry"
+        title="Ferry Suhandri"
+      />
       <div className="mt-2 author-bio second-header">
         <Link to={"/blog/berkenalan-dengan-ferry-suhandri"}>{author}</Link>
       </div>
