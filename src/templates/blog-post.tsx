@@ -20,7 +20,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { Comment } from "../components/Comment";
+import Comment from "../components/Comment";
 import { BlogPostProp } from "../types/DataTypes";
 
 const BlogPostTemplate = (props: BlogPostProp) => {

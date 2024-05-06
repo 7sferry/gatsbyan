@@ -9,7 +9,7 @@ import { isCommentShown } from "../utils/GatsbyanUtils";
 
 const src = "https://utteranc.es/client.js";
 
-export const Comment = ({ repo }: CommentAttr) => {
+const Comment = ({ repo }: CommentAttr) => {
   const element: React.RefObject<HTMLDivElement> = React.createRef();
   let commentShown = isCommentShown();
 
@@ -40,3 +40,5 @@ export const Comment = ({ repo }: CommentAttr) => {
 
   return <div className="utterances" ref={element} />;
 };
+
+export default Comment;

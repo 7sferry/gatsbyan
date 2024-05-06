@@ -5,7 +5,7 @@
 
 import Layout from "./Layout";
 import React from "react";
-import { Comment } from "./Comment";
+import Comment from "./Comment";
 import { getPostTags, getPublishDateTime } from "../utils/GatsbyanUtils";
 import { CustomPageProp } from "../types/DataTypes";
 
