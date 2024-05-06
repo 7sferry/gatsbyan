@@ -22,11 +22,9 @@ export interface StockCacheInputProps {
 
 export interface AllContentfulBlogPost {
   readonly allContentfulBlogPost: {
-    readonly edges: Array<{
-      readonly node: {
-        readonly tags: Array<string>;
-        readonly slug: string;
-      };
+    readonly nodes: Array<{
+      readonly tags: Array<string>;
+      readonly slug: string;
     }>;
   };
 }
