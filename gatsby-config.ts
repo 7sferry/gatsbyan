@@ -185,6 +185,7 @@ const gatsbyConfig: GatsbyConfig = {
           // respectDNT: true,
           // Avoids sending pageview hits from custom paths
           exclude: exclude,
+          delayOnRouteUpdate: 0,
           // Defaults to https://www.googletagmanager.com
           // origin: "https://www.googletagmanager.com",
         },
