@@ -114,6 +114,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
         createPage({
           path: `/search`,
           component: path.resolve("./src/templates/search-page.tsx"),
+          defer: true,
         });
 
         createPage({
