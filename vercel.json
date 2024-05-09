@@ -42,16 +42,14 @@
       "permanent": true
     },
     {
-      "source": "/blog/fakta-unik-minangkabau-part-ii",
-      "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
       "source": "/__third-party-proxy?url=https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8",
       "destination": "https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8",
       "statusCode": 200
+    },
+    {
+      "source": "/blog/fakta-unik-minangkabau-part-ii",
+      "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii",
+      "permanent": true
     }
   ],
   "trailingSlash": false
