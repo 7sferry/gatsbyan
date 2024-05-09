@@ -1,4 +1,4 @@
-import { graphql, Script, useStaticQuery } from "gatsby";
+import { graphql, Script, ScriptStrategy, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoAttr } from "../types/DataTypes";
 
@@ -32,12 +32,11 @@ export default function Seo({ description, lang = "id", title = "", image, path 
     <>
       <html lang={lang} />
       <Script
-        strategy="off-main-thread"
-        forward={[`dataLayer.push`]}
+        strategy={ScriptStrategy.postHydrate}
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8"
       ></Script>
-      <Script id="gtag-config" strategy="off-main-thread" forward={[`gtag`]}>
+      <Script id="gtag-config" strategy={ScriptStrategy.postHydrate}>
         {`window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
