@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Script, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoAttr } from "../types/DataTypes";
 
@@ -8,21 +8,19 @@ import { SeoAttr } from "../types/DataTypes";
  ************************/
 
 export default function Seo({ description, lang = "id", title = "", image, path = "" }: SeoAttr) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            realName
-            siteUrl
-          }
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          realName
+          siteUrl
         }
       }
-    `
-  );
+    }
+  `);
 
   const metadata = site.siteMetadata;
   const metaDescription = description || (path === "/" ? metadata.description : "");
@@ -33,6 +31,14 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   return (
     <>
       <html lang={lang} />
+      <Script strategy="off-main-thread" async src="https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8"></Script>
+      <Script id="gtag-config" strategy="off-main-thread" forward={[`gtag`]}>
+        {`window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EVGFGLDYR8');`}
+      </Script>
       <title>{`${title} ${name}`}</title>
       <meta name="description" content={metaDescription} />
       <meta name="og:title" content={title} />
