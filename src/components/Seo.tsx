@@ -31,7 +31,12 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   return (
     <>
       <html lang={lang} />
-      <Script strategy="off-main-thread" async src="https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8"></Script>
+      <Script
+        strategy="off-main-thread"
+        forward={[`dataLayer.push`]}
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8"
+      ></Script>
       <Script id="gtag-config" strategy="off-main-thread" forward={[`gtag`]}>
         {`window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

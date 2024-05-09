@@ -213,6 +213,7 @@ const gatsbyConfig: GatsbyConfig = {
     //   },
     // },
   ],
+  partytownProxiedURLs: [`https://www.googletagmanager.com/gtag/js?id=${process.env.ANALYTICS_MEASUREMENT_ID}`],
 };
 
 export default gatsbyConfig;
