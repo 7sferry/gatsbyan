@@ -63,6 +63,16 @@ const SearchPage = () => {
 
 export default SearchPage;
 
+export async function config() {
+  // Optionally use GraphQL here
+
+  return () => {
+    return {
+      defer: true,
+    };
+  };
+}
+
 export function Head({ location }: any) {
   return <Seo title={"Search"} path={location?.pathname} />;
 }

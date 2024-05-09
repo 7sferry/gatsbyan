@@ -57,6 +57,7 @@ class ArchivePage extends React.Component<ArchiveProp, ArchiveState> {
   }
 
   render() {
+    console.log(JSON.stringify(this.props));
     const { allContentfulBlogPost }: ArchiveAttr = this.props.data;
     const posts = allContentfulBlogPost.nodes;
     let postByMonth = new Map<string, Array<ArchiveNode>>();
@@ -159,6 +160,16 @@ export const pageQuery = graphql`
 `;
 
 export default ArchivePage;
+
+export async function getServerData() {
+  let r = await fetch("https://meowfacts.herokuapp.com/");
+  let props = await r.json();
+  return {
+    status: 200, // The HTTP status code that should be returned
+    props: props, // Will be passed to the page component as "serverData" prop
+    headers: {}, // HTTP response headers for this page
+  };
+}
 
 export function Head({ location }: any) {
   return <Seo title={"Archive"} path={location?.pathname} />;
