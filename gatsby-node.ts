@@ -157,12 +157,12 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
           isPermanent: true,
         });
 
-        createRedirect({
-          fromPath: `/__third-party-proxy?url=https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8`,
-          toPath: `https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8`,
-          redirectInBrowser: true,
-          isPermanent: true,
-        });
+        // createRedirect({
+        //   fromPath: `/__third-party-proxy?url=https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8`,
+        //   toPath: `https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8`,
+        //   redirectInBrowser: true,
+        //   isPermanent: true,
+        // });
 
         createRedirect({
           fromPath: `/blog/acid-pada-database-durability`,

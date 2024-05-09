@@ -1,4 +1,4 @@
-import { graphql, Script, ScriptStrategy, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoAttr } from "../types/DataTypes";
 
@@ -31,19 +31,19 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   return (
     <>
       <html lang={lang} />
-      <Script
-        strategy={ScriptStrategy.offMainThread}
-        forward={[`dataLayer.push`]}
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8"
-      ></Script>
-      <Script id="gtag-config" strategy={ScriptStrategy.offMainThread} forward={[`gtag`]}>
-        {`window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+      {/*<Script*/}
+      {/*  strategy={ScriptStrategy.offMainThread}*/}
+      {/*  forward={[`dataLayer.push`]}*/}
+      {/*  async*/}
+      {/*  src="https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8"*/}
+      {/*></Script>*/}
+      {/*<Script id="gtag-config" strategy={ScriptStrategy.offMainThread} forward={[`gtag`]}>*/}
+      {/*  {`window.dataLayer = window.dataLayer || [];*/}
+      {/*  function gtag(){dataLayer.push(arguments);}*/}
+      {/*  gtag('js', new Date());*/}
 
-        gtag('config', 'G-EVGFGLDYR8');`}
-      </Script>
+      {/*  gtag('config', 'G-EVGFGLDYR8');`}*/}
+      {/*</Script>*/}
       <title>{`${title} ${name}`}</title>
       <meta name="description" content={metaDescription} />
       <meta name="og:title" content={title} />
