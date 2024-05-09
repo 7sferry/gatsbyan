@@ -32,11 +32,12 @@ export default function Seo({ description, lang = "id", title = "", image, path 
     <>
       <html lang={lang} />
       <Script
-        strategy={ScriptStrategy.idle}
+        strategy={ScriptStrategy.offMainThread}
+        forward={[`dataLayer.push`]}
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8"
       ></Script>
-      <Script id="gtag-config" strategy={ScriptStrategy.idle}>
+      <Script id="gtag-config" strategy={ScriptStrategy.offMainThread} forward={[`gtag`]}>
         {`window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
