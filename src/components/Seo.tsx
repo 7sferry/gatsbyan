@@ -32,11 +32,11 @@ export default function Seo({ description, lang = "id", title = "", image, path 
     <>
       <html lang={lang} />
       <Script
-        strategy={ScriptStrategy.postHydrate}
+        strategy={ScriptStrategy.idle}
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8"
       ></Script>
-      <Script id="gtag-config" strategy={ScriptStrategy.postHydrate}>
+      <Script id="gtag-config" strategy={ScriptStrategy.idle}>
         {`window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
