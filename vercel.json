@@ -49,7 +49,7 @@
   ],
   "rewrites": [
     {
-      "source": "/__third-party-proxy?url=https%3A%2F%2Fwww.googletagmanager.com%2Fgtag%2Fjs%3Fid%3DG-EVGFGLDYR8",
+      "source": "/__third-party-proxy?url=https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8",
       "destination": "https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8",
       "statusCode": 200
     }

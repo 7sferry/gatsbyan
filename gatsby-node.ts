@@ -158,7 +158,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
         });
 
         createRedirect({
-          fromPath: `/__third-party-proxy?url=https%3A%2F%2Fwww.googletagmanager.com%2Fgtag%2Fjs%3Fid%3DG-EVGFGLDYR8`,
+          fromPath: `/__third-party-proxy?url=https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8`,
           toPath: `https://www.googletagmanager.com/gtag/js?id=G-EVGFGLDYR8`,
           redirectInBrowser: true,
           isPermanent: true,
