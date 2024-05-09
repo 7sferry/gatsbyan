@@ -3,10 +3,10 @@
  * on February 2021     *
  ************************/
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import "./sidebar.css";
-import { AnalyticsData } from "../../types/DataTypes";
+import { AnalyticsData, PageView, PageViews } from "../../types/DataTypes";
 
 const AnalyticsPage = () => {
   const data: AnalyticsData = useStaticQuery(graphql`
@@ -24,6 +24,20 @@ const AnalyticsPage = () => {
           }
     }
   `);
+  const [nodes, setNodes] = useState<PageView[]>([]);
+  useEffect(() => {
+    getAnaly().then((d) => {
+      let counter = 5;
+      let views: PageView[] = [];
+      for (const pageView of d.nodes) {
+        if (pageView.path.startsWith("/blog/") && counter > 0) {
+          views.push(pageView);
+          counter--;
+        }
+      }
+      setNodes(views);
+    });
+  }, []);
 
   const { allPageViews } = data;
   const titleByPath = new Map<string, string>();
@@ -36,7 +50,7 @@ const AnalyticsPage = () => {
       <>
         <div className="second-header">Most Viewed</div>
         <ul>
-          {allPageViews.nodes?.map((view) => {
+          {nodes?.map((view) => {
             let result = titleByPath.get(view.path);
             return (
               result && (
@@ -55,5 +69,15 @@ const AnalyticsPage = () => {
     )
   );
 };
+
+async function getAnaly(): Promise<PageViews> {
+  let response = await fetch("/api/analy");
+  if (response.status !== 200) {
+    return {
+      nodes: [],
+    };
+  }
+  return await response.json();
+}
 
 export default AnalyticsPage;

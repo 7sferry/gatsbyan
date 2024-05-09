@@ -156,6 +156,14 @@ export interface AnalyticsData {
   };
 }
 
+export interface PageView {
+  readonly path: string;
+}
+
+export interface PageViews {
+  readonly nodes: PageView[];
+}
+
 export interface IndexData {
   readonly allContentfulBlogPost: {
     readonly nodes: Array<{
