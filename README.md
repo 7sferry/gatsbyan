@@ -92,8 +92,8 @@ For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
 
 ## via DockerFile
 
-to run this with docker, execute `docker build -t yarn-gatsbyan .`
-and `docker run -p 8000:8000 --rm -m 2g --cpus 2 yarn-gatsbyan`.
+to run this with docker, execute `docker build -t gatsbyan .`
+and `docker run -p 8000:8000 --rm -m 1g --cpus 2 --name gatsbyan gatsbyan`.
 
 ## via Docker Compose
 
