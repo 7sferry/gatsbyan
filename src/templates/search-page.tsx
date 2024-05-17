@@ -16,7 +16,7 @@ import { HeadProps, Slice } from "gatsby";
 const SearchPage = () => {
   const algoliaClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID ?? "",
-    process.env.GATSBY_ALGOLIA_NSEARCH_KEY ?? ""
+    process.env.GATSBY_ALGOLIA_SEARCH_KEY ?? ""
   );
 
   const searchClient: SearchClient = {
@@ -51,9 +51,9 @@ const SearchPage = () => {
             distinct
             hitsPerPage={SEARCH_COUNT}
           />
-          <Slice alias="Comment" searchAsYouSpeak={false} />
+          <Slice alias="VoiceSearchElement" searchAsYouSpeak={false} />
           <SearchBox className={"search-box"} searchAsYouType={false} />
-          <Slice alias="Comment" />
+          <Slice alias="PaginationSearchResult" />
         </InstantSearch>
       </div>
     </Layout>
