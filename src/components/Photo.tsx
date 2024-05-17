@@ -5,8 +5,7 @@
 
 import { graphql, useStaticQuery } from "gatsby";
 
-const useSiteMetadata = () => {
-  // console.log("phph " + Math.random());
+const getPhotoBio = () => {
   const { file } = useStaticQuery(graphql`
     query PhotoBio {
       file(relativePath: { eq: "ferry.jpg" }) {
@@ -19,4 +18,4 @@ const useSiteMetadata = () => {
   return file.childImageSharp;
 };
 
-export default useSiteMetadata;
+export default getPhotoBio;

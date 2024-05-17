@@ -4,15 +4,14 @@ import "./sidebar.css";
 
 import Socials from "../Socials";
 import Tags from "./Tags";
-import SiteMetadata from "../SiteMetadata";
+import { LeftSidebarAttr } from "../../types/DataTypes.ts";
 
-const LeftSidebar = () => {
-  const { siteMetadata: metadata } = SiteMetadata();
+const LeftSidebar = ({ photo, author, tagline, contacts }: LeftSidebarAttr) => {
   return (
     <>
       <div className="sidebar-main ">
-        <Bio author={metadata.author} tagline={metadata.tagline} />
-        <Socials mobile={false} contacts={metadata.contacts} />
+        <Bio author={author} tagline={tagline} photo={photo} />
+        <Socials mobile={false} contacts={contacts} />
         <div className="tech-tags mt-3">
           <Tags />
         </div>

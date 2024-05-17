@@ -37,6 +37,14 @@ export interface CustomSiteAttr {
 export interface BioAttr {
   readonly author: string;
   readonly tagline: string;
+  readonly photo: IGatsbyImageData;
+}
+
+export interface LeftSidebarAttr {
+  readonly photo: IGatsbyImageData;
+  readonly author: string;
+  readonly tagline: string;
+  readonly contacts: ContactsAttr;
 }
 
 export interface ContactsAttr {
@@ -52,6 +60,7 @@ export interface MobileBioAttr {
   readonly contacts: ContactsAttr;
   readonly author: string;
   readonly tagline: string;
+  readonly photo: IGatsbyImageData;
 }
 
 export interface CustomPostAttr {
@@ -145,7 +154,7 @@ export interface PaginationAttr {
 export interface AnalyticsData {
   readonly allPageViews: {
     readonly nodes: Array<{
-      readonly path: string;
+      path: string;
     }>;
   };
   readonly allContentfulBlogPost: {
@@ -154,6 +163,27 @@ export interface AnalyticsData {
       readonly title: string;
     }>;
   };
+}
+
+export interface MostViewedAttr {
+  readonly analyticNodePaths: string[];
+  readonly titleByPath: { [key: string]: string };
+}
+
+export interface RightSidebarAttr {
+  readonly analyticNodePaths: string[];
+  readonly titleByPath: { [key: string]: string };
+  readonly featuredPages: Array<{
+    readonly slug: string;
+    readonly title: string;
+  }>;
+}
+
+export interface FeaturedPageAttr {
+  readonly featuredPages: Array<{
+    readonly slug: string;
+    readonly title: string;
+  }>;
 }
 
 export interface IndexData {

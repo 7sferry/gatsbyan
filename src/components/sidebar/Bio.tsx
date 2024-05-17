@@ -1,12 +1,10 @@
 import React from "react";
 import "./sidebar.css";
-import Photo from "../Photo";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { BioAttr } from "../../types/DataTypes";
 
-const Bio = ({ author, tagline }: BioAttr) => {
-  const { gatsbyImageData: photo } = Photo();
+const Bio = ({ author, tagline, photo }: BioAttr) => {
   return (
     <div>
       <GatsbyImage image={photo} className="profile-img" alt="Ferry" title="Ferry Suhandri" />

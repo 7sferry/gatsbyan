@@ -4,45 +4,23 @@
  ************************/
 
 import React from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { Link } from "gatsby";
 import "./sidebar.css";
-import { AnalyticsData } from "../../types/DataTypes";
+import { MostViewedAttr } from "../../types/DataTypes";
 
-const AnalyticsPage = () => {
-  const data: AnalyticsData = useStaticQuery(graphql`
-      query AnalyticsPageQuery {
-          allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/^\/blog\/(?!$)(?!.*(%|\\?|=|&)).*$/" } }, limit: 5) {
-              nodes {
-                  path
-              }
-          }
-          allContentfulBlogPost {
-              nodes {
-                  slug
-                  title
-              }
-          }
-    }
-  `);
-
-  const { allPageViews } = data;
-  const titleByPath = new Map<string, string>();
-  data?.allContentfulBlogPost?.nodes?.forEach((n) => {
-    titleByPath.set("/blog/" + n.slug, n.title);
-  });
-
+const AnalyticsPage = ({ analyticNodePaths, titleByPath }: MostViewedAttr) => {
   return (
-    allPageViews && (
+    analyticNodePaths && (
       <>
         <div className="second-header">Most Viewed</div>
         <ul>
-          {allPageViews.nodes?.map((view) => {
-            let result = titleByPath.get(view.path);
+          {analyticNodePaths.map((path) => {
+            let result = titleByPath[path];
             return (
               result && (
-                <li key={view.path}>
+                <li key={path}>
                   <small className="title">
-                    <Link className="text-link" to={`${view.path}`}>
+                    <Link className="text-link" to={`${path}`}>
                       {result}
                     </Link>
                   </small>

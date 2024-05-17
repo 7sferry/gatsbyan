@@ -12,13 +12,6 @@ import React from "react";
 import SearchHitsResult from "./SearchHitsResult.tsx";
 import PaginationSearch from "./PaginationSearch.tsx";
 
-const usePagination = (props: PaginationConnectorParams, additionalWidgetProperties: AdditionalWidgetProperties) =>
-  useConnector<PaginationConnectorParams, PaginationWidgetDescription>(
-    connectPagination,
-    props,
-    additionalWidgetProperties
-  );
-
 const PaginationSearchResult = (props: PaginationConnectorParams): React.JSX.Element => {
   let pagination: PaginationRenderState = usePagination(props, {});
 
@@ -36,5 +29,12 @@ const PaginationSearchResult = (props: PaginationConnectorParams): React.JSX.Ele
     </>
   );
 };
+
+const usePagination = (props: PaginationConnectorParams, additionalWidgetProperties: AdditionalWidgetProperties) =>
+  useConnector<PaginationConnectorParams, PaginationWidgetDescription>(
+    connectPagination,
+    props,
+    additionalWidgetProperties
+  );
 
 export default PaginationSearchResult;

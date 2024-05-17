@@ -9,6 +9,7 @@ import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
 import {
+  ClientSide,
   getPlurals,
   getPostTags,
   getPublishDateTime,
@@ -17,7 +18,7 @@ import {
   plusDays,
   toNow,
 } from "../utils/GatsbyanUtils";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { BlogPostProp } from "../types/DataTypes";
@@ -37,7 +38,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const updatedAt = post.updatedAt;
 
   const showUpdatedText = () => {
-    return isClientRendered() && post.sys?.revision > 5 && isAfterDate(updatedAt, plusDays(publishDate, 30));
+    return post.sys?.revision > 5 && isAfterDate(updatedAt, plusDays(publishDate, 30));
   };
 
   return (
@@ -49,7 +50,9 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           <span className="page-info" style={{ display: "inline-block" }}>
             {timeToRead} min{getPlurals(timeToRead)} read
           </span>
-          {showUpdatedText() && <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>}
+          <ClientSide>
+            {showUpdatedText() && <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>}
+          </ClientSide>
           <div className="page-info">{getPostTags(post.tags)}</div>
         </div>
         <div>
@@ -91,15 +94,6 @@ function extractHtmlWithAnchor(html: string): string {
 function getHrefValue(capturedSubstr1: string): string {
   let hrefValue = capturedSubstr1.replace(/<(.*?)>/g, "");
   return kebabCase(hrefValue);
-}
-
-function isClientRendered() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  return isClient;
 }
 
 export default BlogPostTemplate;
