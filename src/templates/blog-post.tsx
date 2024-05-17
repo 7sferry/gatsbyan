@@ -18,9 +18,8 @@ import {
   toNow,
 } from "../utils/GatsbyanUtils";
 import React, { useEffect, useState } from "react";
-import { graphql } from "gatsby";
+import { graphql, Slice } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { Comment } from "../components/Comment";
 import { BlogPostProp } from "../types/DataTypes";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
@@ -65,7 +64,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
             }}
           />
         </div>
-        <Comment repo={repo} />
+        <Slice alias="Comment" repo={repo} />
       </div>
     </Layout>
   );

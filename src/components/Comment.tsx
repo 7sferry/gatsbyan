@@ -40,3 +40,5 @@ export const Comment = ({ repo }: CommentAttr) => {
 
   return <div className="utterances" ref={element} />;
 };
+
+export default Comment;

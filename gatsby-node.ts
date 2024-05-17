@@ -6,38 +6,74 @@
 import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
-import type { GatsbyNode } from "gatsby";
+import { CreatePagesArgs, GatsbyNode } from "gatsby";
+import { Sign } from "./src/components/Sign";
 
-export const createPages: GatsbyNode["createPages"] = ({ graphql, actions }: any) => {
-  const { createPage, createRedirect } = actions;
+export const onPostBuild = () => {
+  Sign();
+};
+
+export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: CreatePagesArgs) => {
+  const { createPage, createRedirect, createSlice } = actions;
 
   return new Promise((resolve, reject) => {
     resolve(
-      graphql(`
+      graphql<AllContentfulBlogPost, any>(`
         {
           allContentfulBlogPost {
-            edges {
-              node {
-                tags
-                slug
-              }
+            nodes {
+              tags
+              slug
             }
           }
         }
-      `).then((result: { errors: any; data: AllContentfulBlogPost }) => {
-        if (result.errors) {
-          console.log("errors: " + result.errors);
-          reject(result.errors);
-          throw "error!";
+      `).then(({ errors, data }) => {
+        if (errors) {
+          console.log("errors: " + errors);
+          reject(errors);
+          reporter.panicOnBuild(`There was an error loading your Contentful posts`, errors);
+          return;
         }
 
-        const postSizeByTag = new Map();
-        const {
-          allContentfulBlogPost: { edges: posts },
-        } = result.data;
+        createSlice({
+          id: `Header`,
+          component: path.resolve(`./src/components/header/Header.tsx`),
+        });
 
-        posts.forEach((post) => {
-          const node = post.node;
+        createSlice({
+          id: `MobileBio`,
+          component: path.resolve(`./src/components/header/MobileBio.tsx`),
+        });
+
+        createSlice({
+          id: `LeftSidebar`,
+          component: path.resolve(`./src/components/sidebar/LeftSidebar.tsx`),
+        });
+
+        createSlice({
+          id: `RightSidebar`,
+          component: path.resolve(`./src/components/sidebar/RightSidebar.tsx`),
+        });
+
+        createSlice({
+          id: `Comment`,
+          component: path.resolve(`./src/components/Comment.tsx`),
+        });
+
+        createSlice({
+          id: `PaginationSearchResult`,
+          component: path.resolve(`./src/components/search/PaginationSearchResult.tsx`),
+        });
+
+        createSlice({
+          id: `VoiceSearchElement`,
+          component: path.resolve(`./src/components/search/VoiceSearchElement.tsx`),
+        });
+
+        const postSizeByTag = new Map<string, number>();
+        const posts = data?.allContentfulBlogPost?.nodes ?? [];
+
+        posts.forEach((node) => {
           node.tags &&
             node.tags.forEach((tag) => {
               let tagCount = postSizeByTag.get(tag);

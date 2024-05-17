@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator";
-import { getVcaResult } from "../../components/ValueAveragingFormResult";
+import { getValueAveragingFormResult } from "../../components/ValueAveragingFormResult";
 import CustomPage from "../../components/CustomPage";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import Seo from "../../components/Seo";
@@ -74,7 +74,7 @@ const ValueAveragingCalculator = () => {
 
     const divElement: HTMLDivElement = document.createElement("div");
     element?.current?.appendChild(divElement);
-    const vcaResult = getVcaResult(stock);
+    const vcaResult = getValueAveragingFormResult(stock);
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
     storage?.setItem(storageKey, JSON.stringify(stockData));

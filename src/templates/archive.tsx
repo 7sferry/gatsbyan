@@ -4,7 +4,7 @@
  ************************/
 
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, HeadProps, Link } from "gatsby";
 import { MdArchive } from "react-icons/md";
 import "./archive.css";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
@@ -160,6 +160,6 @@ export const pageQuery = graphql`
 
 export default ArchivePage;
 
-export function Head({ location }: any) {
+export function Head({ location }: HeadProps) {
   return <Seo title={"Archive"} path={location?.pathname} />;
 }
