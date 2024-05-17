@@ -1,14 +1,14 @@
 services:
-  yarn-gatsbyan:
+  gatsbyan:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: yarn-gatsbyan
-    image: yarn-gatsbyan:latest
+    container_name: gatsbyan
+    image: gatsbyan:latest
     ports:
       - 8000:8000
       - 9000:9000
-    mem_limit: 2g
+    mem_limit: 1g
     cpus: 2
-    entrypoint: yarn run clean-build-serve
+#    entrypoint: bun run serve
 #    env_file: .env
