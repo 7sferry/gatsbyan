@@ -80,17 +80,15 @@ const ValueAveragingCalculator = () => {
     storage?.setItem(storageKey, JSON.stringify(stockData));
   };
 
-  const { site } = useStaticQuery(
-    graphql`
-      query BlogPageSlug {
-        site {
-          siteMetadata {
-            repo
-          }
+  const { site } = useStaticQuery(graphql`
+    query BlogPageSlug {
+      site {
+        siteMetadata {
+          repo
         }
       }
-    `
-  );
+    }
+  `);
 
   return (
     pageContext && (
@@ -172,6 +170,14 @@ const ValueAveragingCalculator = () => {
     )
   );
 };
+
+export async function config() {
+  return () => {
+    return {
+      defer: true,
+    };
+  };
+}
 
 export default ValueAveragingCalculator;
 
