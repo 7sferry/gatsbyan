@@ -11,7 +11,7 @@ import PaginationElement from "../components/PaginationElement.tsx";
 import { getPlurals, getPostTags, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
 import { IndexProp } from "../types/DataTypes";
-import Seo, { Seo } from "../components/Seo.tsx";
+import Seo from "../components/Seo.tsx";
 import Layout from "../components/Layout.tsx";
 
 function IndexPage(props: IndexProp) {

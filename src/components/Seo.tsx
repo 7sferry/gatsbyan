@@ -7,7 +7,7 @@ import { SeoAttr } from "../types/DataTypes";
  * on Januari 2023      *
  ************************/
 
-export function Seo({ description, lang = "id", title = "", image, path = "" }: SeoAttr) {
+function Seo({ description, lang = "id", title = "", image, path = "" }: SeoAttr) {
   const { site } = useStaticQuery(graphql`
     query {
       site {

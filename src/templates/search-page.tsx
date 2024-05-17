@@ -10,7 +10,7 @@ import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
 import { SearchClient } from "algoliasearch-helper/types/algoliasearch";
 import { MultipleQueriesQuery } from "@algolia/client-search";
 import { HeadProps, Slice } from "gatsby";
-import Seo, { Seo } from "../components/Seo.tsx";
+import Seo from "../components/Seo.tsx";
 import Layout from "../components/Layout.tsx";
 
 const SearchPage = () => {

@@ -8,7 +8,7 @@ import { graphql, HeadProps, Link } from "gatsby";
 import { MdArchive } from "react-icons/md";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
 import { ArchiveAttr, ArchiveNode, ArchiveProp, ArchiveState, DateObject } from "../types/DataTypes";
-import Seo, { Seo } from "../components/Seo.tsx";
+import Seo from "../components/Seo.tsx";
 import Layout from "../components/Layout.tsx";
 
 class ArchivePage extends React.Component<ArchiveProp, ArchiveState> {

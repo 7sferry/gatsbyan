@@ -12,7 +12,7 @@ import { SinceYearValueInput } from "../../components/value-averaging/SinceYearV
 import { UnitPriceValueInput } from "../../components/value-averaging/UnitPriceValueInput";
 import { StockNameValueInput } from "../../components/value-averaging/StockNameValueInput";
 import { CustomPostAttr, StockData } from "../../types/DataTypes";
-import Seo, { Seo } from "../../components/Seo.tsx";
+import Seo from "../../components/Seo.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
