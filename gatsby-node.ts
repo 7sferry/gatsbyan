@@ -6,14 +6,19 @@
 import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
-import type { GatsbyNode } from "gatsby";
+import { CreatePagesArgs, GatsbyNode } from "gatsby";
+import { Sign } from "./src/components/Sign";
 
-export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: any) => {
+export const onPostBuild = () => {
+  Sign();
+};
+
+export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: CreatePagesArgs) => {
   const { createPage, createRedirect, createSlice } = actions;
 
   return new Promise((resolve, reject) => {
     resolve(
-      graphql(`
+      graphql<AllContentfulBlogPost, any>(`
         {
           allContentfulBlogPost {
             nodes {
@@ -22,11 +27,11 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
             }
           }
         }
-      `).then((result: { errors: any; data: AllContentfulBlogPost }) => {
-        if (result.errors) {
-          console.log("errors: " + result.errors);
-          reject(result.errors);
-          reporter.panicOnBuild(`There was an error loading your Contentful posts`, result.errors);
+      `).then(({ errors, data }) => {
+        if (errors) {
+          console.log("errors: " + errors);
+          reject(errors);
+          reporter.panicOnBuild(`There was an error loading your Contentful posts`, errors);
           return;
         }
 
@@ -35,35 +40,38 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
           component: path.resolve(`./src/components/header/Header.tsx`),
         });
 
-        // createSlice({
-        //   id: `MobileBio`,
-        //   component: path.resolve(`./src/components/header/MobileBio.tsx`),
-        // });
-        //
+        createSlice({
+          id: `MobileBio`,
+          component: path.resolve(`./src/components/header/MobileBio.tsx`),
+        });
+
         createSlice({
           id: `LeftSidebar`,
           component: path.resolve(`./src/components/sidebar/LeftSidebar.tsx`),
         });
-        //
-        // createSlice({
-        //   id: `RightSidebar`,
-        //   component: path.resolve(`./src/components/sidebar/RightSidebar.tsx`),
-        // });
-        //
+
+        createSlice({
+          id: `RightSidebar`,
+          component: path.resolve(`./src/components/sidebar/RightSidebar.tsx`),
+        });
+
         createSlice({
           id: `Comment`,
           component: path.resolve(`./src/components/Comment.tsx`),
         });
-        //
+
         createSlice({
-          id: `PaginationElement`,
-          component: path.resolve(`./src/components/PaginationElement.tsx`),
+          id: `PaginationSearchResult`,
+          component: path.resolve(`./src/components/search/PaginationSearchResult.tsx`),
+        });
+
+        createSlice({
+          id: `VoiceSearchElement`,
+          component: path.resolve(`./src/components/search/VoiceSearchElement.tsx`),
         });
 
         const postSizeByTag = new Map<string, number>();
-        const {
-          allContentfulBlogPost: { nodes: posts },
-        } = result.data;
+        const posts = data?.allContentfulBlogPost?.nodes ?? [];
 
         posts.forEach((node) => {
           node.tags &&
@@ -114,6 +122,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
         createPage({
           path: `/search`,
           component: path.resolve("./src/templates/search-page.tsx"),
+          defer: true,
         });
 
         createPage({

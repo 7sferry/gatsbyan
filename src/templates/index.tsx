@@ -5,7 +5,7 @@
 
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { graphql, Link } from "gatsby";
+import { graphql, HeadProps, Link } from "gatsby";
 
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
@@ -115,6 +115,6 @@ export const pageQuery = graphql`
 
 export default IndexPage;
 
-export function Head({ location }: any) {
+export function Head({ location }: HeadProps) {
   return <Seo title={"Blog"} path={location?.pathname} />;
 }

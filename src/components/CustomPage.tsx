@@ -5,9 +5,9 @@
 
 import Layout from "./Layout";
 import React from "react";
-import { Comment } from "./Comment";
 import { getPostTags, getPublishDateTime } from "../utils/GatsbyanUtils";
 import { CustomPageProp } from "../types/DataTypes";
+import { Slice } from "gatsby";
 
 const CustomPage = ({ children, site, customPost }: React.PropsWithChildren<CustomPageProp>) => {
   const repo = site.repo;
@@ -21,7 +21,7 @@ const CustomPage = ({ children, site, customPost }: React.PropsWithChildren<Cust
             <span className="page-info">{getPostTags(null)}</span>
           </div>
           <div className="post-container pt-0 content-post">{children}</div>
-          <Comment repo={repo} />
+          <Slice alias="Comment" repo={repo} />
         </div>
       </div>
     </Layout>

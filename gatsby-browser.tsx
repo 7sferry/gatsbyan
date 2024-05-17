@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 
 import mediumZoom from "medium-zoom";
+import { Sign } from "./src/components/Sign.tsx";
 // import { render } from "react-dom";
 // import { loadableReady } from "@loadable/component";
 
@@ -38,4 +39,8 @@ export const onRouteUpdate = (_: any) => {
     background: "none",
   };
   mediumZoom(".gatsby-resp-image-image", options);
+};
+
+export const onInitialClientRender = () => {
+  Sign();
 };
