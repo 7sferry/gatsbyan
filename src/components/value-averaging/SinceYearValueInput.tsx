@@ -3,11 +3,6 @@
  * on September 2023    *
  ************************/
 
-/************************
- * Made by [MR Ferry™]  *
- * on September 2023    *
- ************************/
-
 import React from "react";
 
 import { StockCacheInputProps } from "../../types/DataTypes";

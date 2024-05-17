@@ -6,7 +6,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import ReactPagination from "react-paginating";
-import "./pagination.css";
 import { PAGE_COUNT } from "../utils/GatsbyanUtils";
 import { PaginationAttr, PagingLinkAttr } from "../types/DataTypes";
 

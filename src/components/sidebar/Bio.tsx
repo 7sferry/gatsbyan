@@ -1,5 +1,4 @@
 import React from "react";
-import "./sidebar.css";
 import Photo from "../Photo";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";

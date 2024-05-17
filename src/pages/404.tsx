@@ -1,8 +1,8 @@
 import React from "react";
 
-import Layout from "../components/Layout";
 import robot from "../templates/robot404";
-import Seo from "../components/Seo";
+import Seo, { Seo } from "../components/Seo.tsx";
+import Layout from "../components/Layout.tsx";
 
 const NotFoundPage = () => (
   <Layout>

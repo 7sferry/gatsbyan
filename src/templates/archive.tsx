@@ -4,13 +4,12 @@
  ************************/
 
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql, HeadProps, Link } from "gatsby";
 import { MdArchive } from "react-icons/md";
-import "./archive.css";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
-import Layout from "../components/Layout";
-import Seo from "../components/Seo";
 import { ArchiveAttr, ArchiveNode, ArchiveProp, ArchiveState, DateObject } from "../types/DataTypes";
+import Seo, { Seo } from "../components/Seo.tsx";
+import Layout from "../components/Layout.tsx";
 
 class ArchivePage extends React.Component<ArchiveProp, ArchiveState> {
   constructor(props: ArchiveProp) {
@@ -160,6 +159,6 @@ export const pageQuery = graphql`
 
 export default ArchivePage;
 
-export function Head({ location }: any) {
+export function Head({ location }: HeadProps) {
   return <Seo title={"Archive"} path={location?.pathname} />;
 }

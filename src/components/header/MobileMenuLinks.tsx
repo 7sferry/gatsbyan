@@ -1,6 +1,5 @@
 import React from "react";
 import { MenuLinks } from "./Menu";
-import "../layout.css";
 
 const MobileMenuLinks = () => {
   return (

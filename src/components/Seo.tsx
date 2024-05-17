@@ -7,22 +7,20 @@ import { SeoAttr } from "../types/DataTypes";
  * on Januari 2023      *
  ************************/
 
-export default function Seo({ description, lang = "id", title = "", image, path = "" }: SeoAttr) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            realName
-            siteUrl
-          }
+export function Seo({ description, lang = "id", title = "", image, path = "" }: SeoAttr) {
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          realName
+          siteUrl
         }
       }
-    `
-  );
+    }
+  `);
 
   const metadata = site.siteMetadata;
   const metaDescription = description || (path === "/" ? metadata.description : "");
@@ -53,3 +51,5 @@ export default function Seo({ description, lang = "id", title = "", image, path 
     </>
   );
 }
+
+export default Seo;

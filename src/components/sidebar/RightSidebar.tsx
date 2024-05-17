@@ -4,7 +4,6 @@
  ************************/
 
 import React from "react";
-import "./sidebar.css";
 import AnalyticsPage from "./AnalyticsPage";
 import FeaturedPage from "./FeaturedPage";
 

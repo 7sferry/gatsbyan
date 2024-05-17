@@ -6,7 +6,6 @@
 import React from "react";
 import { FaFacebook, FaGithubSquare, FaLinkedin, FaStackOverflow, FaUserGraduate } from "react-icons/fa";
 import { GiCrystalBall } from "react-icons/gi";
-import "./sidebar/sidebar.css";
 import { IconType } from "react-icons/lib";
 import { SocialAttr } from "../types/DataTypes";
 

@@ -3,8 +3,6 @@
  * September 2020       *
  ************************/
 
-import Layout from "../components/Layout";
-import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
@@ -18,10 +16,11 @@ import {
   toNow,
 } from "../utils/GatsbyanUtils";
 import React, { useEffect, useState } from "react";
-import { graphql } from "gatsby";
+import { graphql, Slice } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { Comment } from "../components/Comment";
 import { BlogPostProp } from "../types/DataTypes";
+import Seo from "../components/Seo.tsx";
+import Layout from "../components/Layout.tsx";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
   const { contentfulBlogPost: post, site: siteProp } = props.data;
@@ -65,7 +64,8 @@ const BlogPostTemplate = (props: BlogPostProp) => {
             }}
           />
         </div>
-        <Comment repo={repo} />
+        {/*<Comment repo={repo} />*/}
+        <Slice alias="Comment" repo={repo} />
       </div>
     </Layout>
   );

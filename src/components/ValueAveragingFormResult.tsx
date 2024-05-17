@@ -9,7 +9,7 @@ import { id } from "date-fns/locale";
  * on Oktober 2022      *
  ************************/
 
-export const getVcaResult = (stock: ValueAveragingStockCalculator) => {
+export const getValueAveragingFormResult = (stock: ValueAveragingStockCalculator) => {
   const monthDifference = getMonthDifference(stock.sinceDate, new Date());
   const lotShouldInvest = stock.countLotShouldInvest(stock.monthlyInvestTarget, monthDifference + 1);
   if (stock.totalLot <= 0 && stock.monthlyInvestTarget < stock.currentLotPrice) {

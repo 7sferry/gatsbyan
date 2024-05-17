@@ -5,14 +5,14 @@
 
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { graphql, Link } from "gatsby";
+import { graphql, HeadProps, Link } from "gatsby";
 
-import Layout from "../components/Layout";
-import Seo from "../components/Seo";
 import PaginationElement from "../components/PaginationElement.tsx";
 import { getPlurals, getPostTags, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
 import { IndexProp } from "../types/DataTypes";
+import Seo, { Seo } from "../components/Seo.tsx";
+import Layout from "../components/Layout.tsx";
 
 function IndexPage(props: IndexProp) {
   const { pageContext, data } = props;
@@ -115,6 +115,6 @@ export const pageQuery = graphql`
 
 export default IndexPage;
 
-export function Head({ location }: any) {
+export function Head({ location }: HeadProps) {
   return <Seo title={"Blog"} path={location?.pathname} />;
 }

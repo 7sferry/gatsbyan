@@ -1,7 +1,6 @@
 import React from "react";
 import Photo from "../Photo";
 import { GatsbyImage } from "gatsby-plugin-image";
-import "./header.css";
 import Socials from "../Socials";
 import { Link } from "gatsby";
 import { MobileBioAttr } from "../../types/DataTypes";

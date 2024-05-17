@@ -1,6 +1,5 @@
 import React from "react";
 import Bio from "./Bio";
-import "./sidebar.css";
 
 import Socials from "../Socials";
 import Tags from "./Tags";

@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator";
-import { getVcaResult } from "../../components/ValueAveragingFormResult";
+import { getValueAveragingFormResult } from "../../components/ValueAveragingFormResult";
 import CustomPage from "../../components/CustomPage";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import Seo from "../../components/Seo";
 import { InvestTargetValueInput } from "../../components/value-averaging/InvestTargetValueInput";
 import { UnitTypeValueInput } from "../../components/value-averaging/UnitTypeValueInput";
 import { TotalLotValueInput } from "../../components/value-averaging/TotalLotValueInput";
@@ -13,6 +12,7 @@ import { SinceYearValueInput } from "../../components/value-averaging/SinceYearV
 import { UnitPriceValueInput } from "../../components/value-averaging/UnitPriceValueInput";
 import { StockNameValueInput } from "../../components/value-averaging/StockNameValueInput";
 import { CustomPostAttr, StockData } from "../../types/DataTypes";
+import Seo, { Seo } from "../../components/Seo.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -74,7 +74,7 @@ const ValueAveragingCalculator = () => {
 
     const divElement: HTMLDivElement = document.createElement("div");
     element?.current?.appendChild(divElement);
-    const vcaResult = getVcaResult(stock);
+    const vcaResult = getValueAveragingFormResult(stock);
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
     storage?.setItem(storageKey, JSON.stringify(stockData));

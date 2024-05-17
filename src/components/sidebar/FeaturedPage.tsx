@@ -5,7 +5,6 @@
 
 import React from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import "./sidebar.css";
 import { FeaturedPageData } from "../../types/DataTypes";
 
 const FeaturedPage = () => {

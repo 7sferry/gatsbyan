@@ -5,7 +5,6 @@
 
 import React from "react";
 import { Link } from "gatsby";
-import "./header.css";
 import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
 import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
 import { MenuAttr } from "../../types/DataTypes";

@@ -3,16 +3,15 @@
  * on April 2020        *
  ************************/
 
-import Layout from "../components/Layout.tsx";
 import React from "react";
 import algoliasearch from "algoliasearch/lite";
 import { Configure, InstantSearch, SearchBox } from "react-instantsearch";
-import Seo from "../components/Seo.tsx";
 import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
-import VoiceSearchElement from "../components/search/VoiceSearchElement.tsx";
-import PaginationSearchResult from "../components/search/PaginationSearchResult.tsx";
 import { SearchClient } from "algoliasearch-helper/types/algoliasearch";
 import { MultipleQueriesQuery } from "@algolia/client-search";
+import { HeadProps, Slice } from "gatsby";
+import Seo, { Seo } from "../components/Seo.tsx";
+import Layout from "../components/Layout.tsx";
 
 const SearchPage = () => {
   const algoliaClient = algoliasearch(
@@ -52,9 +51,11 @@ const SearchPage = () => {
             distinct
             hitsPerPage={SEARCH_COUNT}
           />
-          <VoiceSearchElement searchAsYouSpeak={false} />
+          {/*<VoiceSearchElement searchAsYouSpeak={false} />*/}
+          <Slice alias="Comment" searchAsYouSpeak={false} />
           <SearchBox className={"search-box"} searchAsYouType={false} />
-          <PaginationSearchResult />
+          {/*<PaginationSearchResult />*/}
+          <Slice alias="Comment" />
         </InstantSearch>
       </div>
     </Layout>
@@ -63,6 +64,6 @@ const SearchPage = () => {
 
 export default SearchPage;
 
-export function Head({ location }: any) {
+export function Head({ location }: HeadProps) {
   return <Seo title={"Search"} path={location?.pathname} />;
 }
