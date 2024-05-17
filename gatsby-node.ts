@@ -9,7 +9,7 @@ import { AllContentfulBlogPost } from "./src/types/DataTypes";
 import { CreatePagesArgs, GatsbyNode } from "gatsby";
 import { Sign } from "./src/components/Sign";
 
-export const onPostBuild = () => {
+export const onPostBootstrap = () => {
   Sign();
 };
 
@@ -18,7 +18,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
 
   return new Promise((resolve, reject) => {
     resolve(
-      graphql<AllContentfulBlogPost, any>(`
+      graphql<AllContentfulBlogPost>(`
         {
           allContentfulBlogPost {
             nodes {

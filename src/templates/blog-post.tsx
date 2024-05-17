@@ -9,6 +9,7 @@ import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
 import {
+  ClientSide,
   getPlurals,
   getPostTags,
   getPublishDateTime,
@@ -17,7 +18,7 @@ import {
   plusDays,
   toNow,
 } from "../utils/GatsbyanUtils";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { BlogPostProp } from "../types/DataTypes";
@@ -71,17 +72,6 @@ const BlogPostTemplate = (props: BlogPostProp) => {
     </Layout>
   );
 };
-
-function ClientSide({ children }: React.PropsWithChildren) {
-  const [clientSide, setClientSide] = useState(false);
-  useEffect(() => {
-    setClientSide(true);
-  }, []);
-  if (clientSide) {
-    return <>{children}</>;
-  }
-  return <>…</>;
-}
 
 function extractHtmlWithAnchor(html: string): string {
   return html

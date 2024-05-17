@@ -10,9 +10,6 @@ import connectVoiceSearch, {
 import React from "react";
 import { useConnector } from "react-instantsearch";
 
-const useVoiceSearch = (props?: VoiceSearchConnectorParams) =>
-  useConnector<VoiceSearchConnectorParams, VoiceSearchWidgetDescription>(connectVoiceSearch, props);
-
 export function VoiceSearchElement(props: VoiceSearchConnectorParams) {
   const { isBrowserSupported, toggleListening, voiceListeningState } = useVoiceSearch(props);
   if (!isBrowserSupported) {
@@ -44,5 +41,8 @@ export function VoiceSearchElement(props: VoiceSearchConnectorParams) {
     </div>
   );
 }
+
+const useVoiceSearch = (props?: VoiceSearchConnectorParams) =>
+  useConnector<VoiceSearchConnectorParams, VoiceSearchWidgetDescription>(connectVoiceSearch, props);
 
 export default VoiceSearchElement;

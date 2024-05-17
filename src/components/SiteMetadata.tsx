@@ -6,7 +6,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 const useSiteMetadata = () => {
-  // console.log("metadata " + Math.random());
   const { site } = useStaticQuery(graphql`
     query SiteMetadata {
       site {

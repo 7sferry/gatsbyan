@@ -3,7 +3,7 @@
  * on March 2020        *
  ************************/
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 import { add, formatDistanceToNow, isAfter } from "date-fns";
 import { formatToPattern } from "./DateTimeUtils.tsx";
@@ -124,4 +124,15 @@ export function isCommentShown() {
     }
   };
   return commentShown;
+}
+
+export function ClientSide({ children }: React.PropsWithChildren) {
+  const [onClient, setOnClient] = useState(false);
+  useEffect(() => {
+    setOnClient(true);
+  }, []);
+  if (onClient) {
+    return <>{children}</>;
+  }
+  return <></>;
 }
