@@ -2,7 +2,8 @@
  * Made by [MR Ferry™]  *
  * on Mei 2024          *
  ************************/
-import { ServerlessParam, TrendingReport } from "../types/DataTypes.ts";
+import { TrendingReport } from "../types/DataTypes.ts";
+import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import { google } from "googleapis";
 
 const metric = "scrolledUsers";
@@ -53,7 +54,7 @@ async function executeAnalytics() {
   return reports;
 }
 
-export default async function handler({ res }: ServerlessParam) {
+export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   let ttl = (24 - new Date().getHours()) * 3600;
   let reports = await executeAnalytics();
   res.setHeader("Cache-Control", `public, max-age=${ttl}, s-maxage=${ttl + 3600}, stale-while-revalidate=300`).json({

@@ -1,6 +1,5 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
-import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 
 export enum UnitType {
   LOT,
@@ -172,11 +171,6 @@ export interface AnalyticsData {
 export interface TrendingReport {
   readonly path: string | null | undefined;
   readonly value: number | null | undefined;
-}
-
-export interface ServerlessParam {
-  req: GatsbyFunctionRequest;
-  res: GatsbyFunctionResponse;
 }
 
 export interface TopTrendingPageAttr {
