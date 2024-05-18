@@ -7,6 +7,7 @@ import Photo from "./Photo.tsx";
 import MostViewedCounter from "./MostViewedCounter.tsx";
 import FeaturedPageFetcher from "./FeaturedPageFetcher.tsx";
 import LeftSidebar from "./sidebar/LeftSidebar.tsx";
+import RightSidebar from "./sidebar/RightSidebar.tsx";
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   const { siteMetadata: metadata } = SiteMetadata();
@@ -32,23 +33,13 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
             </div>
             {children}
             <div className="right-sidebar">
-              <Slice
-                alias="RightSidebar"
-                analyticNodePaths={analyticNodePaths}
-                titleByPath={titleByPath}
-                featuredPages={nodes}
-              />
+              <RightSidebar analyticNodePaths={analyticNodePaths} titleByPath={titleByPath} featuredPages={nodes} />
             </div>
           </div>
         </main>
         <footer className="text-center">
           <div className="mobile-footer">
-            <Slice
-              alias="RightSidebar"
-              analyticNodePaths={analyticNodePaths}
-              titleByPath={titleByPath}
-              featuredPages={nodes}
-            />
+            <RightSidebar analyticNodePaths={analyticNodePaths} titleByPath={titleByPath} featuredPages={nodes} />
           </div>
           <div className="mobile-footer">
             <Slice alias={"Tags"} />

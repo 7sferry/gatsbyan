@@ -5,15 +5,14 @@
 
 import React from "react";
 import "./sidebar.css";
-import MostViewedPage from "./MostViewedPage.tsx";
-import FeaturedPage from "./FeaturedPage";
 import { RightSidebarAttr } from "../../types/DataTypes.ts";
+import { Slice } from "gatsby";
 
 const RightSidebar = ({ analyticNodePaths, titleByPath, featuredPages }: RightSidebarAttr) => {
   return (
     <div className="sidebar-main ">
-      <MostViewedPage analyticNodePaths={analyticNodePaths} titleByPath={titleByPath} />
-      <FeaturedPage featuredPages={featuredPages} />
+      <Slice alias={"MostViewedPage"} analyticNodePaths={analyticNodePaths} titleByPath={titleByPath} />
+      <Slice alias={"FeaturedPage"} featuredPages={featuredPages} />
     </div>
   );
 };
