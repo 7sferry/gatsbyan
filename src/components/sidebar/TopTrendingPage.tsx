@@ -6,26 +6,23 @@
 import React from "react";
 import { Link } from "gatsby";
 import "./sidebar.css";
-import { TopTrendingPageAttr } from "../../types/DataTypes";
+import { TrendingPageAttr } from "../../types/DataTypes";
 
-const TopTrendingPage = ({ reports, titleByPath }: TopTrendingPageAttr) => {
+const TopTrendingPage = ({ trendingNodes }: TrendingPageAttr) => {
   return (
-    reports.length > 0 && (
+    trendingNodes.length > 0 && (
       <>
         <div className="second-header">Top Trending</div>
         <ul>
-          {reports.map((report) => {
-            let result = titleByPath[report.path ?? ""];
+          {trendingNodes.map((node) => {
             return (
-              result && (
-                <li key={report.path}>
-                  <small className="title">
-                    <Link className="text-link" to={`${report.path}`}>
-                      {result}
-                    </Link>
-                  </small>
-                </li>
-              )
+              <li key={node.path}>
+                <small className="title">
+                  <Link className="text-link" to={`${node.path}`}>
+                    {node.title}
+                  </Link>
+                </small>
+              </li>
             );
           })}
         </ul>

@@ -5,14 +5,14 @@
 import { TrendingReport } from "../types/DataTypes.ts";
 import { useEffect, useState } from "react";
 
-export const fetchTopTrending = (): {}[] => {
+export const fetchTopTrending = (titleByPath: Map<string, string>) => {
   const [trendingReports, setTrendingReports] = useState<TrendingReport[]>([]);
   useEffect(() => {
     getTopTrendingReports().then((reports) => {
       setTrendingReports(reports);
     });
   }, []);
-  return trendingReports;
+  return trendingReports.map((report) => ({ path: report.path, title: titleByPath.get(report.path) }));
 };
 
 async function getTopTrendingReports(): Promise<TrendingReport[]> {

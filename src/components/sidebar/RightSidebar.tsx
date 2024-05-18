@@ -10,12 +10,12 @@ import FeaturedPage from "./FeaturedPage";
 import { RightSidebarAttr } from "../../types/DataTypes.ts";
 import TopTrendingPage from "./TopTrendingPage.tsx";
 
-const RightSidebar = ({ analyticNodePaths, titleByPath, featuredPages, topTrendingReports }: RightSidebarAttr) => {
+const RightSidebar = ({ mostViewedNodes, featuredNodes, trendingNodes }: RightSidebarAttr) => {
   return (
     <div className="sidebar-main ">
-      <MostViewedPage analyticNodePaths={analyticNodePaths} titleByPath={titleByPath} />
-      <FeaturedPage featuredPages={featuredPages} />
-      <TopTrendingPage reports={topTrendingReports} titleByPath={titleByPath} />
+      <MostViewedPage mostViewedNodes={mostViewedNodes} />
+      <FeaturedPage featuredNodes={featuredNodes} />
+      <TopTrendingPage trendingNodes={trendingNodes} />
     </div>
   );
 };

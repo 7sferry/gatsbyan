@@ -8,13 +8,13 @@ import { Link } from "gatsby";
 import "./sidebar.css";
 import { FeaturedPageAttr } from "../../types/DataTypes";
 
-const FeaturedPage = ({ featuredPages }: FeaturedPageAttr) => {
+const FeaturedPage = ({ featuredNodes }: FeaturedPageAttr) => {
   return (
-    featuredPages && (
+    featuredNodes && (
       <>
         <div className="second-header">Featured Post</div>
         <ul>
-          {featuredPages.map((node) => {
+          {featuredNodes.map((node) => {
             return (
               <li key={node.slug}>
                 <Link className="text-link" to={`/blog/${node.slug}`}>

@@ -3,10 +3,10 @@
  * on Mei 2024          *
  ************************/
 
-import { AnalyticsData, MostViewedAttr } from "../types/DataTypes.ts";
+import { AnalyticsData } from "../types/DataTypes.ts";
 import { graphql, useStaticQuery } from "gatsby";
 
-function getMostViewed(): MostViewedAttr {
+export function fetchMostViewed(titleByPath: Map<string, string>) {
   const analyticsData: AnalyticsData = useStaticQuery(graphql`
       query AnalyticsPageQuery {
           allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/^\/blog\/(?!$)(?!.*(%|\\?|=|&)).*$/" } }, limit: 5) {
@@ -14,22 +14,11 @@ function getMostViewed(): MostViewedAttr {
                   path
               }
           }
-          allContentfulBlogPost {
-              nodes {
-                  slug
-                  title
-              }
-          }
       }
   `);
 
-  const titleByPath: any = {};
-  analyticsData?.allContentfulBlogPost?.nodes?.forEach((n) => {
-    titleByPath["/blog/" + n.slug] = n.title;
-  });
-
-  let analyticNodePaths = analyticsData?.allPageViews?.nodes?.map((node) => node?.path);
-  return { analyticNodePaths, titleByPath };
+  return analyticsData?.allPageViews?.nodes?.map((node) => ({
+    path: node?.path,
+    title: titleByPath.get(node?.path),
+  }));
 }
-
-export default getMostViewed;
