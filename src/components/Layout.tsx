@@ -1,12 +1,12 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./layout.css";
-import Tags from "./sidebar/Tags";
 import SiteMetadata from "./SiteMetadata";
 import { Slice } from "gatsby";
 import Photo from "./Photo.tsx";
 import MostViewedCounter from "./MostViewedCounter.tsx";
 import FeaturedPageFetcher from "./FeaturedPageFetcher.tsx";
+import LeftSidebar from "./sidebar/LeftSidebar.tsx";
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   const { siteMetadata: metadata } = SiteMetadata();
@@ -17,19 +17,13 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   return (
     <>
       <Slice alias="Header" siteTitle={metadata.title} />
-      <Slice
-        alias="MobileBio"
-        author={metadata.author}
-        tagline={metadata.tagline}
-        contacts={metadata.contacts}
-        photo={photo}
-      />
+      <Slice alias={"Socials"} mobile={true} contacts={metadata.contacts} />
+      <Slice alias="MobileBio" author={metadata.author} tagline={metadata.tagline} photo={photo} />
       <div className="body-content">
         <main className="main-layout">
           <div className="index-main">
             <div className="sidebar border-right px-4 py-2">
-              <Slice
-                alias="LeftSidebar"
+              <LeftSidebar
                 photo={photo}
                 author={metadata.author}
                 tagline={metadata.tagline}
@@ -57,7 +51,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
             />
           </div>
           <div className="mobile-footer">
-            <Tags />
+            <Slice alias={"Tags"} />
           </div>
           <div className="my-emoji mt-2">{metadata.copyright}</div>
         </footer>
