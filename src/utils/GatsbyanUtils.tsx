@@ -3,33 +3,12 @@
  * on March 2020        *
  ************************/
 
-import React, { useEffect, useState } from "react";
-import { Link } from "gatsby";
-import { add, formatDistanceToNow, isAfter } from "date-fns";
-import { formatToPattern } from "./DateTimeUtils.tsx";
+import React from "react";
+import { add, format, formatDistanceToNow, isAfter } from "date-fns";
 import slugify from "@sindresorhus/slugify";
 
 export const kebabCase = (str: string) => {
   return slugify(str);
-};
-
-export const getPostTags = (tags: Array<string> | null) => {
-  const techTags = new Set<React.ReactNode>();
-  tags &&
-    tags.forEach((tag, i) => {
-      const kebabTag = kebabCase(tag);
-      techTags.add(
-        <span key={kebabTag}>
-          {i > 0 ? ", " : ""}
-          <Link to={`/tags/${kebabTag}`}>{tag}</Link>
-        </span>
-      );
-    });
-  return techTags;
-};
-
-export const getTags = (tag: string) => {
-  return <Link to={`/tags/${kebabCase(tag)}`}>{tag}</Link>;
 };
 
 export const getPublishDate = (date: string | Date) => formatToPattern(date, "MMMM do, yyyy");
@@ -43,6 +22,12 @@ export const toNow = (date: string | Date) => formatDistanceToNow(date);
 export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(date1, date2);
 
 export const plusDays = (date: string | Date, day: number) => add(date, { days: day });
+
+function formatToPattern(dateArg: string | Date, formatString: string, timeZone: string = "Asia/Jakarta") {
+  const date = typeof dateArg === "string" ? new Date(dateArg) : dateArg;
+  const zonedDate = date.toLocaleString("en-US", { timeZone: timeZone });
+  return format(zonedDate, formatString);
+}
 
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
@@ -124,15 +109,4 @@ export function isCommentShown() {
     }
   };
   return commentShown;
-}
-
-export function ClientSide({ children }: React.PropsWithChildren) {
-  const [onClient, setOnClient] = useState(false);
-  useEffect(() => {
-    setOnClient(true);
-  }, []);
-  if (onClient) {
-    return <>{children}</>;
-  }
-  return <></>;
 }

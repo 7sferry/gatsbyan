@@ -2,6 +2,11 @@
  * Made by [MR Ferry™]  *
  * on Mei 2024          *
  ************************/
+
+/************************
+ * Made by [MR Ferry™]  *
+ * on Mei 2024          *
+ ************************/
 import { AnalyticsData, MostViewedAttr } from "../types/DataTypes.ts";
 import { graphql, useStaticQuery } from "gatsby";
 

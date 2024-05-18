@@ -7,7 +7,7 @@ import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
 import { CreatePagesArgs, GatsbyNode } from "gatsby";
-import { Sign } from "./src/components/Sign";
+import { Sign } from "./src/utils/Sign.tsx";
 
 export const onPostBootstrap = () => {
   Sign();

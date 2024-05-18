@@ -78,6 +78,10 @@ export interface SeoAttr {
   readonly path?: string;
 }
 
+export interface CommaSeparatedLinkedPostTagsAttr {
+  readonly tags: string[];
+}
+
 export interface BlogPostProp {
   readonly data: {
     readonly contentfulBlogPost: {

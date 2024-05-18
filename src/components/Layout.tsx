@@ -1,11 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./layout.css";
-import SiteMetadata from "./SiteMetadata";
+import SiteMetadata from "../utils/SiteMetadata.tsx";
 import { Slice } from "gatsby";
-import Photo from "./Photo.tsx";
-import MostViewedCounter from "./MostViewedCounter.tsx";
-import FeaturedPageFetcher from "./FeaturedPageFetcher.tsx";
+import Photo from "../utils/Photo.tsx";
+import MostViewedCounter from "../utils/MostViewedCounter.tsx";
+import FeaturedPageFetcher from "../utils/FeaturedPageFetcher.tsx";
 import LeftSidebar from "./sidebar/LeftSidebar.tsx";
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
