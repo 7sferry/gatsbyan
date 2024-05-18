@@ -41,10 +41,10 @@ export interface BioAttr {
 }
 
 export interface LeftSidebarAttr {
-  readonly photo: IGatsbyImageData;
+  readonly photo: {};
   readonly author: string;
   readonly tagline: string;
-  readonly contacts: ContactsAttr;
+  readonly contacts: {};
 }
 
 export interface ContactsAttr {
@@ -57,7 +57,6 @@ export interface ContactsAttr {
 }
 
 export interface MobileBioAttr {
-  readonly contacts: ContactsAttr;
   readonly author: string;
   readonly tagline: string;
   readonly photo: IGatsbyImageData;
