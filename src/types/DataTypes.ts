@@ -168,6 +168,16 @@ export interface AnalyticsData {
   };
 }
 
+export interface TrendingReport {
+  readonly path: string | null | undefined;
+  readonly value: number | null | undefined;
+}
+
+export interface TopTrendingPageAttr {
+  readonly reports: TrendingReport[];
+  readonly titleByPath: { [key: string]: string };
+}
+
 export interface MostViewedAttr {
   readonly analyticNodePaths: string[];
   readonly titleByPath: { [key: string]: string };
@@ -180,6 +190,7 @@ export interface RightSidebarAttr {
     readonly slug: string;
     readonly title: string;
   }>;
+  readonly topTrendingReports: TrendingReport[];
 }
 
 export interface FeaturedPageAttr {

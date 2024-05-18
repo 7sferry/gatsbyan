@@ -7,12 +7,14 @@ import Photo from "../utils/Photo.tsx";
 import MostViewedCounter from "../utils/MostViewedCounter.tsx";
 import FeaturedPageFetcher from "../utils/FeaturedPageFetcher.tsx";
 import LeftSidebar from "./sidebar/LeftSidebar.tsx";
+import { fetchTopTrending } from "../utils/TopTrendingFetcher.tsx";
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   const { siteMetadata: metadata } = SiteMetadata();
   const { gatsbyImageData: photo } = Photo();
   const { analyticNodePaths, titleByPath } = MostViewedCounter();
   const { nodes } = FeaturedPageFetcher();
+  const trendingReports = fetchTopTrending();
 
   return (
     <>
@@ -37,6 +39,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
                 analyticNodePaths={analyticNodePaths}
                 titleByPath={titleByPath}
                 featuredPages={nodes}
+                topTrendingReports={trendingReports}
               />
             </div>
           </div>
@@ -48,6 +51,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
               analyticNodePaths={analyticNodePaths}
               titleByPath={titleByPath}
               featuredPages={nodes}
+              topTrendingReports={trendingReports}
             />
           </div>
           <div className="mobile-footer">
