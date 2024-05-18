@@ -7,6 +7,7 @@ import { Slice } from "gatsby";
 import Photo from "./Photo.tsx";
 import MostViewedCounter from "./MostViewedCounter.tsx";
 import FeaturedPageFetcher from "./FeaturedPageFetcher.tsx";
+import MobileBio from "./header/MobileBio.tsx";
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   const { siteMetadata: metadata } = SiteMetadata();
@@ -17,13 +18,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   return (
     <>
       <Slice alias="Header" siteTitle={metadata.title} />
-      <Slice
-        alias="MobileBio"
-        author={metadata.author}
-        tagline={metadata.tagline}
-        contacts={metadata.contacts}
-        photo={photo}
-      />
+      <MobileBio author={metadata.author} tagline={metadata.tagline} contacts={metadata.contacts} photo={photo} />
       <div className="body-content">
         <main className="main-layout">
           <div className="index-main">
