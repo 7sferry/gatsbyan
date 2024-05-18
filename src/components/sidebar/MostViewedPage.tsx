@@ -8,7 +8,7 @@ import { Link } from "gatsby";
 import "./sidebar.css";
 import { MostViewedAttr } from "../../types/DataTypes";
 
-const AnalyticsPage = ({ analyticNodePaths, titleByPath }: MostViewedAttr) => {
+const MostViewedPage = ({ analyticNodePaths, titleByPath }: MostViewedAttr) => {
   return (
     analyticNodePaths && (
       <>
@@ -34,4 +34,4 @@ const AnalyticsPage = ({ analyticNodePaths, titleByPath }: MostViewedAttr) => {
   );
 };
 
-export default AnalyticsPage;
+export default MostViewedPage;
