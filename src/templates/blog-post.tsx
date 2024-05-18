@@ -8,20 +8,13 @@ import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
-import {
-  ClientSide,
-  getPlurals,
-  getPostTags,
-  getPublishDateTime,
-  isAfterDate,
-  kebabCase,
-  plusDays,
-  toNow,
-} from "../utils/GatsbyanUtils";
+import { getPlurals, getPublishDateTime, isAfterDate, kebabCase, plusDays, toNow } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { BlogPostProp } from "../types/DataTypes";
+import { ClientSide } from "../components/ClientSide.tsx";
+import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
   const { contentfulBlogPost: post, site: siteProp } = props.data;
@@ -53,7 +46,9 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           <ClientSide>
             {showUpdatedText() && <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>}
           </ClientSide>
-          <div className="page-info">{getPostTags(post.tags)}</div>
+          <div className="page-info">
+            <CommaSeparatedLinkedPostTags tags={post.tags} />
+          </div>
         </div>
         <div>
           <figure className="hero">

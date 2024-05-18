@@ -2,6 +2,7 @@
  * Made by [MR Ferry™]  *
  * on Mei 2024          *
  ************************/
+
 import { FeaturedPageData } from "../types/DataTypes.ts";
 import { graphql, useStaticQuery } from "gatsby";
 

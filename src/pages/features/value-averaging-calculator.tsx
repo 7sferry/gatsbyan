@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator";
 import { getValueAveragingFormResult } from "../../components/ValueAveragingFormResult";
-import CustomPage from "../../components/CustomPage";
+import CustomPageContainer from "../../components/CustomPageContainer.tsx";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import Seo from "../../components/Seo";
 import { InvestTargetValueInput } from "../../components/value-averaging/InvestTargetValueInput";
@@ -92,7 +92,7 @@ const ValueAveragingCalculator = () => {
 
   return (
     pageContext && (
-      <CustomPage site={site.siteMetadata} customPost={pageContext}>
+      <CustomPageContainer site={site.siteMetadata} customPost={pageContext}>
         <p>
           Berikut ini adalah kalkulator untuk menghitung investasi secara Value Averaging per-bulan. Untuk penjelasan
           mengenai strategi ini bisa dibaca tulisan tentang{" "}
@@ -166,7 +166,7 @@ const ValueAveragingCalculator = () => {
           </div>
         </form>
         <div id="result" ref={element} />
-      </CustomPage>
+      </CustomPageContainer>
     )
   );
 };

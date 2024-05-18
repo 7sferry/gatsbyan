@@ -1,5 +1,6 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
+import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 
 export enum UnitType {
   LOT,
@@ -76,6 +77,10 @@ export interface SeoAttr {
   readonly title?: string;
   readonly image?: string;
   readonly path?: string;
+}
+
+export interface CommaSeparatedLinkedPostTagsAttr {
+  readonly tags: string[];
 }
 
 export interface BlogPostProp {
@@ -164,6 +169,21 @@ export interface AnalyticsData {
   };
 }
 
+export interface TrendingReport {
+  readonly path: string | null | undefined;
+  readonly value: number | null | undefined;
+}
+
+export interface ServerlessParam {
+  req: GatsbyFunctionRequest;
+  res: GatsbyFunctionResponse;
+}
+
+export interface TopTrendingPageAttr {
+  readonly reports: TrendingReport[];
+  readonly titleByPath: { [key: string]: string };
+}
+
 export interface MostViewedAttr {
   readonly analyticNodePaths: string[];
   readonly titleByPath: { [key: string]: string };
@@ -176,6 +196,7 @@ export interface RightSidebarAttr {
     readonly slug: string;
     readonly title: string;
   }>;
+  readonly topTrendingReports: TrendingReport[];
 }
 
 export interface FeaturedPageAttr {

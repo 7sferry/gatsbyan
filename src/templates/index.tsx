@@ -10,9 +10,10 @@ import { graphql, HeadProps, Link } from "gatsby";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import PaginationElement from "../components/PaginationElement.tsx";
-import { getPlurals, getPostTags, getPublishDate } from "../utils/GatsbyanUtils";
+import { getPlurals, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
 import { IndexProp } from "../types/DataTypes";
+import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
 
 function IndexPage(props: IndexProp) {
   const { pageContext, data } = props;
@@ -47,7 +48,9 @@ function IndexPage(props: IndexProp) {
                     {timeToRead} min{getPlurals(timeToRead)} read
                   </span>
                   <br />
-                  <span className="page-info">{getPostTags(tags)}</span>
+                  <span className="page-info">
+                    <CommaSeparatedLinkedPostTags tags={tags} />
+                  </span>
                 </div>
                 <div className="pt-1">
                   {post.heroImage && (
