@@ -11,7 +11,7 @@ import { TrendingPageAttr } from "../../types/DataTypes";
 const TopTrendingPage = ({ trendingNodes }: TrendingPageAttr) => {
   return (
     trendingNodes.length > 0 && (
-      <>
+      <div>
         <div className="second-header">Top Trending</div>
         <ul>
           {trendingNodes.map((node) => {
@@ -26,7 +26,7 @@ const TopTrendingPage = ({ trendingNodes }: TrendingPageAttr) => {
             );
           })}
         </ul>
-      </>
+      </div>
     )
   );
 };

@@ -11,7 +11,7 @@ import { FeaturedPageAttr } from "../../types/DataTypes";
 const FeaturedPage = ({ featuredNodes }: FeaturedPageAttr) => {
   return (
     featuredNodes && (
-      <>
+      <div>
         <div className="second-header">Featured Post</div>
         <ul>
           {featuredNodes.map((node) => {
@@ -29,7 +29,7 @@ const FeaturedPage = ({ featuredNodes }: FeaturedPageAttr) => {
             </Link>
           </li>
         </ul>
-      </>
+      </div>
     )
   );
 };

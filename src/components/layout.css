@@ -483,7 +483,7 @@ pre tt:after {
 
 .body-content {
   margin: 0 auto;
-  padding: .5rem;
+  padding: .5rem 0 0;
 }
 
 @keyframes animate {
@@ -498,4 +498,10 @@ pre tt:after {
   border-color: transparent;
   margin: 0.25em 0.25em 0.25em 0;
   font-size: 0.9em;
+}
+
+@media only screen and (max-width: 1024px) {
+  .body-content {
+    padding: 0;
+  }
 }

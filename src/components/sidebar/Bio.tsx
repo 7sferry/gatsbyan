@@ -6,12 +6,14 @@ import { BioAttr } from "../../types/DataTypes";
 
 const Bio = ({ author, tagline, photo }: BioAttr) => {
   return (
-    <div>
-      <GatsbyImage image={photo} className="profile-img" alt="Ferry" title="Ferry Suhandri" />
-      <div className="mt-2 author-bio second-header">
-        <Link to={"/blog/berkenalan-dengan-ferry-suhandri"}>{author}</Link>
+    <div className="mobile-bio-main">
+      <GatsbyImage image={photo} className="bio-picture" alt="Ferry" title="Ferry Suhandri" />
+      <div className="bio-letter">
+        <p className="bio-name">
+          <Link to={"/blog/berkenalan-dengan-ferry-suhandri"}>{author}</Link>
+        </p>
+        <small>{tagline}</small>
       </div>
-      <small className="muted">{tagline}</small>
     </div>
   );
 };

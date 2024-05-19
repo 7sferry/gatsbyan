@@ -1,5 +1,7 @@
 .sidebar-main {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .side-social-links {
@@ -14,11 +16,6 @@
 
 .mobile-footer {
   display: none;
-}
-
-.profile-img {
-  border-radius: 50%;
-  box-shadow: 1px 1px 3px;
 }
 
 small,
@@ -46,12 +43,11 @@ li {
   margin: 0 0 0.25rem;
 }
 
-.author-bio {
-  font-size: 2vw;
-}
-
 @media only screen and (max-width: 1024px) {
   .mobile-footer {
     display: block;
+  }
+  .sidebar-main{
+    flex-direction: column-reverse;
   }
 }

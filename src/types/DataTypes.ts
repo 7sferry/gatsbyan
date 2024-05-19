@@ -124,7 +124,6 @@ export interface BlogPostProp {
 }
 
 export interface SocialAttr {
-  readonly mobile: boolean;
   readonly contacts: ContactsAttr;
 }
 

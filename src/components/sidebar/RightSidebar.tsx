@@ -13,8 +13,8 @@ import TopTrendingPage from "./TopTrendingPage.tsx";
 const RightSidebar = ({ mostViewedNodes, featuredNodes, trendingNodes }: RightSidebarAttr) => {
   return (
     <div className="sidebar-main ">
-      <MostViewedPage mostViewedNodes={mostViewedNodes} />
       <FeaturedPage featuredNodes={featuredNodes} />
+      <MostViewedPage mostViewedNodes={mostViewedNodes} />
       <TopTrendingPage trendingNodes={trendingNodes} />
     </div>
   );
