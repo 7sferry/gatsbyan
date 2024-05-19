@@ -131,6 +131,7 @@ export const pageQuery = graphql`
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
+          breakpoints: [360]
           width: 325
         )
         title
