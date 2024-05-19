@@ -119,7 +119,7 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          sizes: "100vw"
+          sizes: "30vh"
         )
         title
         file {
