@@ -44,35 +44,73 @@ small {
   font-family: "Work Sans", serif;
 }
 
-.mobile-bio-main {
-  background: #343a40;
-  display: none;
-  padding-bottom: 0.5rem;
-}
-
 .bio-picture {
-  margin: 0 0 0 1.5rem;
-  max-width: 75px;
-  max-height: 75px;
   border-radius: 50%;
   box-shadow: 1px 1px 3px;
+}
+
+.bio-name {
+  font-size: 2vw;
+  margin: .5rem 0 .25rem 0;
+  color: inherit;
+  font-weight: 600;
+  line-height: 1.1;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+}
+
+.mobile-social {
+  display: grid;
+  grid-template-columns: 0.1fr 0.1fr 0.1fr;
+  padding-top: 1rem;
+}
+
+.social-icon {
+  padding: .5rem;
 }
 
 @media only screen and (max-width: 1024px) {
   .bottom-bar {
     display: flex;
   }
+
   .social-links {
     display: none;
+  }
+
+  .social-icon {
+    padding: unset;
+  }
+
+  .bio-picture {
+    margin: 0 0 0 1.5rem;
+    max-width: 75px;
+    max-height: 75px;
+  }
+
+  .bio-letter {
+    margin: 0 auto 0 1rem;
+  }
+
+  .bio-name {
+    color: inherit;
+    font-size: 20px;
+    margin: .25rem 0;
   }
 
   .mobile-bio-main {
     display: flex;
     flex-direction: row;
+    padding: 0 0 .25rem;
+    background: #343a40;
   }
 
   .mobile-social {
     justify-content: space-evenly;
+  }
+
+  .mobile-tag {
+    display: none;
   }
 
   .head-elements {
@@ -93,12 +131,4 @@ small {
 .header-link {
   color: white;
   text-decoration: none;
-}
-
-.bio-letter {
-  margin: 0 auto 0 1rem;
-}
-
-.bio-name {
-  margin-bottom: 0.25rem;
 }

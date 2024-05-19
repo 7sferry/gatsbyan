@@ -21,12 +21,10 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   return (
     <>
       <Slice alias="Header" siteTitle={metadata.title} />
-      <Slice alias={"Socials"} mobile={true} contacts={metadata.contacts} />
-      <Slice alias="MobileBio" author={metadata.author} tagline={metadata.tagline} photo={photo} />
       <div className="body-content">
         <main className="main-layout">
           <div className="index-main">
-            <div className="sidebar border-right px-4 py-2">
+            <div className="sidebar">
               <LeftSidebar
                 photo={photo}
                 author={metadata.author}
@@ -46,18 +44,8 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
           </div>
         </main>
         <footer className="text-center">
-          <div className="mobile-footer">
-            <Slice
-              alias="RightSidebar"
-              mostViewedNodes={mostViewedNodes}
-              featuredNodes={featuredNodes}
-              trendingNodes={trendingNodes}
-            />
-          </div>
-          <div className="mobile-footer">
-            <Slice alias={"Tags"} />
-          </div>
-          <div className="my-emoji mt-2">{metadata.copyright}</div>
+          {/*<div className="mobile-footer">{<Slice alias={"Tags"} />}</div>*/}
+          <div className="my-emoji mb-2">{metadata.copyright}</div>
         </footer>
       </div>
     </>

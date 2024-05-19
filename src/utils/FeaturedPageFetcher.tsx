@@ -14,11 +14,8 @@ export function fetchFeaturedPages() {
           slug: {
             in: [
               "write-skew-pada-database"
-              "sql-menentukan-primary-key"
-              "pessimistic-vs-optimistic-locking-mencegah-update-anomaly"
               "fakta-unik-minangkabau"
               "java-membuat-pdf-dinamis"
-              "diam-itu-gemas"
               "the-gebetans"
               "perluas-pengetahuanmu-tentang-offside"
             ]

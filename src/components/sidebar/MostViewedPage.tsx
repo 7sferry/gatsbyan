@@ -11,7 +11,7 @@ import { MostViewedAttr } from "../../types/DataTypes";
 const MostViewedPage = ({ mostViewedNodes }: MostViewedAttr) => {
   return (
     mostViewedNodes && (
-      <>
+      <div>
         <div className="second-header">Most Viewed</div>
         <ul>
           {mostViewedNodes.map((node) => {
@@ -26,7 +26,7 @@ const MostViewedPage = ({ mostViewedNodes }: MostViewedAttr) => {
             );
           })}
         </ul>
-      </>
+      </div>
     )
   );
 };

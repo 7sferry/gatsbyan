@@ -20,7 +20,7 @@ p,
 }
 
 .main-layout {
-  padding: 0 0 1rem;
+  padding: 0;
 }
 
 .post-container {
@@ -71,7 +71,7 @@ p,
   width: 90%;
   -ms-grid-column: 1;
   grid-column: 1;
-  border-right: 1px solid #dee2e6 !important;
+  padding: .5rem 1.5rem;
 }
 .post-main {
   -ms-grid-column: 2;
@@ -149,18 +149,23 @@ a:hover,
 
 /* ipad pro */
 @media only screen and (max-width: 1024px) {
-  .sidebar,
-  .right-sidebar {
-    display: none;
+  .sidebar {
+    border-right: none;
+    width: 100%;
+    padding: 0;
   }
 
   .post-main {
-    padding: 0;
+    padding: .5rem .5rem 1rem;
+  }
+
+  .right-sidebar{
+    text-align: center;
   }
   
   .index-main {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
   }
 

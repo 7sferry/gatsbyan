@@ -31,7 +31,7 @@ async function executeAnalytics() {
     requestBody: {
       dimensions: [{ name: dimension }],
       metrics: [{ name: metric }],
-      dateRanges: [{ startDate: "30daysAgo", endDate: "today" }],
+      dateRanges: [{ startDate: "30daysAgo", endDate: "yesterday" }],
       dimensionFilter: {
         filter: {
           fieldName: dimension,
@@ -54,8 +54,13 @@ async function executeAnalytics() {
   return reports;
 }
 
+function getTimeToLiveExpiration() {
+  let currentDate = new Date();
+  return (23 - currentDate.getHours()) * 3600 + (59 - currentDate.getMinutes()) * 60;
+}
+
 export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
-  let ttl = (24 - new Date().getHours()) * 3600;
+  let ttl = getTimeToLiveExpiration();
   let reports = await executeAnalytics();
   res.setHeader("Cache-Control", `public, max-age=${ttl}, s-maxage=${ttl + 3600}, stale-while-revalidate=300`).json({
     nodes: reports,
