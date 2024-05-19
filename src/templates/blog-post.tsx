@@ -11,7 +11,7 @@ import "./ignored/prism.css";
 import { getPlurals, getPublishDateTime, isAfterDate, kebabCase, plusDays, toNow } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql, Slice } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
 import { BlogPostProp } from "../types/DataTypes";
 import { ClientSide } from "../components/ClientSide.tsx";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
@@ -24,7 +24,12 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const repo = site.repo;
 
   const heroImage = post.heroImage;
-  const imageData = heroImage?.gatsbyImageData;
+  const imageData = withArtDirection(heroImage?.gatsbyImageData, [
+    {
+      media: "(max-width: 1024px)",
+      image: heroImage?.small,
+    },
+  ]);
   const imageTitle = heroImage?.title;
   const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
   const publishDate = post.publishDate;
@@ -116,10 +121,17 @@ export const pageQuery = graphql`
         gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: FULL_WIDTH
+          layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
-          sizes: "30vh"
+        )
+        small: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: CONSTRAINED
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          width: 360
         )
         title
         file {

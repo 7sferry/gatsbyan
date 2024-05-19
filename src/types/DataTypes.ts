@@ -103,6 +103,7 @@ export interface BlogPostProp {
       };
       readonly heroImage: {
         readonly gatsbyImageData: IGatsbyImageData;
+        readonly small: IGatsbyImageData;
         readonly title: string;
         readonly file: {
           readonly url: string;
