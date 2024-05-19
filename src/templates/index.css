@@ -33,6 +33,10 @@ p,
   font-size: 1.2rem;
 }
 
+.content-post p a {
+  font-style: oblique;
+}
+
 .blog-content {
   padding: 0 2rem;
 }
@@ -98,11 +102,6 @@ a {
   line-height: 1.25em;
 }
 
-.text-side {
-  color: #42b72a;
-  transition: 9s;
-}
-
 .index-thumbnail {
   float: left;
   margin: 0 10px 5px 0;
@@ -111,7 +110,6 @@ a {
 }
 
 a:hover,
-.text-side:hover,
 .text-link:hover {
   color: #ff0000;
   transition: 7s;
@@ -119,7 +117,6 @@ a:hover,
 
 a,
 a:hover,
-.text-side:hover,
 .text-link:link,
 .text-link:hover,
 .text-link:visited {
