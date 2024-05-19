@@ -4,17 +4,19 @@ import "./layout.css";
 import SiteMetadata from "../utils/SiteMetadata.tsx";
 import { Slice } from "gatsby";
 import Photo from "../utils/Photo.tsx";
-import MostViewedCounter from "../utils/MostViewedCounter.tsx";
-import FeaturedPageFetcher from "../utils/FeaturedPageFetcher.tsx";
+import { fetchMostViewed } from "../utils/MostViewedCounter.tsx";
+import { fetchFeaturedPages } from "../utils/FeaturedPageFetcher.tsx";
 import LeftSidebar from "./sidebar/LeftSidebar.tsx";
 import { fetchTopTrending } from "../utils/TopTrendingFetcher.tsx";
+import fetchTitleByPath from "../utils/AllPostFetcher.tsx";
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   const { siteMetadata: metadata } = SiteMetadata();
   const { gatsbyImageData: photo } = Photo();
-  const { analyticNodePaths, titleByPath } = MostViewedCounter();
-  const { nodes } = FeaturedPageFetcher();
-  const trendingReports = fetchTopTrending();
+  const titleByPath = fetchTitleByPath();
+  const mostViewedNodes = fetchMostViewed(titleByPath);
+  const featuredNodes = fetchFeaturedPages();
+  const trendingNodes = fetchTopTrending(titleByPath);
 
   return (
     <>
@@ -36,10 +38,9 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
             <div className="right-sidebar">
               <Slice
                 alias="RightSidebar"
-                analyticNodePaths={analyticNodePaths}
-                titleByPath={titleByPath}
-                featuredPages={nodes}
-                topTrendingReports={trendingReports}
+                mostViewedNodes={mostViewedNodes}
+                featuredNodes={featuredNodes}
+                trendingNodes={trendingNodes}
               />
             </div>
           </div>
@@ -48,10 +49,9 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
           <div className="mobile-footer">
             <Slice
               alias="RightSidebar"
-              analyticNodePaths={analyticNodePaths}
-              titleByPath={titleByPath}
-              featuredPages={nodes}
-              topTrendingReports={trendingReports}
+              mostViewedNodes={mostViewedNodes}
+              featuredNodes={featuredNodes}
+              trendingNodes={trendingNodes}
             />
           </div>
           <div className="mobile-footer">

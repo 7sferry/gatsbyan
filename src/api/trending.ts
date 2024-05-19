@@ -49,7 +49,7 @@ async function executeAnalytics() {
   const reports: TrendingReport[] = [];
   const rows = data.data.rows ?? [];
   for (const row of rows) {
-    reports.push({ path: row?.dimensionValues?.[0]?.value, value: Number(row?.metricValues?.[0].value) });
+    reports.push({ path: String(row?.dimensionValues?.[0]?.value), value: Number(row?.metricValues?.[0].value) });
   }
   return reports;
 }

@@ -6,7 +6,7 @@
 import { FeaturedPageData } from "../types/DataTypes.ts";
 import { graphql, useStaticQuery } from "gatsby";
 
-function getFeaturedPages() {
+export function fetchFeaturedPages() {
   const data: FeaturedPageData = useStaticQuery(graphql`
     query FeaturedPageQuery {
       allContentfulBlogPost(
@@ -35,7 +35,5 @@ function getFeaturedPages() {
   `);
 
   const { allContentfulBlogPost }: FeaturedPageData = data;
-  return allContentfulBlogPost;
+  return allContentfulBlogPost.nodes;
 }
-
-export default getFeaturedPages;

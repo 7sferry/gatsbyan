@@ -169,32 +169,39 @@ export interface AnalyticsData {
 }
 
 export interface TrendingReport {
-  readonly path: string | null | undefined;
-  readonly value: number | null | undefined;
+  readonly path: string;
+  readonly value: number;
 }
 
-export interface TopTrendingPageAttr {
-  readonly reports: TrendingReport[];
-  readonly titleByPath: { [key: string]: string };
+export interface TrendingNode {
+  readonly path: string;
+  readonly title: string;
+}
+
+export interface TrendingPageAttr {
+  readonly trendingNodes: TrendingNode[];
+}
+
+export interface MostViewedNode {
+  readonly path: string;
+  readonly title: string;
 }
 
 export interface MostViewedAttr {
-  readonly analyticNodePaths: string[];
-  readonly titleByPath: { [key: string]: string };
+  readonly mostViewedNodes: MostViewedNode[];
 }
 
 export interface RightSidebarAttr {
-  readonly analyticNodePaths: string[];
-  readonly titleByPath: { [key: string]: string };
-  readonly featuredPages: Array<{
+  readonly mostViewedNodes: MostViewedNode[];
+  readonly featuredNodes: Array<{
     readonly slug: string;
     readonly title: string;
   }>;
-  readonly topTrendingReports: TrendingReport[];
+  readonly trendingNodes: TrendingNode[];
 }
 
 export interface FeaturedPageAttr {
-  readonly featuredPages: Array<{
+  readonly featuredNodes: Array<{
     readonly slug: string;
     readonly title: string;
   }>;

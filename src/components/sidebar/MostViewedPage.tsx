@@ -8,24 +8,21 @@ import { Link } from "gatsby";
 import "./sidebar.css";
 import { MostViewedAttr } from "../../types/DataTypes";
 
-const MostViewedPage = ({ analyticNodePaths, titleByPath }: MostViewedAttr) => {
+const MostViewedPage = ({ mostViewedNodes }: MostViewedAttr) => {
   return (
-    analyticNodePaths && (
+    mostViewedNodes && (
       <>
         <div className="second-header">Most Viewed</div>
         <ul>
-          {analyticNodePaths.map((path) => {
-            let result = titleByPath[path];
+          {mostViewedNodes.map((node) => {
             return (
-              result && (
-                <li key={path}>
-                  <small className="title">
-                    <Link className="text-link" to={`${path}`}>
-                      {result}
-                    </Link>
-                  </small>
-                </li>
-              )
+              <li key={node.path}>
+                <small className="title">
+                  <Link className="text-link" to={`${node.path}`}>
+                    {node.title}
+                  </Link>
+                </small>
+              </li>
             );
           })}
         </ul>
