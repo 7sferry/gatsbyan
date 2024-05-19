@@ -33,6 +33,10 @@ p,
   font-size: 1.2rem;
 }
 
+.content-post p a {
+  font-style: oblique;
+}
+
 .blog-content {
   padding: 0 2rem;
 }
