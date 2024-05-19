@@ -10,9 +10,7 @@ const Bio = ({ author, tagline, photo }: BioAttr) => {
       <GatsbyImage image={photo} className="bio-picture" alt="Ferry" title="Ferry Suhandri" />
       <div className="bio-letter">
         <p className="bio-name">
-          <Link style={{ color: "#8CA4D4" }} to={"/blog/berkenalan-dengan-ferry-suhandri"}>
-            {author}
-          </Link>
+          <Link to={"/blog/berkenalan-dengan-ferry-suhandri"}>{author}</Link>
         </p>
         <small>{tagline}</small>
       </div>
