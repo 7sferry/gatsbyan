@@ -82,6 +82,15 @@ export interface CommaSeparatedLinkedPostTagsAttr {
   readonly tags: string[];
 }
 
+export interface HeroImage {
+  readonly original: IGatsbyImageData;
+  readonly responsiveSet: IGatsbyImageData;
+  readonly title: string;
+  readonly file: {
+    readonly url: string;
+  };
+}
+
 export interface BlogPostProp {
   readonly data: {
     readonly contentfulBlogPost: {
@@ -101,13 +110,7 @@ export interface BlogPostProp {
       readonly description: {
         readonly description: string;
       };
-      readonly heroImage: {
-        readonly gatsbyImageData: IGatsbyImageData;
-        readonly title: string;
-        readonly file: {
-          readonly url: string;
-        };
-      };
+      readonly heroImage: HeroImage;
       readonly tags: Array<string>;
       readonly slug: string;
     };
@@ -206,7 +209,14 @@ export interface FeaturedPageAttr {
   }>;
 }
 
-export interface IndexData {
+export interface IndexHeroImage {
+  readonly original: IGatsbyImageData;
+  readonly phone: IGatsbyImageData;
+  readonly laptop: IGatsbyImageData;
+  readonly title: string;
+}
+
+export interface IndexData extends IndexHeroImage {
   readonly allContentfulBlogPost: {
     readonly nodes: Array<{
       readonly slug: string;
@@ -219,10 +229,7 @@ export interface IndexData {
       readonly tags: Array<string>;
       readonly title: string;
       readonly publishDate: string;
-      readonly heroImage: {
-        readonly gatsbyImageData: IGatsbyImageData;
-        readonly title: string;
-      };
+      readonly heroImage: IndexHeroImage;
       readonly id: string;
     }>;
     readonly pageInfo: {

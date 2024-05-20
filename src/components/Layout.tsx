@@ -12,7 +12,7 @@ import fetchTitleByPath from "../utils/AllPostFetcher.tsx";
 
 const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   const { siteMetadata: metadata } = SiteMetadata();
-  const { gatsbyImageData: photo } = Photo();
+  const photo = Photo();
   const titleByPath = fetchTitleByPath();
   const mostViewedNodes = fetchMostViewed(titleByPath);
   const featuredNodes = fetchFeaturedPages();
