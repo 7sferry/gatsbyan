@@ -94,7 +94,7 @@ function getHrefValue(capturedSubstr1: string): string {
 function getHeroImage(heroImage: BlogPostHeroImage) {
   return withArtDirection(heroImage?.original, [
     {
-      media: "(max-width: 1024px)",
+      media: "(max-width: 416px)",
       image: heroImage?.phone,
     },
     {
