@@ -157,8 +157,7 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          width: 345
-          outputPixelDensities: [1]
+          breakpoints: [400]
         )
         iphone: gatsbyImageData(
           quality: 100
@@ -166,8 +165,7 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          width: 400
-          outputPixelDensities: [1]
+          breakpoints: [400]
         )
         ipad: gatsbyImageData(
           quality: 100
@@ -182,13 +180,9 @@ export const pageQuery = graphql`
           quality: 100
           placeholder: BLURRED
           layout: FULL_WIDTH
-          #          resizingBehavior: THUMB
-          #          cropFocus: FACES
-          #          width: 645
-          #          height: 515
-          #          outputPixelDensities: [0.25, 0.65, 1]
-          breakpoints: [500]
-          sizes: "width 650px height 500px"
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [550]
         )
         laptop: gatsbyImageData(
           quality: 100
