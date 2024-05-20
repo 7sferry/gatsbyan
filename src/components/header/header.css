@@ -72,9 +72,8 @@ small {
 @media only screen and (max-width: 1440px){
 
   .bio-picture {
-    margin: 0 0 0 1.5rem;
-    max-width: 270px;
-    max-height: 270px;
+    max-width: 300px;
+    max-height: 300px;
   }
 
 }
@@ -132,10 +131,9 @@ small {
   }
 }
 
-@media only screen and (max-width: 360px){
+@media only screen and (max-width: 416px){
 
   .bio-picture {
-    margin: 0 0 0 1.5rem;
     max-width: 75px;
     max-height: 75px;
   }
