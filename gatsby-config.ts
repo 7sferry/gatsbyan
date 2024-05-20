@@ -112,6 +112,7 @@ const gatsbyConfig: GatsbyConfig = {
               loading: "lazy",
             },
           },
+          `gatsby-remark-responsive-iframe`,
         ],
       },
     },
