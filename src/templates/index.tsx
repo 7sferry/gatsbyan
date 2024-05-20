@@ -40,6 +40,10 @@ function IndexPage(props: IndexProp) {
               media: "(max-width: 416px)",
               image: heroImage?.phone,
             },
+            {
+              media: "(max-width: 1350px)",
+              image: heroImage?.laptop,
+            },
           ]);
           return (
             <div id={post.id} key={post.id} className="d-block blog-content">
@@ -101,6 +105,7 @@ export const pageQuery = graphql`
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
+            outputPixelDensities: [0.25, 0.5, 1]
             width: 400
           )
           laptop: gatsbyImageData(
@@ -108,6 +113,7 @@ export const pageQuery = graphql`
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
+            outputPixelDensities: [0.25, 0.5, 1]
             width: 250
           )
           title
