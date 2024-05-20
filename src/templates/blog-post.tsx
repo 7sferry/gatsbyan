@@ -114,6 +114,10 @@ function getHeroImage(heroImage: HeroImage) {
       image: heroImage?.laptop,
     },
     {
+      media: "(max-height: 55vh)",
+      image: heroImage?.laptop,
+    },
+    {
       media: "(max-width: 1440px)",
       image: heroImage?.pc,
     },

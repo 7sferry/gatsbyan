@@ -40,6 +40,10 @@ const getPhotoBio = (): IGatsbyImageData => {
       image: file?.childImageSharp?.laptop,
     },
     {
+      media: "(max-height: 55vh)",
+      image: file?.childImageSharp?.laptop,
+    },
+    {
       media: "(max-width: 1440px)",
       image: file?.childImageSharp?.pc,
     },
