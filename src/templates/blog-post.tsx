@@ -101,26 +101,26 @@ function getHeroImage(heroImage: HeroImage) {
       media: "(max-width: 414px)",
       image: heroImage?.iphone,
     },
+    // {
+    //   media: "(max-width: 980px)",
+    //   image: heroImage?.ipad,
+    // },
+    // {
+    //   media: "(max-width: 1280px)",
+    //   image: heroImage?.notebook,
+    // },
     {
-      media: "(max-width: 980px)",
-      image: heroImage?.ipad,
-    },
-    {
-      media: "(max-width: 1280px)",
+      media: "(max-width: 1366px)",
       image: heroImage?.notebook,
     },
-    {
-      media: "(max-width: 1350px)",
-      image: heroImage?.notebook,
-    },
-    {
-      media: "(max-width: 1440px)",
-      image: heroImage?.pc,
-    },
-    {
-      media: "(max-width: 1920px)",
-      image: heroImage?.tv,
-    },
+    // {
+    //   media: "(max-width: 1440px)",
+    //   image: heroImage?.pc,
+    // },
+    // {
+    //   media: "(max-width: 1920px)",
+    //   image: heroImage?.tv,
+    // },
   ]);
 }
 
@@ -182,10 +182,10 @@ export const pageQuery = graphql`
           quality: 100
           placeholder: BLURRED
           layout: CONSTRAINED
-          resizingBehavior: THUMB
-          cropFocus: FACES
-          width: 615
-          outputPixelDensities: [1]
+          #          resizingBehavior: THUMB
+          #          cropFocus: FACES
+          width: 645
+          outputPixelDensities: [0.25, 0.5, 1]
         )
         laptop: gatsbyImageData(
           quality: 100
