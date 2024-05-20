@@ -14,7 +14,8 @@ const getPhotoBio = (): IGatsbyImageData => {
           original: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
           phone: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 75)
           ipad: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 125)
-          laptop: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 235)
+          notebook: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 235)
+          laptop: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 255)
           pc: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 270)
           tv: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 380)
         }
@@ -32,6 +33,10 @@ const getPhotoBio = (): IGatsbyImageData => {
     },
     {
       media: "(max-width: 1280px)",
+      image: file?.childImageSharp?.notebook,
+    },
+    {
+      media: "(max-width: 1366px)",
       image: file?.childImageSharp?.laptop,
     },
     {

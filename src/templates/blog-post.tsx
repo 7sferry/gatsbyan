@@ -52,7 +52,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
         </div>
         <div>
           <figure className="hero">
-            {imageData && <GatsbyImage sizes={"100vw"} image={imageData} className="heroImage" alt={post.title} />}
+            {imageData && <GatsbyImage image={imageData} className="heroImage" alt={post.title} />}
             {imageTitle && <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>}
           </figure>
           <div
@@ -98,11 +98,19 @@ function getHeroImage(heroImage: HeroImage) {
       image: heroImage?.phone,
     },
     {
+      media: "(max-width: 414px)",
+      image: heroImage?.iphone,
+    },
+    {
       media: "(max-width: 980px)",
       image: heroImage?.ipad,
     },
     {
       media: "(max-width: 1280px)",
+      image: heroImage?.notebook,
+    },
+    {
+      media: "(max-width: 1366px)",
       image: heroImage?.laptop,
     },
     {
@@ -149,8 +157,15 @@ export const pageQuery = graphql`
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [360]
-          width: 360
+          width: 345
+        )
+        iphone: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: CONSTRAINED
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          width: 400
         )
         ipad: gatsbyImageData(
           quality: 100
@@ -158,7 +173,15 @@ export const pageQuery = graphql`
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [360, 800]
+          width: 962
+        )
+        notebook: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: CONSTRAINED
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          width: 615
         )
         laptop: gatsbyImageData(
           quality: 100
@@ -166,7 +189,7 @@ export const pageQuery = graphql`
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [360, 800, 1080]
+          width: 650
         )
         pc: gatsbyImageData(
           quality: 100
@@ -174,7 +197,7 @@ export const pageQuery = graphql`
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [360, 800, 1080, 1366]
+          width: 695
         )
         tv: gatsbyImageData(
           quality: 100
@@ -182,7 +205,7 @@ export const pageQuery = graphql`
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [360, 800, 1080, 1366, 1920]
+          width: 935
         )
         title
         file {

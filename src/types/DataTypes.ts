@@ -85,7 +85,9 @@ export interface CommaSeparatedLinkedPostTagsAttr {
 export interface HeroImage {
   readonly original: IGatsbyImageData;
   readonly phone: IGatsbyImageData;
+  readonly iphone: IGatsbyImageData;
   readonly ipad: IGatsbyImageData;
+  readonly notebook: IGatsbyImageData;
   readonly laptop: IGatsbyImageData;
   readonly pc: IGatsbyImageData;
   readonly tv: IGatsbyImageData;
