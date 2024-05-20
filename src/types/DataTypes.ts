@@ -82,9 +82,10 @@ export interface CommaSeparatedLinkedPostTagsAttr {
   readonly tags: string[];
 }
 
-export interface HeroImage {
+export interface BlogPostHeroImage {
   readonly original: IGatsbyImageData;
-  readonly responsiveSet: IGatsbyImageData;
+  readonly phone: IGatsbyImageData;
+  readonly laptop: IGatsbyImageData;
   readonly title: string;
   readonly file: {
     readonly url: string;
@@ -110,7 +111,7 @@ export interface BlogPostProp {
       readonly description: {
         readonly description: string;
       };
-      readonly heroImage: HeroImage;
+      readonly heroImage: BlogPostHeroImage;
       readonly tags: Array<string>;
       readonly slug: string;
     };
