@@ -12,53 +12,41 @@ const getPhotoBio = (): IGatsbyImageData => {
       file(relativePath: { eq: "ferry.jpg" }) {
         childImageSharp {
           original: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
-          phone: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 75, width: 75)
-          ipad: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 125, width: 125)
-          notebook: gatsbyImageData(
-            quality: 100
-            placeholder: DOMINANT_COLOR
-            layout: CONSTRAINED
-            height: 235
-            width: 235
-          )
-          laptop: gatsbyImageData(
-            quality: 100
-            placeholder: DOMINANT_COLOR
-            layout: CONSTRAINED
-            height: 255
-            width: 255
-          )
-          pc: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 270, width: 270)
-          tv: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 380, width: 380)
+          phone: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, width: 75)
+          #          ipad: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 125)
+          #          notebook: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 235)
+          laptop: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, width: 270)
+          #          pc: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 270)
+          #          tv: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 380)
         }
       }
     }
   `);
   return withArtDirection(file?.childImageSharp?.original, [
     {
-      media: "(max-width: 414px)",
+      media: "(max-width: 360px)",
       image: file?.childImageSharp?.phone,
     },
-    {
-      media: "(max-width: 980px)",
-      image: file?.childImageSharp?.ipad,
-    },
+    // {
+    //   media: "(max-width: 980px)",
+    //   image: file?.childImageSharp?.ipad,
+    // },
     // {
     //   media: "(max-width: 1280px)",
     //   image: file?.childImageSharp?.notebook,
     // },
     {
       media: "(max-width: 1366px)",
-      image: file?.childImageSharp?.pc,
+      image: file?.childImageSharp?.laptop,
     },
-    {
-      media: "(max-width: 1440px)",
-      image: file?.childImageSharp?.pc,
-    },
-    {
-      media: "(max-width: 1910px)",
-      image: file?.childImageSharp?.tv,
-    },
+    // {
+    //   media: "(max-width: 1440px)",
+    //   image: file?.childImageSharp?.pc,
+    // },
+    // {
+    //   media: "(max-width: 1910px)",
+    //   image: file?.childImageSharp?.tv,
+    // },
   ]);
 };
 
