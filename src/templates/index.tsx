@@ -4,7 +4,7 @@
  ************************/
 
 import React from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
 import { graphql, HeadProps, Link } from "gatsby";
 
 import Layout from "../components/Layout";
@@ -12,7 +12,7 @@ import Seo from "../components/Seo";
 import PaginationElement from "../components/PaginationElement.tsx";
 import { getPlurals, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
-import { IndexProp } from "../types/DataTypes";
+import { IndexHeroImage, IndexProp } from "../types/DataTypes";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
 
 function IndexPage(props: IndexProp) {
@@ -34,6 +34,8 @@ function IndexPage(props: IndexProp) {
           const tags = post.tags;
           const { childMarkdownRemark } = post.body;
           const timeToRead = childMarkdownRemark.timeToRead;
+          let heroImage = post.heroImage;
+          let imageData = getImageData(heroImage);
           return (
             <div id={post.id} key={post.id} className="d-block blog-content">
               <div className="post-container">
@@ -53,13 +55,7 @@ function IndexPage(props: IndexProp) {
                   </span>
                 </div>
                 <div className="pt-1">
-                  {post.heroImage && (
-                    <GatsbyImage
-                      image={post.heroImage.gatsbyImageData}
-                      className="index-thumbnail"
-                      alt={post.heroImage.title}
-                    />
-                  )}
+                  {heroImage && <GatsbyImage image={imageData} className="index-thumbnail" alt={heroImage.title} />}
                   <p>{childMarkdownRemark.excerpt}</p>
                 </div>
               </div>
@@ -79,6 +75,23 @@ function IndexPage(props: IndexProp) {
   );
 }
 
+function getImageData(heroImage: IndexHeroImage) {
+  return withArtDirection(heroImage?.original, [
+    {
+      media: "(max-width: 416px)",
+      image: heroImage?.phone,
+    },
+    {
+      media: "(max-width: 1024px)",
+      image: heroImage?.ipad,
+    },
+    {
+      media: "(max-width: 1366px)",
+      image: heroImage?.laptop,
+    },
+  ]);
+}
+
 export const pageQuery = graphql`
   query HomeQuery($skip: Int, $limit: Int, $tag: String) {
     allContentfulBlogPost(skip: $skip, limit: $limit, sort: { publishDate: DESC }, filter: { tags: { eq: $tag } }) {
@@ -94,7 +107,31 @@ export const pageQuery = graphql`
         title
         publishDate
         heroImage {
-          gatsbyImageData(resizingBehavior: THUMB, cropFocus: FACES, placeholder: BLURRED, layout: FIXED)
+          original: gatsbyImageData(resizingBehavior: THUMB, cropFocus: FACES, placeholder: BLURRED, layout: FIXED)
+          phone: gatsbyImageData(
+            resizingBehavior: THUMB
+            cropFocus: FACES
+            placeholder: BLURRED
+            layout: FIXED
+            outputPixelDensities: [0.5, 1]
+            width: 400
+          )
+          ipad: gatsbyImageData(
+            resizingBehavior: THUMB
+            cropFocus: FACES
+            placeholder: BLURRED
+            layout: FIXED
+            outputPixelDensities: [0.5, 1]
+            width: 360
+          )
+          laptop: gatsbyImageData(
+            resizingBehavior: THUMB
+            cropFocus: FACES
+            placeholder: BLURRED
+            layout: FIXED
+            outputPixelDensities: [1]
+            width: 250
+          )
           title
         }
         id

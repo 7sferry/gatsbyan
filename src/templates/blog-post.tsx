@@ -11,8 +11,8 @@ import "./ignored/prism.css";
 import { getPlurals, getPublishDateTime, isAfterDate, kebabCase, plusDays, toNow } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql, Slice } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { BlogPostProp } from "../types/DataTypes";
+import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
+import { BlogPostHeroImage, BlogPostProp } from "../types/DataTypes";
 import { ClientSide } from "../components/ClientSide.tsx";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
 
@@ -24,7 +24,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const repo = site.repo;
 
   const heroImage = post.heroImage;
-  const imageData = heroImage?.gatsbyImageData;
+  const imageData = getHeroImage(heroImage);
   const imageTitle = heroImage?.title;
   const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
   const publishDate = post.publishDate;
@@ -52,7 +52,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
         </div>
         <div>
           <figure className="hero">
-            {imageData && <GatsbyImage sizes={"100vw"} image={imageData} className="heroImage" alt={post.title} />}
+            {imageData && <GatsbyImage image={imageData} className="heroImage" alt={post.title} />}
             {imageTitle && <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>}
           </figure>
           <div
@@ -91,7 +91,22 @@ function getHrefValue(capturedSubstr1: string): string {
   return kebabCase(hrefValue);
 }
 
-export default BlogPostTemplate;
+function getHeroImage(heroImage: BlogPostHeroImage) {
+  return withArtDirection(heroImage?.original, [
+    {
+      media: "(max-width: 416px)",
+      image: heroImage?.phone,
+    },
+    {
+      media: "(max-width: 1024px)",
+      image: heroImage?.ipad,
+    },
+    {
+      media: "(max-width: 1366px)",
+      image: heroImage?.laptop,
+    },
+  ]);
+}
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -113,13 +128,39 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        gatsbyImageData(
+        original: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          sizes: "100vw"
+        )
+        phone: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: FULL_WIDTH
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [400]
+          sizes: "(max-width: 414px) 400px"
+        )
+        ipad: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: FULL_WIDTH
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [1000]
+          sizes: "(max-width: 1024px) 1000px"
+        )
+        laptop: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: FULL_WIDTH
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [575]
+          sizes: "(max-width: 1366px) 575px"
         )
         title
         file {
@@ -137,6 +178,8 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export default BlogPostTemplate;
 
 export function Head({ data, location }: React.PropsWithRef<BlogPostProp>) {
   const post = data?.contentfulBlogPost;
