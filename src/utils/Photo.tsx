@@ -29,7 +29,7 @@ const getPhotoBio = (): IGatsbyImageData => {
     },
     {
       media: "(max-width: 980px)",
-      image: file?.childImageSharp?.phone,
+      image: file?.childImageSharp?.ipad,
     },
     {
       media: "(max-width: 1280px)",
@@ -37,11 +37,7 @@ const getPhotoBio = (): IGatsbyImageData => {
     },
     {
       media: "(max-width: 1366px)",
-      image: file?.childImageSharp?.laptop,
-    },
-    {
-      media: "(max-height: 55vh)",
-      image: file?.childImageSharp?.laptop,
+      image: file?.childImageSharp?.notebook,
     },
     {
       media: "(max-width: 1440px)",

@@ -110,8 +110,8 @@ function getHeroImage(heroImage: HeroImage) {
       image: heroImage?.notebook,
     },
     {
-      media: "(max-height: 55vh)",
-      image: heroImage?.laptop,
+      media: "(max-width: 1350px)",
+      image: heroImage?.notebook,
     },
     {
       media: "(max-width: 1440px)",
@@ -193,7 +193,7 @@ export const pageQuery = graphql`
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
-          #          width: 650
+          width: 650
           outputPixelDensities: [1]
         )
         pc: gatsbyImageData(
