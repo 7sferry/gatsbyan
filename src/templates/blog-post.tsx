@@ -150,7 +150,7 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [398, 575, 750]
+          breakpoints: [398, 575]
           sizes: "(max-width: 414px) 398px, (max-width: 1366px) 575px"
         )
         phone: gatsbyImageData(
