@@ -24,20 +24,20 @@ const getPhotoBio = (): IGatsbyImageData => {
   `);
   return withArtDirection(file?.childImageSharp?.original, [
     {
-      media: "(max-width: 360px)",
+      media: "(max-width: 414px)",
       image: file?.childImageSharp?.phone,
     },
     {
       media: "(max-width: 980px)",
       image: file?.childImageSharp?.ipad,
     },
-    {
-      media: "(max-width: 1280px)",
-      image: file?.childImageSharp?.notebook,
-    },
+    // {
+    //   media: "(max-width: 1280px)",
+    //   image: file?.childImageSharp?.notebook,
+    // },
     {
       media: "(max-width: 1366px)",
-      image: file?.childImageSharp?.notebook,
+      image: file?.childImageSharp?.pc,
     },
     {
       media: "(max-width: 1440px)",
