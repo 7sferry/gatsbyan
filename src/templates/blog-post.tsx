@@ -158,6 +158,7 @@ export const pageQuery = graphql`
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 345
+          outputPixelDensities: [1]
         )
         iphone: gatsbyImageData(
           quality: 100
@@ -166,6 +167,7 @@ export const pageQuery = graphql`
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 400
+          outputPixelDensities: [1]
         )
         ipad: gatsbyImageData(
           quality: 100
@@ -190,6 +192,7 @@ export const pageQuery = graphql`
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 650
+          outputPixelDensities: [1]
         )
         pc: gatsbyImageData(
           quality: 100
