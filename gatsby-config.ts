@@ -105,7 +105,7 @@ const gatsbyConfig: GatsbyConfig = {
               // base for generating different widths of each image.
               maxWidth: 1200,
               linkImagesToOriginal: false,
-              // withWebp: true,
+              withWebp: false,
               showCaptions: true,
               backgroundColor: "transparent",
               loading: "lazy",
