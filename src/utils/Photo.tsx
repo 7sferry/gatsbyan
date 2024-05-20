@@ -17,7 +17,7 @@ const getPhotoBio = (): IGatsbyImageData => {
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             width: 75
-            outputPixelDensities: [0.5, 1]
+            outputPixelDensities: [0.5, 1, 2]
           )
           ipad: gatsbyImageData(
             quality: 100
@@ -31,7 +31,7 @@ const getPhotoBio = (): IGatsbyImageData => {
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             width: 250
-            outputPixelDensities: [0.5, 1]
+            outputPixelDensities: [1]
           )
         }
       }

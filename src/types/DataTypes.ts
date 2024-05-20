@@ -85,6 +85,7 @@ export interface CommaSeparatedLinkedPostTagsAttr {
 export interface BlogPostHeroImage {
   readonly original: IGatsbyImageData;
   readonly phone: IGatsbyImageData;
+  readonly ipad: IGatsbyImageData;
   readonly laptop: IGatsbyImageData;
   readonly title: string;
   readonly file: {
@@ -213,6 +214,7 @@ export interface FeaturedPageAttr {
 export interface IndexHeroImage {
   readonly original: IGatsbyImageData;
   readonly phone: IGatsbyImageData;
+  readonly ipad: IGatsbyImageData;
   readonly laptop: IGatsbyImageData;
   readonly title: string;
 }

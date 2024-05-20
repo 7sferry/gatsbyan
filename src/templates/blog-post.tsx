@@ -98,6 +98,10 @@ function getHeroImage(heroImage: BlogPostHeroImage) {
       image: heroImage?.phone,
     },
     {
+      media: "(max-width: 1024px)",
+      image: heroImage?.ipad,
+    },
+    {
       media: "(max-width: 1366px)",
       image: heroImage?.laptop,
     },
@@ -137,8 +141,17 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [400, 1000]
-          sizes: "(max-width: 414px) 400px, (max-width: 1024px) 1000px"
+          breakpoints: [400]
+          sizes: "(max-width: 414px) 400px"
+        )
+        ipad: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: FULL_WIDTH
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [1000]
+          sizes: "(max-width: 1024px) 1000px"
         )
         laptop: gatsbyImageData(
           quality: 100
