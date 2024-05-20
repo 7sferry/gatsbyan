@@ -229,7 +229,9 @@ export interface IndexData {
       readonly title: string;
       readonly publishDate: string;
       readonly heroImage: {
-        readonly gatsbyImageData: IGatsbyImageData;
+        readonly original: IGatsbyImageData;
+        readonly phone: IGatsbyImageData;
+        readonly laptop: IGatsbyImageData;
         readonly title: string;
       };
       readonly id: string;

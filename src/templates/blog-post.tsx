@@ -93,10 +93,10 @@ function getHrefValue(capturedSubstr1: string): string {
 
 function getHeroImage(heroImage: HeroImage) {
   return withArtDirection(heroImage?.original, [
-    // {
-    //   media: "(max-width: 360px)",
-    //   image: heroImage?.phone,
-    // },
+    {
+      media: "(max-width: 1351px)",
+      image: heroImage?.phone,
+    },
     // {
     //   media: "(max-width: 414px)",
     //   image: heroImage?.iphone,
@@ -150,8 +150,6 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [398, 575]
-          sizes: "(max-width: 414px) 398px, (max-width: 1366px) 575px"
         )
         phone: gatsbyImageData(
           quality: 100
@@ -159,7 +157,8 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [400]
+          breakpoints: [400, 575]
+          sizes: "(max-width: 414px) 400px, (max-width: 1351px) 575px"
         )
         iphone: gatsbyImageData(
           quality: 100
