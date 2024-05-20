@@ -4,27 +4,43 @@
  ************************/
 
 import { graphql, useStaticQuery } from "gatsby";
-import { withArtDirection } from "gatsby-plugin-image";
+import { IGatsbyImageData, withArtDirection } from "gatsby-plugin-image";
 
-const getPhotoBio = () => {
-  const { file, small } = useStaticQuery(graphql`
+const getPhotoBio = (): IGatsbyImageData => {
+  const { file } = useStaticQuery(graphql`
     query PhotoBio {
-      file: file(relativePath: { eq: "ferry.jpg" }) {
+      file(relativePath: { eq: "ferry.jpg" }) {
         childImageSharp {
-          gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
-        }
-      }
-      small: file(relativePath: { eq: "ferry.jpg" }) {
-        childImageSharp {
-          gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 75)
+          original: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
+          phone: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 75)
+          ipad: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 125)
+          laptop: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 235)
+          pc: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 270)
+          tv: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, height: 380)
         }
       }
     }
   `);
-  return withArtDirection(file?.childImageSharp?.gatsbyImageData, [
+  return withArtDirection(file?.childImageSharp?.original, [
     {
-      media: "(max-width: 1024px)",
-      image: small?.childImageSharp?.gatsbyImageData,
+      media: "(max-width: 360px)",
+      image: file?.childImageSharp?.phone,
+    },
+    {
+      media: "(max-width: 980px)",
+      image: file?.childImageSharp?.phone,
+    },
+    {
+      media: "(max-width: 1280px)",
+      image: file?.childImageSharp?.laptop,
+    },
+    {
+      media: "(max-width: 1440px)",
+      image: file?.childImageSharp?.pc,
+    },
+    {
+      media: "(max-width: 1910px)",
+      image: file?.childImageSharp?.tv,
     },
   ]);
 };

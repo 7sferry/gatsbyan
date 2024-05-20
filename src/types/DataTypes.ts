@@ -82,6 +82,19 @@ export interface CommaSeparatedLinkedPostTagsAttr {
   readonly tags: string[];
 }
 
+export interface HeroImage {
+  readonly original: IGatsbyImageData;
+  readonly phone: IGatsbyImageData;
+  readonly ipad: IGatsbyImageData;
+  readonly laptop: IGatsbyImageData;
+  readonly pc: IGatsbyImageData;
+  readonly tv: IGatsbyImageData;
+  readonly title: string;
+  readonly file: {
+    readonly url: string;
+  };
+}
+
 export interface BlogPostProp {
   readonly data: {
     readonly contentfulBlogPost: {
@@ -101,14 +114,7 @@ export interface BlogPostProp {
       readonly description: {
         readonly description: string;
       };
-      readonly heroImage: {
-        readonly gatsbyImageData: IGatsbyImageData;
-        readonly small: IGatsbyImageData;
-        readonly title: string;
-        readonly file: {
-          readonly url: string;
-        };
-      };
+      readonly heroImage: HeroImage;
       readonly tags: Array<string>;
       readonly slug: string;
     };

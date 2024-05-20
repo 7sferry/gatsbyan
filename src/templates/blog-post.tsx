@@ -12,7 +12,7 @@ import { getPlurals, getPublishDateTime, isAfterDate, kebabCase, plusDays, toNow
 import React from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
-import { BlogPostProp } from "../types/DataTypes";
+import { BlogPostProp, HeroImage } from "../types/DataTypes";
 import { ClientSide } from "../components/ClientSide.tsx";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
 
@@ -24,12 +24,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const repo = site.repo;
 
   const heroImage = post.heroImage;
-  const imageData = withArtDirection(heroImage?.gatsbyImageData, [
-    {
-      media: "(max-width: 1024px)",
-      image: heroImage?.small,
-    },
-  ]);
+  const imageData = getHeroImage(heroImage);
   const imageTitle = heroImage?.title;
   const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
   const publishDate = post.publishDate;
@@ -96,7 +91,30 @@ function getHrefValue(capturedSubstr1: string): string {
   return kebabCase(hrefValue);
 }
 
-export default BlogPostTemplate;
+function getHeroImage(heroImage: HeroImage) {
+  return withArtDirection(heroImage?.original, [
+    {
+      media: "(max-width: 360px)",
+      image: heroImage?.phone,
+    },
+    {
+      media: "(max-width: 980px)",
+      image: heroImage?.ipad,
+    },
+    {
+      media: "(max-width: 1280px)",
+      image: heroImage?.laptop,
+    },
+    {
+      media: "(max-width: 1440px)",
+      image: heroImage?.pc,
+    },
+    {
+      media: "(max-width: 1920px)",
+      image: heroImage?.tv,
+    },
+  ]);
+}
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -118,21 +136,53 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        gatsbyImageData(
+        original: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
         )
-        small: gatsbyImageData(
+        phone: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
           layout: CONSTRAINED
           resizingBehavior: THUMB
           cropFocus: FACES
           breakpoints: [360]
-          width: 325
+          width: 360
+        )
+        ipad: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: CONSTRAINED
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [360, 800]
+        )
+        laptop: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: CONSTRAINED
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [360, 800, 1080]
+        )
+        pc: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: CONSTRAINED
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [360, 800, 1080, 1366]
+        )
+        tv: gatsbyImageData(
+          quality: 100
+          placeholder: BLURRED
+          layout: CONSTRAINED
+          resizingBehavior: THUMB
+          cropFocus: FACES
+          breakpoints: [360, 800, 1080, 1366, 1920]
         )
         title
         file {
@@ -150,6 +200,8 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export default BlogPostTemplate;
 
 export function Head({ data, location }: React.PropsWithRef<BlogPostProp>) {
   const post = data?.contentfulBlogPost;
