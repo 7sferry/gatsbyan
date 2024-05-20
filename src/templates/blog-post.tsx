@@ -182,7 +182,7 @@ export const pageQuery = graphql`
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
-          breakpoints: [550]
+          breakpoints: [600]
         )
         laptop: gatsbyImageData(
           quality: 100
