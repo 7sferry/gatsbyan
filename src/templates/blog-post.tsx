@@ -110,7 +110,7 @@ function getHeroImage(heroImage: HeroImage) {
       image: heroImage?.notebook,
     },
     {
-      media: "(max-width: 1366px)",
+      media: "(max-width: 1350px)",
       image: heroImage?.laptop,
     },
     {
@@ -176,6 +176,7 @@ export const pageQuery = graphql`
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 962
+          outputPixelDensities: [1]
         )
         notebook: gatsbyImageData(
           quality: 100
@@ -184,6 +185,7 @@ export const pageQuery = graphql`
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 615
+          outputPixelDensities: [1]
         )
         laptop: gatsbyImageData(
           quality: 100
@@ -201,6 +203,7 @@ export const pageQuery = graphql`
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 695
+          outputPixelDensities: [1]
         )
         tv: gatsbyImageData(
           quality: 100
@@ -209,6 +212,7 @@ export const pageQuery = graphql`
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 935
+          outputPixelDensities: [1]
         )
         title
         file {
