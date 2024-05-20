@@ -187,7 +187,7 @@ export const pageQuery = graphql`
           #          width: 645
           #          height: 515
           #          outputPixelDensities: [0.25, 0.65, 1]
-          breakpoints: [354, 650, 1080, 1366, 1920]
+          breakpoints: [354, 650]
           sizes: "width 645px height 515px"
         )
         laptop: gatsbyImageData(
