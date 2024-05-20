@@ -3,7 +3,7 @@
  * on May 2020          *
  ************************/
 
-import React from "react";
+import React, { Suspense } from "react";
 import "./sidebar.css";
 import MostViewedPage from "./MostViewedPage.tsx";
 import FeaturedPage from "./FeaturedPage";
@@ -15,7 +15,9 @@ const RightSidebar = ({ mostViewedNodes, featuredNodes, trendingNodes }: RightSi
     <div className="sidebar-main ">
       <FeaturedPage featuredNodes={featuredNodes} />
       <MostViewedPage mostViewedNodes={mostViewedNodes} />
-      <TopTrendingPage trendingNodes={trendingNodes} />
+      <Suspense fallback={<>Loading...</>}>
+        <TopTrendingPage trendingNodes={trendingNodes} />
+      </Suspense>
     </div>
   );
 };
