@@ -147,14 +147,14 @@ export const pageQuery = graphql`
         original: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: CONSTRAINED
+          layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
         )
         phone: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: CONSTRAINED
+          layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 345
@@ -163,7 +163,7 @@ export const pageQuery = graphql`
         iphone: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: CONSTRAINED
+          layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 400
@@ -172,7 +172,7 @@ export const pageQuery = graphql`
         ipad: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: CONSTRAINED
+          layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 962
@@ -181,16 +181,19 @@ export const pageQuery = graphql`
         notebook: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: CONSTRAINED
+          layout: FULL_WIDTH
           #          resizingBehavior: THUMB
           #          cropFocus: FACES
-          width: 645
-          outputPixelDensities: [0.25, 0.5, 1]
+          #          width: 645
+          #          height: 515
+          #          outputPixelDensities: [0.25, 0.65, 1]
+          breakpoints: [354, 650, 1080, 1366, 1920]
+          sizes: "width 645px height 515px"
         )
         laptop: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: CONSTRAINED
+          layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 650
@@ -199,7 +202,7 @@ export const pageQuery = graphql`
         pc: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: CONSTRAINED
+          layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 695
@@ -208,7 +211,7 @@ export const pageQuery = graphql`
         tv: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
-          layout: CONSTRAINED
+          layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
           width: 935
