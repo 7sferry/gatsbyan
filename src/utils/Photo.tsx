@@ -12,9 +12,27 @@ const getPhotoBio = (): IGatsbyImageData => {
       file(relativePath: { eq: "ferry.jpg" }) {
         childImageSharp {
           original: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
-          phone: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, width: 75)
-          ipad: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, width: 125)
-          laptop: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED, width: 200)
+          phone: gatsbyImageData(
+            quality: 100
+            placeholder: DOMINANT_COLOR
+            layout: CONSTRAINED
+            width: 75
+            outputPixelDensities: [0.5, 1]
+          )
+          ipad: gatsbyImageData(
+            quality: 100
+            placeholder: DOMINANT_COLOR
+            layout: CONSTRAINED
+            width: 125
+            outputPixelDensities: [0.5, 1]
+          )
+          laptop: gatsbyImageData(
+            quality: 100
+            placeholder: DOMINANT_COLOR
+            layout: CONSTRAINED
+            width: 250
+            outputPixelDensities: [0.5, 1]
+          )
         }
       }
     }
