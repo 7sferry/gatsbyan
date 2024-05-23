@@ -98,15 +98,26 @@ const ValueAveragingCalculator = () => {
           mengenai strategi ini bisa dibaca tulisan tentang{" "}
           <Link to={"/blog/pengalaman-investasi-saham-selama-4-bulan#value-averaging"}> strategi saham</Link>
         </p>
-        <div style={{ position: "relative", height: 0, overflow: "hidden", paddingBottom: "56.25%" }}>
-          <video width="740" height="415" controls>
-            <source
-              src="https://videos.ctfassets.net/7wjlcr9d5ii8/NxP7FhxcPCSK0eKne0u29/647501d5b8f43ffc5b005b1bf52312d2/Kerala_Blasters_FC-s_Offside_Trap_Against_ATK_FC___Hero_ISL_2019-20.mp4"
-              type="video/mp4"
-            />
-            Your browser does not support the video tag.
-          </video>
+        {/*<div style={{ position: "relative", height: 0, overflow: "hidden", paddingBottom: "56.25%" }}>*/}
+        {/*  <video width="560" height="315" controls>*/}
+        {/*    <source*/}
+        {/*      src="https://videos.ctfassets.net/7wjlcr9d5ii8/NxP7FhxcPCSK0eKne0u29/647501d5b8f43ffc5b005b1bf52312d2/Kerala_Blasters_FC-s_Offside_Trap_Against_ATK_FC___Hero_ISL_2019-20.mp4"*/}
+        {/*      type="video/mp4"*/}
+        {/*    />*/}
+        {/*    Your browser does not support the video tag.*/}
+        {/*  </video>*/}
+        {/*</div>*/}
+        <div>
+          <div style={{ left: 0, width: "100%", height: 0, position: "relative", paddingBottom: "56.25%" }}>
+            <iframe
+              src="//iframely.net/M82lab3"
+              style={{ top: 0, left: 0, width: "100%", height: "100%", position: "absolute", border: 0 }}
+              allowFullScreen
+              allow="encrypted-media *;"
+            ></iframe>
+          </div>
         </div>
+        <script async src="//iframely.net/embed.js"></script>
 
         <form id="survey-form" onSubmit={calculate}>
           <div className="rowTab">
