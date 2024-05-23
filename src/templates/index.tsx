@@ -86,7 +86,7 @@ function getImageData(heroImage: IndexHeroImage) {
       image: heroImage?.ipad,
     },
     {
-      media: "(max-width: 1366px)",
+      media: "(max-width: 1360px)",
       image: heroImage?.laptop,
     },
   ]);
@@ -107,22 +107,28 @@ export const pageQuery = graphql`
         title
         publishDate
         heroImage {
-          original: gatsbyImageData(resizingBehavior: THUMB, cropFocus: FACES, placeholder: BLURRED, layout: FIXED)
+          original: gatsbyImageData(
+            resizingBehavior: THUMB
+            cropFocus: FACES
+            placeholder: BLURRED
+            layout: FIXED
+            quality: 100
+          )
           phone: gatsbyImageData(
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
-            outputPixelDensities: [0.5, 1]
-            width: 400
+            outputPixelDensities: [1]
+            width: 410
+            quality: 100
           )
           ipad: gatsbyImageData(
-            resizingBehavior: THUMB
-            cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
-            outputPixelDensities: [0.5, 1]
+            outputPixelDensities: [1]
             width: 360
+            quality: 100
           )
           laptop: gatsbyImageData(
             resizingBehavior: THUMB
@@ -131,6 +137,7 @@ export const pageQuery = graphql`
             layout: FIXED
             outputPixelDensities: [1]
             width: 250
+            quality: 100
           )
           title
         }

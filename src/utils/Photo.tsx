@@ -47,7 +47,7 @@ const getPhotoBio = (): IGatsbyImageData => {
       image: file?.childImageSharp?.ipad,
     },
     {
-      media: "(max-width: 1366px)",
+      media: "(max-width: 1360px)",
       image: file?.childImageSharp?.laptop,
     },
   ]);
