@@ -93,29 +93,31 @@ export interface BlogPostHeroImage {
   };
 }
 
+export interface ContentfulBlogPost {
+  readonly title: string;
+  readonly publishDate: string;
+  readonly updatedAt: string;
+  readonly sys: {
+    readonly revision: number;
+  };
+  readonly lang: string;
+  readonly body: {
+    readonly childMarkdownRemark: {
+      readonly html: string;
+      readonly timeToRead: number;
+    };
+  };
+  readonly description: {
+    readonly description: string;
+  };
+  readonly heroImage: BlogPostHeroImage;
+  readonly tags: Array<string>;
+  readonly slug: string;
+}
+
 export interface BlogPostProp {
   readonly data: {
-    readonly contentfulBlogPost: {
-      readonly title: string;
-      readonly publishDate: string;
-      readonly updatedAt: string;
-      readonly sys: {
-        readonly revision: number;
-      };
-      readonly lang: string;
-      readonly body: {
-        readonly childMarkdownRemark: {
-          readonly html: string;
-          readonly timeToRead: number;
-        };
-      };
-      readonly description: {
-        readonly description: string;
-      };
-      readonly heroImage: BlogPostHeroImage;
-      readonly tags: Array<string>;
-      readonly slug: string;
-    };
+    readonly contentfulBlogPost: ContentfulBlogPost;
     readonly site: {
       readonly siteMetadata: {
         readonly siteUrl: string;

@@ -92,18 +92,21 @@ function getHrefValue(capturedSubstr1: string): string {
 }
 
 function getHeroImage(heroImage: BlogPostHeroImage) {
-  return withArtDirection(heroImage?.original, [
+  if (!heroImage) {
+    return null;
+  }
+  return withArtDirection(heroImage.original, [
     {
       media: "(max-width: 416px)",
-      image: heroImage?.phone,
+      image: heroImage.phone,
     },
     {
       media: "(max-width: 1024px)",
-      image: heroImage?.ipad,
+      image: heroImage.ipad,
     },
     {
-      media: "(max-width: 1366px)",
-      image: heroImage?.laptop,
+      media: "(max-width: 1360px)",
+      image: heroImage.laptop,
     },
   ]);
 }
@@ -139,17 +142,13 @@ export const pageQuery = graphql`
           quality: 100
           placeholder: BLURRED
           layout: FULL_WIDTH
-          resizingBehavior: THUMB
-          cropFocus: FACES
-          breakpoints: [400]
-          sizes: "(max-width: 414px) 400px"
+          breakpoints: [410]
+          sizes: "(max-width: 414px) 410px"
         )
         ipad: gatsbyImageData(
           quality: 100
           placeholder: BLURRED
           layout: FULL_WIDTH
-          resizingBehavior: THUMB
-          cropFocus: FACES
           breakpoints: [1000]
           sizes: "(max-width: 1024px) 1000px"
         )
@@ -160,7 +159,7 @@ export const pageQuery = graphql`
           resizingBehavior: THUMB
           cropFocus: FACES
           breakpoints: [575]
-          sizes: "(max-width: 1366px) 575px"
+          sizes: "(max-width: 1360px) 575px"
         )
         title
         file {
