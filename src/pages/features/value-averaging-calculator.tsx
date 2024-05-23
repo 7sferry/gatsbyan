@@ -13,7 +13,7 @@ import { SinceYearValueInput } from "../../components/value-averaging/SinceYearV
 import { UnitPriceValueInput } from "../../components/value-averaging/UnitPriceValueInput";
 import { StockNameValueInput } from "../../components/value-averaging/StockNameValueInput";
 import { CustomPostAttr, StockData } from "../../types/DataTypes";
-import Kera from "../../images/kera.mp4";
+// import Kera from "../../assets/kera.mp4";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -101,7 +101,7 @@ const ValueAveragingCalculator = () => {
         </p>
         <div style={{ position: "relative", height: 0, overflow: "hidden", paddingBottom: "56.25%" }}>
           <video width="560" height="315" controls>
-            <source src={Kera} type="video/mp4" />
+            <source src="/kerala.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
