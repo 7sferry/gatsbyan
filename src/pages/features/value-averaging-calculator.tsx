@@ -98,6 +98,16 @@ const ValueAveragingCalculator = () => {
           mengenai strategi ini bisa dibaca tulisan tentang{" "}
           <Link to={"/blog/pengalaman-investasi-saham-selama-4-bulan#value-averaging"}> strategi saham</Link>
         </p>
+        <div style={{ position: "relative", height: 0, overflow: "hidden", paddingBottom: "56.25%" }}>
+          <video width="740" height="415" controls>
+            <source
+              src="https://videos.ctfassets.net/7wjlcr9d5ii8/NxP7FhxcPCSK0eKne0u29/647501d5b8f43ffc5b005b1bf52312d2/Kerala_Blasters_FC-s_Offside_Trap_Against_ATK_FC___Hero_ISL_2019-20.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
         <form id="survey-form" onSubmit={calculate}>
           <div className="rowTab">
             <div className="labels">
