@@ -20,7 +20,11 @@ p,
 }
 
 .main-layout {
-  padding: 0;
+  margin: 0 auto;
+  padding: .5rem 0 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  -ms-grid-columns: 1fr 2fr 1fr;
 }
 
 .post-container {

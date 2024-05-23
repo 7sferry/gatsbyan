@@ -13,6 +13,10 @@ body.medium-zoom--opened #___gatsby {
   font-size: 50%;
 }
 
+.post-container video {
+  max-width: 100%;
+}
+
 iframe {
   background: #23232d;
 }

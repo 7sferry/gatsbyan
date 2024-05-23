@@ -21,33 +21,26 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
   return (
     <>
       <Slice alias="Header" siteTitle={metadata.title} />
-      <div className="body-content">
-        <main className="main-layout">
-          <div className="index-main">
-            <div className="sidebar">
-              <LeftSidebar
-                photo={photo}
-                author={metadata.author}
-                tagline={metadata.tagline}
-                contacts={metadata.contacts}
-              />
-            </div>
-            {children}
-            <div className="right-sidebar">
-              <Slice
-                alias="RightSidebar"
-                mostViewedNodes={mostViewedNodes}
-                featuredNodes={featuredNodes}
-                trendingNodes={trendingNodes}
-              />
-            </div>
-          </div>
-        </main>
-        <footer className="text-center">
-          {/*<div className="mobile-footer">{<Slice alias={"Tags"} />}</div>*/}
-          <div className="my-emoji mb-2">{metadata.copyright}</div>
-        </footer>
-      </div>
+      <main className="main-layout">
+        {/*<div className="index-main">*/}
+        <div className="sidebar">
+          <LeftSidebar photo={photo} author={metadata.author} tagline={metadata.tagline} contacts={metadata.contacts} />
+        </div>
+        {children}
+        <div className="right-sidebar">
+          <Slice
+            alias="RightSidebar"
+            mostViewedNodes={mostViewedNodes}
+            featuredNodes={featuredNodes}
+            trendingNodes={trendingNodes}
+          />
+        </div>
+        {/*</div>*/}
+      </main>
+      <footer className="text-center">
+        {/*<div className="mobile-footer">{<Slice alias={"Tags"} />}</div>*/}
+        <div className="my-emoji mb-2">{metadata.copyright}</div>
+      </footer>
     </>
   );
 };
