@@ -92,18 +92,21 @@ function getHrefValue(capturedSubstr1: string): string {
 }
 
 function getHeroImage(heroImage: BlogPostHeroImage) {
-  return withArtDirection(heroImage?.original, [
+  if (!heroImage) {
+    return null;
+  }
+  return withArtDirection(heroImage.original, [
     {
       media: "(max-width: 416px)",
-      image: heroImage?.phone,
+      image: heroImage.phone,
     },
     {
       media: "(max-width: 1024px)",
-      image: heroImage?.ipad,
+      image: heroImage.ipad,
     },
     {
       media: "(max-width: 1360px)",
-      image: heroImage?.laptop,
+      image: heroImage.laptop,
     },
   ]);
 }

@@ -55,7 +55,7 @@ function IndexPage(props: IndexProp) {
                   </span>
                 </div>
                 <div className="pt-1">
-                  {heroImage && <GatsbyImage image={imageData} className="index-thumbnail" alt={heroImage.title} />}
+                  {imageData && <GatsbyImage image={imageData} className="index-thumbnail" alt={heroImage.title} />}
                   <p>{childMarkdownRemark.excerpt}</p>
                 </div>
               </div>
@@ -76,18 +76,21 @@ function IndexPage(props: IndexProp) {
 }
 
 function getImageData(heroImage: IndexHeroImage) {
-  return withArtDirection(heroImage?.original, [
+  if (!heroImage) {
+    return null;
+  }
+  return withArtDirection(heroImage.original, [
     {
       media: "(max-width: 416px)",
-      image: heroImage?.phone,
+      image: heroImage.phone,
     },
     {
       media: "(max-width: 1024px)",
-      image: heroImage?.ipad,
+      image: heroImage.ipad,
     },
     {
       media: "(max-width: 1360px)",
-      image: heroImage?.laptop,
+      image: heroImage.laptop,
     },
   ]);
 }
@@ -124,13 +127,21 @@ export const pageQuery = graphql`
             quality: 100
           )
           ipad: gatsbyImageData(
+            resizingBehavior: THUMB
+            cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
             outputPixelDensities: [1]
             width: 360
             quality: 100
           )
-          laptop: gatsbyImageData(placeholder: BLURRED, layout: FIXED, outputPixelDensities: [1], width: 250)
+          laptop: gatsbyImageData(
+            placeholder: BLURRED
+            layout: FIXED
+            outputPixelDensities: [1]
+            width: 250
+            quality: 100
+          )
           title
         }
         id
