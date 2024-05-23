@@ -130,15 +130,7 @@ export const pageQuery = graphql`
             width: 360
             quality: 100
           )
-          laptop: gatsbyImageData(
-            resizingBehavior: THUMB
-            cropFocus: FACES
-            placeholder: BLURRED
-            layout: FIXED
-            outputPixelDensities: [1]
-            width: 250
-            quality: 100
-          )
+          laptop: gatsbyImageData(placeholder: BLURRED, layout: FIXED, outputPixelDensities: [1], width: 250)
           title
         }
         id
