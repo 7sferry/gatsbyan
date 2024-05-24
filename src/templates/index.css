@@ -145,7 +145,8 @@ a:hover,
 ::-webkit-scrollbar-corner {
   background-color: #181a1b;
 }
-* {
+
+html {
   scrollbar-color: #2a2c2e #1c1e1f;
 }
 
