@@ -20,7 +20,12 @@ p,
 }
 
 .main-layout {
-  padding: 0;
+  margin: 0 auto;
+  padding: .5rem 0 0;
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  -ms-grid-columns: 1fr 2fr 1fr;
 }
 
 .post-container {
@@ -33,7 +38,7 @@ p,
   font-size: 1.2rem;
 }
 
-.content-post p a {
+.content-post a {
   font-style: oblique;
 }
 
@@ -154,6 +159,13 @@ a:hover,
 
   .post-main {
     padding: .5rem .5rem 1rem;
+  }
+
+  .main-layout {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   .right-sidebar{
