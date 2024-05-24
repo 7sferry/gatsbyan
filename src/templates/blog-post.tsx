@@ -8,7 +8,7 @@ import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
-import { getPlurals, getPublishDateTime, isAfterDate, kebabCase, plusDays, toNow } from "../utils/GatsbyanUtils";
+import { getPlurals, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
@@ -26,7 +26,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const heroImage = post.heroImage;
   const imageData = getHeroImage(heroImage);
   const imageTitle = heroImage?.title;
-  const htmlWithAnchor = extractHtmlWithAnchor(childMarkdownRemark.html);
+  const htmlWithAnchor = childMarkdownRemark.html;
   const publishDate = post.publishDate;
   const updatedAt = post.updatedAt;
 
@@ -65,29 +65,6 @@ const BlogPostTemplate = (props: BlogPostProp) => {
     </Layout>
   );
 };
-
-function extractHtmlWithAnchor(html: string): string {
-  return html
-    .replace(/<h2>(.*?)<\/h2>/g, function (match: string, capturedSubstr1: string) {
-      if (capturedSubstr1.startsWith("<a ")) {
-        return match;
-      }
-      const hrefValue = getHrefValue(capturedSubstr1);
-      return `<div class="anchor-tag"><h2 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h2></div>`;
-    })
-    .replace(/<h3>(.*?)<\/h3>/g, function (match: string, capturedSubstr1: string) {
-      if (capturedSubstr1.startsWith("<a ")) {
-        return match;
-      }
-      const hrefValue = getHrefValue(capturedSubstr1);
-      return `<div class="anchor-tag"><h3 id="${hrefValue}"><a class="anchor-subtitle" href="#${hrefValue}">${capturedSubstr1}</a></h3></div>`;
-    });
-}
-
-function getHrefValue(capturedSubstr1: string): string {
-  let hrefValue = capturedSubstr1.replace(/<(.*?)>/g, "");
-  return kebabCase(hrefValue);
-}
 
 function getHeroImage(heroImage: BlogPostHeroImage) {
   if (!heroImage) {

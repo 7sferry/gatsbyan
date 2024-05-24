@@ -112,6 +112,12 @@ const gatsbyConfig: GatsbyConfig = {
               loading: "lazy",
             },
           },
+          {
+            resolve: `gatsby-remark-link-on-headers`,
+            options: {
+              headings: [`h2`, `h3`],
+            },
+          },
         ],
       },
     },
