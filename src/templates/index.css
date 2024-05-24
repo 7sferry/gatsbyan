@@ -38,7 +38,7 @@ p,
   font-size: 1.2rem;
 }
 
-.content-post a {
+.content-post p a, .content-post li a {
   font-style: oblique;
 }
 

@@ -358,12 +358,18 @@ ais-highlight-0000000000 {
   font-size: 1.5rem;
 }
 
-.anchor-subtitle {
+.heading-text {
   color: unset !important;
   transition: unset !important;
 }
 
-.anchor-subtitle:hover {
+.heading-text:before {
+  content: "⚓";
+  font-size: 70%;
+  float: left;
+}
+
+.heading-text:hover {
   text-decoration-line: underline;
 }
 
