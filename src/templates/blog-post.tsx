@@ -50,18 +50,16 @@ const BlogPostTemplate = (props: BlogPostProp) => {
             <CommaSeparatedLinkedPostTags tags={post.tags} />
           </div>
         </div>
-        <div>
-          <figure className="hero">
-            {imageData && <GatsbyImage image={imageData} className="heroImage" alt={post.title} />}
-            {imageTitle && <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>}
-          </figure>
-          <div
-            className="post-container pt-0 content-post"
-            dangerouslySetInnerHTML={{
-              __html: htmlWithAnchor,
-            }}
-          />
-        </div>
+        <figure className="hero">
+          {imageData && <GatsbyImage image={imageData} className="heroImage" alt={post.title} />}
+          {imageTitle && <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>}
+        </figure>
+        <div
+          className="post-container pt-0 content-post"
+          dangerouslySetInnerHTML={{
+            __html: htmlWithAnchor,
+          }}
+        />
         <Slice alias="Comment" repo={repo} />
       </div>
     </Layout>

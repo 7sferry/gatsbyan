@@ -499,9 +499,3 @@ pre tt:after {
   margin: 0.25em 0.25em 0.25em 0;
   font-size: 0.9em;
 }
-
-@media only screen and (max-width: 1024px) {
-  .body-content {
-    padding: 0;
-  }
-}
