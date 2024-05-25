@@ -56,12 +56,6 @@ export interface ContactsAttr {
   readonly crystal: string;
 }
 
-export interface MobileBioAttr {
-  readonly author: string;
-  readonly tagline: string;
-  readonly photo: IGatsbyImageData;
-}
-
 export interface CustomPostAttr {
   readonly title: string;
   readonly description: string;
@@ -348,4 +342,11 @@ export interface FlattenAlgoliaNode {
   readonly title: string;
   readonly slug: string;
   readonly excerpt: string;
+}
+
+export interface PaginationProp {
+  readonly previousPage: number;
+  readonly nextPage: number;
+  readonly pageStart: number;
+  readonly pageLimit: number;
 }
