@@ -398,12 +398,12 @@ iframe {
 
 @media (min-height: 1024px) {
     .heroImage {
-        max-height: 30vh;
+        max-height: 50vh;
     }
 }
 
 @media (max-width: 450px) {
     .heroImage {
-        max-height: 30vh;
+        max-height: 35vh;
     }
 }

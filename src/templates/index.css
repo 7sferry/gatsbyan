@@ -145,7 +145,8 @@ a:hover,
 ::-webkit-scrollbar-corner {
   background-color: #181a1b;
 }
-* {
+
+html {
   scrollbar-color: #2a2c2e #1c1e1f;
 }
 
@@ -188,7 +189,7 @@ a:hover,
 
   .index-thumbnail {
     max-width: 45%;
-    max-height: 200px;
+    max-height: 250px;
   }
 }
 
@@ -200,7 +201,6 @@ a:hover,
 
   .index-thumbnail {
     max-width: 45%;
-    max-height: 230px;
   }
 }
 
