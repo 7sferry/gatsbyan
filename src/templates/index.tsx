@@ -123,7 +123,7 @@ export const pageQuery = graphql`
             placeholder: BLURRED
             layout: FIXED
             outputPixelDensities: [1]
-            width: 700
+            width: 410
             quality: 100
           )
           ipad: gatsbyImageData(
