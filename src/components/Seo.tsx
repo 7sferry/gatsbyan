@@ -31,18 +31,6 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   return (
     <>
       <html lang={lang} />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-        media="print"
-      />
-      <noscript>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"
-          type="text/css"
-        />
-      </noscript>
       <title>{`${title} ${name}`}</title>
       <meta name="description" content={metaDescription} />
       <meta name="og:title" content={title} />
