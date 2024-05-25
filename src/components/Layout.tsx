@@ -1,5 +1,4 @@
 import React from "react";
-import "../templates/ignored/global.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "./layout.css";
 import SiteMetadata from "../utils/SiteMetadata.tsx";
