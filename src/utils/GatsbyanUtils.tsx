@@ -6,6 +6,7 @@
 import React from "react";
 import { add, format, formatDistanceToNow, isAfter } from "date-fns";
 import slugify from "@sindresorhus/slugify";
+import { PaginationProp } from "../types/DataTypes.ts";
 
 export const kebabCase = (str: string) => {
   return slugify(str);
@@ -110,3 +111,29 @@ export function isCommentShown() {
   };
   return commentShown;
 }
+
+export const getPagingCalculator = (currentPage: number, totalPage: number): PaginationProp => {
+  const range = Math.floor(PAGE_COUNT / 2);
+  const previousPage = currentPage - 1;
+  const nextPage = currentPage + 1;
+  let minRange = currentPage - range;
+  let maxRange = currentPage + range;
+
+  function getStartRange() {
+    if (minRange <= 0) {
+      return 1;
+    }
+    if (maxRange > totalPage) {
+      return totalPage - PAGE_COUNT + 1;
+    }
+    return minRange;
+  }
+
+  let pageStart = getStartRange();
+  return {
+    nextPage: nextPage,
+    previousPage: previousPage,
+    pageStart: pageStart,
+    pageLimit: PAGE_COUNT,
+  };
+};
