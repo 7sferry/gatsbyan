@@ -19,7 +19,7 @@
     "gatsby-plugin-sharp": "^5.13.1",
     "gatsby-plugin-sitemap": "^6.13.1",
     "gatsby-remark-images-contentful": "^6.13.1",
-    "gatsby-remark-link-on-headers": "^1.0.0",
+    "gatsby-remark-link-on-headers": "^1.0.2",
     "gatsby-remark-prismjs": "^7.13.1",
     "gatsby-source-contentful": "^8.13.1",
     "gatsby-source-filesystem": "^5.13.1",
@@ -83,7 +83,11 @@
     "core-js",
     "core-js-pure",
     "es5-ext",
+    "gatsby",
     "gatsby-cli",
-    "gatsby-telemetry"
+    "gatsby-telemetry",
+    "lmdb",
+    "msgpackr-extract",
+    "sharp"
   ]
 }

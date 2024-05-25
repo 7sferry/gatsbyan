@@ -189,7 +189,7 @@ html {
 
   .index-thumbnail {
     max-width: 45%;
-    max-height: 200px;
+    max-height: 250px;
   }
 }
 
@@ -201,7 +201,6 @@ html {
 
   .index-thumbnail {
     max-width: 45%;
-    max-height: 230px;
   }
 }
 
