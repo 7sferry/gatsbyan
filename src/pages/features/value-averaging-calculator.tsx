@@ -6,7 +6,6 @@ import CustomPageContainer from "../../components/CustomPageContainer.tsx";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import Seo from "../../components/Seo";
 import { InvestTargetValueInput } from "../../components/value-averaging/InvestTargetValueInput";
-import { UnitTypeValueInput } from "../../components/value-averaging/UnitTypeValueInput";
 import { TotalLotValueInput } from "../../components/value-averaging/TotalLotValueInput";
 import { SinceMonthValueInput } from "../../components/value-averaging/SinceMonthValueInput";
 import { SinceYearValueInput } from "../../components/value-averaging/SinceYearValueInput";
@@ -127,8 +126,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"totalLot"}>
-              <TotalLotValueInput stockCacheValue={stockCacheValue} />
-              <UnitTypeValueInput stockCacheValue={stockCacheValue} />
+              <TotalLotValueInput stockCacheValue={stockCacheValue} /> Lot
             </div>
           </div>
           <div className="rowTab">
