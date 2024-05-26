@@ -4,8 +4,7 @@
     {
       "source": "/tags/tips-tutorial",
       "destination": "/tags/tips-and-tutorial",
-      "statusCode": 200,
-      "permanent": true
+      "statusCode": 200
     },
     {
       "source": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
