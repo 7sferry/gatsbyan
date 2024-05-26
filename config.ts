@@ -6,7 +6,7 @@ const siteConfig = {
   title: "MR Ferry",
   tagline:
     "An ISTJ of MBTI, Type 5 of Enneagram and C style of DiSC. \nInterested in software engineering, money investing, gaming, football, and sharing POV about life & experiences",
-  description: `Software Engineer dari Solok. Berisi tentang pemrograman, pengalaman hidup, dan pandangan pribadi`,
+  description: `Software Engineer dari Solok. Membahas pemrograman, pengalaman hidup, dan pandangan pribadi`,
   copyright: `© ${new Date().getFullYear()} · Ferry Suhandri`,
   author: {
     name: "Ferry S",
