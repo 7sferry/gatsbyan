@@ -158,5 +158,5 @@ export const pageQuery = graphql`
 export default IndexPage;
 
 export function Head({ location }: HeadProps) {
-  return <Seo title={"Blog"} path={location?.pathname} />;
+  return <Seo title={"Personal Blog by Ferry Suhandri"} path={location?.pathname} />;
 }

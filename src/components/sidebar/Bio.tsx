@@ -3,6 +3,7 @@ import "./sidebar.css";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { BioAttr } from "../../types/DataTypes";
+import Tagline from "./Tagline.tsx";
 
 const Bio = ({ author, tagline, photo }: BioAttr) => {
   return (
@@ -12,7 +13,7 @@ const Bio = ({ author, tagline, photo }: BioAttr) => {
         <p className="bio-name">
           <Link to={"/blog/berkenalan-dengan-ferry-suhandri"}>{author}</Link>
         </p>
-        <small>{tagline}</small>
+        <Tagline tagline={tagline} />
       </div>
     </div>
   );

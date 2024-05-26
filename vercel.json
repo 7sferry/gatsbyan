@@ -19,7 +19,7 @@
     {
       "source": "/blog/t-e-r-c-o-l-o-n-g",
       "destination": "/blog/tercolong",
-      "permanent": true
+      "statusCode": 308
     },
     {
       "source": "/blog/normalisasi-database",
@@ -28,13 +28,12 @@
     },
     {
       "source": "/blog/acid-pada-database-consistency",
-      "destination": "/blog/acid-pada-database#consistency",
-      "permanent": true
+      "destination": "/blog/acid-pada-database#consistency"
     },
     {
       "source": "/blog/acid-pada-database-atomicity",
       "destination": "/blog/acid-pada-database#atomicity",
-      "permanent": true
+      "statusCode": 200
     },
     {
       "source": "/blog/acid-pada-database-durability",
@@ -44,12 +43,12 @@
     {
       "source": "/blog/value-averaging-calculator",
       "destination": "/features/value-averaging-calculator",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/blog/fakta-unik-minangkabau-part-ii",
       "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii",
-      "permanent": true
+      "statusCode": 200
     }
   ],
   "trailingSlash": false

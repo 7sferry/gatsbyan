@@ -40,6 +40,10 @@ export interface BioAttr {
   readonly photo: IGatsbyImageData;
 }
 
+export interface TaglineAttr {
+  readonly tagline: string;
+}
+
 export interface LeftSidebarAttr {
   readonly photo: {};
   readonly author: string;
