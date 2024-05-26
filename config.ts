@@ -4,8 +4,9 @@ const siteConfig = {
   url: "https://ferry.vercel.app",
   repo: "7sferry/gatsbyan",
   title: "MR Ferry",
-  tagline: "An ISTJ, Type 5, Engineer, Gamer, and Thriller-Movies-Lover",
-  description: `Blog by Ferry Suhandri. An ISTJ, Type 5 Enneagram, & Software Engineer dari Solok. Berisi pandangan pribadi & pemrograman dalam Bahasa Indonesia`,
+  tagline:
+    "An ISTJ of MBTI, Type 5 of Enneagram and C style of DiSC. \nInterested in software engineering, money investing, gaming, football, and sharing POV about life & experiences",
+  description: `Software Engineer dari Solok. Berisi tentang pemrograman, pengalaman hidup, dan pandangan pribadi`,
   copyright: `© ${new Date().getFullYear()} · Ferry Suhandri`,
   author: {
     name: "Ferry S",
