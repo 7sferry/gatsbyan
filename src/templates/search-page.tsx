@@ -37,25 +37,23 @@ const SearchPage = () => {
 
   return (
     <Layout>
-      <div className="post-main">
-        <InstantSearch
-          future={{
-            preserveSharedStateOnUnmount: true,
-          }}
-          indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME ?? ""}
-          searchClient={searchClient}
-        >
-          <Configure
-            highlightPreTag={"<ais-highlight-0000000000>"}
-            highlightPostTag={"</ais-highlight-0000000000>"}
-            distinct
-            hitsPerPage={SEARCH_COUNT}
-          />
-          <Slice alias="VoiceSearchElement" searchAsYouSpeak={false} />
-          <SearchBox className={"search-box"} searchAsYouType={false} />
-          <Slice alias="PaginationSearchResult" />
-        </InstantSearch>
-      </div>
+      <InstantSearch
+        future={{
+          preserveSharedStateOnUnmount: true,
+        }}
+        indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME ?? ""}
+        searchClient={searchClient}
+      >
+        <Configure
+          highlightPreTag={"<ais-highlight-0000000000>"}
+          highlightPostTag={"</ais-highlight-0000000000>"}
+          distinct
+          hitsPerPage={SEARCH_COUNT}
+        />
+        <Slice alias="VoiceSearchElement" searchAsYouSpeak={false} />
+        <SearchBox className={"search-box"} searchAsYouType={false} />
+        <Slice alias="PaginationSearchResult" />
+      </InstantSearch>
     </Layout>
   );
 };

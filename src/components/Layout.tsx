@@ -22,18 +22,18 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
     <>
       <Slice alias="Header" siteTitle={metadata.title} />
       <main className="main-layout">
-        <div className="sidebar">
+        <section className="sidebar">
           <LeftSidebar photo={photo} author={metadata.author} tagline={metadata.tagline} contacts={metadata.contacts} />
-        </div>
-        {children}
-        <div className="right-sidebar">
+        </section>
+        <section className="post-main">{children}</section>
+        <section className="right-sidebar">
           <Slice
             alias="RightSidebar"
             mostViewedNodes={mostViewedNodes}
             featuredNodes={featuredNodes}
             trendingNodes={trendingNodes}
           />
-        </div>
+        </section>
       </main>
       <footer className="text-center">
         {/*<div className="mobile-footer">{<Slice alias={"Tags"} />}</div>*/}

@@ -94,53 +94,49 @@ class ArchivePage extends React.Component<ArchiveProp, ArchiveState> {
 
     return (
       <Layout>
-        <div className="post-main">
-          <ul className="archive-container parent-archive-container">
-            {Array.from(postByYear.entries()).map((post, i) => {
-              const year = post[0];
-              return (
-                <li key={i} className={"item"}>
-                  <button className={`archive-link`} onClick={() => this.toggleActiveYear(year)}>
-                    <i className="archive-icon">
-                      <MdArchive />
-                    </i>
-                    <span>{year}</span>
-                  </button>
+        <ul className="archive-container parent-archive-container">
+          {Array.from(postByYear.entries()).map((post, i) => {
+            const year = post[0];
+            return (
+              <li key={i} className={"item"}>
+                <button className={`archive-link`} onClick={() => this.toggleActiveYear(year)}>
+                  <i className="archive-icon">
+                    <MdArchive />
+                  </i>
+                  <span>{year}</span>
+                </button>
 
-                  <ul
-                    className={`archive-container ${this.state.activeYear.includes(year) ? "visible" : "not-visible"}`}
-                  >
-                    {post[1].map((contents) => {
-                      const month = contents.date.split("-")[1];
-                      return (
-                        <li key={month} className={"item"}>
-                          <button className="archive-link" onClick={() => this.toggleActiveMonth(contents.date)}>
-                            <span>{month}</span>
-                          </button>
-                          <ul
-                            className={`archive-container ${
-                              this.state.activeMonth.includes(contents.date) ? "visible" : "not-visible"
-                            }`}
-                          >
-                            {contents.archiveNodes.map((content) => {
-                              return (
-                                <li className={"item"} key={content.slug}>
-                                  <Link className={"archive-link"} to={`/blog/${content.slug}`}>
-                                    <small>{content.title}</small>
-                                  </Link>
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+                <ul className={`archive-container ${this.state.activeYear.includes(year) ? "visible" : "not-visible"}`}>
+                  {post[1].map((contents) => {
+                    const month = contents.date.split("-")[1];
+                    return (
+                      <li key={month} className={"item"}>
+                        <button className="archive-link" onClick={() => this.toggleActiveMonth(contents.date)}>
+                          <span>{month}</span>
+                        </button>
+                        <ul
+                          className={`archive-container ${
+                            this.state.activeMonth.includes(contents.date) ? "visible" : "not-visible"
+                          }`}
+                        >
+                          {contents.archiveNodes.map((content) => {
+                            return (
+                              <li className={"item"} key={content.slug}>
+                                <Link className={"archive-link"} to={`/blog/${content.slug}`}>
+                                  <small>{content.title}</small>
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            );
+          })}
+        </ul>
       </Layout>
     );
   }

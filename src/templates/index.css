@@ -197,6 +197,10 @@ html {
     padding: unset;
   }
 
+  .page-info {
+    display: inline-block;
+  }
+
   .index-thumbnail {
     max-width: 45%;
   }

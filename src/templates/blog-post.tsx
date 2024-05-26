@@ -36,32 +36,30 @@ const BlogPostTemplate = (props: BlogPostProp) => {
 
   return (
     <Layout>
-      <div className="post-main">
-        <div className="title posted">{post.title}</div>
-        <div className="title text-info mb-2">
-          <span className="page-info">{getPublishDateTime(publishDate)}</span>
-          <span className="page-info" style={{ display: "inline-block" }}>
-            {timeToRead} min{getPlurals(timeToRead)} read
-          </span>
-          <ClientSide>
-            {showUpdatedText() && <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>}
-          </ClientSide>
-          <div className="page-info">
-            <CommaSeparatedLinkedPostTags tags={post.tags} />
-          </div>
+      <div className="title posted">{post.title}</div>
+      <div className="title text-info mb-2">
+        <span className="page-info">{getPublishDateTime(publishDate)}</span>
+        <span className="page-info" style={{ display: "inline-block" }}>
+          {timeToRead} min{getPlurals(timeToRead)} read
+        </span>
+        <ClientSide>
+          {showUpdatedText() && <span className="page-info">{`updated ${toNow(updatedAt)} ago`}</span>}
+        </ClientSide>
+        <div className="page-info">
+          <CommaSeparatedLinkedPostTags tags={post.tags} />
         </div>
-        <figure className="hero">
-          {imageData && <GatsbyImage image={imageData} className="heroImage" alt={post.title} />}
-          {imageTitle && <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>}
-        </figure>
-        <div
-          className="post-container pt-0 content-post"
-          dangerouslySetInnerHTML={{
-            __html: htmlWithAnchor,
-          }}
-        />
-        <Slice alias="Comment" repo={repo} />
       </div>
+      <figure className="hero">
+        {imageData && <GatsbyImage image={imageData} className="heroImage" alt={post.title} />}
+        {imageTitle && <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>}
+      </figure>
+      <div
+        className="post-container pt-0 content-post"
+        dangerouslySetInnerHTML={{
+          __html: htmlWithAnchor,
+        }}
+      />
+      <Slice alias="Comment" repo={repo} />
     </Layout>
   );
 };

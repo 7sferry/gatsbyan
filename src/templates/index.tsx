@@ -24,52 +24,50 @@ function IndexPage(props: IndexProp) {
 
   return (
     <Layout>
-      <div className="post-main">
-        {kebabTag && (
-          <div className="tag-title">
-            All posts related to <b>{pageContext.tag}</b>
-          </div>
-        )}
-        {posts.map((post) => {
-          const tags = post.tags;
-          const { childMarkdownRemark } = post.body;
-          const timeToRead = childMarkdownRemark.timeToRead;
-          let heroImage = post.heroImage;
-          let imageData = getImageData(heroImage);
-          return (
-            <div id={post.id} key={post.id} className="d-block blog-content">
-              <div className="post-container">
-                <div className="title posted">
-                  <Link to={`/blog/${post.slug}`} className="text-link">
-                    {post.title}
-                  </Link>
-                </div>
-                <div className="title text-info">
-                  <span className="page-info">{getPublishDate(post.publishDate)}</span>
-                  <span className="page-info">
-                    {timeToRead} min{getPlurals(timeToRead)} read
-                  </span>
-                  <br />
-                  <span className="page-info">
-                    <CommaSeparatedLinkedPostTags tags={tags} />
-                  </span>
-                </div>
-                <div className="pt-1">
-                  {imageData && <GatsbyImage image={imageData} className="index-thumbnail" alt={heroImage.title} />}
-                  <p>{childMarkdownRemark.excerpt}</p>
-                </div>
+      {kebabTag && (
+        <div className="tag-title">
+          All posts related to <b>{pageContext.tag}</b>
+        </div>
+      )}
+      {posts.map((post) => {
+        const tags = post.tags;
+        const { childMarkdownRemark } = post.body;
+        const timeToRead = childMarkdownRemark.timeToRead;
+        let heroImage = post.heroImage;
+        let imageData = getImageData(heroImage);
+        return (
+          <div id={post.id} key={post.id} className="d-block blog-content">
+            <div className="post-container">
+              <div className="title posted">
+                <Link to={`/blog/${post.slug}`} className="text-link">
+                  {post.title}
+                </Link>
+              </div>
+              <div className="title text-info">
+                <span className="page-info">{getPublishDate(post.publishDate)}</span>
+                <span className="page-info">
+                  {timeToRead} min{getPlurals(timeToRead)} read
+                </span>
+                <br />
+                <span className="page-info">
+                  <CommaSeparatedLinkedPostTags tags={tags} />
+                </span>
+              </div>
+              <div className="pt-1">
+                {imageData && <GatsbyImage image={imageData} className="index-thumbnail" alt={heroImage.title} />}
+                <p>{childMarkdownRemark.excerpt}</p>
               </div>
             </div>
-          );
-        })}
-        <div className="text-center">
-          <PaginationElement
-            totalPageCount={pageInfo.pageCount}
-            url={paginationUrl}
-            currentPage={pageInfo.currentPage}
-            refine={() => {}}
-          />
-        </div>
+          </div>
+        );
+      })}
+      <div className="text-center">
+        <PaginationElement
+          totalPageCount={pageInfo.pageCount}
+          url={paginationUrl}
+          currentPage={pageInfo.currentPage}
+          refine={() => {}}
+        />
       </div>
     </Layout>
   );
