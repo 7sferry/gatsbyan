@@ -39,7 +39,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
       <meta name="og:type" content={`website`} />
       <meta name="og:url" content={metaUrl} />
       <meta name="og:image" content={metaImageLarge} />
-      <meta name="og:image:type" content={`image/jpg`} />
+      <meta name="og:image:type" content={`image/jpeg`} />
       <meta name="og:image:width" content={`338`} />
       <meta name="og:image:height" content={`463`} />
       <meta name="twitter:card" content={`summary`} />
