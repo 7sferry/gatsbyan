@@ -32,7 +32,8 @@ const Tagline = ({ tagline }: TaglineAttr) => {
     };
   }, [tagline]);
 
-  const toggleExpansion = () => {
+  const toggleExpansion = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e?.preventDefault();
     setIsExpanded(!isExpanded);
   };
   return (
@@ -41,7 +42,7 @@ const Tagline = ({ tagline }: TaglineAttr) => {
         {tagline}
       </small>
       {isTwoLines && (
-        <a style={{ fontSize: "85%" }} href={"#"} onClick={toggleExpansion}>
+        <a style={{ fontSize: "85%" }} href={"#"} onClick={(e) => toggleExpansion(e)}>
           {isExpanded ? "Read less" : "Read more"}
         </a>
       )}
