@@ -11,7 +11,7 @@ import { SinceMonthValueInput } from "../../components/value-averaging/SinceMont
 import { SinceYearValueInput } from "../../components/value-averaging/SinceYearValueInput";
 import { UnitPriceValueInput } from "../../components/value-averaging/UnitPriceValueInput";
 import { StockNameValueInput } from "../../components/value-averaging/StockNameValueInput";
-import { CustomPostAttr, StockData } from "../../types/DataTypes";
+import { CustomPostAttr, StockData, UnitType } from "../../types/DataTypes";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -57,7 +57,7 @@ const ValueAveragingCalculator = () => {
     return {
       stockName: e.target.stockName.value,
       currentUnitPrice: e.target.currentUnitPrice.value,
-      unitType: e.target.unitType.value,
+      unitType: UnitType.LOT,
       totalLot: parseInt(e.target.totalLot.value),
       monthlyInvestTarget: e.target.monthlyInvestTarget.value,
       sinceYear: parseInt(e.target.sinceYear.value),
