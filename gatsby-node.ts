@@ -56,6 +56,16 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
         });
 
         createSlice({
+          id: `SearchHitsResult`,
+          component: path.resolve(`./src/components/search/SearchHitsResult.tsx`),
+        });
+
+        createSlice({
+          id: `PaginationElement`,
+          component: path.resolve(`./src/components/PaginationElement.tsx`),
+        });
+
+        createSlice({
           id: `RightSidebar`,
           component: path.resolve(`./src/components/sidebar/RightSidebar.tsx`),
         });

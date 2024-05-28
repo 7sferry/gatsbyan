@@ -52,6 +52,7 @@ const SearchPage = () => {
         />
         <Slice alias="VoiceSearchElement" searchAsYouSpeak={false} />
         <SearchBox className={"search-box"} searchAsYouType={false} />
+        <Slice alias="SearchHitsResult" />
         <Slice alias="PaginationSearchResult" />
       </InstantSearch>
     </Layout>

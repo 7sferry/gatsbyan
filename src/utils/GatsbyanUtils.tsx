@@ -134,6 +134,6 @@ export const getPagingCalculator = (currentPage: number, totalPage: number): Pag
     nextPage: nextPage,
     previousPage: previousPage,
     pageStart: pageStart,
-    pageLimit: PAGE_COUNT,
+    pageLimit: Math.min(totalPage, PAGE_COUNT),
   };
 };
