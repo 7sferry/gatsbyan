@@ -5,11 +5,10 @@
 
 import React from "react";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
-import { graphql, HeadProps, Link } from "gatsby";
+import { graphql, HeadProps, Link, Slice } from "gatsby";
 
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import PaginationElement from "../components/PaginationElement.tsx";
 import { getPlurals, getPublishDate } from "../utils/GatsbyanUtils";
 import "./index.css";
 import { IndexHeroImage, IndexProp } from "../types/DataTypes";
@@ -62,11 +61,11 @@ function IndexPage(props: IndexProp) {
         );
       })}
       <div className="text-center">
-        <PaginationElement
+        <Slice
+          alias={"PaginationElement"}
           totalPageCount={pageInfo.pageCount}
           url={paginationUrl}
           currentPage={pageInfo.currentPage}
-          refine={() => {}}
         />
       </div>
     </Layout>

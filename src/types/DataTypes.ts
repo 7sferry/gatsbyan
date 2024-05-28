@@ -155,7 +155,7 @@ export interface PaginationAttr {
   readonly totalPageCount: number;
   readonly currentPage: number;
   readonly url: string;
-  readonly refine: Function;
+  readonly refine?: (page: number) => void;
 }
 
 export interface AnalyticsData {
