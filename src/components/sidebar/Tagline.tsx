@@ -8,7 +8,7 @@ import { TaglineAttr } from "../../types/DataTypes.ts";
 const Tagline = ({ tagline }: TaglineAttr) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const paragraphRef = useRef(null);
-  const [isTwoLines, setIsTwoLines] = useState(false);
+  const [isTwoLines, setIsTwoLines] = useState(true);
 
   useEffect(() => {
     const checkIfTwoLines = () => {

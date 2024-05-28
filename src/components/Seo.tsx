@@ -28,7 +28,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   const metaImageLarge = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri-large.png`;
   const metaUrl = metadata.siteUrl + path;
 
-  let name = path === "/" || path?.startsWith("/blog") ? `[${metadata.realName}]` : "";
+  let name = path?.startsWith("/blog") ? `[${metadata.realName}]` : "";
   return (
     <>
       <html lang={lang} />
