@@ -26,7 +26,7 @@ const PaginationElement = ({ totalPageCount, currentPage, url }: PaginationAttr)
 
   return (
     <>
-      {totalPageCount > 0 && (
+      {totalPageCount > 1 && (
         <nav data-pagination="">
           <span>
             <PagingLink

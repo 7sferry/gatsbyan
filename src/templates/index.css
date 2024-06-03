@@ -75,10 +75,9 @@ p,
 }
 
 .sidebar {
-  width: 90%;
   -ms-grid-column: 1;
   grid-column: 1;
-  padding: .5rem 1.5rem;
+  padding: .5rem 2rem;
 }
 .post-main {
   -ms-grid-column: 2;
