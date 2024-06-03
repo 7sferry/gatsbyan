@@ -4,7 +4,7 @@
     {
       "source": "/tags/tips-tutorial",
       "destination": "/tags/tips-and-tutorial",
-      "statusCode": 200
+      "permanent": true
     },
     {
       "source": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
@@ -32,8 +32,7 @@
     },
     {
       "source": "/blog/acid-pada-database-atomicity",
-      "destination": "/blog/acid-pada-database#atomicity",
-      "statusCode": 200
+      "destination": "/blog/acid-pada-database#atomicity"
     },
     {
       "source": "/blog/acid-pada-database-durability",
@@ -47,8 +46,7 @@
     },
     {
       "source": "/blog/fakta-unik-minangkabau-part-ii",
-      "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii",
-      "statusCode": 200
+      "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii"
     }
   ],
   "trailingSlash": false
