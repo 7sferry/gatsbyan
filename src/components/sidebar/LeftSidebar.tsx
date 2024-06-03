@@ -10,7 +10,9 @@ const LeftSidebar = ({ photo, author, tagline, contacts }: LeftSidebarAttr) => {
       <div className="sidebar-main ">
         <Slice alias={"Bio"} author={author} tagline={tagline} photo={photo} />
         <Slice alias={"Socials"} contacts={contacts} />
-        {/*<div className="tech-tags mt-3 mobile-tag">{<Slice alias={"Tags"} />}</div>*/}
+        <div className="tech-tags mt-3 mobile-tag">
+          <Slice alias={"Tags"} />
+        </div>
       </div>
     </>
   );
