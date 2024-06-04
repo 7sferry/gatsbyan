@@ -14,14 +14,6 @@ const NotFoundPage = () => (
   </Layout>
 );
 
-export async function config() {
-  return () => {
-    return {
-      defer: true,
-    };
-  };
-}
-
 export default NotFoundPage;
 
 export function Head() {
