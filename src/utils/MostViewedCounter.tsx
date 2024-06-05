@@ -8,13 +8,13 @@ import { graphql, useStaticQuery } from "gatsby";
 
 export function fetchMostViewed(titleByPath: Map<string, string>) {
   const analyticsData: AnalyticsData = useStaticQuery(graphql`
-      query AnalyticsPageQuery {
-          allPageViews(sort: { totalCount: DESC }, filter: { path: { regex: "/^\/blog\/(?!$)(?!.*(%|\\?|=|&)).*$/" } }, limit: 5) {
-              nodes {
-                  path
-              }
-          }
+    query AnalyticsPageQuery {
+      allPageViews(sort: { totalCount: DESC }, limit: 5) {
+        nodes {
+          path
+        }
       }
+    }
   `);
 
   return analyticsData?.allPageViews?.nodes?.map((node) => ({

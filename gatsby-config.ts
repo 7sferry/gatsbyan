@@ -164,6 +164,7 @@ const gatsbyConfig: GatsbyConfig = {
         metric: `activeUsers`,
         startDate: `2020-01-01`,
         endDate: `today`,
+        regexFilter: `^/blog/`,
       },
     },
     {
