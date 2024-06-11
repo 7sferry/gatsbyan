@@ -17,8 +17,10 @@ export function fetchMostViewed(titleByPath: Map<string, string>) {
     }
   `);
 
-  return analyticsData?.allPageViews?.nodes?.map((node) => ({
-    path: node?.path,
-    title: titleByPath.get(node?.path),
-  }));
+  return analyticsData?.allPageViews?.nodes
+    ?.filter((node) => titleByPath.has(node?.path))
+    .map((node) => ({
+      path: node?.path,
+      title: titleByPath.get(node?.path),
+    }));
 }
