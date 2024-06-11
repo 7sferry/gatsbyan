@@ -12,7 +12,10 @@ export const fetchTopTrending = (titleByPath: Map<string, string>) => {
       setTrendingReports(reports);
     });
   }, []);
-  return trendingReports.map((report) => ({ path: report.path, title: titleByPath.get(report.path) }));
+
+  return trendingReports
+    .filter((report) => titleByPath.has(report.path))
+    .map((report) => ({ path: report.path, title: titleByPath.get(report.path) }));
 };
 
 async function getTopTrendingReports(): Promise<TrendingReport[]> {
