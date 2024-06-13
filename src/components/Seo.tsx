@@ -25,7 +25,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   const metadata = site.siteMetadata;
   const metaDescription = description || (path === "/" ? metadata.description : "");
   const metaImage = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri.jpg`;
-  const metaImageLarge = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri-large.png`;
+  const metaImageLarge = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri-large.jpg`;
   const metaUrl = metadata.siteUrl + path;
 
   let name = path?.startsWith("/blog") || path?.startsWith("/features") ? `[${metadata.realName}]` : "";
@@ -37,6 +37,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
       <meta name="og:title" content={title} />
       <meta name="og:description" content={metaDescription} />
       <meta name="og:type" content={`website`} />
+      <meta name="og:site_name" content={`Ferry Suhandri`} />
       <meta name="og:url" content={metaUrl} />
       <meta name="og:image" content={metaImageLarge} />
       <meta name="og:image:type" content={`image/jpeg`} />
