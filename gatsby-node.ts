@@ -143,6 +143,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
         createPage({
           path: `/archive`,
           component: path.resolve("./src/templates/archive.tsx"),
+          defer: true,
         });
 
         createRedirect({
