@@ -120,7 +120,7 @@ export const getPagingCalculator = (currentPage: number, totalPage: number): Pag
   let maxRange = currentPage + range;
 
   function getStartRange() {
-    if (minRange <= 0) {
+    if (minRange <= 0 || totalPage <= PAGE_COUNT) {
       return 1;
     }
     if (maxRange > totalPage) {
@@ -130,6 +130,7 @@ export const getPagingCalculator = (currentPage: number, totalPage: number): Pag
   }
 
   let pageStart = getStartRange();
+  console.log(pageStart);
   return {
     nextPage: nextPage,
     previousPage: previousPage,
