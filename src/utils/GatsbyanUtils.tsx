@@ -130,7 +130,6 @@ export const getPagingCalculator = (currentPage: number, totalPage: number): Pag
   }
 
   let pageStart = getStartRange();
-  console.log(pageStart);
   return {
     nextPage: nextPage,
     previousPage: previousPage,
