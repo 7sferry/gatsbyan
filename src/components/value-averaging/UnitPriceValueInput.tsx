@@ -7,11 +7,12 @@ import React from "react";
 import { onChangeRupiah } from "../../utils/GatsbyanUtils";
 import { StockCacheInputProps } from "../../types/DataTypes";
 
-export const UnitPriceValueInput = ({ stockCacheValue }: StockCacheInputProps) => {
+export const UnitPriceValueInput = ({ stockCacheValueByName, stockKey }: StockCacheInputProps) => {
   const [unitPriceValue, setUnitPriceValue] = React.useState("");
   React.useEffect(() => {
-    setUnitPriceValue(String(stockCacheValue.currentUnitPrice || ""));
-  }, [stockCacheValue]);
+    let stockCacheValue = stockCacheValueByName.get(stockKey);
+    setUnitPriceValue(String(stockCacheValue?.currentUnitPrice || ""));
+  }, [stockCacheValueByName, stockKey]);
 
   return (
     <input

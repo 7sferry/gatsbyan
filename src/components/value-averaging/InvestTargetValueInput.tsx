@@ -7,11 +7,12 @@ import React from "react";
 import { onChangeRupiah } from "../../utils/GatsbyanUtils";
 import { StockCacheInputProps } from "../../types/DataTypes";
 
-export const InvestTargetValueInput = ({ stockCacheValue }: StockCacheInputProps) => {
+export const InvestTargetValueInput = ({ stockCacheValueByName, stockKey }: StockCacheInputProps) => {
   const [investTargetValue, setInvestTargetValue] = React.useState("");
   React.useEffect(() => {
-    setInvestTargetValue(String(stockCacheValue.monthlyInvestTarget || ""));
-  }, [stockCacheValue]);
+    let stockCacheValue = stockCacheValueByName.get(stockKey);
+    setInvestTargetValue(String(stockCacheValue?.monthlyInvestTarget || ""));
+  }, [stockCacheValueByName, stockKey]);
 
   return (
     <input

@@ -17,7 +17,8 @@ export class StockData {
 }
 
 export interface StockCacheInputProps {
-  readonly stockCacheValue: StockData;
+  readonly stockCacheValueByName: Map<string, StockData>;
+  readonly stockKey: string;
 }
 
 export interface AllContentfulBlogPost {

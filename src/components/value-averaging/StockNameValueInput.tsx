@@ -5,13 +5,8 @@
 
 import React from "react";
 
-import { StockCacheInputProps } from "../../types/DataTypes";
-
-export const StockNameValueInput = ({ stockCacheValue }: StockCacheInputProps) => {
+export const StockNameValueInput = () => {
   const [stockNameValue, setStockNameValue] = React.useState("");
-  React.useEffect(() => {
-    setStockNameValue(String(stockCacheValue.stockName || ""));
-  }, [stockCacheValue]);
 
   return (
     <input

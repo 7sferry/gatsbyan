@@ -11,6 +11,9 @@ import { id } from "date-fns/locale";
 
 export const getValueAveragingFormResult = (stock: ValueAveragingStockCalculator) => {
   const monthDifference = getMonthDifference(stock.sinceDate, new Date());
+  if (monthDifference < 0) {
+    return <p>bulan mulai tidak boleh dari masa depan</p>;
+  }
   const lotShouldInvest = stock.countLotShouldInvest(stock.monthlyInvestTarget, monthDifference + 1);
   if (stock.totalLot <= 0 && stock.monthlyInvestTarget < stock.currentLotPrice) {
     return (

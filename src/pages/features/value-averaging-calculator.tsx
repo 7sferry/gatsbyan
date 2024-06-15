@@ -10,7 +10,6 @@ import { TotalLotValueInput } from "../../components/value-averaging/TotalLotVal
 import { SinceMonthValueInput } from "../../components/value-averaging/SinceMonthValueInput";
 import { SinceYearValueInput } from "../../components/value-averaging/SinceYearValueInput";
 import { UnitPriceValueInput } from "../../components/value-averaging/UnitPriceValueInput";
-import { StockNameValueInput } from "../../components/value-averaging/StockNameValueInput";
 import { CustomPostAttr, StockData, UnitType } from "../../types/DataTypes";
 
 /************************
@@ -26,17 +25,19 @@ const pageContext: CustomPostAttr = {
 };
 
 const ValueAveragingCalculator = () => {
-  const storageKey = "vca";
+  const storageKey = "vcaList";
   const storage = typeof window !== "undefined" ? window.localStorage : null;
   const element: React.RefObject<HTMLDivElement> = React.createRef();
-  const [stockCacheValue, setStockCacheValue] = React.useState(getStockCacheValue());
+  const [stockCacheValueByName, setStockCacheValueByName] = React.useState(getStockCacheValue());
+  const [stockNameValue, setStockNameValue] = React.useState("");
 
-  function getStockCacheValue(): StockData {
+  function getStockCacheValue(): Map<string, StockData> {
     const stockCache = storage?.getItem(storageKey);
     if (stockCache) {
-      return JSON.parse(stockCache);
+      let parsed = JSON.parse(stockCache);
+      return new Map(parsed);
     }
-    return new StockData();
+    return new Map();
   }
 
   const clearResult = (e?: React.BaseSyntheticEvent) => {
@@ -47,10 +48,13 @@ const ValueAveragingCalculator = () => {
     }
   };
 
-  const resetInput = (e?: React.BaseSyntheticEvent) => {
+  const removeInput = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    storage?.removeItem(storageKey);
-    setStockCacheValue(new StockData());
+    clearResult(e);
+    stockCacheValueByName.delete(stockNameValue);
+    storage?.setItem(storageKey, JSON.stringify([...stockCacheValueByName]));
+    setStockCacheValueByName(stockCacheValueByName);
+    setStockNameValue("");
   };
 
   function constructStockData(e: React.BaseSyntheticEvent): StockData {
@@ -76,7 +80,9 @@ const ValueAveragingCalculator = () => {
     const vcaResult = getValueAveragingFormResult(stock);
     const root = ReactDOM.createRoot(divElement);
     root.render(vcaResult);
-    storage?.setItem(storageKey, JSON.stringify(stockData));
+    stockCacheValueByName.set(String(stockData.stockName), stockData);
+    storage?.setItem(storageKey, JSON.stringify([...stockCacheValueByName]));
+    setStockCacheValueByName(stockCacheValueByName);
   };
 
   const { site } = useStaticQuery(graphql`
@@ -105,7 +111,24 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab">
-              <StockNameValueInput stockCacheValue={stockCacheValue} />
+              <input
+                type="text"
+                list="stockNames"
+                name={"stockName"}
+                id={"stockName"}
+                className={"input-field"}
+                autoComplete={"off"}
+                required={true}
+                onChange={(e) => setStockNameValue(e.target.value.toUpperCase())}
+                value={stockNameValue}
+              />
+              {stockCacheValueByName && (
+                <datalist id="stockNames">
+                  {Array.from(stockCacheValueByName.keys()).map((stockName) => (
+                    <option value={stockName} key={stockName} />
+                  ))}
+                </datalist>
+              )}
             </div>
           </div>
           <div className="rowTab">
@@ -115,18 +138,18 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"since"}>
-              <SinceMonthValueInput stockCacheValue={stockCacheValue} />
-              <SinceYearValueInput stockCacheValue={stockCacheValue} />
+              <SinceMonthValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} />
+              <SinceYearValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} />
             </div>
           </div>
           <div className="rowTab">
             <div className="labels">
               <label id="number-label" htmlFor="totalLot">
-                Total stock yang dimiliki saat ini:
+                Stock yang dimiliki saat ini:
               </label>
             </div>
             <div className="rightTab" key={"totalLot"}>
-              <TotalLotValueInput stockCacheValue={stockCacheValue} /> Lot
+              <TotalLotValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} /> Lot
             </div>
           </div>
           <div className="rowTab">
@@ -136,7 +159,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"currentUnitPrice"}>
-              <UnitPriceValueInput stockCacheValue={stockCacheValue} />
+              <UnitPriceValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} />
             </div>
           </div>
           <div className="rowTab">
@@ -146,7 +169,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"monthlyInvestTarget"}>
-              <InvestTargetValueInput stockCacheValue={stockCacheValue} />
+              <InvestTargetValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} />
             </div>
           </div>
           <div>
@@ -157,8 +180,8 @@ const ValueAveragingCalculator = () => {
               <button className="clear-vca" onClick={clearResult}>
                 Clear
               </button>
-              <button className="reset-vca" onClick={resetInput}>
-                Reset
+              <button className="reset-vca" onClick={removeInput}>
+                Delete
               </button>
             </div>
           </div>
