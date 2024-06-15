@@ -10,51 +10,53 @@ import "./archive.css";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import { ArchiveNode, ArchiveState, DateObject } from "../types/DataTypes";
+import { ArchiveNode, DateObject } from "../types/DataTypes";
 import { getArchiveQuery } from "../utils/GetArchiveQuery.tsx";
 
 const ArchivePage = () => {
-  let pageQuery1 = getArchiveQuery();
-  const { allContentfulBlogPost } = pageQuery1;
+  let archiveQuery = getArchiveQuery();
+  const { allContentfulBlogPost } = archiveQuery;
   const posts = allContentfulBlogPost.nodes;
   if (posts.length === 0) {
-    return <></>;
+    return (
+      <Layout>
+        <></>
+      </Layout>
+    );
   }
 
   const lastDate = getMonthYearDate(posts[0].publishDate);
-  const [archiveState, setArchiveState] = useState<ArchiveState>({
-    activeMonth: [lastDate],
-    activeYear: [lastDate.split("-")[0]],
-    firstOpen: false,
-  });
+  const [activeMonth, setActiveMonth] = useState<string[]>([lastDate]);
+  const [activeYear, setActiveYear] = useState<string[]>([lastDate.split("-")[0]]);
 
-  const toggleActiveYear = (index: string) => {
-    let newActiveYear = [...archiveState.activeYear];
-    let newActiveMonth = [...archiveState.activeMonth];
+  const toggleActiveYear = (year: string) => {
+    let newActiveYear = [...activeYear];
+    let newActiveMonth = [...activeMonth];
 
-    if (newActiveYear.includes(index)) {
-      newActiveYear = newActiveYear.filter((o) => o !== index);
+    if (newActiveYear.includes(year)) {
+      newActiveYear = newActiveYear.filter((o) => o !== year);
       newActiveMonth = newActiveMonth.filter((o) => {
-        const monthYear = o.split("-");
-        return monthYear[0] !== index;
+        const yearMonth = o.split("-");
+        return yearMonth[0] !== year;
       });
     } else {
-      newActiveYear.push(index);
+      newActiveYear.push(year);
     }
 
-    setArchiveState({ activeMonth: newActiveMonth, activeYear: newActiveYear, firstOpen: false });
+    setActiveMonth(newActiveMonth);
+    setActiveYear(newActiveYear);
   };
 
-  const toggleActiveMonth = (index: string) => {
-    let newActiveMonth = [...archiveState.activeMonth];
+  const toggleActiveMonth = (yearMonth: string) => {
+    let newActiveMonth = [...activeMonth];
 
-    if (newActiveMonth.includes(index)) {
-      newActiveMonth = newActiveMonth.filter((o) => o !== index);
+    if (newActiveMonth.includes(yearMonth)) {
+      newActiveMonth = newActiveMonth.filter((o) => o !== yearMonth);
     } else {
-      newActiveMonth.push(index);
+      newActiveMonth.push(yearMonth);
     }
 
-    setArchiveState({ activeMonth: newActiveMonth, activeYear: archiveState.activeYear, firstOpen: false });
+    setActiveMonth(newActiveMonth);
   };
 
   let postByMonth = new Map<string, ArchiveNode[]>();
@@ -99,7 +101,7 @@ const ArchivePage = () => {
                 <span>{year}</span>
               </button>
 
-              <ul className={`archive-container ${archiveState.activeYear.includes(year) ? "visible" : "not-visible"}`}>
+              <ul className={`archive-container ${activeYear.includes(year) ? "visible" : "not-visible"}`}>
                 {post[1].map((contents) => {
                   const month = contents.date.split("-")[1];
                   return (
@@ -109,7 +111,7 @@ const ArchivePage = () => {
                       </button>
                       <ul
                         className={`archive-container ${
-                          archiveState.activeMonth.includes(contents.date) ? "visible" : "not-visible"
+                          activeMonth.includes(contents.date) ? "visible" : "not-visible"
                         }`}
                       >
                         {contents.archiveNodes.map((content) => {
