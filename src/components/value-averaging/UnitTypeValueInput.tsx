@@ -5,13 +5,10 @@
 
 import React from "react";
 
-import { StockCacheInputProps, UnitType } from "../../types/DataTypes";
+import { UnitType } from "../../types/DataTypes";
 
-export const UnitTypeValueInput = ({ stockCacheValue }: StockCacheInputProps) => {
+export const UnitTypeValueInput = () => {
   const [unitTypeValue, setUnitTypeValue] = React.useState("");
-  React.useEffect(() => {
-    setUnitTypeValue(String(stockCacheValue.unitType || ""));
-  }, [stockCacheValue]);
 
   return (
     <select
