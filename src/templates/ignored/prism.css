@@ -70,6 +70,10 @@ pre.language-text{
   font-weight: bolder;
 }
 
+p > .language-text{
+  color: #faa;
+}
+
 .token.punctuation {
   color: #999;
 }
