@@ -1,5 +1,5 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 
 export enum UnitType {
   LOT,
@@ -18,7 +18,7 @@ export class StockData {
 
 export interface StockCacheInputProps {
   readonly stockCacheValueByName: Map<string, StockData>;
-  readonly stockKey: string;
+  readonly stockName: string;
 }
 
 export interface AllContentfulBlogPost {
@@ -354,4 +354,10 @@ export interface PaginationProp {
   readonly nextPage: number;
   readonly pageStart: number;
   readonly pageLimit: number;
+}
+
+export interface StockNameProps {
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  stockName: string;
+  stockCacheValueByName: Map<string, StockData>;
 }

@@ -7,12 +7,12 @@ import React from "react";
 
 import { StockCacheInputProps } from "../../types/DataTypes";
 
-export const SinceMonthValueInput = ({ stockCacheValueByName, stockKey }: StockCacheInputProps) => {
+export const SinceMonthValueInput = ({ stockCacheValueByName, stockName }: StockCacheInputProps) => {
   const [sinceMonthValue, setSinceMonthValue] = React.useState("");
   React.useEffect(() => {
-    let stockCacheValue = stockCacheValueByName.get(stockKey);
+    let stockCacheValue = stockCacheValueByName.get(stockName);
     setSinceMonthValue(String(stockCacheValue?.sinceMonth || ""));
-  }, [stockCacheValueByName, stockKey]);
+  }, [stockCacheValueByName, stockName]);
 
   return (
     <select

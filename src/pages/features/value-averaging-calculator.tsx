@@ -11,6 +11,7 @@ import { SinceMonthValueInput } from "../../components/value-averaging/SinceMont
 import { SinceYearValueInput } from "../../components/value-averaging/SinceYearValueInput";
 import { UnitPriceValueInput } from "../../components/value-averaging/UnitPriceValueInput";
 import { CustomPostAttr, StockData, UnitType } from "../../types/DataTypes";
+import { StockNameValueInput } from "../../components/value-averaging/StockNameValueInput.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -29,7 +30,7 @@ const ValueAveragingCalculator = () => {
   const storage = typeof window !== "undefined" ? window.localStorage : null;
   const element: React.RefObject<HTMLDivElement> = React.createRef();
   const [stockCacheValueByName, setStockCacheValueByName] = React.useState(getStockCacheValue());
-  const [stockNameValue, setStockNameValue] = React.useState("");
+  const [stockName, setStockName] = React.useState("");
 
   function getStockCacheValue(): Map<string, StockData> {
     const stockCache = storage?.getItem(storageKey);
@@ -51,10 +52,10 @@ const ValueAveragingCalculator = () => {
   const removeInput = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
     clearResult(e);
-    stockCacheValueByName.delete(stockNameValue);
+    stockCacheValueByName.delete(stockName);
     storage?.setItem(storageKey, JSON.stringify([...stockCacheValueByName]));
     setStockCacheValueByName(stockCacheValueByName);
-    setStockNameValue("");
+    setStockName("");
   };
 
   function constructStockData(e: React.BaseSyntheticEvent): StockData {
@@ -111,24 +112,11 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab">
-              <input
-                type="text"
-                list="stockNames"
-                name={"stockName"}
-                id={"stockName"}
-                className={"input-field"}
-                autoComplete={"off"}
-                required={true}
-                onChange={(e) => setStockNameValue(e.target.value.toUpperCase())}
-                value={stockNameValue}
+              <StockNameValueInput
+                onChange={(e) => setStockName(e.target.value.toUpperCase())}
+                stockName={stockName}
+                stockCacheValueByName={stockCacheValueByName}
               />
-              {stockCacheValueByName && (
-                <datalist id="stockNames">
-                  {Array.from(stockCacheValueByName.keys()).map((stockName) => (
-                    <option value={stockName} key={stockName} />
-                  ))}
-                </datalist>
-              )}
             </div>
           </div>
           <div className="rowTab">
@@ -138,8 +126,8 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"since"}>
-              <SinceMonthValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} />
-              <SinceYearValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} />
+              <SinceMonthValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+              <SinceYearValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
             </div>
           </div>
           <div className="rowTab">
@@ -149,7 +137,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"totalLot"}>
-              <TotalLotValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} /> Lot
+              <TotalLotValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} /> Lot
             </div>
           </div>
           <div className="rowTab">
@@ -159,7 +147,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"currentUnitPrice"}>
-              <UnitPriceValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} />
+              <UnitPriceValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
             </div>
           </div>
           <div className="rowTab">
@@ -169,7 +157,7 @@ const ValueAveragingCalculator = () => {
               </label>
             </div>
             <div className="rightTab" key={"monthlyInvestTarget"}>
-              <InvestTargetValueInput stockCacheValueByName={stockCacheValueByName} stockKey={stockNameValue} />
+              <InvestTargetValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
             </div>
           </div>
           <div>

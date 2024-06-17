@@ -7,12 +7,12 @@ import React from "react";
 
 import { StockCacheInputProps } from "../../types/DataTypes";
 
-export const TotalLotValueInput = ({ stockCacheValueByName, stockKey }: StockCacheInputProps) => {
+export const TotalLotValueInput = ({ stockCacheValueByName, stockName }: StockCacheInputProps) => {
   const [totalLotValue, setTotalLotValue] = React.useState("");
   React.useEffect(() => {
-    let stockCacheValue = stockCacheValueByName.get(stockKey);
+    let stockCacheValue = stockCacheValueByName.get(stockName);
     setTotalLotValue(String(stockCacheValue?.totalLot || ""));
-  }, [stockCacheValueByName, stockKey]);
+  }, [stockCacheValueByName, stockName]);
 
   return (
     <input

@@ -4,20 +4,29 @@
  ************************/
 
 import React from "react";
+import { StockNameProps } from "../../types/DataTypes.ts";
 
-export const StockNameValueInput = () => {
-  const [stockNameValue, setStockNameValue] = React.useState("");
-
+export const StockNameValueInput = ({ onChange, stockName, stockCacheValueByName }: StockNameProps) => {
   return (
-    <input
-      type="text"
-      name={"stockName"}
-      id={"stockName"}
-      className={"input-field"}
-      autoComplete={"off"}
-      required={true}
-      onChange={(e) => setStockNameValue(e.target.value.toUpperCase())}
-      value={stockNameValue}
-    />
+    <>
+      <input
+        type="text"
+        list="stockNames"
+        name={"stockName"}
+        id={"stockName"}
+        className={"input-field"}
+        autoComplete={"off"}
+        required={true}
+        onChange={onChange}
+        value={stockName}
+      />
+      {stockCacheValueByName && (
+        <datalist id="stockNames">
+          {Array.from(stockCacheValueByName.keys()).map((stockName) => (
+            <option value={stockName} key={stockName} />
+          ))}
+        </datalist>
+      )}
+    </>
   );
 };
