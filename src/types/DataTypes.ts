@@ -309,7 +309,7 @@ export interface ArchiveState {
   readonly firstOpen: boolean;
 }
 
-export interface DateObject {
+export interface DateArchive {
   readonly date: string;
   readonly archiveNodes: Array<ArchiveNode>;
 }
