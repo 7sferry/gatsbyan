@@ -46,7 +46,8 @@
     },
     {
       "source": "/blog/fakta-unik-minangkabau-part-ii",
-      "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii"
+      "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii",
+      "permanent": true
     }
   ],
   "trailingSlash": false
