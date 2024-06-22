@@ -10,7 +10,7 @@ import "./archive.css";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import { ArchiveNode, DateObject } from "../types/DataTypes";
+import { ArchiveNode, DateArchive } from "../types/DataTypes";
 import { getArchiveQuery } from "../utils/GetArchiveQuery.tsx";
 
 const ArchivePage = () => {
@@ -73,7 +73,7 @@ const ArchivePage = () => {
     });
   }
 
-  let postByYear = new Map<string, DateObject[]>();
+  let postByYear = new Map<string, DateArchive[]>();
   postByMonth.forEach((v, k) => {
     const yearMonth = k.split("-");
     let year = yearMonth[0];
@@ -92,6 +92,7 @@ const ArchivePage = () => {
       <ul className="archive-container parent-archive-container">
         {Array.from(postByYear.entries()).map((post, i) => {
           const year = post[0];
+          let dateArchives = post[1];
           return (
             <li key={i} className={"item"}>
               <button className={`archive-link`} onClick={() => toggleActiveYear(year)}>
@@ -102,19 +103,19 @@ const ArchivePage = () => {
               </button>
 
               <ul className={`archive-container ${activeYear.includes(year) ? "visible" : "not-visible"}`}>
-                {post[1].map((contents) => {
-                  const month = contents.date.split("-")[1];
+                {dateArchives.map((dateArchive) => {
+                  const month = dateArchive.date.split("-")[1];
                   return (
                     <li key={month} className={"item"}>
-                      <button className="archive-link" onClick={() => toggleActiveMonth(contents.date)}>
+                      <button className="archive-link" onClick={() => toggleActiveMonth(dateArchive.date)}>
                         <span>{month}</span>
                       </button>
                       <ul
                         className={`archive-container ${
-                          activeMonth.includes(contents.date) ? "visible" : "not-visible"
+                          activeMonth.includes(dateArchive.date) ? "visible" : "not-visible"
                         }`}
                       >
-                        {contents.archiveNodes.map((content) => {
+                        {dateArchive.archiveNodes.map((content) => {
                           return (
                             <li className={"item"} key={content.slug}>
                               <Link className={"archive-link"} to={`/blog/${content.slug}`}>

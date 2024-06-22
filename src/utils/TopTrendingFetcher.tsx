@@ -8,9 +8,7 @@ import { useEffect, useState } from "react";
 export const fetchTopTrending = (titleByPath: Map<string, string>) => {
   const [trendingReports, setTrendingReports] = useState<TrendingReport[]>([]);
   useEffect(() => {
-    getTopTrendingReports().then((reports) => {
-      setTrendingReports(reports);
-    });
+    getTopTrendingReports().then(setTrendingReports);
   }, []);
 
   return trendingReports
