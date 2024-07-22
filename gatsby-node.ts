@@ -31,7 +31,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
         if (errors) {
           console.log("errors: " + errors);
           reject(errors);
-          reporter.panicOnBuild(`There was an error loading your Contentful posts`, errors);
+          // reporter.panicOnBuild(`There was an error loading your Contentful posts`, errors);
           return;
         }
 
@@ -114,6 +114,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
               limit: postsPerPage,
               skip: i * postsPerPage,
             },
+            defer: i > 0,
           });
         });
 
@@ -130,6 +131,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
                 limit: postsPerPage,
                 skip: i * postsPerPage,
               },
+              defer: true,
             });
           });
         });
