@@ -4,10 +4,10 @@
   "version": "2.2.0",
   "author": "Ferry",
   "dependencies": {
-    "algoliasearch": "^4.22.1",
+    "algoliasearch": "^4.24.0",
     "bootstrap": "^5.3.2",
     "date-fns": "^3.3.1",
-    "gatsby": "^5.13.3",
+    "gatsby": "^5.13.7",
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-catch-links": "^5.13.1",
     "gatsby-plugin-google-analytics-data-reporting-api": "^2.0.0-beta1",
@@ -30,7 +30,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
-    "react-instantsearch": "^7.5.3"
+    "react-instantsearch": "^7.12.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.8",
@@ -38,7 +38,7 @@
     "@types/react-dom": "^18.2.18",
     "dotenv": "^16.4.1",
     "prettier": "^3.2.4",
-    "typescript": "^5.3.3",
+    "typescript": "^5.5.3",
     "yarn-upgrade-all": "^0.7.2"
   },
   "keywords": [
