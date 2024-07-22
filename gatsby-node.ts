@@ -15,6 +15,7 @@ export const onPostBootstrap = () => {
 
 export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: CreatePagesArgs) => {
   const { createPage, createRedirect, createSlice } = actions;
+  console.log(typeof reporter);
 
   return new Promise((resolve, reject) => {
     resolve(
