@@ -5,13 +5,13 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import { getReport, ReportingPluginOption, TrendingReport } from "gatsby-plugin-google-analytics-data-reporting-api";
 
-function getTimeToLiveExpiration() {
+function constructTtlExpirationToMidnight() {
   let currentDate = new Date();
   return (23 - currentDate.getHours()) * 3600 + (59 - currentDate.getMinutes()) * 60;
 }
 
 export default async function handler(_: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
-  let ttl = getTimeToLiveExpiration();
+  let ttl = constructTtlExpirationToMidnight();
   let opt: ReportingPluginOption = {
     privateKey: process.env.ANALYTICS_PRIVATE_KEY,
     property: process.env.ANALYTICS_GA4,
