@@ -16,12 +16,12 @@ export function fetchFeaturedPages() {
               "write-skew-pada-database"
               "fakta-unik-minangkabau"
               "java-membuat-pdf-dinamis"
-              "the-gebetans"
+              "web-rendering-strategy-csr-ssr-ssg-dsg-isr"
               "perluas-pengetahuanmu-tentang-offside"
             ]
           }
         }
-        sort: { createdAt: DESC }
+        sort: { updatedAt: DESC }
       ) {
         nodes {
           slug
