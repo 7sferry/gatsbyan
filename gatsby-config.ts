@@ -182,6 +182,7 @@ const gatsbyConfig: GatsbyConfig = {
         gtagConfig: {
           // optimize_id: process.env.ANALYTICS_OPTIMIZE_ID,
           anonymize_ip: true,
+          cookie_flags: "SameSite=None;Secure",
           // cookie_expires: 0,
         },
         // This object is used for configuration specific to this plugin
