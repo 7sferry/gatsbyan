@@ -181,7 +181,8 @@ const gatsbyConfig: GatsbyConfig = {
         // This config will be shared across all trackingIds
         gtagConfig: {
           // optimize_id: process.env.ANALYTICS_OPTIMIZE_ID,
-          anonymize_ip: true,
+          // anonymize_ip: true,
+          cookie_domain: "ferry.vercel.app",
           cookie_flags: "SameSite=None;Secure",
           // cookie_expires: 0,
         },
