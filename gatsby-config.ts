@@ -183,6 +183,7 @@ const gatsbyConfig: GatsbyConfig = {
           // optimize_id: process.env.ANALYTICS_OPTIMIZE_ID,
           anonymize_ip: true,
           cookie_flags: "SameSite=None;Secure",
+          cookie_domain: "vercel.app",
           // cookie_expires: 0,
         },
         // This object is used for configuration specific to this plugin
