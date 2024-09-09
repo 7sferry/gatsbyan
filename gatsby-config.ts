@@ -184,7 +184,7 @@ const gatsbyConfig: GatsbyConfig = {
           anonymize_ip: true,
           cookie_domain: "ferry.vercel.app",
           cookie_flags: "SameSite=None;Secure",
-          // cookie_expires: 0,
+          cookie_expires: 360 * 24 * 60 * 60,
         },
         // This object is used for configuration specific to this plugin
         pluginConfig: {
