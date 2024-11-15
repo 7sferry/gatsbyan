@@ -1,16 +1,11 @@
 import React from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { Link } from "gatsby";
 import { kebabCase } from "../../utils/GatsbyanUtils";
 import { TagsData } from "../../types/DataTypes";
+import { getTagsQuery } from "../../utils/GetTagsQuery.tsx";
 
 const Tags = () => {
-  const { allContentfulBlogPost }: TagsData = useStaticQuery(graphql`
-    query Tags {
-      allContentfulBlogPost {
-        tags: distinct(field: { tags: SELECT })
-      }
-    }
-  `);
+  const { allContentfulBlogPost }: TagsData = getTagsQuery();
 
   return (
     <>

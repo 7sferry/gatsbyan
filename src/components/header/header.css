@@ -69,6 +69,10 @@ small {
   padding: .5rem;
 }
 
+.mobile-only {
+  display: none;
+}
+
 @media only screen and (max-width: 1440px){
 
   .bio-picture {
@@ -118,8 +122,12 @@ small {
     justify-content: space-evenly;
   }
 
-  .mobile-tag {
+  .non-mobile-only {
     display: none;
+  }
+
+  .mobile-only {
+    display: inline-block;
   }
 
   .head-elements {

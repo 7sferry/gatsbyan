@@ -4,7 +4,7 @@
  ************************/
 
 import React, { useState } from "react";
-import { HeadProps, Link } from "gatsby";
+import { HeadProps, Link, Slice } from "gatsby";
 import { MdArchive } from "react-icons/md";
 import "./archive.css";
 import { getMonthYearDate } from "../utils/GatsbyanUtils";
@@ -89,6 +89,9 @@ const ArchivePage = () => {
 
   return (
     <Layout>
+      <div className="tech-tags mb-3 mobile-only text-center">
+        <Slice alias={"Tags"} />
+      </div>
       <ul className="archive-container parent-archive-container">
         {Array.from(postByYear.entries()).map((post, i) => {
           const year = post[0];
