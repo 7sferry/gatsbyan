@@ -89,7 +89,7 @@ const ArchivePage = () => {
 
   return (
     <Layout>
-      <div className="tech-tags mb-3 mobile-only text-center">
+      <div className="tech-tags mb-2 mobile-only text-center">
         <Slice alias={"Tags"} />
       </div>
       <ul className="archive-container parent-archive-container">
