@@ -23,7 +23,7 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
       <Slice alias="Header" siteTitle={metadata.title} />
       <main className="main-layout">
         <section className="sidebar">
-          <LeftSidebar photo={photo} author={metadata.author} tagline={metadata.tagline} contacts={metadata.contacts} />
+          <LeftSidebar photo={photo} author={metadata.author} tagline={metadata.tagline} />
         </section>
         <section className="post-main">{children}</section>
         <section className="right-sidebar">
