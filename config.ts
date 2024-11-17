@@ -17,7 +17,7 @@ const siteConfig = {
       facebook: "https://facebook.com/7sferry",
       crystal: "https://www.crystalknows.com/p/ferry",
       stackOverFlow: "https://stackoverflow.com/users/14286378/ferry",
-      resume: "https://ferry.netlify.com/resume/",
+      resume: "https://ferry.netlify.app",
     },
   },
 };
