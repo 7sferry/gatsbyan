@@ -14,14 +14,6 @@ const useSiteMetadata = () => {
           tagline
           author
           copyright
-          contacts {
-            linkedin
-            github
-            facebook
-            resume
-            stackOverFlow
-            crystal
-          }
         }
       }
     }

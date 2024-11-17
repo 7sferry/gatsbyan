@@ -4,10 +4,8 @@
  ************************/
 
 import type { GatsbyConfig } from "gatsby";
-import siteConfig from "./config";
-import { config } from "dotenv";
-
-config();
+import siteConfig from "./src/config.ts";
+import "dotenv/config";
 
 function isProduction() {
   return process.env.NODE_ENV === "production" || !process.env.PREVIEW_TOKEN;
@@ -46,14 +44,6 @@ const gatsbyConfig: GatsbyConfig = {
     author: siteConfig.author.name,
     realName: siteConfig.author.realName,
     copyright: siteConfig.copyright,
-    contacts: {
-      linkedin: siteConfig.author.contacts.linkedin,
-      github: siteConfig.author.contacts.github,
-      crystal: siteConfig.author.contacts.crystal,
-      stackOverFlow: siteConfig.author.contacts.stackOverFlow,
-      resume: siteConfig.author.contacts.resume,
-      facebook: siteConfig.author.contacts.facebook,
-    },
   },
   plugins: [
     `gatsby-transformer-sharp`,
@@ -189,7 +179,7 @@ const gatsbyConfig: GatsbyConfig = {
         // This object is used for configuration specific to this plugin
         pluginConfig: {
           // Puts tracking script in the head instead of the body
-          // head: true,
+          head: true,
           // Setting this parameter is also optional
           // respectDNT: true,
           // Avoids sending pageview hits from custom paths

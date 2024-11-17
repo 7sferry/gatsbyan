@@ -1,5 +1,6 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React, { ChangeEventHandler } from "react";
+import { IconType } from "react-icons/lib";
 
 export enum UnitType {
   LOT,
@@ -49,16 +50,13 @@ export interface LeftSidebarAttr {
   readonly photo: {};
   readonly author: string;
   readonly tagline: string;
-  readonly contacts: {};
 }
 
 export interface ContactsAttr {
-  readonly linkedin: string;
-  readonly github: string;
-  readonly facebook: string;
-  readonly stackOverFlow: string;
-  readonly resume: string;
-  readonly crystal: string;
+  readonly name: string;
+  readonly icon: IconType;
+  readonly url: string;
+  readonly color: string;
 }
 
 export interface CustomPostAttr {
@@ -130,7 +128,7 @@ export interface BlogPostProp {
 }
 
 export interface SocialAttr {
-  readonly contacts: ContactsAttr;
+  readonly contacts: ContactsAttr[];
 }
 
 export interface HeaderAttr {

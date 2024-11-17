@@ -605,47 +605,6 @@ type ContentfulEntryGroupConnection {
     totalCount: Int!
 }
 
-type ContentfulImageWithFocalPoint implements ContentfulEntry & ContentfulReference & Node {
-    children: [Node!]!
-    contentful_id: String!
-    id: ID!
-    internal: Internal!
-    node_locale: String!
-    parent: Node
-}
-
-type ContentfulImageWithFocalPointConnection {
-    distinct(field: ContentfulImageWithFocalPointFieldSelector!): [String!]!
-    edges: [ContentfulImageWithFocalPointEdge!]!
-    group(field: ContentfulImageWithFocalPointFieldSelector!, limit: Int, skip: Int): [ContentfulImageWithFocalPointGroupConnection!]!
-    max(field: ContentfulImageWithFocalPointFieldSelector!): Float
-    min(field: ContentfulImageWithFocalPointFieldSelector!): Float
-    nodes: [ContentfulImageWithFocalPoint!]!
-    pageInfo: PageInfo!
-    sum(field: ContentfulImageWithFocalPointFieldSelector!): Float
-    totalCount: Int!
-}
-
-type ContentfulImageWithFocalPointEdge {
-    next: ContentfulImageWithFocalPoint
-    node: ContentfulImageWithFocalPoint!
-    previous: ContentfulImageWithFocalPoint
-}
-
-type ContentfulImageWithFocalPointGroupConnection {
-    distinct(field: ContentfulImageWithFocalPointFieldSelector!): [String!]!
-    edges: [ContentfulImageWithFocalPointEdge!]!
-    field: String!
-    fieldValue: String
-    group(field: ContentfulImageWithFocalPointFieldSelector!, limit: Int, skip: Int): [ContentfulImageWithFocalPointGroupConnection!]!
-    max(field: ContentfulImageWithFocalPointFieldSelector!): Float
-    min(field: ContentfulImageWithFocalPointFieldSelector!): Float
-    nodes: [ContentfulImageWithFocalPoint!]!
-    pageInfo: PageInfo!
-    sum(field: ContentfulImageWithFocalPointFieldSelector!): Float
-    totalCount: Int!
-}
-
 type Directory implements Node {
     absolutePath: String!
     accessTime(
@@ -1250,7 +1209,6 @@ type Query {
     allContentfulBlogPostDescriptionTextNode(filter: contentfulBlogPostDescriptionTextNodeFilterInput, limit: Int, skip: Int, sort: [contentfulBlogPostDescriptionTextNodeSortInput]): contentfulBlogPostDescriptionTextNodeConnection!
     allContentfulContentType(filter: ContentfulContentTypeFilterInput, limit: Int, skip: Int, sort: [ContentfulContentTypeSortInput]): ContentfulContentTypeConnection!
     allContentfulEntry(filter: ContentfulEntryFilterInput, limit: Int, skip: Int, sort: [ContentfulEntrySortInput]): ContentfulEntryConnection!
-    allContentfulImageWithFocalPoint(filter: ContentfulImageWithFocalPointFilterInput, limit: Int, skip: Int, sort: [ContentfulImageWithFocalPointSortInput]): ContentfulImageWithFocalPointConnection!
     allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: [DirectorySortInput]): DirectoryConnection!
     allFile(filter: FileFilterInput, limit: Int, skip: Int, sort: [FileSortInput]): FileConnection!
     allImageSharp(filter: ImageSharpFilterInput, limit: Int, skip: Int, sort: [ImageSharpSortInput]): ImageSharpConnection!
@@ -1267,7 +1225,6 @@ type Query {
     contentfulBlogPostDescriptionTextNode(childMarkdownRemark: MarkdownRemarkFilterInput, children: NodeFilterListInput, childrenMarkdownRemark: MarkdownRemarkFilterListInput, description: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, sys: contentfulBlogPostDescriptionTextNodeSysFilterInput): contentfulBlogPostDescriptionTextNode
     contentfulContentType(children: NodeFilterListInput, displayField: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput, sys: ContentfulContentTypeSysFilterInput): ContentfulContentType
     contentfulEntry(children: NodeFilterListInput, contentful_id: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, node_locale: StringQueryOperatorInput, parent: NodeFilterInput): ContentfulEntry
-    contentfulImageWithFocalPoint(children: NodeFilterListInput, contentful_id: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, node_locale: StringQueryOperatorInput, parent: NodeFilterInput): ContentfulImageWithFocalPoint
     directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
     file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, childrenImageSharp: ImageSharpFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
     imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
@@ -1534,7 +1491,7 @@ type SitePluginGroupConnection {
 
 type SiteSiteMetadata {
     author: String
-    contacts: SiteSiteMetadataContacts
+    contacts: [SiteSiteMetadataContacts]
     copyright: String
     description: String
     realName: String
@@ -1545,12 +1502,9 @@ type SiteSiteMetadata {
 }
 
 type SiteSiteMetadataContacts {
-    crystal: String
-    facebook: String
-    github: String
-    linkedin: String
-    resume: String
-    stackOverFlow: String
+    color: String
+    name: String
+    url: String
 }
 
 type contentfulBlogPostBodyTextNode implements Node {
@@ -2182,33 +2136,6 @@ input ContentfulEntryFilterInput {
 }
 
 input ContentfulEntrySortInput {
-    children: NodeSortInput
-    contentful_id: SortOrderEnum
-    id: SortOrderEnum
-    internal: InternalSortInput
-    node_locale: SortOrderEnum
-    parent: NodeSortInput
-}
-
-input ContentfulImageWithFocalPointFieldSelector {
-    children: NodeFieldSelector
-    contentful_id: FieldSelectorEnum
-    id: FieldSelectorEnum
-    internal: InternalFieldSelector
-    node_locale: FieldSelectorEnum
-    parent: NodeFieldSelector
-}
-
-input ContentfulImageWithFocalPointFilterInput {
-    children: NodeFilterListInput
-    contentful_id: StringQueryOperatorInput
-    id: StringQueryOperatorInput
-    internal: InternalFilterInput
-    node_locale: StringQueryOperatorInput
-    parent: NodeFilterInput
-}
-
-input ContentfulImageWithFocalPointSortInput {
     children: NodeSortInput
     contentful_id: SortOrderEnum
     id: SortOrderEnum
@@ -3108,30 +3035,25 @@ input SitePluginSortInput {
 }
 
 input SiteSiteMetadataContactsFieldSelector {
-    crystal: FieldSelectorEnum
-    facebook: FieldSelectorEnum
-    github: FieldSelectorEnum
-    linkedin: FieldSelectorEnum
-    resume: FieldSelectorEnum
-    stackOverFlow: FieldSelectorEnum
+    color: FieldSelectorEnum
+    name: FieldSelectorEnum
+    url: FieldSelectorEnum
 }
 
 input SiteSiteMetadataContactsFilterInput {
-    crystal: StringQueryOperatorInput
-    facebook: StringQueryOperatorInput
-    github: StringQueryOperatorInput
-    linkedin: StringQueryOperatorInput
-    resume: StringQueryOperatorInput
-    stackOverFlow: StringQueryOperatorInput
+    color: StringQueryOperatorInput
+    name: StringQueryOperatorInput
+    url: StringQueryOperatorInput
+}
+
+input SiteSiteMetadataContactsFilterListInput {
+    elemMatch: SiteSiteMetadataContactsFilterInput
 }
 
 input SiteSiteMetadataContactsSortInput {
-    crystal: SortOrderEnum
-    facebook: SortOrderEnum
-    github: SortOrderEnum
-    linkedin: SortOrderEnum
-    resume: SortOrderEnum
-    stackOverFlow: SortOrderEnum
+    color: SortOrderEnum
+    name: SortOrderEnum
+    url: SortOrderEnum
 }
 
 input SiteSiteMetadataFieldSelector {
@@ -3148,7 +3070,7 @@ input SiteSiteMetadataFieldSelector {
 
 input SiteSiteMetadataFilterInput {
     author: StringQueryOperatorInput
-    contacts: SiteSiteMetadataContactsFilterInput
+    contacts: SiteSiteMetadataContactsFilterListInput
     copyright: StringQueryOperatorInput
     description: StringQueryOperatorInput
     realName: StringQueryOperatorInput
