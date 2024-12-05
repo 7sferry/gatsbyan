@@ -70,6 +70,10 @@ pre.language-text{
   font-weight: bolder;
 }
 
+code.language-text{
+  background: none !important;
+}
+
 p > .language-text{
   color: #faa;
 }
