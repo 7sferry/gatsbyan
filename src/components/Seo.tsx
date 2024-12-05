@@ -7,7 +7,7 @@ import { SeoAttr } from "../types/DataTypes";
  * on Januari 2023      *
  ************************/
 
-export default function Seo({ description, lang = "id", title = "", image, path = "" }: SeoAttr) {
+export default function Seo({ description, lang = "id", title = "", image, path = "", date = `2024-11-29` }: SeoAttr) {
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -27,12 +27,38 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   const metaImage = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri.jpg`;
   const metaImageLarge = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri-large.jpg`;
   const metaUrl = metadata.siteUrl + path;
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    author: {
+      "@type": "Person",
+      name: metadata.realName,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: metadata.author,
+      logo: {
+        "@type": "ImageObject",
+        url: `${metadata.siteUrl}/ferry-suhandri-large.jpg`,
+      },
+    },
+    datePublished: date,
+    dateModified: date,
+    image: metaImageLarge,
+    description: metaDescription,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": metaUrl,
+    },
+  };
 
   let name = path?.startsWith("/blog") || path?.startsWith("/features") ? `[${metadata.realName}]` : "";
   return (
     <>
       <html lang={lang} />
       <link rel="canonical" href={metaUrl} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       <title>{`${title} ${name}`}</title>
       <meta name="description" content={metaDescription} />
       <meta name="og:title" content={title} />

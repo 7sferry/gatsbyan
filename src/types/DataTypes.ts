@@ -73,6 +73,7 @@ export interface SeoAttr {
   readonly title?: string;
   readonly image?: string;
   readonly path?: string;
+  readonly date?: string;
 }
 
 export interface CommaSeparatedLinkedPostTagsAttr {

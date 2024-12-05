@@ -8,7 +8,7 @@ import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
-import { getPlurals, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
+import { getDateYear, getPlurals, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
@@ -162,6 +162,7 @@ export function Head({ data, location }: React.PropsWithRef<BlogPostProp>) {
       lang={post?.lang?.[0]}
       image={post?.heroImage?.file?.url}
       path={location?.pathname}
+      date={getDateYear(post?.publishDate)}
     />
   );
 }

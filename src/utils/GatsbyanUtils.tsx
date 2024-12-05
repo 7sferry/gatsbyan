@@ -16,6 +16,8 @@ export const getPublishDate = (date: string | Date) => formatToPattern(date, "MM
 
 export const getPublishDateTime = (date: string | Date) => formatToPattern(date, "eee. MMM do, yyyy hh:mm a");
 
+export const getDateYear = (date: string | Date) => formatToPattern(date, "yyyy-MM-dd");
+
 export const getMonthYearDate = (date: string | Date) => formatToPattern(date, "yyyy-MMMM");
 
 export const toNow = (date: string | Date) => formatDistanceToNow(date);
