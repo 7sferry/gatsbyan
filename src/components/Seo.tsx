@@ -32,6 +32,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
   return (
     <>
       <html lang={lang} />
+      <link rel="canonical" href={metaUrl} />
       <title>{`${title} ${name}`}</title>
       <meta name="description" content={metaDescription} />
       <meta name="og:title" content={title} />
