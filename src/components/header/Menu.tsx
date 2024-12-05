@@ -6,8 +6,30 @@
 import React from "react";
 import { Link } from "gatsby";
 import "./header.css";
-import siteConfig from "../../config.ts";
 import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
+import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
+import { MenuAttr } from "../../types/DataTypes.ts";
+
+const menuObjects: MenuAttr[] = [
+  {
+    link: "/",
+    icon: FaHome,
+    title: "Homepage",
+    text: "Home",
+  },
+  {
+    link: "/archive",
+    icon: FaArchive,
+    title: "Archive page",
+    text: "Archive",
+  },
+  {
+    link: "/search",
+    icon: FaSearchengin,
+    title: "Search page",
+    text: "Search",
+  },
+];
 
 const Menu = () => {
   return (
@@ -19,7 +41,7 @@ const Menu = () => {
 
 export const MenuLinks = () => (
   <>
-    {siteConfig.menuObjects.map((menu) => {
+    {menuObjects.map((menu) => {
       return (
         <Link key={menu.link} to={menu.link}>
           <span className="menu-button">
