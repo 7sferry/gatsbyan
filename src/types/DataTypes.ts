@@ -261,8 +261,9 @@ export interface PagingLinkAttr {
 
 export interface MenuAttr {
   readonly link: string;
-  readonly icon: React.ReactNode;
+  readonly icon: IconType;
   readonly text: string;
+  readonly title: string;
 }
 
 export interface FeaturedPageData {
@@ -359,4 +360,21 @@ export interface StockNameProps {
   onChange: ChangeEventHandler<HTMLInputElement>;
   stockName: string;
   stockCacheValueByName: Map<string, StockData>;
+}
+
+export interface SiteConfig {
+  readonly url: string;
+  readonly repo: string;
+  readonly title: string;
+  readonly tagline: string;
+  readonly description: string;
+  readonly copyright: string;
+  readonly author: AuthorConfig;
+  readonly menuObjects: MenuAttr[];
+}
+
+export interface AuthorConfig {
+  readonly name: string;
+  readonly realName: string;
+  readonly contacts: ContactsAttr[];
 }

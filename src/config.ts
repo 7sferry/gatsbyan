@@ -3,10 +3,20 @@
  * on November 2024     *
  ************************/
 
-import { FaGithubSquare, FaInstagram, FaLinkedin, FaStackOverflow, FaUserGraduate } from "react-icons/fa";
+import {
+  FaArchive,
+  FaGithubSquare,
+  FaHome,
+  FaInstagram,
+  FaLinkedin,
+  FaSearchengin,
+  FaStackOverflow,
+  FaUserGraduate,
+} from "react-icons/fa";
 import { GiCrystalBall } from "react-icons/gi";
+import { SiteConfig } from "./types/DataTypes.ts";
 
-export const siteConfig = {
+export const siteConfig: SiteConfig = {
   url: "https://ferry.vercel.app",
   repo: "7sferry/gatsbyan",
   title: "MR Ferry",
@@ -56,6 +66,26 @@ export const siteConfig = {
       },
     ],
   },
+  menuObjects: [
+    {
+      link: "/",
+      icon: FaHome,
+      title: "Homepage",
+      text: "Home",
+    },
+    {
+      link: "/archive",
+      icon: FaArchive,
+      title: "Archive page",
+      text: "Archive",
+    },
+    {
+      link: "/search",
+      icon: FaSearchengin,
+      title: "Search page",
+      text: "Search",
+    },
+  ],
 };
 
 export default siteConfig;

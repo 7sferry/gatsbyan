@@ -34,6 +34,7 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
 .head-logo {
   font-family: "Work Sans", serif;
   font-size: 1.75rem;
@@ -51,7 +52,7 @@ small {
 
 .bio-name {
   font-size: 2vw;
-  margin: .5rem 0 .25rem 0;
+  margin: 0.5rem 0 0.25rem 0;
   color: inherit;
   font-weight: 600;
   line-height: 1.1;
@@ -66,20 +67,18 @@ small {
 }
 
 .social-icon {
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .mobile-only {
   display: none;
 }
 
-@media only screen and (max-width: 1440px){
-
+@media only screen and (max-width: 1440px) {
   .bio-picture {
     max-width: 300px;
     max-height: 300px;
   }
-
 }
 
 @media only screen and (max-width: 1024px) {
@@ -108,13 +107,13 @@ small {
   .bio-name {
     color: inherit;
     font-size: 20px;
-    margin: .25rem 0;
+    margin: 0.25rem 0;
   }
 
   .mobile-bio-main {
     display: flex;
     flex-direction: row;
-    padding: 0 0 .25rem;
+    padding: 0 0 0.25rem;
     background: rgb(44, 47, 49);
   }
 
@@ -139,19 +138,21 @@ small {
   }
 }
 
-@media only screen and (max-width: 416px){
-
+@media only screen and (max-width: 416px) {
   .bio-picture {
     max-width: 75px;
     max-height: 75px;
   }
-
 }
 
 .menu-button {
   color: #fff;
   display: block;
   margin: 0 0.5rem;
+}
+
+.menu-button > span {
+  padding-left: 0.3em;
 }
 
 .header-link {
