@@ -370,11 +370,9 @@ export interface SiteConfig {
   readonly description: string;
   readonly copyright: string;
   readonly author: AuthorConfig;
-  readonly menuObjects: MenuAttr[];
 }
 
 export interface AuthorConfig {
   readonly name: string;
   readonly realName: string;
-  readonly contacts: ContactsAttr[];
 }
