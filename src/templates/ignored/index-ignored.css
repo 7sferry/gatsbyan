@@ -319,6 +319,7 @@ input[type="number"]::-webkit-outer-spin-button {
   .input-field {
     width: 80%;
   }
+
   select {
     width: 90%;
   }
@@ -329,13 +330,16 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100%;
     text-align: left;
   }
+
   .rightTab {
     width: 95%;
     float: left;
   }
+
   .input-field {
     width: 100%;
   }
+
   select {
     width: 100%;
   }
@@ -349,19 +353,14 @@ input[type="number"]::-webkit-outer-spin-button {
   white-space: pre-wrap; /* let the text wrap preserving spaces */
 }
 
-.truncated {
-  overflow: hidden;
+.expanded, .truncated {
   display: -webkit-box !important;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* start showing ellipsis when 3rd line is reached */
   white-space: pre-wrap; /* let the text wrap preserving spaces */
-  text-overflow: ellipsis;
 }
 
-.expanded {
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical;
-  white-space: pre-wrap; /* let the text wrap preserving spaces */
+.read-more-tagline {
+  display: none;
 }
 
 .search-result-container {
@@ -401,24 +400,38 @@ iframe {
 }
 
 .hero {
-    position: relative;
-    color: #fff;
-    text-align: center;
-    margin: 0 0 1rem 0;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 1rem 0;
 }
 
 .heroImage {
-    max-height: 55vh;
+  max-height: 55vh;
 }
 
 @media (min-height: 1024px) {
-    .heroImage {
-        max-height: 50vh;
-    }
+  .heroImage {
+    max-height: 50vh;
+  }
 }
 
 @media (max-width: 450px) {
-    .heroImage {
-        max-height: 35vh;
-    }
+  .heroImage {
+    max-height: 35vh;
+  }
+
+  .truncated {
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* start showing ellipsis when 3rd line is reached */
+    white-space: pre-wrap; /* let the text wrap preserving spaces */
+    text-overflow: ellipsis;
+  }
+
+  .read-more-tagline {
+    display: block;
+  }
+
 }
