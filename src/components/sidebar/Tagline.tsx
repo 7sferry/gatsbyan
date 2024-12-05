@@ -36,6 +36,7 @@ const Tagline = ({ tagline }: TaglineAttr) => {
     e?.preventDefault();
     setIsExpanded(!isExpanded);
   };
+
   return (
     <>
       <small ref={paragraphRef} className={isExpanded ? "expanded" : "truncated"}>
@@ -43,7 +44,7 @@ const Tagline = ({ tagline }: TaglineAttr) => {
       </small>
       {isTwoLines && (
         <a style={{ fontSize: "85%" }} href={"#"} onClick={(e) => toggleExpansion(e)}>
-          {isExpanded ? "Read less" : "Read more"}
+          <span className={"read-more-tagline"}>{isExpanded ? "Read less" : "Read more"}</span>
         </a>
       )}
     </>
