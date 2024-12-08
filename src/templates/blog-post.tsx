@@ -40,7 +40,11 @@ const BlogPostTemplate = (props: BlogPostProp) => {
     <Layout>
       <div className="title posted">{post.title}</div>
       <div className="title text-info mb-2">
-        {!isSSR && <LazyComponent date={publishDate} />}
+        {!isSSR && (
+          <React.Suspense fallback={<div />}>
+            <LazyComponent date={publishDate} />
+          </React.Suspense>
+        )}
         <span className="page-info" style={{ display: "inline-block" }}>
           {timeToRead} min{getPlurals(timeToRead)} read
         </span>
