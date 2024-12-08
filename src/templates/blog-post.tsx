@@ -8,8 +8,8 @@ import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
-import { getDateYear, getPlurals, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
-import React from "react";
+import { getDateYear, getPlurals, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
+import React, { lazy } from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
 import { BlogPostHeroImage, BlogPostProp } from "../types/DataTypes";
@@ -34,11 +34,13 @@ const BlogPostTemplate = (props: BlogPostProp) => {
     return post.sys?.revision > 5 && isAfterDate(updatedAt, plusDays(publishDate, 30));
   };
 
+  const LazyComponent = lazy(() => import("./publish-date.tsx"));
+
   return (
     <Layout>
       <div className="title posted">{post.title}</div>
       <div className="title text-info mb-2">
-        {!isSSR && <span className="page-info">{getPublishDateTime(publishDate)}</span>}
+        {!isSSR && <LazyComponent date={publishDate} />}
         <span className="page-info" style={{ display: "inline-block" }}>
           {timeToRead} min{getPlurals(timeToRead)} read
         </span>
