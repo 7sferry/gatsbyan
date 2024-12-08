@@ -27,9 +27,9 @@ export const isAfterDate = (date1: string | Date, date2: string | Date) => isAft
 export const plusDays = (date: string | Date, day: number) => add(date, { days: day });
 
 function formatToPattern(dateArg: string | Date, formatString: string, timeZone: string = "Asia/Jakarta") {
-  const date = typeof dateArg === "string" ? new Date(dateArg) : dateArg;
-  const zonedDate = date.toLocaleString("en-US", { timeZone: timeZone });
-  return format(zonedDate, formatString);
+  // const date = typeof dateArg === "string" ? new Date(dateArg) : dateArg;
+  // const zonedDate = date.toLocaleString("en-US", { timeZone: timeZone });
+  return format(dateArg, formatString);
 }
 
 export const getPlurals = (count: number) => {
