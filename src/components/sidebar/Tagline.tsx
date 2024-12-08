@@ -43,8 +43,8 @@ const Tagline = ({ tagline }: TaglineAttr) => {
         {tagline}
       </small>
       {isTwoLines && (
-        <a style={{ fontSize: "85%" }} href={"#"} onClick={(e) => toggleExpansion(e)}>
-          <span className={"read-more-tagline"}>{isExpanded ? "Read less" : "Read more"}</span>
+        <a className={"read-more-tagline"} style={{ fontSize: "85%" }} href={"#"} onClick={(e) => toggleExpansion(e)}>
+          <span>{isExpanded ? "Read less" : "Read more"}</span>
         </a>
       )}
     </>
