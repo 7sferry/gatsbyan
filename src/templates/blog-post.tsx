@@ -9,7 +9,7 @@ import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
 import { getDateYear, getPlurals, isAfterDate, plusDays } from "../utils/GatsbyanUtils";
-import React, { lazy } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
 import { BlogPostHeroImage, BlogPostProp } from "../types/DataTypes";
@@ -29,6 +29,11 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const publishDate = post.publishDate;
   const updatedAt = post.updatedAt;
   const isSSR = typeof window === "undefined";
+  const [onClient, setOnClient] = useState(false);
+
+  useEffect(() => {
+    setOnClient(true);
+  }, []);
 
   const showUpdatedText = () => {
     return post.sys?.revision > 5 && isAfterDate(updatedAt, plusDays(publishDate, 30));
@@ -40,7 +45,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
     <Layout>
       <div className="title posted">{post.title}</div>
       <div className="title text-info mb-2">
-        {!isSSR && (
+        {onClient && (
           <React.Suspense fallback={<div />}>
             <LazyComponent date={publishDate} />
           </React.Suspense>
