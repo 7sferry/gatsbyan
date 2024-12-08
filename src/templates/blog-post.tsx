@@ -28,6 +28,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const htmlWithAnchor = childMarkdownRemark.html;
   const publishDate = post.publishDate;
   const updatedAt = post.updatedAt;
+  const isSSR = typeof window === "undefined";
 
   const showUpdatedText = () => {
     return post.sys?.revision > 5 && isAfterDate(updatedAt, plusDays(publishDate, 30));
@@ -37,7 +38,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
     <Layout>
       <div className="title posted">{post.title}</div>
       <div className="title text-info mb-2">
-        <span className="page-info">{getPublishDateTime(publishDate)}</span>
+        {isSSR && <span className="page-info">{getPublishDateTime(publishDate)}</span>}
         <span className="page-info" style={{ display: "inline-block" }}>
           {timeToRead} min{getPlurals(timeToRead)} read
         </span>
