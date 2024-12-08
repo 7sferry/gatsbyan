@@ -4,7 +4,7 @@
  ************************/
 
 body.medium-zoom--opened #___gatsby {
-  filter: blur(3px);
+  filter: blur(10px);
   transition-delay: 0.1s;
 }
 
