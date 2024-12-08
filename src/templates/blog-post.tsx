@@ -13,7 +13,6 @@ import React from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
 import { BlogPostHeroImage, BlogPostProp } from "../types/DataTypes";
-import { ClientSide } from "../components/ClientSide.tsx";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
@@ -42,9 +41,9 @@ const BlogPostTemplate = (props: BlogPostProp) => {
         <span className="page-info" style={{ display: "inline-block" }}>
           {timeToRead} min{getPlurals(timeToRead)} read
         </span>
-        <ClientSide>
-          {showUpdatedText() && <span className="page-info updated-time">{`updated ${toNow(updatedAt)} ago`}</span>}
-        </ClientSide>
+        {/*<ClientSide>*/}
+        {showUpdatedText() && <span className="page-info updated-time">{`updated ${toNow(updatedAt)} ago`}</span>}
+        {/*</ClientSide>*/}
         <div className="page-info">
           <CommaSeparatedLinkedPostTags tags={post.tags} />
         </div>
