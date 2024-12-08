@@ -8,7 +8,7 @@ import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
-import { getDateYear, getPlurals, isAfterDate, plusDays, toNow } from "../utils/GatsbyanUtils";
+import { getDateYear, getPlurals, isAfterDate, plusDays } from "../utils/GatsbyanUtils";
 import React, { lazy } from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
@@ -49,7 +49,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           {timeToRead} min{getPlurals(timeToRead)} read
         </span>
         {/*<ClientSide>*/}
-        {showUpdatedText() && <span className="page-info updated-time">{`updated ${toNow(updatedAt)} ago`}</span>}
+        {/*  {showUpdatedText() && <span className="page-info updated-time">{`updated ${toNow(updatedAt)} ago`}</span>}*/}
         {/*</ClientSide>*/}
         <div className="page-info">
           <CommaSeparatedLinkedPostTags tags={post.tags} />
