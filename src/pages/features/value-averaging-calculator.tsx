@@ -21,7 +21,7 @@ import { StockNameValueInput } from "../../components/value-averaging/StockNameV
 const pageContext: CustomPostAttr = {
   title: "Value Averaging Calculator",
   description: "Monthly Value Averaging Calculator. Kalkulator untuk menghitung Value Averaging secara bulanan",
-  publishDate: new Date("2022-10-23"),
+  publishDate: "2022-10-23",
   lang: "id",
 };
 
