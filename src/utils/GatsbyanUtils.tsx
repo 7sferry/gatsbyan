@@ -4,29 +4,36 @@
  ************************/
 
 import React from "react";
-import { add, format, formatDistanceToNow, isAfter } from "date-fns";
+import { add, format, isAfter } from "date-fns";
 import slugify from "@sindresorhus/slugify";
 import { PaginationProp } from "../types/DataTypes.ts";
+import { DateTime } from "luxon";
+import dayjs from "dayjs";
+import AdvancedFormat from "dayjs/plugin/advancedFormat";
+
+dayjs.extend(AdvancedFormat);
+
+const wibZone = "Asia/Tokyo";
 
 export const kebabCase = (str: string) => {
   return slugify(str);
 };
 
-export const getPublishDate = (date: string) => formatToPattern(date, "MMMM do, yyyy");
+export const getPublishDate = (date: string) => dayjs(date).format("MMMM Do, YYYY");
 
-export const getPublishDateTime = (date: string) => formatToPattern(date, "eee. MMM do, yyyy hh:mm a");
+export const getPublishDateTime = (date: string) => DateTime.fromISO(date).toFormat("EEE. MMM d, yyyy hh:mm a");
 
-export const getDateYear = (date: string) => formatToPattern(date, "yyyy-MM-dd");
+export const getDateYear = (date: string) => DateTime.fromISO(date).setZone(wibZone).toFormat("yyyy-MM-dd");
 
-export const getMonthYearDate = (date: string) => formatToPattern(date, "yyyy-MMMM");
+export const getMonthYearDate = (date: string) => DateTime.fromISO(date).setZone(wibZone).toFormat("yyyy-MMMM");
 
-export const toNow = (date: string | Date) => formatDistanceToNow(date);
+export const toNow = (date: string) => DateTime.fromISO(date).setZone(wibZone).toRelative();
 
 export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(date1, date2);
 
 export const plusDays = (date: string | Date, day: number) => add(date, { days: day });
 
-function formatToPattern(dateArg: string, formatString: string, timeZone: string = "Asia/Jakarta") {
+function formatToPattern(dateArg: string, formatString: string, timeZone: string = wibZone) {
   const date = new Date(dateArg);
   const zonedDate = date.toLocaleString("en-US", { timeZone: timeZone });
   return format(zonedDate, formatString);
