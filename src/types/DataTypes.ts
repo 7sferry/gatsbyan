@@ -62,7 +62,7 @@ export interface ContactsAttr {
 export interface CustomPostAttr {
   readonly title: string;
   readonly description: string;
-  readonly publishDate: Date;
+  readonly publishDate: string;
   readonly lang: string;
   readonly image?: string | null;
 }
