@@ -20,7 +20,7 @@ export const getDateYear = (date: string) => formatToPattern(date, "yyyy-MM-dd")
 
 export const getMonthYearDate = (date: string) => formatToPattern(date, "yyyy-MMMM");
 
-export const toNow = (date: string | Date) => formatDistanceToNow(date);
+export const toNow = (date: string | Date) => formatDistanceToNow(date, { addSuffix: true });
 
 export const isAfterDate = (date1: string | Date, date2: string | Date) => isAfter(date1, date2);
 
