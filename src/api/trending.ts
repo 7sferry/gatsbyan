@@ -20,7 +20,7 @@ export default async function handler(_: GatsbyFunctionRequest, res: GatsbyFunct
     startDate: "30daysAgo",
     endDate: "yesterday",
     limit: 5,
-    metric: "scrolledUsers",
+    metric: "organicGoogleSearchClicks",
     regexFilter: "^/blog/",
   };
   let reports: TrendingReport[] = await getReport(opt);

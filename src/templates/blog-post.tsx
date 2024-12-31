@@ -43,7 +43,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           {timeToRead} min{getPlurals(timeToRead)} read
         </span>
         <ClientSide>
-          {showUpdatedText() && <span className="page-info updated-time">{`updated ${toNow(updatedAt)} ago`}</span>}
+          {showUpdatedText() && <span className="page-info updated-time">{`updated ${toNow(updatedAt)}`}</span>}
         </ClientSide>
         <div className="page-info">
           <CommaSeparatedLinkedPostTags tags={post.tags} />

@@ -36,7 +36,6 @@ const Layout = ({ children }: React.PropsWithChildren<{}>) => {
         </section>
       </main>
       <footer className="text-center">
-        {/*<div className="mobile-footer">{<Slice alias={"Tags"} />}</div>*/}
         <div className="my-emoji mb-2">{metadata.copyright}</div>
       </footer>
     </>

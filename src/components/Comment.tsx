@@ -5,13 +5,12 @@
 
 import React, { useEffect } from "react";
 import { CommentAttr } from "../types/DataTypes";
-import { isCommentShown } from "../utils/GatsbyanUtils";
 
 const src = "https://utteranc.es/client.js";
 
 export const Comment = ({ repo }: CommentAttr) => {
   const element: React.RefObject<HTMLDivElement> = React.createRef();
-  let commentShown = isCommentShown();
+  const commentShown = isCommentShown();
 
   useEffect(() => {
     if (!commentShown) {
@@ -40,5 +39,27 @@ export const Comment = ({ repo }: CommentAttr) => {
 
   return <div className="utterances" ref={element} />;
 };
+
+function isCommentShown() {
+  const [commentShown, setCommentShown] = React.useState(false);
+
+  React.useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const innerHeight = window.innerHeight + document.documentElement.scrollTop;
+    const clientHeight = document.body.clientHeight;
+    const percentage = (innerHeight / clientHeight) * 100;
+    if (!commentShown && percentage > 50) {
+      setCommentShown(true);
+    }
+  };
+  return commentShown;
+}
 
 export default Comment;
