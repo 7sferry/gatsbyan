@@ -8,10 +8,6 @@ import { add, format, isAfter } from "date-fns";
 import slugify from "@sindresorhus/slugify";
 import { PaginationProp } from "../types/DataTypes.ts";
 import { DateTime } from "luxon";
-import dayjs from "dayjs";
-import AdvancedFormat from "dayjs/plugin/advancedFormat";
-
-dayjs.extend(AdvancedFormat);
 
 const wibZone = "Asia/Tokyo";
 
@@ -19,9 +15,10 @@ export const kebabCase = (str: string) => {
   return slugify(str);
 };
 
-export const getPublishDate = (date: string) => dayjs(date).format("MMMM Do, YYYY");
+export const getPublishDate = (date: string) => DateTime.fromISO(date).setZone(wibZone).toFormat("MMMM d, yyyy");
 
-export const getPublishDateTime = (date: string) => DateTime.fromISO(date).toFormat("EEE. MMM d, yyyy hh:mm a");
+export const getPublishDateTime = (date: string) =>
+  DateTime.fromISO(date).setZone(wibZone).toFormat("EEE. MMM d, yyyy hh:mm a");
 
 export const getDateYear = (date: string) => DateTime.fromISO(date).setZone(wibZone).toFormat("yyyy-MM-dd");
 
