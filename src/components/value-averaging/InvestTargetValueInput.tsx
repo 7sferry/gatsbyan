@@ -4,8 +4,8 @@
  ************************/
 
 import React from "react";
-import { onChangeRupiah } from "../../utils/GatsbyanUtils";
 import { StockCacheInputProps } from "../../types/DataTypes";
+import { onChangeRupiah } from "../../utils/VcaUtils";
 
 export const InvestTargetValueInput = ({ stockCacheValueByName, stockName }: StockCacheInputProps) => {
   const [investTargetValue, setInvestTargetValue] = React.useState("");

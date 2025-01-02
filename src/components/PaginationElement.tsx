@@ -6,8 +6,8 @@
 import React from "react";
 import { Link } from "gatsby";
 import "./pagination.css";
-import { getPagingCalculator } from "../utils/GatsbyanUtils";
 import { PaginationAttr, PagingLinkAttr } from "../types/DataTypes";
+import { getPagingCalculator } from "../utils/PagingUtils";
 
 const PaginationElement = ({ totalPageCount, currentPage, url }: PaginationAttr): React.JSX.Element => {
   const createURL = (pageNo: number | null) => {
