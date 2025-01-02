@@ -114,14 +114,13 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
               limit: postsPerPage,
               skip: i * postsPerPage,
             },
-            defer: true,
           });
         });
 
         postSizeByTag.forEach((size, tag) => {
           const kebabTag = kebabCase(tag);
           const numTags = Math.ceil(size / postsPerPage);
-          Array.from({ length: numTags }).forEach((value, i) => {
+          Array.from({ length: numTags }).forEach((_value, i) => {
             createPage({
               path: `/tags/${kebabTag}${i === 0 ? `` : `/${i + 1}`}`,
               component: path.resolve("./src/templates/index.tsx"),
@@ -131,6 +130,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
                 limit: postsPerPage,
                 skip: i * postsPerPage,
               },
+              defer: true,
             });
           });
         });
