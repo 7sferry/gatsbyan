@@ -7,11 +7,11 @@ import React, { useState } from "react";
 import { HeadProps, Link, Slice } from "gatsby";
 import { MdArchive } from "react-icons/md";
 import "./archive.css";
-import { getMonthYearDate } from "../utils/GatsbyanUtils";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { ArchiveNode, DateArchive } from "../types/DataTypes";
-import { getArchiveQuery } from "../utils/GetArchiveQuery.tsx";
+import { getArchiveQuery } from "../utils/GetArchiveQuery";
+import { getMonthYearDate } from "../utils/DateUtils";
 
 const ArchivePage = () => {
   let archiveQuery = getArchiveQuery();
