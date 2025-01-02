@@ -5,9 +5,9 @@
 
 import Layout from "./Layout";
 import React from "react";
-import { getPublishDateTime } from "../utils/GatsbyanUtils";
 import { CustomPageProp } from "../types/DataTypes";
 import { Slice } from "gatsby";
+import { getPublishDateTime } from "../utils/DateUtils";
 
 const CustomPageContainer = ({ children, site, customPost }: React.PropsWithChildren<CustomPageProp>) => {
   const repo = site.repo;

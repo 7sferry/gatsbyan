@@ -9,10 +9,11 @@ import { graphql, HeadProps, Link, Slice } from "gatsby";
 
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import { getPlurals, getPublishDate } from "../utils/GatsbyanUtils";
+import { getPlurals } from "../utils/GatsbyanUtils";
 import "./index.css";
 import { IndexHeroImage, IndexProp } from "../types/DataTypes";
-import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
+import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags";
+import { getPublishDate } from "../utils/DateUtils";
 
 function IndexPage(props: IndexProp) {
   const { pageContext, data } = props;

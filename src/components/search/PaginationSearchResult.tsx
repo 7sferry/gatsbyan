@@ -10,7 +10,8 @@ import connectPagination, {
 import { AdditionalWidgetProperties, useConnector } from "react-instantsearch";
 import React from "react";
 import { PaginationAttr, PagingLinkAttr } from "../../types/DataTypes.ts";
-import { getPagingCalculator } from "../../utils/GatsbyanUtils.tsx";
+
+import { getPagingCalculator } from "../../utils/PagingUtils";
 
 const PaginationSearchResult = (props: PaginationConnectorParams): React.JSX.Element => {
   let pagination: PaginationRenderState = usePagination(props, {});
