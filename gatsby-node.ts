@@ -114,6 +114,7 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
               limit: postsPerPage,
               skip: i * postsPerPage,
             },
+            defer: true,
           });
         });
 
