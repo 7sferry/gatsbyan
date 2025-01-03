@@ -2,8 +2,8 @@
  * Made by [MR Ferry™]  *
  * on Oktober 2022      *
  ************************/
-import { getNumberValueFromRupiah } from "./GatsbyanUtils";
 import { StockData, UnitType } from "../types/DataTypes";
+import { getNumberValueFromRupiah } from "./VcaUtils";
 
 export class ValueAveragingStockCalculator {
   readonly stockName: string;

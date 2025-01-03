@@ -6,9 +6,9 @@
 import React from "react";
 import { Link } from "gatsby";
 import "./header.css";
-import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils";
 import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
 import { MenuAttr } from "../../types/DataTypes.ts";
+import { DEFAULT_ICON_SIZE } from "../../utils/PagingUtils.tsx";
 
 const menuObjects: MenuAttr[] = [
   {
