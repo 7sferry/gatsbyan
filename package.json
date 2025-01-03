@@ -1,12 +1,11 @@
 {
   "name": "gatsbyan",
   "description": "My personal blog powered by Gatsby JS",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "author": "Ferry",
   "dependencies": {
-    "algoliasearch": "^4.24.0",
+    "algoliasearch": "^5.18.0",
     "bootstrap": "^5.3.3",
-    "date-fns": "^3.6.0",
     "gatsby": "^5.14.1",
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-catch-links": "^5.14.0",
@@ -33,7 +32,7 @@
     "react-instantsearch": "^7.13.9"
   },
   "devDependencies": {
-    "@types/node": "^20.17.11",
+    "@types/node": "^22.10.4",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "dotenv": "^16.4.7",

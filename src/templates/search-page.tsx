@@ -5,13 +5,12 @@
 
 import Layout from "../components/Layout.tsx";
 import React from "react";
-import algoliasearch from "algoliasearch/lite";
+import { algoliasearch } from "algoliasearch";
 import { Configure, InstantSearch, SearchBox } from "react-instantsearch";
 import Seo from "../components/Seo.tsx";
-import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
 import { SearchClient } from "algoliasearch-helper/types/algoliasearch";
-import { MultipleQueriesQuery } from "@algolia/client-search";
 import { HeadProps, Slice } from "gatsby";
+import { SEARCH_COUNT } from "../utils/PagingUtils.tsx";
 
 const SearchPage = () => {
   const algoliaClient = algoliasearch(
@@ -20,7 +19,7 @@ const SearchPage = () => {
   );
 
   const searchClient: SearchClient = {
-    search(queries: readonly MultipleQueriesQuery[]): Promise<any> {
+    search(queries): Promise<any> {
       if (queries.every(({ params }: any) => !params.query)) {
         return Promise.resolve({
           results: queries.map(() => ({
