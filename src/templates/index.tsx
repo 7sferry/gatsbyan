@@ -14,6 +14,8 @@ import "./index.css";
 import { IndexHeroImage, IndexProp } from "../types/DataTypes";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags";
 import { getPublishDate } from "../utils/DateUtils";
+import { format } from "date-fns";
+import { DateTime } from "luxon";
 
 function IndexPage(props: IndexProp) {
   const { pageContext, data } = props;
@@ -21,9 +23,16 @@ function IndexPage(props: IndexProp) {
   const { nodes: posts, pageInfo } = contents;
   const kebabTag = pageContext.kebabTag;
   const paginationUrl = kebabTag ? `/tags/${kebabTag}` : `/page`;
-
+  function formatToPattern(dateArgString: string, datePattern: string) {
+    const date = new Date(dateArgString);
+    const zonedDate = date.toLocaleString("en-US", { timeZone: "Asia/Jakarta" });
+    return format(new Date(zonedDate), datePattern);
+  }
   return (
     <Layout>
+      <span className="page-info">
+        {`date = ${DateTime.fromISO("2023-04-18T03:00+07:00").toFormat("yyyy-MM-dd hh:mm a")}`}
+      </span>
       {kebabTag && (
         <div className="tag-title">
           All posts related to <b>{pageContext.tag}</b>
