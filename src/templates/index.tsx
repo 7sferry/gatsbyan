@@ -31,7 +31,7 @@ function IndexPage(props: IndexProp) {
   return (
     <Layout>
       <span className="page-info">
-        {`date = ${DateTime.fromISO("2023-04-18T03:00+07:00").toFormat("yyyy-MM-dd hh:mm a")}`}
+        {`date = ${DateTime.fromISO("2023-04-18T03:00+07:00").setZone("Asia/Jakarta").toFormat("yyyy-MM-dd hh:mm a")}`}
       </span>
       {kebabTag && (
         <div className="tag-title">
