@@ -6,7 +6,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import { IGatsbyImageData, withArtDirection } from "gatsby-plugin-image";
 
-const getPhotoBio = (): IGatsbyImageData => {
+const Phb = (): IGatsbyImageData => {
   const { file } = useStaticQuery(graphql`
     query PhotoBio {
       file(relativePath: { eq: "ferry.jpg" }) {
@@ -37,7 +37,7 @@ const getPhotoBio = (): IGatsbyImageData => {
       }
     }
   `);
-  return withArtDirection(file?.childImageSharp?.original, [
+  const data = withArtDirection(file?.childImageSharp?.original, [
     {
       media: "(max-width: 416px)",
       image: file?.childImageSharp?.phone,
@@ -51,6 +51,9 @@ const getPhotoBio = (): IGatsbyImageData => {
       image: file?.childImageSharp?.laptop,
     },
   ]);
+  return data;
 };
+
+const getPhotoBio = Phb();
 
 export default getPhotoBio;

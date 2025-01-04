@@ -39,7 +39,7 @@ export interface CustomSiteAttr {
 export interface BioAttr {
   readonly author: string;
   readonly tagline: string;
-  readonly photo: IGatsbyImageData;
+  // readonly photo: IGatsbyImageData;
 }
 
 export interface TaglineAttr {
@@ -47,7 +47,7 @@ export interface TaglineAttr {
 }
 
 export interface LeftSidebarAttr {
-  readonly photo: {};
+  // readonly photo: {};
   readonly author: string;
   readonly tagline: string;
 }
@@ -293,8 +293,8 @@ export interface IndexProp {
   readonly pageContext: IndexContextProp;
 }
 
-export interface ArchiveProp {
-  readonly data: ArchiveAttr;
+export interface ArchiveContainerProps {
+  readonly posts: ArchiveNode[];
 }
 
 export interface ArchiveAttr {
