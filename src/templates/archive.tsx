@@ -9,7 +9,6 @@ import "./archive.css";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { getArchiveQuery } from "../utils/GetArchiveQuery";
-import ArchiveContainer from "../components/ArchiveContainer.tsx";
 
 const ArchivePage = () => {
   let archiveQuery = getArchiveQuery();
@@ -28,7 +27,7 @@ const ArchivePage = () => {
       <div className="tech-tags mb-2 mobile-only text-center">
         <Slice alias={"Tags"} />
       </div>
-      <ArchiveContainer posts={posts} />
+      <Slice alias={"ArchiveContainer"} posts={posts} />
     </Layout>
   );
 };

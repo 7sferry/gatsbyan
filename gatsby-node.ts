@@ -85,6 +85,11 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
           component: path.resolve(`./src/components/search/VoiceSearchElement.tsx`),
         });
 
+        createSlice({
+          id: `ArchiveContainer`,
+          component: path.resolve(`./src/components/ArchiveContainer.tsx`),
+        });
+
         const postSizeByTag = new Map<string, number>();
         const posts = data?.allContentfulBlogPost?.nodes ?? [];
 
