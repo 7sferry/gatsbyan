@@ -3,13 +3,21 @@
  * on Januari 2025      *
  ************************/
 
-import { ArchiveContainerProps, ArchiveNode, DateArchive } from "../types/DataTypes.ts";
+import { ArchiveNode, DateArchive } from "../types/DataTypes.ts";
 import { MdArchive } from "react-icons/md";
 import { Link } from "gatsby";
 import React, { useState } from "react";
 import { getMonthYearDate } from "../utils/DateUtils.tsx";
+import { getArchiveQuery } from "../utils/GetArchiveQuery.tsx";
 
-const ArchiveContainer = ({ posts }: ArchiveContainerProps) => {
+const ArchiveContainer = () => {
+  let archiveQuery = getArchiveQuery();
+  const { allContentfulBlogPost } = archiveQuery;
+  const posts = allContentfulBlogPost.nodes;
+  if (posts.length === 0) {
+    return <></>;
+  }
+
   const lastDate = getMonthYearDate(posts[0].publishDate);
   const [activeMonth, setActiveMonth] = useState<string[]>([lastDate]);
   const [activeYear, setActiveYear] = useState<string[]>([lastDate.split("-")[0]]);

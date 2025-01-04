@@ -7,15 +7,14 @@ import React from "react";
 import "./sidebar.css";
 import MostViewedPage from "./MostViewedPage.tsx";
 import FeaturedPage from "./FeaturedPage";
-import { RightSidebarAttr } from "../../types/DataTypes.ts";
 import TopTrendingPage from "./TopTrendingPage.tsx";
 
-const RightSidebar = ({ mostViewedNodes, featuredNodes, trendingNodes }: RightSidebarAttr) => {
+const RightSidebar = () => {
   return (
     <div className="sidebar-main ">
-      <FeaturedPage featuredNodes={featuredNodes} />
-      <MostViewedPage mostViewedNodes={mostViewedNodes} />
-      <TopTrendingPage trendingNodes={trendingNodes} />
+      <FeaturedPage />
+      <MostViewedPage />
+      <TopTrendingPage />
     </div>
   );
 };

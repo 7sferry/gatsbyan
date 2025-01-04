@@ -6,9 +6,12 @@
 import React from "react";
 import { Link } from "gatsby";
 import "./sidebar.css";
-import { TrendingPageAttr } from "../../types/DataTypes";
+import { fetchTopTrending } from "../../utils/TopTrendingFetcher.tsx";
+import fetchTitleByPath from "../../utils/AllPostFetcher.tsx";
 
-const TopTrendingPage = ({ trendingNodes }: TrendingPageAttr) => {
+const TopTrendingPage = () => {
+  const titleByPath = fetchTitleByPath();
+  const trendingNodes = fetchTopTrending(titleByPath);
   return (
     trendingNodes.length > 0 && (
       <div>
@@ -18,7 +21,7 @@ const TopTrendingPage = ({ trendingNodes }: TrendingPageAttr) => {
             return (
               <li key={node.path}>
                 <small className="title">
-                  <Link className="text-link" to={`${node.path}`}>
+                  <Link className="text-link" to={node.path}>
                     {node.title}
                   </Link>
                 </small>

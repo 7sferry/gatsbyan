@@ -8,26 +8,14 @@ import { HeadProps, Slice } from "gatsby";
 import "./archive.css";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
-import { getArchiveQuery } from "../utils/GetArchiveQuery";
 
 const ArchivePage = () => {
-  let archiveQuery = getArchiveQuery();
-  const { allContentfulBlogPost } = archiveQuery;
-  const posts = allContentfulBlogPost.nodes;
-  if (posts.length === 0) {
-    return (
-      <Layout>
-        <></>
-      </Layout>
-    );
-  }
-
   return (
     <Layout>
       <div className="tech-tags mb-2 mobile-only text-center">
         <Slice alias={"Tags"} />
       </div>
-      <Slice alias={"ArchiveContainer"} posts={posts} />
+      <Slice alias={"ArchiveContainer"} />
     </Layout>
   );
 };
