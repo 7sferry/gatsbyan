@@ -299,7 +299,7 @@ export interface ArchiveContainerProps {
 
 export interface ArchiveAttr {
   readonly allContentfulBlogPost: {
-    readonly nodes: Array<ArchiveNode>;
+    readonly nodes: ArchiveNode[];
   };
 }
 

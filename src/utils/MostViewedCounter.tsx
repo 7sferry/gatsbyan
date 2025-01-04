@@ -3,10 +3,10 @@
  * on Mei 2024          *
  ************************/
 
-import { AnalyticsData } from "../types/DataTypes.ts";
+import { AnalyticsData, MostViewedNode } from "../types/DataTypes.ts";
 import { graphql, useStaticQuery } from "gatsby";
 
-export function fetchMostViewed(titleByPath: Map<string, string>) {
+export function fetchMostViewed(titleByPath: Map<string, string>): MostViewedNode[] {
   const analyticsData: AnalyticsData = useStaticQuery(graphql`
     query AnalyticsPageQuery {
       allPageViews(sort: { totalCount: DESC }, limit: 5) {
@@ -18,9 +18,9 @@ export function fetchMostViewed(titleByPath: Map<string, string>) {
   `);
 
   return analyticsData?.allPageViews?.nodes
-    ?.filter((node) => titleByPath.has(node?.path))
+    ?.filter((node) => node && titleByPath.has(node.path))
     .map((node) => ({
-      path: node?.path,
-      title: titleByPath.get(node?.path),
+      path: node.path,
+      title: titleByPath.get(node.path) || "",
     }));
 }

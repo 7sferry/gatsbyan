@@ -6,9 +6,12 @@
 import React from "react";
 import { Link } from "gatsby";
 import "./sidebar.css";
-import { MostViewedAttr } from "../../types/DataTypes";
+import fetchTitleByPath from "../../utils/AllPostFetcher.tsx";
+import { fetchMostViewed } from "../../utils/MostViewedCounter.tsx";
 
-const MostViewedPage = ({ mostViewedNodes }: MostViewedAttr) => {
+const MostViewedPage = () => {
+  const titleByPath = fetchTitleByPath();
+  const mostViewedNodes = fetchMostViewed(titleByPath);
   return (
     mostViewedNodes && (
       <div>
@@ -18,7 +21,7 @@ const MostViewedPage = ({ mostViewedNodes }: MostViewedAttr) => {
             return (
               <li key={node.path}>
                 <small className="title">
-                  <Link className="text-link" to={`${node.path}`}>
+                  <Link className="text-link" to={node.path}>
                     {node.title}
                   </Link>
                 </small>

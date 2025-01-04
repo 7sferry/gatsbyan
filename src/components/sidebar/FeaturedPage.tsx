@@ -6,9 +6,10 @@
 import React from "react";
 import { Link } from "gatsby";
 import "./sidebar.css";
-import { FeaturedPageAttr } from "../../types/DataTypes";
+import { fetchFeaturedPages } from "../../utils/FeaturedPageFetcher.tsx";
 
-const FeaturedPage = ({ featuredNodes }: FeaturedPageAttr) => {
+const FeaturedPage = () => {
+  const featuredNodes = fetchFeaturedPages();
   return (
     featuredNodes && (
       <div>

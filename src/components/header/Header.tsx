@@ -4,15 +4,16 @@ import { Link } from "gatsby";
 import MobileMenuLinks from "./MobileMenuLinks";
 import Menu from "./Menu";
 import "./header.css";
-import { HeaderAttr } from "../../types/DataTypes";
+import SiteMetadata from "../../utils/SiteMetadata.tsx";
 
-const Header = ({ siteTitle }: HeaderAttr) => {
+const Header = () => {
+  const { siteMetadata: metadata } = SiteMetadata();
   return (
     <header className="head-main">
       <div className="head-elements">
         <h1 className="head-logo my-emoji">
           <Link to="/" className="header-link">
-            {siteTitle}
+            {metadata.title}
           </Link>
         </h1>
         <Menu />
