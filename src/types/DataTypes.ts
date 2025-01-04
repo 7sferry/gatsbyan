@@ -293,8 +293,8 @@ export interface IndexProp {
   readonly pageContext: IndexContextProp;
 }
 
-export interface ArchiveProp {
-  readonly data: ArchiveAttr;
+export interface ArchiveContainerProps {
+  readonly posts: ArchiveNode[];
 }
 
 export interface ArchiveAttr {
