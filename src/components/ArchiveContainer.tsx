@@ -5,11 +5,10 @@
 
 import { ArchiveNode, DateArchive } from "../types/DataTypes.ts";
 import { Link } from "gatsby";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { getMonthYearDate } from "../utils/DateUtils.tsx";
 import { getArchiveQuery } from "../utils/GetArchiveQuery.tsx";
-import { format } from "date-fns";
-import { FolderComponent } from "./FolderComponent.tsx";
+import { FaFolderOpen } from "react-icons/fa";
 
 const ArchiveContainer = () => {
   let archiveQuery = getArchiveQuery();
@@ -90,7 +89,7 @@ const ArchiveContainer = () => {
           <li key={i} className={"item"}>
             <button className={`archive-link`} onClick={() => toggleActiveYear(year)}>
               <i className="archive-icon">
-                <FolderComponent />
+                <FaFolderOpen />
               </i>
               <span>{year}</span>
             </button>
