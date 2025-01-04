@@ -83,15 +83,14 @@ const ArchiveContainer = () => {
 
   return (
     <ul className="archive-container parent-archive-container">
+      <FolderComponent />
       {Array.from(postByYear.entries()).map((post, i) => {
         const year = post[0];
         let dateArchives = post[1];
         return (
           <li key={i} className={"item"}>
             <button className={`archive-link`} onClick={() => toggleActiveYear(year)}>
-              <i className="archive-icon">
-                <FolderComponent />
-              </i>
+              <i className="archive-icon"></i>
               <span>{year}</span>
             </button>
 
