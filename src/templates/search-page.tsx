@@ -10,7 +10,7 @@ import { Configure, InstantSearch, SearchBox } from "react-instantsearch";
 import Seo from "../components/Seo.tsx";
 import { SearchClient } from "algoliasearch-helper/types/algoliasearch";
 import { HeadProps, Slice } from "gatsby";
-import { SEARCH_COUNT } from "../utils/PagingUtils.tsx";
+import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
 
 const SearchPage = () => {
   const algoliaClient = algoliasearch(

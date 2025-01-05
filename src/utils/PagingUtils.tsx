@@ -4,10 +4,8 @@
  ************************/
 
 import { PaginationProp } from "../types/DataTypes.ts";
+import { PAGE_COUNT } from "./GatsbyanUtils.tsx";
 
-export const PAGE_COUNT = 5;
-export const SEARCH_COUNT = 7;
-export const DEFAULT_ICON_SIZE = 20;
 export const getPagingCalculator = (currentPage: number, totalPage: number): PaginationProp => {
   const range = Math.floor(PAGE_COUNT / 2);
   const previousPage = currentPage - 1;
