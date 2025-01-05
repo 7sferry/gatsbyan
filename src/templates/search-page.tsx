@@ -48,6 +48,8 @@ const SearchPage = () => {
           highlightPostTag={"</ais-highlight-0000000000>"}
           distinct
           hitsPerPage={SEARCH_COUNT}
+          advancedSyntax={true}
+          advancedSyntaxFeatures={["exactPhrase", "excludeWords"]}
         />
         <Slice alias="VoiceSearchElement" searchAsYouSpeak={false} />
         <SearchBox className={"search-box"} searchAsYouType={false} />
