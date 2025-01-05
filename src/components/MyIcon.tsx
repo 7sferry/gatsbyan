@@ -3,10 +3,10 @@
  * on Januari 2025      *
  ************************/
 
-import React from "react";
+import React, { memo } from "react";
 import { IconElement, IconProps } from "../types/DataTypes.ts";
 
-const MySvg = (props: { size?: number; color?: string; title?: string; path: string; viewBox: string }) => (
+const MySvg = memo((props: { size?: number; color?: string; title?: string; path: string; viewBox: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={props.size ?? "1em"}
@@ -16,7 +16,7 @@ const MySvg = (props: { size?: number; color?: string; title?: string; path: str
     {props.title && <title>{props.title}</title>}
     <path fill={props.color ?? "currentColor"} d={props.path} />
   </svg>
-);
+));
 
 export const FolderIcon: IconElement = (props: IconProps): React.JSX.Element => {
   return (
