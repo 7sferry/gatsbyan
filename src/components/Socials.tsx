@@ -6,43 +6,42 @@
 import React from "react";
 import "./sidebar/sidebar.css";
 import { ContactsAttr } from "../types/DataTypes";
-import { FaGithubSquare, FaInstagram, FaLinkedin, FaStackOverflow, FaUserGraduate } from "react-icons/fa";
-import { GiCrystalBall } from "react-icons/gi";
+import { CrystalBall, GithubIcon, InstagramIcon, LinkedInIcon, StackoverflowIcon, UserGraduate } from "./MyIcon.tsx";
 
 const contacts: ContactsAttr[] = [
   {
     name: "LinkedIn",
-    icon: FaLinkedin,
+    icon: LinkedInIcon,
     url: "https://www.linkedin.com/in/7sferry",
     color: "#0a66c2",
   },
   {
     name: "GitHub",
-    icon: FaGithubSquare,
+    icon: GithubIcon,
     url: "https://github.com/7sferry",
     color: "white",
   },
   {
     name: "Instagram",
-    icon: FaInstagram,
+    icon: InstagramIcon,
     url: "https://www.instagram.com/7sferry/",
     color: "#e1306c",
   },
   {
     name: "StackOverFlow",
-    icon: FaStackOverflow,
+    icon: StackoverflowIcon,
     url: "https://stackoverflow.com/users/14286378/ferry",
     color: "#ef8236",
   },
   {
     name: "Resume",
-    icon: FaUserGraduate,
+    icon: UserGraduate,
     url: "https://ferry.netlify.app",
     color: "#34A210FF",
   },
   {
     name: "CrystalKnow",
-    icon: GiCrystalBall,
+    icon: CrystalBall,
     url: "https://www.crystalknows.com/p/ferry",
     color: "#2ca7e4",
   },

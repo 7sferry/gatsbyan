@@ -8,7 +8,7 @@ import { Link } from "gatsby";
 import React, { useState } from "react";
 import { getMonthYearDate } from "../utils/DateUtils.tsx";
 import { getArchiveQuery } from "../utils/GetArchiveQuery.tsx";
-import { FaFolderOpen } from "react-icons/fa";
+import { FolderIcon } from "./MyIcon.tsx";
 
 const ArchiveContainer = () => {
   let archiveQuery = getArchiveQuery();
@@ -89,7 +89,7 @@ const ArchiveContainer = () => {
           <li key={i} className={"item"}>
             <button className={`archive-link`} onClick={() => toggleActiveYear(year)}>
               <i className="archive-icon">
-                <FaFolderOpen />
+                <FolderIcon />
               </i>
               <span>{year}</span>
             </button>

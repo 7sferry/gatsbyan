@@ -6,26 +6,26 @@
 import React from "react";
 import { Link } from "gatsby";
 import "./header.css";
-import { FaArchive, FaHome, FaSearchengin } from "react-icons/fa";
 import { MenuAttr } from "../../types/DataTypes.ts";
 import { DEFAULT_ICON_SIZE } from "../../utils/PagingUtils.tsx";
+import { ArchiveIcon, HomeIcon, SearchIcon } from "../MyIcon.tsx";
 
 const menuObjects: MenuAttr[] = [
   {
     link: "/",
-    icon: FaHome,
+    icon: HomeIcon,
     title: "Homepage",
     text: "Home",
   },
   {
     link: "/archive",
-    icon: FaArchive,
+    icon: ArchiveIcon,
     title: "Archive page",
     text: "Archive",
   },
   {
     link: "/search",
-    icon: FaSearchengin,
+    icon: SearchIcon,
     title: "Search page",
     text: "Search",
   },
