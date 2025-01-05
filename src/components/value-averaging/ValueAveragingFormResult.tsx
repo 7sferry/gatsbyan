@@ -1,8 +1,8 @@
 import React from "react";
-import { ValueAveragingStockCalculator } from "../utils/ValueAveragingStockCalculator";
+import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator.tsx";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
-import { getMonthDifference, rp } from "../utils/VcaUtils";
+import { getMonthDifference, rp } from "../../utils/VcaUtils.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
