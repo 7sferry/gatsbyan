@@ -7,8 +7,8 @@ import React from "react";
 import { Link } from "gatsby";
 import "./header.css";
 import { MenuAttr } from "../../types/DataTypes.ts";
-import { DEFAULT_ICON_SIZE } from "../../utils/PagingUtils.tsx";
 import { ArchiveIcon, HomeIcon, SearchIcon } from "../MyIcon.tsx";
+import { DEFAULT_ICON_SIZE } from "../../utils/GatsbyanUtils.tsx";
 
 const menuObjects: MenuAttr[] = [
   {

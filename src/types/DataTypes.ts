@@ -1,6 +1,5 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React, { ChangeEventHandler } from "react";
-import { IconType } from "react-icons/lib";
 
 export enum UnitType {
   LOT,
@@ -54,7 +53,7 @@ export interface LeftSidebarAttr {
 
 export interface ContactsAttr {
   readonly name: string;
-  readonly icon: IconType;
+  readonly icon: IconElement;
   readonly url: string;
   readonly color: string;
 }
@@ -261,7 +260,7 @@ export interface PagingLinkAttr {
 
 export interface MenuAttr {
   readonly link: string;
-  readonly icon: IconType;
+  readonly icon: IconElement;
   readonly text: string;
   readonly title: string;
 }
@@ -376,3 +375,11 @@ export interface AuthorConfig {
   readonly name: string;
   readonly realName: string;
 }
+
+export interface IconProps {
+  readonly size?: number;
+  readonly color?: string;
+  readonly title?: string;
+}
+
+export type IconElement = (props: IconProps) => React.JSX.Element;

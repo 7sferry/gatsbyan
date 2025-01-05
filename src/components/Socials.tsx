@@ -6,7 +6,14 @@
 import React from "react";
 import "./sidebar/sidebar.css";
 import { ContactsAttr } from "../types/DataTypes";
-import { CrystalBall, GithubIcon, InstagramIcon, LinkedInIcon, StackoverflowIcon, UserGraduate } from "./MyIcon.tsx";
+import {
+  GithubIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  PersonalityIcon,
+  PortfolioIcon,
+  StackoverflowIcon,
+} from "./MyIcon.tsx";
 
 const contacts: ContactsAttr[] = [
   {
@@ -35,13 +42,13 @@ const contacts: ContactsAttr[] = [
   },
   {
     name: "Resume",
-    icon: UserGraduate,
+    icon: PortfolioIcon,
     url: "https://ferry.netlify.app",
     color: "#34A210FF",
   },
   {
     name: "CrystalKnow",
-    icon: CrystalBall,
+    icon: PersonalityIcon,
     url: "https://www.crystalknows.com/p/ferry",
     color: "#2ca7e4",
   },
@@ -53,7 +60,7 @@ const Socials = () => {
       {contacts.map((contact) => {
         return (
           <a className={`social-icon`} href={contact.url} target="_blank" rel="noopener noreferrer" key={contact.name}>
-            <span title={contact.name}>{<contact.icon size={26} color={contact.color} />}</span>
+            <span title={contact.name}>{<contact.icon title={contact.name} size={26} color={contact.color} />}</span>
           </a>
         );
       })}
