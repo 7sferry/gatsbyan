@@ -8,10 +8,12 @@ import { HeadProps, Slice } from "gatsby";
 import "./archive.css";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
+import { FolderIcon } from "../components/MyIcon.tsx";
 
 const ArchivePage = () => {
   return (
     <Layout>
+      <FolderIcon />
       <div className="tech-tags mb-2 mobile-only text-center">
         <Slice alias={"Tags"} />
       </div>
