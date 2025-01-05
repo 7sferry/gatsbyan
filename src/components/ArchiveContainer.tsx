@@ -8,7 +8,7 @@ import { Link } from "gatsby";
 import React, { useState } from "react";
 import { getMonthYearDate } from "../utils/DateUtils.tsx";
 import { getArchiveQuery } from "../utils/GetArchiveQuery.tsx";
-import { MySvg } from "./MyIcon.tsx";
+import MySvg from "./MySvg.tsx";
 
 const ArchiveContainer = () => {
   let archiveQuery = getArchiveQuery();

@@ -383,3 +383,11 @@ export interface IconProps {
 }
 
 export type IconElement = (props: IconProps) => React.JSX.Element;
+
+export interface MySvgProps {
+  readonly size?: number;
+  readonly color?: string;
+  readonly title?: string;
+  readonly path: string;
+  readonly viewBox: string;
+}

@@ -4,8 +4,9 @@
  ************************/
 
 import React from "react";
+import { MySvgProps } from "../types/DataTypes.ts";
 
-export const MySvg = (props: { size?: number; color?: string; title?: string; path: string; viewBox: string }) => (
+const MySvg = (props: MySvgProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={props.size ?? "1em"}
@@ -16,3 +17,5 @@ export const MySvg = (props: { size?: number; color?: string; title?: string; pa
     <path fill={props.color ?? "currentColor"} d={props.path} />
   </svg>
 );
+
+export default MySvg;
