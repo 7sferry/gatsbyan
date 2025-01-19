@@ -7,6 +7,11 @@
       "permanent": true
     },
     {
+      "source": "/tags/javascript",
+      "destination": "/tags/java-script",
+      "permanent": true
+    },
+    {
       "source": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
       "destination": "/blog/migrasi-blog-ke-gatsby",
       "statusCode": 301
