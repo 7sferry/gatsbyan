@@ -4,7 +4,7 @@
  ************************/
 
 import type { GatsbyConfig } from "gatsby";
-import siteConfig from "./src/config.ts";
+import siteConfig from "./config.ts";
 import "dotenv/config";
 
 function isProduction() {

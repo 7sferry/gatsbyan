@@ -1,9 +1,14 @@
 /************************
  * Made by [MR Ferry™]  *
+ * on Januari 2025      *
+ ************************/
+
+/************************
+ * Made by [MR Ferry™]  *
  * on November 2024     *
  ************************/
 
-import { SiteConfig } from "./types/DataTypes.ts";
+import { SiteConfig } from "./src/types/DataTypes.ts";
 
 export const siteConfig: SiteConfig = {
   url: "https://ferry.vercel.app",
