@@ -81,7 +81,7 @@ p,
 }
 .post-main {
   -ms-grid-column: 2;
-  padding: 0 1.5rem 0 0;
+  padding: 0 1.5rem 1rem 0;
   grid-column: 2;
   width: 100%;
 }

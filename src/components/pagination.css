@@ -29,7 +29,6 @@
   -webkit-text-size-adjust: 100%;
   text-align: center;
   transition: font-size 0.2s ease-in-out;
-  padding-bottom: 1rem;
 }
 [data-pagination] ul {
   list-style-type: none;
