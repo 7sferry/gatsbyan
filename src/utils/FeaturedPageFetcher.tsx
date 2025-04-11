@@ -15,7 +15,7 @@ export function fetchFeaturedPages() {
             in: [
               "write-skew-pada-database"
               "fakta-unik-minangkabau"
-              "java-membuat-pdf-dinamis"
+              "pilihan-investasi"
               "web-rendering-strategy-csr-ssr-ssg-dsg-isr"
               "perluas-pengetahuanmu-tentang-offside"
             ]
