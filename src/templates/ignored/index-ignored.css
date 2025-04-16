@@ -13,6 +13,12 @@ body.medium-zoom--opened #___gatsby {
   font-size: 50%;
 }
 
+caption {
+  caption-side: top;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
 .post-container .embedded-video video {
   position: absolute;
   top: 0;
