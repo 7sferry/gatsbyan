@@ -20,6 +20,7 @@
     "gatsby-remark-images-contentful": "^6.14.0",
     "gatsby-remark-link-on-headers": "^1.1.3",
     "gatsby-remark-prismjs": "^7.14.0",
+    "gatsby-remark-table-caption": "^1.0.0",
     "gatsby-source-contentful": "^8.15.0",
     "gatsby-source-filesystem": "^5.14.0",
     "gatsby-transformer-remark": "^6.14.0",

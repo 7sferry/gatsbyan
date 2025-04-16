@@ -78,6 +78,7 @@ const gatsbyConfig: GatsbyConfig = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-table-caption`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
