@@ -347,15 +347,6 @@ pre {
   padding: 1.45rem;
 }
 
-table {
-  padding: 0;
-  margin: 0 0 1.45rem;
-  font-size: 1rem;
-  line-height: 1.45rem;
-  border-collapse: collapse;
-  width: 100%;
-}
-
 fieldset {
   padding: 0;
   margin: 0 0 1.45rem;
@@ -492,7 +483,7 @@ tt,
 code {
   background-color: hsla(0, 0%, 0%, 0.04);
   border-radius: 3px;
-  font-family: "SFMono-Regular", Consolas, "Droid Sans Mono", "Liberation Mono", Menlo, Courier,
+  font-family: Consolas, "Droid Sans Mono", "Liberation Mono", Menlo, Courier,
     monospace;
   padding: 0.2em 0;
 }

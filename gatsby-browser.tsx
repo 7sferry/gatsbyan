@@ -8,18 +8,8 @@
 
 import mediumZoom from "medium-zoom";
 import { Sign } from "./src/utils/Sign.tsx";
-// import { render } from "react-dom";
-// import { loadableReady } from "@loadable/component";
 
-// export function replaceHydrateFunction() {
-//   return (element, container, callback) => {
-//     loadableReady(() => {
-//       render(element, container, callback);
-//     });
-//   };
-// }
-
-export const onClientEntry = (_: any) => {
+export const onClientEntry = () => {
   const styles = `
     .medium-zoom-overlay, .medium-zoom-image {
       z-index: 0;
@@ -32,13 +22,21 @@ export const onClientEntry = (_: any) => {
   document.head.appendChild(node);
 };
 
-export const onRouteUpdate = (_: any) => {
+export const onRouteUpdate = () => {
   const options = {
     margin: 20,
     zIndex: 0,
     background: "none",
   };
   mediumZoom(".gatsby-resp-image-image", options);
+
+  if (navigator.clipboard && window.isSecureContext) {
+    return;
+  }
+  const elementNodeListOf = document.querySelectorAll(".gatsby-remark-prismjs-copy-button-container");
+  elementNodeListOf.forEach((el) => {
+    (el as HTMLElement).style.display = "none";
+  });
 };
 
 export const onInitialClientRender = () => {
