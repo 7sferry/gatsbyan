@@ -3,6 +3,33 @@
  * September 2020       *
  ************************/
 
+.gatsby-remark-prismjs-copy-button-container {
+  left: 0 !important;
+  top: 25px !important;
+  margin-top: -25px !important;
+  padding-right: 8px;
+  max-width: var(--code-max-width);
+}
+.gatsby-remark-prismjs-copy-button{
+  background: rgb(255,167,196) !important;
+  color: #1f1f1f !important;
+}
+.gatsby-code-title {
+  font-weight: bolder;
+  max-width: var(--code-max-width);
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: break-word;
+  color: #eee;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5em;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
 code[class*="language-"],
 pre[class*="language-"] {
   text-align: left;
@@ -23,20 +50,11 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  max-width: 45vw;
-}
-
-code[class*="language-"]::-moz-selection,
-pre[class*="language-"]::-moz-selection,
-code[class*="language-"] ::-moz-selection,
-pre[class*="language-"] ::-moz-selection {
-  background: #532b2e;
+  max-width: var(--code-max-width);
 }
 
 code[class*="language-"]::selection,
-pre[class*="language-"]::selection,
-code[class*="language-"] ::selection,
-pre[class*="language-"] ::selection {
+pre[class*="language-"]::selection {
   background: #532b2e;
 }
 
@@ -50,7 +68,7 @@ pre[class*="language-"] {
   overflow: auto;
   position: relative;
   margin: 0 0 1em;
-  padding: .75em;
+  padding: 1em .75em .75em;
 }
 
 .language-css > code,
@@ -61,13 +79,6 @@ pre[class*="language-"] {
 
 [class*="language-"] .namespace {
   opacity: 0.7;
-}
-
-pre.language-text{
-  padding: 0 !important;
-  margin: 0 !important;
-  background: none !important;
-  font-weight: bolder;
 }
 
 code.language-text{
@@ -227,20 +238,8 @@ p > .language-text{
   color: #ff6666;
 }
 
-@media only screen and (min-width: 1920px) {
-  pre[class*="language-"] {
-    max-width: 44vw;
-  }
-}
-
-@media only screen and (max-width: 1400px) {
-  pre[class*="language-"] {
-    max-width: 41vw;
-  }
-}
-
 @media only screen and (max-width: 1024px) {
-  pre[class*="language-"] {
+  pre[class*="language-"], .gatsby-remark-prismjs-copy-button-container, .gatsby-code-title {
     max-width: 100vw;
   }
 }
@@ -253,4 +252,428 @@ p > .language-text{
   padding-right: 1em;
   padding-left: 0.75em;
   border-left: 0.25em solid #f99;
+}
+
+.gatsby-highlight pre.language-jsx::before {
+  content: "jsx";
+}
+.gatsby-highlight pre.language-html::before {
+  content: "html";
+}
+.gatsby-highlight pre.language-xml::before {
+  content: "xml";
+}
+.gatsby-highlight pre.language-svg::before {
+  content: "svg";
+}
+.gatsby-highlight pre.language-css::before {
+  content: "css";
+}
+.gatsby-highlight pre.language-abap::before {
+  content: "abap";
+}
+.gatsby-highlight pre.language-asmatmel::before {
+  content: "assembly";
+}
+.gatsby-highlight pre.language-autohotkey::before {
+  content: "autohotkey";
+}
+.gatsby-highlight pre.language-basic::before {
+  content: "basic";
+}
+.gatsby-highlight pre.language-c::before {
+  content: "c";
+}
+.gatsby-highlight pre.language-cpp::before {
+  content: "c++";
+}
+.gatsby-highlight pre.language-clojure::before {
+  content: "clojure";
+}
+.gatsby-highlight pre.language-cmake::before {
+  content: "cmake";
+}
+.gatsby-highlight pre.language-cobol::before {
+  content: "cobol";
+}
+.gatsby-highlight pre.language-csp::before {
+  content: "csp";
+}
+.gatsby-highlight pre.language-csv::before {
+  content: "csv";
+}
+.gatsby-highlight pre.language-cypher::before {
+  content: "cypher";
+}
+.gatsby-highlight pre.language-dart::before {
+  content: "dart";
+}
+.gatsby-highlight pre.language-django::before {
+  content: "django";
+}
+.gatsby-highlight pre.language-elixir::before {
+  content: "elixir";
+}
+.gatsby-highlight pre.language-elm::before {
+  content: "elm";
+}
+.gatsby-highlight pre.language-erlang::before {
+  content: "erlang";
+}
+.gatsby-highlight pre.language-fsharp::before {
+  content: "F#";
+}
+.gatsby-highlight pre.language-flow::before {
+  content: "flow";
+}
+.gatsby-highlight pre.language-fortran::before {
+  content: "fortran";
+}
+.gatsby-highlight pre.language-ftl::before {
+  content: "ftl";
+}
+.gatsby-highlight pre.language-gherkin::before {
+  content: "gherkin";
+}
+.gatsby-highlight pre.language-git::before {
+  content: "git";
+}
+.gatsby-highlight pre.language-go::before {
+  content: "go";
+}
+.gatsby-highlight pre.language-gradle::before {
+  content: "gradle";
+}
+.gatsby-highlight pre.language-graphql::before {
+  content: "graphql";
+}
+.gatsby-highlight pre.language-groovy::before {
+  content: "groovy";
+}
+.gatsby-highlight pre.language-haml::before {
+  content: "haml";
+}
+.gatsby-highlight pre.language-hcl::before {
+  content: "hcl";
+}
+.gatsby-highlight pre.language-http::before {
+  content: "http";
+}
+.gatsby-highlight pre.language-hsts::before {
+  content: "hsts";
+}
+.gatsby-highlight pre.language-icon::before {
+  content: "icon";
+}
+.gatsby-highlight pre.language-ini::before {
+  content: "ini";
+}
+.gatsby-highlight pre.language-io::before {
+  content: "io";
+}
+.gatsby-highlight pre.language-ignore::before,.gatsby-highlight pre.language-gitignore::before,.gatsby-highlight pre.language-hgignore::before,.gatsby-highlight pre.language-npmignore::before {
+  content: ".ignore";
+}
+.gatsby-highlight pre.language-hs::before,.gatsby-highlight pre.language-haskell::before {
+  content: "hs";
+}
+.gatsby-highlight pre.language-hbs::before,.gatsby-highlight pre.language-handlebars::before,.gatsby-highlight pre.language-mustache::before {
+  content: "hbs";
+}
+.gatsby-highlight pre.language-go-module::before,.gatsby-highlight pre.language-go-mod::before {
+  content: "Go module ";
+}
+.gatsby-highlight pre.language-excel-formula::before,.gatsby-highlight pre.language-excel-xlsx::before,.gatsby-highlight pre.language-excel-xls::before {
+  content: "Excel";
+}
+.gatsby-highlight pre.language-docker::before,.gatsby-highlight pre.language-dockerfile::before {
+  content: "docker";
+}
+.gatsby-highlight pre.language-dns-zone-file::before,.gatsby-highlight pre.language-dns-zone::before {
+  content: "dns-zone";
+}
+.gatsby-highlight pre.language-css-extras::before {
+  content: "css-extras";
+}
+.gatsby-highlight pre.language-coffeescript::before,.gatsby-highlight pre.language-coffee::before {
+  content: "coffeescript";
+}
+.gatsby-highlight pre.language-csharp::before,.gatsby-highlight pre.language-cs::before,.gatsby-highlight pre.language-dotnet::before {
+  content: "c#";
+}
+.gatsby-highlight pre.language-bash::before, .gatsby-highlight pre.language-sh::before, .gatsby-highlight pre.language-shell::before {
+  content: "bash";
+}
+.gatsby-highlight pre.language-js::before, .gatsby-highlight pre.language-javascript::before {
+  content: "js ";
+}
+.gatsby-highlight pre.language-java::before {
+  content: "java";
+}
+.gatsby-highlight pre.language-javadoc::before {
+  content: "javadoc";
+}
+.gatsby-highlight pre.language-javadoclike::before {
+  content: "javadoclike";
+}
+.gatsby-highlight pre.language-javastacktrace::before {
+  content: "javastacktrace";
+}
+.gatsby-highlight pre.language-jsdoc::before {
+  content: "jsdoc";
+}
+.gatsby-highlight pre.language-js-extras::before {
+  content: "js-extras";
+}
+.gatsby-highlight pre.language-json5::before {
+  content: "json5";
+}
+.gatsby-highlight pre.language-jsonp::before {
+  content: "jsonp";
+}
+.gatsby-highlight pre.language-jsstacktrace::before {
+  content: "jsstacktrace";
+}
+.gatsby-highlight pre.language-js-templates::before {
+  content: "js-templates";
+}
+.gatsby-highlight pre.language-julia::before {
+  content: "julia";
+}
+.gatsby-highlight pre.language-keepalived::before {
+  content: "keepalived";
+}
+.gatsby-highlight pre.language-keyman::before {
+  content: "keyman";
+}
+.gatsby-highlight pre.language-less::before {
+  content: "less";
+}
+.gatsby-highlight pre.language-latex::before,.gatsby-highlight pre.language-tex::before,.gatsby-highlight pre.language-context::before {
+  content: "latex";
+}
+.gatsby-highlight pre.language-livescript::before {
+  content: "livescript";
+}
+.gatsby-highlight pre.language-llvm::before {
+  content: "llvm";
+}
+.gatsby-highlight pre.language-log::before {
+  content: "log";
+}
+.gatsby-highlight pre.language-lua::before {
+  content: "lua";
+}
+.gatsby-highlight pre.language-makefile::before {
+  content: "makefile";
+}
+.gatsby-highlight pre.language-markup-templating::before {
+  content: "markup-templating";
+}
+.gatsby-highlight pre.language-matlab::before {
+  content: "matlab";
+}
+.gatsby-highlight pre.language-mongodb::before {
+  content: "mongodb";
+}
+.gatsby-highlight pre.language-monkey::before {
+  content: "monkey";
+}
+.gatsby-highlight pre.language-nasm::before {
+  content: "nasm";
+}
+.gatsby-highlight pre.language-nginx::before {
+  content: "nginx";
+}
+.gatsby-highlight pre.language-opencl::before {
+  content: "opencl";
+}
+.gatsby-highlight pre.language-parser::before {
+  content: "parser";
+}
+.gatsby-highlight pre.language-perl::before {
+  content: "perl";
+}
+.gatsby-highlight pre.language-php::before {
+  content: "php";
+}
+.gatsby-highlight pre.language-phpdoc::before {
+  content: "phpdoc";
+}
+.gatsby-highlight pre.language-plsql::before {
+  content: "plsql";
+}
+.gatsby-highlight pre.language-powershell::before {
+  content: "powershell";
+}
+.gatsby-highlight pre.language-properties::before {
+  content: "properties";
+}
+.gatsby-highlight pre.language-protobuf::before {
+  content: "protobuf";
+}
+.gatsby-highlight pre.language-pug::before {
+  content: "pug";
+}
+.gatsby-highlight pre.language-r::before {
+  content: "r";
+}
+.gatsby-highlight pre.language-tsx::before {
+  content: "tsx";
+}
+.gatsby-highlight pre.language-regex::before {
+  content: "regex";
+}
+.gatsby-highlight pre.language-rest::before {
+  content: "rest";
+}
+.gatsby-highlight pre.language-rust::before {
+  content: "rust";
+}
+.gatsby-highlight pre.language-sas::before {
+  content: "sas";
+}
+.gatsby-highlight pre.language-sass::before {
+  content: "sass";
+}
+.gatsby-highlight pre.language-scss::before {
+  content: "scss";
+}
+.gatsby-highlight pre.language-scala::before {
+  content: "scala";
+}
+.gatsby-highlight pre.language-scheme::before {
+  content: "scheme";
+}
+.gatsby-highlight pre.language-smali::before {
+  content: "smali";
+}
+.gatsby-highlight pre.language-smalltalk::before {
+  content: "smalltalk";
+}
+.gatsby-highlight pre.language-sql::before {
+  content: "sql";
+}
+.gatsby-highlight pre.language-stylus::before {
+  content: "stylus";
+}
+.gatsby-highlight pre.language-swift::before {
+  content: "swift";
+}
+.gatsby-highlight pre.language-systemd::before {
+  content: "systemd";
+}
+.gatsby-highlight pre.language-tcl::before {
+  content: "tcl";
+}
+.gatsby-highlight pre.language-textile::before {
+  content: "textile";
+}
+.gatsby-highlight pre.language-toml::before {
+  content: "toml";
+}
+.gatsby-highlight pre.language-vim::before {
+  content: "vim";
+}
+.gatsby-highlight pre.language-wasm::before {
+  content: "wasm";
+}
+.gatsby-highlight pre.language-wgsl::before {
+  content: "wgsl";
+}
+.gatsby-highlight pre.language-wiki::before {
+  content: "wiki";
+}
+.gatsby-highlight pre.language-xquery::before {
+  content: "xquery";
+}
+.gatsby-highlight pre.language-zig::before {
+  content: "zig";
+}
+.gatsby-highlight pre.language-yaml::before,.gatsby-highlight pre.language-yml::before {
+  content: "yaml";
+}
+.gatsby-highlight pre.language-xml-doc::before {
+  content: "xml-doc";
+}
+.gatsby-highlight pre.language-vb::before,.gatsby-highlight pre.language-visual-basic::before,.gatsby-highlight pre.language-vba::before {
+  content: "vb";
+}
+.gatsby-highlight pre.language-vbnet::before {
+  content: "vb.net";
+}
+.gatsby-highlight pre.language-velocity::before {
+  content: "velocity";
+}
+.gatsby-highlight pre.language-uri::before,.gatsby-highlight pre.language-url::before {
+  content: "uri";
+}
+.gatsby-highlight pre.language-uscript::before,.gatsby-highlight pre.language-unrealscript::before,.gatsby-highlight pre.language-uc::before {
+  content: "uscript";
+}
+.gatsby-highlight pre.language-ts::before,.gatsby-highlight pre.language-typescript::before {
+  content: "ts";
+}
+.gatsby-highlight pre.language-tsconfig::before,.gatsby-highlight pre.language-typoscript::before {
+  content: "tsconfig";
+}
+.gatsby-highlight pre.language-sln::before,.gatsby-highlight pre.language-solution-file::before {
+  content: "sln";
+}
+.gatsby-highlight pre.language-sh-session::before,.gatsby-highlight pre.language-shell-session::before,.gatsby-highlight pre.language-shellsession::before {
+  content: "sh-session";
+}
+.gatsby-highlight pre.language-rb::before,.gatsby-highlight pre.language-ruby::before {
+  content: "ruby";
+}
+.gatsby-highlight pre.language-robot::before,.gatsby-highlight pre.language-robotframework::before {
+  content: "robot";
+}
+.gatsby-highlight pre.language-py::before,.gatsby-highlight pre.language-python::before {
+  content: "python";
+}
+.gatsby-highlight pre.language-pq::before,.gatsby-highlight pre.language-powerquery::before,.gatsby-highlight pre.language-mscript::before {
+  content: "powerquery";
+}
+.gatsby-highlight pre.language-plantuml::before,.gatsby-highlight pre.language-plant-uml::before {
+  content: "plantuml";
+}
+.gatsby-highlight pre.language-php-extras::before {
+  content: "php-extras";
+}
+.gatsby-highlight pre.language-pascal::before,.gatsby-highlight pre.language-objectpascal::before {
+  content: "pascal";
+}
+.gatsby-highlight pre.language-objectivec::before,.gatsby-highlight pre.language-objc::before {
+  content: "objc";
+}
+.gatsby-highlight pre.language-n4js::before,.gatsby-highlight pre.language-n4jsd::before {
+  content: "n4js";
+}
+.gatsby-highlight pre.language-markdown::before,.gatsby-highlight pre.language-md::before {
+  content: "md";
+}
+.gatsby-highlight pre.language-lisp::before,.gatsby-highlight pre.language-emacs::before,.gatsby-highlight pre.language-elisp::before,.gatsby-highlight pre.language-emacs-lisp::before {
+  content: "lisp";
+}
+.gatsby-highlight pre.language-kotlin::before,.gatsby-highlight pre.language-kt::before,.gatsby-highlight pre.language-kts::before {
+  content: "kotlin";
+}
+.gatsby-highlight pre.language-json::before,.gatsby-highlight pre.language-webmanifest::before {
+  content: "json";
+}
+.gatsby-highlight pre[class*="language-"]::before {
+  background: rgb(249, 172, 0);
+  border-radius: 0 0 4px 4px;
+  color: #1F1F1F;
+  font-size: 0.75rem;
+  font-family: Consolas, Liberation Mono, Courier New, monospace;
+  font-weight: bolder;
+  letter-spacing: 0.075em;
+  line-height: 1;
+  padding: 0.15rem 0.5rem;
+  position: absolute;
+  text-align: right;
+  text-transform: uppercase;
+  top: 0;
 }

@@ -17,6 +17,7 @@ caption {
   caption-side: top;
   font-size: 1.25rem;
   font-weight: 600;
+  text-align: left;
 }
 
 .post-container .embedded-video video {
@@ -81,7 +82,7 @@ h1 {
 }
 
 h2 {
-  margin: 0 0 7px;
+  margin: 0 0 10px;
   padding: 0;
   color: inherit;
   font-weight: bold;
@@ -210,19 +211,7 @@ table {
   display: block;
   overflow-x: auto;
   white-space: nowrap;
-  max-width: 45vw;
-}
-
-@media only screen and (min-width: 1920px) {
-  table {
-    max-width: 44vw;
-  }
-}
-
-@media only screen and (max-width: 1400px) {
-  table {
-    max-width: 41vw;
-  }
+  max-width: var(--code-max-width);
 }
 
 @media only screen and (max-width: 1024px) {
@@ -382,20 +371,14 @@ ais-highlight-0000000000 {
   transition: unset !important;
 }
 
-.heading-text:before {
-  content: "⚓";
+.heading-text::before {
+  content: "📌";
   font-size: 70%;
   float: left;
 }
 
 .heading-text:hover {
   text-decoration-line: underline;
-}
-
-.anchor-tag:before {
-  content: "⚓";
-  float: left;
-  font-size: 70%;
 }
 
 iframe {
@@ -439,4 +422,8 @@ iframe {
     display: block;
   }
 
+}
+
+:root {
+  --code-max-width: 48vw;
 }

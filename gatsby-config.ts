@@ -79,6 +79,8 @@ const gatsbyConfig: GatsbyConfig = {
       options: {
         plugins: [
           `gatsby-remark-table-caption`,
+          `gatsby-remark-code-titles`,
+          `gatsby-remark-prismjs-copy-button`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
