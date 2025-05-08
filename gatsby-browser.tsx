@@ -30,12 +30,12 @@ export const onRouteUpdate = () => {
   };
   mediumZoom(".gatsby-resp-image-image", options);
 
-  if (navigator.clipboard && window.isSecureContext) {
+  if (!navigator.clipboard || !window.isSecureContext) {
     return;
   }
   const elementNodeListOf = document.querySelectorAll(".gatsby-remark-prismjs-copy-button-container");
   elementNodeListOf.forEach((el) => {
-    (el as HTMLElement).style.display = "none";
+    (el as HTMLElement).style.setProperty("display", "flex", "important");
   });
 };
 
