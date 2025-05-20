@@ -4,6 +4,7 @@
  ************************/
 
 import { AlgoliaData, AlgoliaNode, FlattenAlgoliaNode } from "../types/DataTypes";
+import crypto from "crypto";
 
 const allContentfulBlogPost = `{
   allContentfulBlogPost {
@@ -76,6 +77,12 @@ const splitNode = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
     ...rest,
     excerpt: content,
     id: rest.id + "_" + subContentsLength--,
+    internal: {
+      contentDigest: crypto
+        .createHash(`md5`)
+        .update(JSON.stringify({ content: content, slug: rest.slug, title: rest.title }))
+        .digest(`hex`),
+    },
   }));
 };
 

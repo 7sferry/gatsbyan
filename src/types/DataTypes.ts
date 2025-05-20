@@ -339,6 +339,11 @@ export interface AlgoliaNodeResult {
 
 export interface AlgoliaChildMarkdownRemark {
   readonly excerpt: string;
+  readonly internal: ContentDigest;
+}
+
+export interface ContentDigest {
+  readonly contentDigest: string;
 }
 
 export interface FlattenAlgoliaNode {
@@ -346,6 +351,7 @@ export interface FlattenAlgoliaNode {
   readonly title: string;
   readonly slug: string;
   readonly excerpt: string;
+  readonly internal: ContentDigest;
 }
 
 export interface PaginationProp {
