@@ -17,19 +17,10 @@
 }
 .gatsby-code-title {
   font-weight: bolder;
-  max-width: var(--code-max-width);
   text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: break-word;
   color: #eee;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   font-size: 1em;
-  line-height: 1.5em;
-  tab-size: 4;
-  -webkit-hyphens: none;
-  hyphens: none;
 }
 code[class*="language-"],
 pre[class*="language-"] {
@@ -240,7 +231,7 @@ p > .language-text{
 }
 
 @media only screen and (max-width: 1024px) {
-  pre[class*="language-"], .gatsby-remark-prismjs-copy-button-container, .gatsby-code-title {
+  pre[class*="language-"], .gatsby-remark-prismjs-copy-button-container {
     max-width: 100vw;
   }
 }
