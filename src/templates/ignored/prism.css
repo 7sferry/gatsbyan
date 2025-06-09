@@ -82,7 +82,7 @@ p > .language-text{
 }
 
 .token.punctuation {
-  color: #999;
+  color: #6E7ED9;
 }
 
 .token.atrule {
@@ -123,7 +123,7 @@ p > .language-text{
 }
 
 .token.comment {
-  color: #8C8C8C;
+  color: #7A7E85;
 }
 
 .token.constant {
@@ -175,7 +175,7 @@ p > .language-text{
 }
 
 .token.operator {
-  color: #999;
+  color: #BCBEC4;
 }
 
 .token.annotation {
