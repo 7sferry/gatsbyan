@@ -78,7 +78,7 @@ code.language-text{
   background: none !important;
 }
 
-p > .language-text{
+p > .language-text, li > .language-text {
   color: #faa;
 }
 
