@@ -26,6 +26,11 @@ p,
   -ms-grid-columns: 1fr 2fr 1fr;
 }
 
+.main-layout > * {
+  word-break: break-word;
+  min-width: 0;
+}
+
 .post-container {
   display: inline-block;
   text-align: left;
