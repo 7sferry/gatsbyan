@@ -76,6 +76,7 @@
   "bugs": {
     "url": "https://github.com/7sferry/gatsbyan/issues"
   },
+  "packageManager": "yarn@4.1.1",
   "trustedDependencies": [
     "contentful",
     "core-js",
