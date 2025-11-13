@@ -2,8 +2,6 @@
 
 This is template for GatsbyJS that I use on production for my personal blog at https://ferry.now.sh
 
-For a clean template, take a look at https://github.com/7sferry/Gatsbyan1.0
-
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/example.png?raw=true)
 
 ## Features:
