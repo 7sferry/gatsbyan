@@ -55,7 +55,7 @@
   "license": "MIT",
   "homepage": "https://ferry.vercel.app",
   "scripts": {
-    "build": "gatsby clean && gatsby build",
+    "build": "gatsby build",
     "develop": "tsc --noEmit && gatsby develop -H 0.0.0.0",
     "clean-develop": "gatsby clean && tsc --noEmit && gatsby develop -H 0.0.0.0",
     "clean-build": "gatsby clean && gatsby build",
@@ -76,7 +76,6 @@
   "bugs": {
     "url": "https://github.com/7sferry/gatsbyan/issues"
   },
-  "packageManager": "yarn@4.1.1",
   "trustedDependencies": [
     "contentful",
     "core-js",
