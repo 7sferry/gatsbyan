@@ -1,4 +1,10 @@
 {
+  "build": {
+    "env": {
+      "NODE_VERSION": "20",
+      "GATSBY_CPU_COUNT": "2"
+    }
+  },
   "version": 2,
   "redirects": [
     {
