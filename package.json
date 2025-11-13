@@ -4,6 +4,7 @@
   "version": "2.3.0",
   "author": "Ferry",
   "dependencies": {
+    "@vercel/gatsby-plugin-vercel-builder": "^2.0.104",
     "algoliasearch": "^5.43.0",
     "bootstrap": "^5.3.8",
     "gatsby": "^5.15.0",
@@ -55,7 +56,7 @@
   "license": "MIT",
   "homepage": "https://ferry.vercel.app",
   "scripts": {
-    "build": "gatsby build",
+    "build": "rm -rf node_modules .cache public && npm install && gatsby build",
     "develop": "tsc --noEmit && gatsby develop -H 0.0.0.0",
     "clean-develop": "gatsby clean && tsc --noEmit && gatsby develop -H 0.0.0.0",
     "clean-build": "gatsby clean && gatsby build",
