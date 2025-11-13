@@ -4,8 +4,8 @@
   "version": "2.3.0",
   "author": "Ferry",
   "dependencies": {
-    "algoliasearch": "^5.18.0",
-    "bootstrap": "^5.3.3",
+    "algoliasearch": "^5.43.0",
+    "bootstrap": "^5.3.8",
     "gatsby": "^5.15.0",
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-catch-links": "^5.15.0",
@@ -31,7 +31,7 @@
     "prismjs": "^1.30.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-instantsearch": "^7.13.9"
+    "react-instantsearch": "^7.19.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.4",
