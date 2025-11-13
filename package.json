@@ -86,7 +86,6 @@
     "gatsby-cli",
     "gatsby-telemetry",
     "lmdb",
-    "msgpackr-extract",
-    "sharp"
+    "msgpackr-extract"
   ]
 }
