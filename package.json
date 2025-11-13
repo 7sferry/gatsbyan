@@ -56,7 +56,7 @@
   "license": "MIT",
   "homepage": "https://ferry.vercel.app",
   "scripts": {
-    "build": "gatsby clean && gatsby build",
+    "build": "rm -rf node_modules .cache public && npm install && gatsby build",
     "develop": "tsc --noEmit && gatsby develop -H 0.0.0.0",
     "clean-develop": "gatsby clean && tsc --noEmit && gatsby develop -H 0.0.0.0",
     "clean-build": "gatsby clean && gatsby build",
