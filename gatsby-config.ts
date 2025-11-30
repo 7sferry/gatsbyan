@@ -35,7 +35,6 @@ const exclude = [
 
 const gatsbyConfig: GatsbyConfig = {
   trailingSlash: "never",
-  polyfill: false,
   siteMetadata: {
     siteUrl: siteConfig.url,
     repo: siteConfig.repo,

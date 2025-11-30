@@ -6,41 +6,11 @@
 import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
-import { CreateBabelConfigArgs, CreatePagesArgs, CreateWebpackConfigArgs, GatsbyNode } from "gatsby";
+import { CreatePagesArgs, GatsbyNode } from "gatsby";
 import { Sign } from "./src/utils/Sign.tsx";
 
 export const onPostBootstrap = () => {
   Sign();
-};
-
-exports.onCreateBabelConfig = ({ actions }: CreateBabelConfigArgs) => {
-  // Only modify client-side JS builds
-  actions.setBabelPreset({
-    name: "babel-preset-gatsby",
-    options: {
-      // Modern browsers only
-      targets: {
-        esmodules: true,
-      },
-
-      // 🚫 IMPORTANT: Disable client-side polyfills
-      // Gatsby normally uses "usage" and injects core-js.
-      useBuiltIns: false,
-      corejs: false,
-
-      // Keep Gatsby internals intact
-      reactConstantElements: true,
-      reactRuntime: "automatic",
-    },
-  });
-};
-
-exports.onCreateWebpackConfig = ({ actions, stage }: CreateWebpackConfigArgs) => {
-  // if (stage === "build-javascript" || stage === "develop") {
-  actions.setWebpackConfig({
-    target: ["web", "es2020"],
-  });
-  // }
 };
 
 export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: CreatePagesArgs) => {
