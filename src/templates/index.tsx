@@ -122,7 +122,7 @@ export const pageQuery = graphql`
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
-            outputPixelDensities: [1, 2]
+            outputPixelDensities: [1, 1.5]
             width: 410
             quality: 50
           )
@@ -132,7 +132,7 @@ export const pageQuery = graphql`
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
-            outputPixelDensities: [1, 2]
+            outputPixelDensities: [1, 1.5]
             width: 360
             quality: 50
           )
@@ -140,7 +140,7 @@ export const pageQuery = graphql`
             formats: [NO_CHANGE, AVIF]
             placeholder: BLURRED
             layout: FIXED
-            outputPixelDensities: [1, 2]
+            outputPixelDensities: [1, 1.5]
             width: 250
             quality: 50
           )
