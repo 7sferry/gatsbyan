@@ -121,7 +121,7 @@ export const pageQuery = graphql`
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
-            layout: FIXED
+            layout: FULL_WIDTH
             outputPixelDensities: [1]
             width: 410
             quality: 75
@@ -131,7 +131,7 @@ export const pageQuery = graphql`
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
-            layout: FIXED
+            layout: FULL_WIDTH
             outputPixelDensities: [1]
             width: 360
             quality: 75
@@ -139,7 +139,7 @@ export const pageQuery = graphql`
           laptop: gatsbyImageData(
             formats: [NO_CHANGE, AVIF]
             placeholder: BLURRED
-            layout: FIXED
+            layout: FULL_WIDTH
             outputPixelDensities: [1]
             width: 250
             quality: 75
