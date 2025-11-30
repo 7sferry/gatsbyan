@@ -13,14 +13,14 @@ const getPhotoBio = (): IGatsbyImageData => {
         childImageSharp {
           original: gatsbyImageData(
             formats: [NO_CHANGE, AVIF]
-            quality: 50
+            quality: 75
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             avifOptions: { lossless: true, speed: 1 }
           )
           phone: gatsbyImageData(
             formats: [NO_CHANGE, AVIF]
-            quality: 50
+            quality: 90
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             width: 75
@@ -29,7 +29,7 @@ const getPhotoBio = (): IGatsbyImageData => {
           )
           ipad: gatsbyImageData(
             formats: [NO_CHANGE, AVIF]
-            quality: 50
+            quality: 90
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             width: 125
@@ -38,7 +38,7 @@ const getPhotoBio = (): IGatsbyImageData => {
           )
           laptop: gatsbyImageData(
             formats: [NO_CHANGE, AVIF]
-            quality: 50
+            quality: 90
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             width: 250

@@ -124,7 +124,7 @@ export const pageQuery = graphql`
             layout: FIXED
             outputPixelDensities: [1]
             width: 410
-            quality: 75
+            quality: 90
           )
           ipad: gatsbyImageData(
             formats: [NO_CHANGE, AVIF]
@@ -134,15 +134,15 @@ export const pageQuery = graphql`
             layout: FIXED
             outputPixelDensities: [1]
             width: 360
-            quality: 75
+            quality: 90
           )
           laptop: gatsbyImageData(
             formats: [NO_CHANGE, AVIF]
             placeholder: BLURRED
             layout: FIXED
             outputPixelDensities: [1]
-            width: 250
-            quality: 75
+            width: 350
+            quality: 90
           )
           title
         }
