@@ -11,27 +11,39 @@ const getPhotoBio = (): IGatsbyImageData => {
     query PhotoBio {
       file(relativePath: { eq: "ferry.jpg" }) {
         childImageSharp {
-          original: gatsbyImageData(quality: 100, placeholder: DOMINANT_COLOR, layout: CONSTRAINED)
+          original: gatsbyImageData(
+            formats: [NO_CHANGE, AVIF]
+            quality: 50
+            placeholder: DOMINANT_COLOR
+            layout: CONSTRAINED
+            avifOptions: { lossless: true, speed: 1 }
+          )
           phone: gatsbyImageData(
-            quality: 100
+            formats: [NO_CHANGE, AVIF]
+            quality: 50
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             width: 75
             outputPixelDensities: [0.5, 1, 2]
+            avifOptions: { lossless: true, speed: 1 }
           )
           ipad: gatsbyImageData(
-            quality: 100
+            formats: [NO_CHANGE, AVIF]
+            quality: 50
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             width: 125
             outputPixelDensities: [0.5, 1]
+            avifOptions: { lossless: true, speed: 1 }
           )
           laptop: gatsbyImageData(
-            quality: 100
+            formats: [NO_CHANGE, AVIF]
+            quality: 50
             placeholder: DOMINANT_COLOR
             layout: CONSTRAINED
             width: 250
             outputPixelDensities: [1]
+            avifOptions: { lossless: true, speed: 1 }
           )
         }
       }
