@@ -109,31 +109,41 @@ export const pageQuery = graphql`
         publishDate
         heroImage {
           original: gatsbyImageData(
+            formats: [NO_CHANGE, AVIF]
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
-            quality: 100
+            quality: 30
           )
           phone: gatsbyImageData(
+            formats: [NO_CHANGE, AVIF]
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
             outputPixelDensities: [1]
             width: 410
-            quality: 100
+            quality: 30
           )
           ipad: gatsbyImageData(
+            formats: [NO_CHANGE, AVIF]
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
             outputPixelDensities: [1]
             width: 360
-            quality: 100
+            quality: 30
           )
-          laptop: gatsbyImageData(placeholder: BLURRED, layout: FIXED, outputPixelDensities: [1], width: 250)
+          laptop: gatsbyImageData(
+            formats: [NO_CHANGE, AVIF]
+            placeholder: BLURRED
+            layout: FIXED
+            outputPixelDensities: [1]
+            width: 250
+            quality: 30
+          )
           title
         }
         id

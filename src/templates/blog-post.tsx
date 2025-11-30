@@ -106,28 +106,32 @@ export const pageQuery = graphql`
       }
       heroImage {
         original: gatsbyImageData(
-          quality: 100
+          formats: [NO_CHANGE, AVIF]
+          quality: 70
           placeholder: BLURRED
           layout: FULL_WIDTH
           resizingBehavior: THUMB
           cropFocus: FACES
         )
         phone: gatsbyImageData(
-          quality: 100
+          formats: [NO_CHANGE, AVIF]
+          quality: 70
           placeholder: BLURRED
           layout: FULL_WIDTH
           breakpoints: [410]
           sizes: "(max-width: 414px) 410px"
         )
         ipad: gatsbyImageData(
-          quality: 100
+          formats: [NO_CHANGE, AVIF]
+          quality: 70
           placeholder: BLURRED
           layout: FULL_WIDTH
           breakpoints: [1000]
           sizes: "(max-width: 1024px) 1000px"
         )
         laptop: gatsbyImageData(
-          quality: 100
+          formats: [NO_CHANGE, AVIF]
+          quality: 70
           placeholder: BLURRED
           layout: FULL_WIDTH
           resizingBehavior: THUMB
