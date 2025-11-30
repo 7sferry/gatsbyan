@@ -118,7 +118,7 @@ export const pageQuery = graphql`
           quality: 75
           placeholder: BLURRED
           layout: FULL_WIDTH
-          breakpoints: [410]
+          breakpoints: [600]
           sizes: "(max-width: 414px) 410px"
         )
         ipad: gatsbyImageData(
