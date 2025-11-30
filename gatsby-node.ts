@@ -14,21 +14,23 @@ export const onPostBootstrap = () => {
 };
 
 exports.onCreateBabelConfig = ({ actions }: CreateBabelConfigArgs) => {
+  // Only modify client-side JS builds
   actions.setBabelPreset({
-    name: "@babel/preset-env",
+    name: "babel-preset-gatsby",
     options: {
-      targets: "supports es6-module", // modern browsers only
-      bugfixes: true,
-      modules: false,
-      useBuiltIns: false, // don't inject polyfills
-    },
-  });
+      // Modern browsers only
+      targets: {
+        esmodules: true,
+      },
 
-  // Optional: remove React polyfills (Gatsby adds them)
-  actions.setBabelPlugin({
-    name: "@babel/plugin-transform-runtime",
-    options: {
+      // 🚫 IMPORTANT: Disable client-side polyfills
+      // Gatsby normally uses "usage" and injects core-js.
+      useBuiltIns: false,
       corejs: false,
+
+      // Keep Gatsby internals intact
+      reactConstantElements: true,
+      reactRuntime: "automatic",
     },
   });
 };
