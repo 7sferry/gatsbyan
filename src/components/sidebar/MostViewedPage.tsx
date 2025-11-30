@@ -15,7 +15,7 @@ const MostViewedPage = () => {
   return (
     mostViewedNodes && (
       <div>
-        <div className="second-header">Most Viewed</div>
+        <div className="second-header">Most Read</div>
         <ul>
           {mostViewedNodes.map((node) => {
             return (
