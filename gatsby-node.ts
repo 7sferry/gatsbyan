@@ -6,7 +6,7 @@
 import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
-import { CreateBabelConfigArgs, CreatePagesArgs, GatsbyNode } from "gatsby";
+import { CreateBabelConfigArgs, CreatePagesArgs, CreateWebpackConfigArgs, GatsbyNode } from "gatsby";
 import { Sign } from "./src/utils/Sign.tsx";
 
 export const onPostBootstrap = () => {
@@ -31,6 +31,14 @@ exports.onCreateBabelConfig = ({ actions }: CreateBabelConfigArgs) => {
       corejs: false,
     },
   });
+};
+
+exports.onCreateWebpackConfig = ({ actions, stage }: CreateWebpackConfigArgs) => {
+  // if (stage === "build-javascript" || stage === "develop") {
+  actions.setWebpackConfig({
+    target: ["web", "es2020"],
+  });
+  // }
 };
 
 export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: CreatePagesArgs) => {
