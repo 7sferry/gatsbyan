@@ -15,7 +15,7 @@ const TopTrendingPage = () => {
   return (
     trendingNodes.length > 0 && (
       <div>
-        <div className="second-header">Top Trending</div>
+        <div className="second-header">Top Searched</div>
         <ul>
           {trendingNodes.map((node) => {
             return (
