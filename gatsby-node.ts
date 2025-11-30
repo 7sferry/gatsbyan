@@ -6,11 +6,31 @@
 import path from "path";
 import { kebabCase } from "./src/utils/GatsbyanUtils";
 import { AllContentfulBlogPost } from "./src/types/DataTypes";
-import { CreatePagesArgs, GatsbyNode } from "gatsby";
+import { CreateBabelConfigArgs, CreatePagesArgs, GatsbyNode } from "gatsby";
 import { Sign } from "./src/utils/Sign.tsx";
 
 export const onPostBootstrap = () => {
   Sign();
+};
+
+exports.onCreateBabelConfig = ({ actions }: CreateBabelConfigArgs) => {
+  actions.setBabelPreset({
+    name: "@babel/preset-env",
+    options: {
+      targets: "supports es6-module", // modern browsers only
+      bugfixes: true,
+      modules: false,
+      useBuiltIns: false, // don't inject polyfills
+    },
+  });
+
+  // Optional: remove React polyfills (Gatsby adds them)
+  actions.setBabelPlugin({
+    name: "@babel/plugin-transform-runtime",
+    options: {
+      corejs: false,
+    },
+  });
 };
 
 export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: CreatePagesArgs) => {
