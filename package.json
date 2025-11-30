@@ -76,6 +76,11 @@
   "bugs": {
     "url": "https://github.com/7sferry/gatsbyan/issues"
   },
+  "browserslist": [
+    "supports es6-module",
+    "not IE 11",
+    "last 2 Chrome versions"
+  ],
   "trustedDependencies": [
     "contentful",
     "core-js",
