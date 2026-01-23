@@ -201,6 +201,13 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
         });
 
         createRedirect({
+          fromPath: `/blog/nge-blog`,
+          toPath: `/blog/blog`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
+
+        createRedirect({
           fromPath: `/blog/value-averaging-calculator`,
           toPath: `/features/value-averaging-calculator`,
           redirectInBrowser: true,

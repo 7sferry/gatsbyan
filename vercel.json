@@ -22,6 +22,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/nge-blog",
+      "destination": "/blog/blog",
+      "permanent": true
+    },
+    {
       "source": "/blog/t-e-r-c-o-l-o-n-g",
       "destination": "/blog/tercolong",
       "statusCode": 308
