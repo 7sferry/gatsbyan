@@ -9,7 +9,7 @@ import { CommentAttr } from "../types/DataTypes";
 const src = "https://utteranc.es/client.js";
 
 export const Comment = ({ repo }: CommentAttr) => {
-  const element: React.RefObject<HTMLDivElement> = React.createRef();
+  const element: React.RefObject<HTMLDivElement | null> = React.createRef();
   const commentShown = isCommentShown();
 
   useEffect(() => {
