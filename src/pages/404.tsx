@@ -4,7 +4,6 @@ import Layout from "../components/Layout";
 import robot from "../templates/robot404";
 import Seo, { SeoTags, useSeo } from "../components/Seo";
 import { SeoData } from "../types/DataTypes";
-import { NoClientSide } from "../components/NoClientSide.tsx";
 
 const NotFoundPage = () => {
   const seo: SeoData = useSeo({
@@ -32,9 +31,7 @@ export function Head() {
   return (
     <>
       <Seo />
-      <NoClientSide>
-        <SeoTags seo={seo} />
-      </NoClientSide>
+      <SeoTags seo={seo} />
     </>
   );
 }

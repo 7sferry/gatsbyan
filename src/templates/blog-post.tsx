@@ -16,7 +16,6 @@ import { ClientSide } from "../components/ClientSide.tsx";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
 import { getDateYear, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/DateUtils";
 import Seo, { SeoTags, useSeo } from "../components/Seo";
-import { NoClientSide } from "../components/NoClientSide.tsx";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
   const { contentfulBlogPost: post, site: siteProp } = props.data;
@@ -46,7 +45,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
 
   return (
     <Layout>
-        <SeoTags seo={seo} />
+      <SeoTags seo={seo} />
       <div className="title posted">{post.title}</div>
       <div className="title text-info mb-2">
         <span className="page-info">{getPublishDateTime(publishDate)}</span>
@@ -180,9 +179,7 @@ export function Head({ data, location }: BlogPostProp) {
   return (
     <>
       <Seo lang={post?.lang?.[0]} />
-      <NoClientSide>
-        <SeoTags seo={seo} />
-      </NoClientSide>
+      <SeoTags seo={seo} />
     </>
   );
 }

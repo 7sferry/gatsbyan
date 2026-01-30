@@ -4,7 +4,6 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import { CustomPostAttr, LocationProp, SeoData } from "../../types/DataTypes";
 import { ValueAveragingForm } from "../../components/value-averaging/ValueAveragingForm.tsx";
 import Seo, { SeoTags, useSeo } from "../../components/Seo";
-import { NoClientSide } from "../../components/NoClientSide.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -68,9 +67,7 @@ export function Head() {
   return (
     <>
       <Seo lang={pageContext?.lang} />
-      <NoClientSide>
-        <SeoTags seo={seo} />
-      </NoClientSide>
+      <SeoTags seo={seo} />
     </>
   );
 }

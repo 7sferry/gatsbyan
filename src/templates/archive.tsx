@@ -9,7 +9,6 @@ import "./archive.css";
 import Layout from "../components/Layout";
 import Seo, { SeoTags, useSeo } from "../components/Seo";
 import { LocationProp, SeoData } from "../types/DataTypes";
-import { NoClientSide } from "../components/NoClientSide.tsx";
 
 const ArchivePage = ({ location }: LocationProp) => {
   const seo: SeoData = useSeo({
@@ -38,9 +37,7 @@ export function Head({ location }: LocationProp) {
   return (
     <>
       <Seo />
-      <NoClientSide>
-        <SeoTags seo={seo} />
-      </NoClientSide>
+      <SeoTags seo={seo} />
     </>
   );
 }

@@ -12,7 +12,6 @@ import { Slice } from "gatsby";
 import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
 import Seo, { SeoTags, useSeo } from "../components/Seo";
 import { LocationProp, SeoData } from "../types/DataTypes";
-import { NoClientSide } from "../components/NoClientSide.tsx";
 
 const SearchPage = ({ location }: LocationProp) => {
   const seo: SeoData = useSeo({
@@ -78,9 +77,7 @@ export function Head({ location }: LocationProp) {
   return (
     <>
       <Seo />
-      <NoClientSide>
-        <SeoTags seo={seo} />
-      </NoClientSide>
+      <SeoTags seo={seo} />
     </>
   );
 }

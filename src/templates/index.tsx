@@ -14,7 +14,6 @@ import { IndexHeroImage, IndexProp, LocationProp, SeoData } from "../types/DataT
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags";
 import { getPublishDate } from "../utils/DateUtils";
 import Seo, { SeoTags, useSeo } from "../components/Seo";
-import { NoClientSide } from "../components/NoClientSide.tsx";
 
 function IndexPage(props: IndexProp & LocationProp) {
   const { pageContext, data, location } = props;
@@ -182,9 +181,7 @@ export function Head({ location }: LocationProp) {
   return (
     <>
       <Seo />
-      <NoClientSide>
-        <SeoTags seo={seo} />
-      </NoClientSide>
+      <SeoTags seo={seo} />
     </>
   );
 }
