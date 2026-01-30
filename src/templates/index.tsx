@@ -5,25 +5,50 @@
 
 import React from "react";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
-import { graphql, HeadProps, Link, Slice } from "gatsby";
+import { graphql, Link, Slice } from "gatsby";
 
 import Layout from "../components/Layout";
-import Seo from "../components/Seo";
 import { getPlurals } from "../utils/GatsbyanUtils";
 import "./index.css";
-import { IndexHeroImage, IndexProp } from "../types/DataTypes";
+import { IndexHeroImage, IndexProp, LocationProp, SeoData } from "../types/DataTypes";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags";
 import { getPublishDate } from "../utils/DateUtils";
+import Seo, { SEO_CONSTANTS, useSeo } from "../components/Seo";
 
-function IndexPage(props: IndexProp) {
-  const { pageContext, data } = props;
+function IndexPage(props: IndexProp & LocationProp) {
+  const { pageContext, data, location } = props;
   const { allContentfulBlogPost: contents } = data;
   const { nodes: posts, pageInfo } = contents;
   const kebabTag = pageContext.kebabTag;
   const paginationUrl = kebabTag ? `/tags/${kebabTag}` : `/page`;
 
+  const seo: SeoData = useSeo({
+    title: location?.pathname === "/" ? "Personal Blog [Ferry Suhandri]" : "Blog",
+    path: location?.pathname,
+  });
+
   return (
     <Layout>
+      <link rel="canonical" href={seo.metaUrl} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: seo.schemaDataJson }} />
+      <title>{`${seo.title} `}</title>
+      <meta name="description" content={seo.metaDescription} />
+      <meta name="og:title" content={seo.title} />
+      <meta name="og:description" content={seo.metaDescription} />
+      <meta name="og:type" content={SEO_CONSTANTS.OG_TYPE} />
+      <meta name="og:site_name" content={SEO_CONSTANTS.OG_SITE_NAME} />
+      <meta name="og:url" content={seo.metaUrl} />
+      <meta name="og:image" content={seo.metaImageLarge} />
+      <meta name="og:image:type" content={SEO_CONSTANTS.OG_IMAGE_TYPE} />
+      <meta name="og:image:width" content={SEO_CONSTANTS.OG_IMAGE_WIDTH} />
+      <meta name="og:image:height" content={SEO_CONSTANTS.OG_IMAGE_HEIGHT} />
+      <meta name="twitter:card" content={SEO_CONSTANTS.TWITTER_CARD} />
+      <meta name="twitter:creator" content={seo.metadata.author} />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:image" content={seo.metaImage} />
+      <meta name="twitter:description" content={seo.metaDescription} />
+      <meta name="fb:app_id" content={SEO_CONSTANTS.FB_APP_ID} />
+      <meta name="google-site-verification" content={SEO_CONSTANTS.GOOGLE_SITE_VERIFICATION} />
       {kebabTag && (
         <div className="tag-title">
           All posts related to <b>{pageContext.tag}</b>
@@ -167,8 +192,6 @@ export const pageQuery = graphql`
 
 export default IndexPage;
 
-export function Head({ location }: HeadProps) {
-  return (
-    <Seo title={location?.pathname === "/" ? "Personal Blog [Ferry Suhandri]" : "Blog"} path={location?.pathname} />
-  );
+export function Head() {
+  return <Seo />;
 }

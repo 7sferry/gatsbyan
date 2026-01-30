@@ -1,9 +1,9 @@
 import React from "react";
 import CustomPageContainer from "../../components/CustomPageContainer.tsx";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import Seo from "../../components/Seo";
-import { CustomPostAttr } from "../../types/DataTypes";
+import { CustomPostAttr, LocationProp, SeoData } from "../../types/DataTypes";
 import { ValueAveragingForm } from "../../components/value-averaging/ValueAveragingForm.tsx";
+import Seo, { SEO_CONSTANTS, useSeo } from "../../components/Seo";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -17,7 +17,7 @@ const pageContext: CustomPostAttr = {
   lang: "id",
 };
 
-const ValueAveragingCalculator = () => {
+const ValueAveragingCalculator = ({ location }: LocationProp) => {
   const { site } = useStaticQuery(graphql`
     query BlogPageSlug {
       site {
@@ -28,9 +28,35 @@ const ValueAveragingCalculator = () => {
     }
   `);
 
+  const seo: SeoData = useSeo({
+    title: pageContext?.title ?? "",
+    description: pageContext?.description,
+    path: location?.pathname,
+  });
+
   return (
     pageContext && (
       <CustomPageContainer site={site.siteMetadata} customPost={pageContext}>
+        <link rel="canonical" href={seo.metaUrl} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: seo.schemaDataJson }} />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.metaDescription} />
+        <meta name="og:title" content={seo.title} />
+        <meta name="og:description" content={seo.metaDescription} />
+        <meta name="og:type" content={SEO_CONSTANTS.OG_TYPE} />
+        <meta name="og:site_name" content={SEO_CONSTANTS.OG_SITE_NAME} />
+        <meta name="og:url" content={seo.metaUrl} />
+        <meta name="og:image" content={seo.metaImageLarge} />
+        <meta name="og:image:type" content={SEO_CONSTANTS.OG_IMAGE_TYPE} />
+        <meta name="og:image:width" content={SEO_CONSTANTS.OG_IMAGE_WIDTH} />
+        <meta name="og:image:height" content={SEO_CONSTANTS.OG_IMAGE_HEIGHT} />
+        <meta name="twitter:card" content={SEO_CONSTANTS.TWITTER_CARD} />
+        <meta name="twitter:creator" content={seo.metadata.author} />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:image" content={seo.metaImage} />
+        <meta name="twitter:description" content={seo.metaDescription} />
+        <meta name="fb:app_id" content={SEO_CONSTANTS.FB_APP_ID} />
+        <meta name="google-site-verification" content={SEO_CONSTANTS.GOOGLE_SITE_VERIFICATION} />
         <p>
           Berikut ini adalah kalkulator untuk menghitung investasi secara Value Averaging per-bulan. Untuk penjelasan
           mengenai strategi ini bisa dibaca tulisan tentang{" "}
@@ -52,13 +78,6 @@ export async function config() {
 
 export default ValueAveragingCalculator;
 
-export function Head({ location }: any) {
-  return (
-    <Seo
-      title={pageContext?.title}
-      description={pageContext?.description}
-      lang={pageContext?.lang}
-      path={location?.pathname}
-    />
-  );
+export function Head() {
+  return <Seo lang={pageContext?.lang} />;
 }

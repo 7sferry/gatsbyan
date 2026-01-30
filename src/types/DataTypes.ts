@@ -67,12 +67,13 @@ export interface CustomPostAttr {
 }
 
 export interface SeoAttr {
-  readonly description?: string;
   readonly lang?: string;
-  readonly title?: string;
-  readonly image?: string;
-  readonly path?: string;
-  readonly date?: string;
+}
+
+export interface LocationProp {
+  readonly location: {
+    readonly pathname: string;
+  };
 }
 
 export interface CommaSeparatedLinkedPostTagsAttr {
@@ -396,4 +397,57 @@ export interface MySvgProps {
   readonly title?: string;
   readonly path: string;
   readonly viewBox: string;
+}
+
+export interface SeoParams {
+  readonly title: string;
+  readonly description?: string;
+  readonly path?: string;
+  readonly image?: string;
+  readonly date?: string;
+}
+
+export interface SeoMetadata {
+  readonly title: string;
+  readonly description: string;
+  readonly author: string;
+  readonly realName: string;
+  readonly siteUrl: string;
+}
+
+export interface SeoSchemaData {
+  readonly "@context": string;
+  readonly "@type": string;
+  readonly headline: string;
+  readonly author: {
+    readonly "@type": string;
+    readonly name: string;
+  };
+  readonly publisher: {
+    readonly "@type": string;
+    readonly name: string;
+    readonly logo: {
+      readonly "@type": string;
+      readonly url: string;
+    };
+  };
+  readonly datePublished: string;
+  readonly dateModified: string;
+  readonly image: string;
+  readonly description: string;
+  readonly mainEntityOfPage: {
+    readonly "@type": string;
+    readonly "@id": string;
+  };
+}
+
+export interface SeoData {
+  readonly metadata: SeoMetadata;
+  readonly metaDescription: string;
+  readonly metaImage: string;
+  readonly metaImageLarge: string;
+  readonly metaUrl: string;
+  readonly name: string;
+  readonly schemaDataJson: string;
+  readonly title: string;
 }
