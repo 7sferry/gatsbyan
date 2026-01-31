@@ -1,5 +1,8 @@
+diff --git a/node_modules/gatsby/.bun-tag-edf8cc9536bf0dd b/.bun-tag-edf8cc9536bf0dd
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/cache-dir/head/utils.js b/cache-dir/head/utils.js
-index 30656036725d2c3d8a2ca45d8c1b0630de9d9ce2..82229794eb445955f2e9a4a816810fc2af83356f 100644
+index 30656036725d2c3d8a2ca45d8c1b0630de9d9ce2..51f88d29432cc284c50d586b4d680a177f06b9ec 100644
 --- a/cache-dir/head/utils.js
 +++ b/cache-dir/head/utils.js
 @@ -153,13 +153,8 @@ export function getValidHeadNodesAndAttributes(
@@ -17,9 +20,11 @@ index 30656036725d2c3d8a2ca45d8c1b0630de9d9ce2..82229794eb445955f2e9a4a816810fc2
  
          // Duplicate ids are not allowed in the head, so we need to dedupe them
          if (id) {
-@@ -197,7 +192,7 @@ export function getValidHeadNodesAndAttributes(
+@@ -196,8 +191,9 @@ export function getValidHeadNodesAndAttributes(
+   return { validHeadNodes, htmlAndBodyAttributes }
  }
  
++
  function massageScript(node) {
 -  const script = document.createElement(`script`)
 +  const script = document.createElement(node.nodeName.toLowerCase())
