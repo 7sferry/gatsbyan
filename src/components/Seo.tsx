@@ -18,16 +18,10 @@ export const SEO_CONSTANTS = {
   GOOGLE_SITE_VERIFICATION: "zMJIuAagxg8apsDkd_7UPSzDGi7NIo6mwCx_GUcNXNw",
 } as const;
 
-export default function Seo({ lang = "id", title, description }: SeoAttr) {
+export default function Seo({ lang = "id" }: SeoAttr) {
   return (
     <>
       <html lang={lang} />
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="og:title" content={title} />
-      <meta name="og:description" content={description} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
     </>
   );
 }
