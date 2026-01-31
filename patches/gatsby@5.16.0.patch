@@ -1,3 +1,35 @@
+diff --git a/node_modules/gatsby/.bun-tag-b90262aa1cf0218d b/.bun-tag-b90262aa1cf0218d
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/cache-dir/commonjs/head/utils.js b/cache-dir/commonjs/head/utils.js
+index e4d28b3e6fa74e2d0470c1357f6367f192d62eeb..3df9d8eb866aa9a11731cf4497c44f045308c033 100644
+--- a/cache-dir/commonjs/head/utils.js
++++ b/cache-dir/commonjs/head/utils.js
+@@ -148,13 +148,10 @@ function getValidHeadNodesAndAttributes(rootNode, htmlAndBodyAttributes = {
+           }
+         }
+       } else {
+-        let clonedNode = node.cloneNode(true);
++        // // This is hack to make script tags work
++        let clonedNode = massageScript(node);
+         clonedNode.setAttribute(`data-gatsby-head`, true);
+ 
+-        // // This is hack to make script tags work
+-        if (clonedNode.nodeName.toLowerCase() === `script`) {
+-          clonedNode = massageScript(clonedNode);
+-        }
+         // Duplicate ids are not allowed in the head, so we need to dedupe them
+         if (id) {
+           if (!seenIds.has(id)) {
+@@ -183,7 +180,7 @@ function getValidHeadNodesAndAttributes(rootNode, htmlAndBodyAttributes = {
+   };
+ }
+ function massageScript(node) {
+-  const script = document.createElement(`script`);
++  const script = document.createElement(node.nodeName.toLowerCase());
+   for (const attr of node.attributes) {
+     script.setAttribute(attr.name, attr.value);
+   }
 diff --git a/cache-dir/head/utils.js b/cache-dir/head/utils.js
 index 30656036725d2c3d8a2ca45d8c1b0630de9d9ce2..74059eb35187d4ca226d8aa1e21afa705c90aa63 100644
 --- a/cache-dir/head/utils.js
