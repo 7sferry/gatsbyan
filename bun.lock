@@ -54,6 +54,7 @@
     "core-js",
     "msgpackr-extract",
     "es5-ext",
+    "patch-package",
     "gatsby-cli",
   ],
   "patchedDependencies": {
