@@ -1,5 +1,8 @@
+diff --git a/node_modules/gatsby/.bun-tag-7343c040ac788cf7 b/.bun-tag-7343c040ac788cf7
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
 diff --git a/cache-dir/commonjs/head/utils.js b/cache-dir/commonjs/head/utils.js
-index e4d28b3e6fa74e2d0470c1357f6367f192d62eeb..3df9d8eb866aa9a11731cf4497c44f045308c033 100644
+index e4d28b3e6fa74e2d0470c1357f6367f192d62eeb..ec76898cc2cb30bf064a13d9cd3a162fd5871dee 100644
 --- a/cache-dir/commonjs/head/utils.js
 +++ b/cache-dir/commonjs/head/utils.js
 @@ -148,13 +148,10 @@ function getValidHeadNodesAndAttributes(rootNode, htmlAndBodyAttributes = {
@@ -18,17 +21,25 @@ index e4d28b3e6fa74e2d0470c1357f6367f192d62eeb..3df9d8eb866aa9a11731cf4497c44f04
          // Duplicate ids are not allowed in the head, so we need to dedupe them
          if (id) {
            if (!seenIds.has(id)) {
-@@ -183,7 +180,7 @@ function getValidHeadNodesAndAttributes(rootNode, htmlAndBodyAttributes = {
+@@ -183,12 +180,12 @@ function getValidHeadNodesAndAttributes(rootNode, htmlAndBodyAttributes = {
    };
  }
  function massageScript(node) {
 -  const script = document.createElement(`script`);
-+  const script = document.createElement(node.nodeName.toLowerCase());
++  const newElement = document.createElement(node.nodeName.toLowerCase());
    for (const attr of node.attributes) {
-     script.setAttribute(attr.name, attr.value);
+-    script.setAttribute(attr.name, attr.value);
++    newElement.setAttribute(attr.name, attr.value);
    }
+-  script.innerHTML = node.innerHTML;
+-  return script;
++  newElement.innerHTML = node.innerHTML;
++  return newElement;
+ }
+ function isValidNodeName(nodeName) {
+   return _constants.VALID_NODE_NAMES.includes(nodeName);
 diff --git a/cache-dir/head/utils.js b/cache-dir/head/utils.js
-index 30656036725d2c3d8a2ca45d8c1b0630de9d9ce2..dde700c95f100165ee9917f379061e5e2d7f77b3 100644
+index 30656036725d2c3d8a2ca45d8c1b0630de9d9ce2..cfd556fb19114236cbec062d188873ebef781e77 100644
 --- a/cache-dir/head/utils.js
 +++ b/cache-dir/head/utils.js
 @@ -153,13 +153,10 @@ export function getValidHeadNodesAndAttributes(
@@ -47,12 +58,21 @@ index 30656036725d2c3d8a2ca45d8c1b0630de9d9ce2..dde700c95f100165ee9917f379061e5e
  
          // Duplicate ids are not allowed in the head, so we need to dedupe them
          if (id) {
-@@ -197,7 +194,7 @@ export function getValidHeadNodesAndAttributes(
+@@ -197,13 +194,13 @@ export function getValidHeadNodesAndAttributes(
  }
  
  function massageScript(node) {
 -  const script = document.createElement(`script`)
-+  const script = document.createElement(node.nodeName.toLowerCase())
++  const newElement = document.createElement(node.nodeName.toLowerCase())
    for (const attr of node.attributes) {
-     script.setAttribute(attr.name, attr.value)
+-    script.setAttribute(attr.name, attr.value)
++    newElement.setAttribute(attr.name, attr.value)
    }
+-  script.innerHTML = node.innerHTML
++  newElement.innerHTML = node.innerHTML
+ 
+-  return script
++  return newElement
+ }
+ 
+ export function isValidNodeName(nodeName) {
