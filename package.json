@@ -38,6 +38,7 @@
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "dotenv": "^17.2.3",
+    "patch-package": "^8.0.1",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3"
   },
@@ -67,6 +68,7 @@
     "disable-telemetry": "gatsby telemetry --disable",
     "typecheck": "tsc --noEmit",
     "upgrade-all": "yarn yarn-upgrade-all",
+    "postinstall": "patch-package",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "repository": {
