@@ -93,8 +93,5 @@
     "lmdb",
     "msgpackr-extract",
     "sharp"
-  ],
-  "patchedDependencies": {
-    "gatsby@5.16.0": "patches/gatsby@5.16.0.patch"
-  }
+  ]
 }
