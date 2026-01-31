@@ -67,13 +67,12 @@ export interface CustomPostAttr {
 }
 
 export interface SeoAttr {
+  readonly description?: string;
   readonly lang?: string;
-}
-
-export interface LocationProp {
-  readonly location: {
-    readonly pathname: string;
-  };
+  readonly title?: string;
+  readonly image?: string;
+  readonly path?: string;
+  readonly date?: string;
 }
 
 export interface CommaSeparatedLinkedPostTagsAttr {

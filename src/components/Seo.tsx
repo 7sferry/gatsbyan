@@ -1,34 +1,15 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { SeoAttr, SeoData, SeoParams, SeoSchemaData } from "../types/DataTypes";
 import React from "react";
+import { SeoAttr, SeoSchemaData } from "../types/DataTypes";
 
 /************************
  * Made by [MR Ferry™]  *
  * on Januari 2023      *
  ************************/
 
-export const SEO_CONSTANTS = {
-  OG_TYPE: "website",
-  OG_SITE_NAME: "Ferry Suhandri",
-  OG_IMAGE_TYPE: "image/jpeg",
-  OG_IMAGE_WIDTH: "338",
-  OG_IMAGE_HEIGHT: "463",
-  TWITTER_CARD: "summary",
-  FB_APP_ID: "1365740643629290",
-  GOOGLE_SITE_VERIFICATION: "zMJIuAagxg8apsDkd_7UPSzDGi7NIo6mwCx_GUcNXNw",
-} as const;
-
-export default function Seo({ lang = "id" }: SeoAttr) {
-  return (
-    <>
-      <html lang={lang} />
-    </>
-  );
-}
-
-export function useSeo({ title, description, path = "", image, date = "2024-11-29" }: SeoParams): SeoData {
+export default function Seo({ description, lang = "id", title = "", image, path = "", date = `2024-11-29` }: SeoAttr) {
   const { site } = useStaticQuery(graphql`
-    query SeoQuery {
+    query {
       site {
         siteMetadata {
           title
@@ -72,15 +53,30 @@ export function useSeo({ title, description, path = "", image, date = "2024-11-2
     },
   };
 
-  const name = path?.startsWith("/blog") || path?.startsWith("/features") ? `| [${metadata.realName}]` : "";
-  return {
-    title: `${title} ${name}`,
-    metadata: metadata,
-    metaDescription: metaDescription,
-    metaImage: metaImage,
-    metaImageLarge: metaImageLarge,
-    metaUrl: metaUrl,
-    name: name,
-    schemaDataJson: JSON.stringify(schemaData),
-  };
+  let name = path?.startsWith("/blog") || path?.startsWith("/features") ? `[${metadata.realName}]` : "";
+  return (
+    <>
+      <html lang={lang} />
+      <link rel="canonical" href={metaUrl} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      <title>{`${title} ${name}`}</title>
+      <meta name="description" content={metaDescription} />
+      <meta name="og:title" content={title} />
+      <meta name="og:description" content={metaDescription} />
+      <meta name="og:type" content={`website`} />
+      <meta name="og:site_name" content={`Ferry Suhandri`} />
+      <meta name="og:url" content={metaUrl} />
+      <meta name="og:image" content={metaImageLarge} />
+      <meta name="og:image:type" content={`image/jpeg`} />
+      <meta name="og:image:width" content={`338`} />
+      <meta name="og:image:height" content={`463`} />
+      <meta name="twitter:card" content={`summary`} />
+      <meta name="twitter:creator" content={metadata.author} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content={metaImage} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="fb:app_id" content={`1365740643629290`} />
+      <meta name="google-site-verification" content={`zMJIuAagxg8apsDkd_7UPSzDGi7NIo6mwCx_GUcNXNw`} />
+    </>
+  );
 }
