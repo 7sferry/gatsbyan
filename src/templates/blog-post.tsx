@@ -48,6 +48,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
       <link rel="canonical" href={seo.metaUrl} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: seo.schemaDataJson }} />
       <title>{seo.title}</title>
+      <meta name="description" content={seo.metaDescription} />
       <meta name="og:title" content={seo.title} />
       <meta name="og:description" content={seo.metaDescription} />
       <meta name="og:type" content={SEO_CONSTANTS.OG_TYPE} />

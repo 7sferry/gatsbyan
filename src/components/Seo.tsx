@@ -22,7 +22,6 @@ export default function Seo({ lang = "id" }: SeoAttr) {
   return (
     <>
       <html lang={lang} />
-      <meta name="description" content={"seo.metaDescription"} />
     </>
   );
 }
