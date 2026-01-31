@@ -29,7 +29,7 @@ function IndexPage(props: IndexProp & LocationProp) {
 
   return (
     <Layout>
-      <SeoTags seo={seo} />
+      <title id={"title"}>{seo.title}</title>
       {kebabTag && (
         <div className="tag-title">
           All posts related to <b>{pageContext.tag}</b>

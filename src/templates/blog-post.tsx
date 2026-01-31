@@ -45,7 +45,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
 
   return (
     <Layout>
-      <SeoTags seo={seo} />
+      <title id={"title"}>{seo.title}</title>
       <div className="title posted">{post.title}</div>
       <div className="title text-info mb-2">
         <span className="page-info">{getPublishDateTime(publishDate)}</span>

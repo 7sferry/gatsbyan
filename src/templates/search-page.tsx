@@ -42,7 +42,7 @@ const SearchPage = ({ location }: LocationProp) => {
 
   return (
     <Layout>
-      <SeoTags seo={seo} />
+      <title id={"title"}>{seo.title}</title>
       <InstantSearch
         future={{
           preserveSharedStateOnUnmount: true,

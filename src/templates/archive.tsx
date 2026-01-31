@@ -18,7 +18,7 @@ const ArchivePage = ({ location }: LocationProp) => {
 
   return (
     <Layout>
-      <SeoTags seo={seo} />
+      <title id={"title"}>{seo.title}</title>
       <div className="tech-tags mb-2 mobile-only text-center">
         <Slice alias={"Tags"} />
       </div>

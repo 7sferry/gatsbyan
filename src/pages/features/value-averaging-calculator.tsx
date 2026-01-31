@@ -37,7 +37,7 @@ const ValueAveragingCalculator = ({ location }: LocationProp) => {
   return (
     pageContext && (
       <CustomPageContainer site={site.siteMetadata} customPost={pageContext}>
-        <SeoTags seo={seo} />
+        <title id={"title"}>{seo.title}</title>
         <p>
           Berikut ini adalah kalkulator untuk menghitung investasi secara Value Averaging per-bulan. Untuk penjelasan
           mengenai strategi ini bisa dibaca tulisan tentang{" "}

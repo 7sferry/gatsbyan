@@ -12,7 +12,7 @@ const NotFoundPage = () => {
 
   return (
     <Layout>
-      <SeoTags seo={seo} />
+      <title id={"title"}>{seo.title}</title>
       <div
         dangerouslySetInnerHTML={{
           __html: robot,

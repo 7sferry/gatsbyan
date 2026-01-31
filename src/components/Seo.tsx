@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { SeoAttr, SeoData, SeoParams } from "../types/DataTypes";
+import { SeoAttr, SeoData, SeoParams, SeoSchemaData } from "../types/DataTypes";
 import React from "react";
 
 /************************
@@ -73,7 +73,7 @@ export function useSeo({ title, description, path = "", image, date = "2024-11-2
   const metaImage = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri.jpg`;
   const metaImageLarge = image ? `https:${image}` : `${metadata.siteUrl}/ferry-suhandri-large.jpg`;
   const metaUrl = metadata.siteUrl + path;
-  const schemaData = {
+  const schemaData: SeoSchemaData = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title,
