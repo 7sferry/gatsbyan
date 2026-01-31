@@ -186,7 +186,7 @@ export const pageQuery = graphql`
 
 export default BlogPostTemplate;
 
-export function Head({ data, location }: BlogPostProp) {
+export function Head({ data }: BlogPostProp) {
   const post = data?.contentfulBlogPost;
   const seo = useSeo({
     title: post?.title ?? "",
