@@ -20,7 +20,7 @@ export function ValueAveragingForm() {
   const storage = typeof window !== "undefined" ? window.localStorage : null;
   const [stockCacheValueByName, setStockCacheValueByName] = React.useState(getStockCacheValue());
   const [stockName, setStockName] = React.useState("");
-  const element: React.RefObject<HTMLDivElement> = React.createRef();
+  const element: React.RefObject<HTMLDivElement | null> = React.createRef();
 
   function getStockCacheValue(): Map<string, StockData> {
     const stockCache = storage?.getItem(storageKey);
