@@ -6,7 +6,7 @@
   "dependencies": {
     "algoliasearch": "^5.47.0",
     "bootstrap": "^5.3.8",
-    "gatsby": "5.16.0",
+    "gatsby": "^5.16.0",
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-catch-links": "^5.16.0",
     "gatsby-plugin-google-analytics-data-reporting-api": "^2.0.1",
@@ -38,7 +38,6 @@
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "dotenv": "^17.2.3",
-    "patch-package": "^8.0.1",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3"
   },
@@ -56,7 +55,6 @@
   "license": "MIT",
   "homepage": "https://ferry.vercel.app",
   "scripts": {
-    "postinstall": "patch-package",
     "build": "gatsby build",
     "develop": "tsc --noEmit && gatsby develop -H 0.0.0.0",
     "clean-develop": "gatsby clean && tsc --noEmit && gatsby develop -H 0.0.0.0",
@@ -96,5 +94,8 @@
     "msgpackr-extract",
     "patch-package",
     "sharp"
-  ]
+  ],
+  "patchedDependencies": {
+    "gatsby@5.16.0": "patches/gatsby@5.16.0.patch"
+  }
 }
