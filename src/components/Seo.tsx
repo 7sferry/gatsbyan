@@ -22,6 +22,7 @@ export default function Seo({ lang = "id" }: SeoAttr) {
   return (
     <>
       <html lang={lang} />
+      <title>ferry</title>
     </>
   );
 }
