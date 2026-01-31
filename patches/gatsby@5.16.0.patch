@@ -1,15 +1,15 @@
 diff --git a/cache-dir/head/utils.js b/cache-dir/head/utils.js
-index f3f48087fd9cf448c21aa2621e87e4acb2554372..6cefc203f6a7042be5be054b0f2716a5b1d45572 100644
+index f3f48087fd9cf448c21aa2621e87e4acb2554372..9e73538951698f626a9d24f7a232698393fa21c2 100644
 --- a/cache-dir/head/utils.js
 +++ b/cache-dir/head/utils.js
-@@ -153,13 +153,8 @@ export function getValidHeadNodesAndAttributes(
+@@ -153,13 +153,9 @@ export function getValidHeadNodesAndAttributes(
            }
          }
        } else {
 -        let clonedNode = node.cloneNode(true)
 +        let clonedNode = massageScript(node)
          clonedNode.setAttribute(`data-gatsby-head`, true)
--
+ 
 -        // // This is hack to make script tags work
 -        if (clonedNode.nodeName.toLowerCase() === `script`) {
 -          clonedNode = massageScript(clonedNode)
@@ -17,7 +17,7 @@ index f3f48087fd9cf448c21aa2621e87e4acb2554372..6cefc203f6a7042be5be054b0f2716a5
          // Duplicate ids are not allowed in the head, so we need to dedupe them
          if (id) {
            if (!seenIds.has(id)) {
-@@ -196,7 +191,7 @@ export function getValidHeadNodesAndAttributes(
+@@ -196,7 +192,7 @@ export function getValidHeadNodesAndAttributes(
  }
  
  function massageScript(node) {
