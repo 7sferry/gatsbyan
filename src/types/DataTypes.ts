@@ -68,6 +68,8 @@ export interface CustomPostAttr {
 
 export interface SeoAttr {
   readonly lang?: string;
+  readonly title?: string;
+  readonly description?: string;
 }
 
 export interface LocationProp {

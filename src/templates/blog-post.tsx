@@ -188,5 +188,12 @@ export default BlogPostTemplate;
 
 export function Head({ data }: BlogPostProp) {
   const post = data?.contentfulBlogPost;
-  return <Seo lang={post?.lang?.[0]} />;
+  const seo = useSeo({
+    title: post?.title ?? "",
+    description: post?.description?.description,
+    path: location?.pathname,
+    image: post?.heroImage?.file?.url,
+    date: post?.publishDate ?? "2024-11-29",
+  });
+  return <Seo lang={post?.lang?.[0]} title={seo.title} description={seo.metaDescription} />;
 }
