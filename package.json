@@ -6,7 +6,7 @@
   "dependencies": {
     "algoliasearch": "^5.47.0",
     "bootstrap": "^5.3.8",
-    "gatsby": "^5.16.0",
+    "gatsby": "5.16.0",
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-catch-links": "^5.16.0",
     "gatsby-plugin-google-analytics-data-reporting-api": "^2.0.1",
