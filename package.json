@@ -29,14 +29,14 @@
     "gatsby-transformer-sharp": "^5.16.0",
     "medium-zoom": "^1.1.0",
     "prismjs": "^1.30.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-instantsearch": "^7.23.0"
   },
   "devDependencies": {
     "@types/node": "^25.1.0",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
     "dotenv": "^17.2.3",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3"
