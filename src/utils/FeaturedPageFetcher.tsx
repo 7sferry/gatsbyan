@@ -17,7 +17,7 @@ export function fetchFeaturedPages() {
               "fakta-unik-minangkabau"
               "pilihan-investasi"
               "web-rendering-strategy-csr-ssr-ssg-dsg-isr"
-              "perluas-pengetahuanmu-tentang-offside"
+              "dosa-besar-selama-menjadi-software-engineer"
             ]
           }
         }
