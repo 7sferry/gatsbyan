@@ -39,6 +39,7 @@ build/Release
 .vscode/
 node_modules/
 jspm_packages/
+local/
 
 # Typescript v1 declaration files
 typings/
