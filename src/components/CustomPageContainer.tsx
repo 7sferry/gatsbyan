@@ -13,7 +13,7 @@ const CustomPageContainer = ({ children, site, customPost }: React.PropsWithChil
   return (
     <Layout>
       <div className="title posted">{customPost.title}</div>
-      <div className="post-container pt-0 content-post">{children}</div>
+      <div className="post-container pt-1 content-post">{children}</div>
       <Slice alias="Comment" repo={repo} />
     </Layout>
   );
