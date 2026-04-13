@@ -25,6 +25,11 @@ const FeaturedPage = () => {
             );
           })}
           <li>
+            <Link className="text-link" to={"/features/random"}>
+              <small className="title">{"Random Number Calculator"}</small>
+            </Link>
+          </li>
+          <li>
             <Link className="text-link" to={"/features/value-averaging-calculator"}>
               <small className="title">{"Value Averaging Calculator"}</small>
             </Link>
