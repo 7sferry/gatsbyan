@@ -26,7 +26,7 @@ const FeaturedPage = () => {
           })}
           <li>
             <Link className="text-link" to={"/features/random"}>
-              <small className="title">{"Random Number Calculator"}</small>
+              <small className="title">{"Random Number Generator"}</small>
             </Link>
           </li>
           <li>
