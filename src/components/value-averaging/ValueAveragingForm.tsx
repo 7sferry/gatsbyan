@@ -14,6 +14,7 @@ import { InvestTargetValueInput } from "./InvestTargetValueInput.tsx";
 import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator.tsx";
 import { getValueAveragingFormResult } from "./ValueAveragingFormResult.tsx";
 import ReactDOM from "react-dom/client";
+import "./ValueAveraging.css";
 
 export function ValueAveragingForm() {
   const storageKey = "vcaList";
@@ -67,6 +68,7 @@ export function ValueAveragingForm() {
     const stock = new ValueAveragingStockCalculator(stockData);
 
     const divElement: HTMLDivElement = document.createElement("div");
+    divElement.className = "vca-result";
     element?.current?.appendChild(divElement);
     const vcaResult = getValueAveragingFormResult(stock);
     const root = ReactDOM.createRoot(divElement);
@@ -77,78 +79,51 @@ export function ValueAveragingForm() {
   };
 
   return (
-    <>
-      <form id="survey-form" onSubmit={calculate}>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="name-label" htmlFor="stockName">
-              Nama Emiten:
-            </label>
-          </div>
-          <div className="rightTab">
+    <div className="vca-wrapper">
+      <div className="vca-card">
+        <form id="survey-form" onSubmit={calculate}>
+          <div className="vca-field">
+            <label htmlFor="stockName">Nama Emiten</label>
             <StockNameValueInput
               onChange={(e) => setStockName(e.target.value.toUpperCase())}
               stockName={stockName}
               stockCacheValueByName={stockCacheValueByName}
             />
           </div>
-        </div>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="email-label" htmlFor="sinceMonth">
-              Mulai sejak:
-            </label>
+          <div className="vca-field">
+            <label htmlFor="sinceMonth">Mulai sejak</label>
+            <div className="vca-field-row">
+              <SinceMonthValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+              <SinceYearValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+            </div>
           </div>
-          <div className="rightTab">
-            <SinceMonthValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
-            <SinceYearValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+          <div className="vca-field">
+            <label htmlFor="totalLot">Stock yang dimiliki saat ini</label>
+            <TotalLotValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+            <div className="vca-suffix">dalam satuan Lot</div>
           </div>
-        </div>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="number-label" htmlFor="totalLot">
-              Stock yang dimiliki saat ini:
-            </label>
-          </div>
-          <div className="rightTab">
-            <TotalLotValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} /> Lot
-          </div>
-        </div>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="number-label" htmlFor="currentUnitPrice">
-              Harga saat ini (dalam unit):
-            </label>
-          </div>
-          <div className="rightTab">
+          <div className="vca-field">
+            <label htmlFor="currentUnitPrice">Harga saat ini (dalam unit)</label>
             <UnitPriceValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
           </div>
-        </div>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="number-label" htmlFor="monthlyInvestTarget">
-              Target investasi bulanan:
-            </label>
-          </div>
-          <div className="rightTab">
+          <div className="vca-field">
+            <label htmlFor="monthlyInvestTarget">Target investasi bulanan</label>
             <InvestTargetValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
           </div>
-        </div>
-        <div>
-          <div style={{ textAlign: "center" }}>
-            <button className="submit-vca" type="submit">
+          <div className="vca-buttons">
+            <button className="vca-btn vca-btn-calculate" type="submit">
               Calculate
             </button>
-            <button className="clear-vca" onClick={clearResult}>
+            <button className="vca-btn vca-btn-clear" onClick={clearResult}>
               Clear
             </button>
-            <button className="reset-vca" onClick={removeInput}>
+            <button className="vca-btn vca-btn-delete" onClick={removeInput}>
               Delete
             </button>
           </div>
-        </div>
-      </form>
-      <div id="result" ref={element} />
-    </>
+        </form>
+        <div id="result" ref={element} />
+      </div>
+    </div>
   );
 }
