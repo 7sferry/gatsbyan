@@ -24,7 +24,6 @@
     font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 0.375rem;
-    color: rgb(158, 150, 137);
 }
 
 .vca-field input,
@@ -74,7 +73,6 @@
 .vca-field .vca-suffix {
     font-family: "Work Sans", sans-serif;
     font-size: 0.875rem;
-    color: rgb(158, 150, 137);
     margin-top: 0.3rem;
 }
 
