@@ -19,8 +19,7 @@ export const SinceMonthValueInput = ({ stockCacheValueByName, stockName }: Stock
       required={true}
       id="sinceMonth"
       name="sinceMonth"
-      className="dropdown"
-      style={{ width: "40%" }}
+      className="vca-select"
       onChange={(e) => setSinceMonthValue(e.target.value)}
       value={sinceMonthValue}
     >

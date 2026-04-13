@@ -19,7 +19,7 @@ export const UnitPriceValueInput = ({ stockCacheValueByName, stockName }: StockC
       type="text"
       name={"currentUnitPrice"}
       id={"currentUnitPrice"}
-      className={"input-field"}
+      className={"vca-input"}
       placeholder={"Rp"}
       autoComplete={"off"}
       onChange={(e) => setUnitPriceValue(onChangeRupiah(e))}

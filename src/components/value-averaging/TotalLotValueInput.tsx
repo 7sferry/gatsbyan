@@ -11,7 +11,8 @@ export const TotalLotValueInput = ({ stockCacheValueByName, stockName }: StockCa
   const [totalLotValue, setTotalLotValue] = React.useState("");
   React.useEffect(() => {
     let stockCacheValue = stockCacheValueByName.get(stockName);
-    setTotalLotValue(String(stockCacheValue?.totalLot || ""));
+    let totalLot = stockCacheValue?.totalLot;
+    setTotalLotValue(String(typeof totalLot === "undefined" ? "" : totalLot));
   }, [stockCacheValueByName, stockName]);
 
   return (
@@ -19,8 +20,7 @@ export const TotalLotValueInput = ({ stockCacheValueByName, stockName }: StockCa
       type="number"
       name="totalLot"
       id="totalLot"
-      className="input-field"
-      style={{ width: "40%" }}
+      className="vca-input"
       min={0}
       placeholder="total"
       required={true}

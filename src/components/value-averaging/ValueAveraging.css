@@ -1,0 +1,158 @@
+.vca-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+
+.vca-card {
+    background: rgb(44, 47, 49);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 560px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.vca-field {
+    margin-bottom: 1.15rem;
+}
+
+.vca-field label {
+    display: block;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.375rem;
+    color: rgb(158, 150, 137);
+}
+
+.vca-field input,
+.vca-field select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: "Work Sans", sans-serif;
+    border: 1px solid #3d4043;
+    border-radius: 8px;
+    background: #23232d;
+    color: #dfdfdf;
+    outline: none;
+    transition: border-color 0.2s;
+    -moz-appearance: textfield;
+}
+
+.vca-field input::-webkit-inner-spin-button,
+.vca-field input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.vca-field input::placeholder {
+    color: rgb(158, 150, 137);
+}
+
+.vca-field input:focus,
+.vca-field select:focus {
+    border-color: #6c63ff;
+}
+
+.vca-field select option {
+    background: #23232d;
+    color: #dfdfdf;
+}
+
+.vca-field-row {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.vca-field-row > * {
+    flex: 1;
+}
+
+.vca-field .vca-suffix {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.875rem;
+    color: rgb(158, 150, 137);
+    margin-top: 0.3rem;
+}
+
+.vca-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.vca-btn {
+    flex: 1;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.vca-btn:hover {
+    opacity: 0.9;
+}
+
+.vca-btn:active {
+    transform: scale(0.98);
+}
+
+.vca-btn-calculate {
+    background: linear-gradient(135deg, #6c63ff, #4834d4);
+    color: #fff;
+    flex: 2;
+}
+
+.vca-btn-clear {
+    background: linear-gradient(135deg, #3d3a5c, #2e2b4a);
+    color: #b0aaff;
+    border: 1px solid rgba(108, 99, 255, 0.25);
+}
+
+.vca-btn-delete {
+    background: linear-gradient(135deg, #4a2020, #3a1818);
+    color: #ff8a8a;
+    border: 1px solid rgba(255, 99, 99, 0.2);
+}
+
+.vca-result {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: 10px;
+    background: rgba(108, 99, 255, 0.08);
+    border: 1px solid rgba(108, 99, 255, 0.12);
+}
+
+.vca-result p {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.95rem;
+    color: #dfdfdf;
+    margin: 0 0 0.6rem;
+    line-height: 1.5;
+}
+
+.vca-result p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+    .vca-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .vca-field-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .vca-buttons {
+        flex-direction: column;
+    }
+}

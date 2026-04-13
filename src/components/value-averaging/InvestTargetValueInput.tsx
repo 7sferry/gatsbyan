@@ -19,7 +19,7 @@ export const InvestTargetValueInput = ({ stockCacheValueByName, stockName }: Sto
       type="text"
       name={"monthlyInvestTarget"}
       id={"monthlyInvestTarget"}
-      className={"input-field"}
+      className={"vca-input"}
       placeholder={"Rp"}
       autoComplete={"off"}
       onChange={(e) => setInvestTargetValue(onChangeRupiah(e))}

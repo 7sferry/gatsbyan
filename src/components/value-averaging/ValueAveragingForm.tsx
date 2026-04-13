@@ -13,43 +13,48 @@ import { UnitPriceValueInput } from "./UnitPriceValueInput.tsx";
 import { InvestTargetValueInput } from "./InvestTargetValueInput.tsx";
 import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator.tsx";
 import { getValueAveragingFormResult } from "./ValueAveragingFormResult.tsx";
-import ReactDOM from "react-dom/client";
+import "./ValueAveraging.css";
+
+const STORAGE_KEY = "vcaList";
+
+function getStockCacheFromStorage(): Map<string, StockData> {
+  if (typeof window === "undefined") return new Map();
+  const stockCache = window.localStorage.getItem(STORAGE_KEY);
+  if (stockCache) {
+    return new Map(JSON.parse(stockCache));
+  }
+  return new Map();
+}
+
+function saveToStorage(cache: Map<string, StockData>) {
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify([...cache]));
+  }
+}
 
 export function ValueAveragingForm() {
-  const storageKey = "vcaList";
-  const storage = typeof window !== "undefined" ? window.localStorage : null;
-  const [stockCacheValueByName, setStockCacheValueByName] = React.useState(getStockCacheValue());
+  const [stockCacheValueByName, setStockCacheValueByName] = React.useState(getStockCacheFromStorage);
   const [stockName, setStockName] = React.useState("");
-  const element: React.RefObject<HTMLDivElement | null> = React.createRef();
-
-  function getStockCacheValue(): Map<string, StockData> {
-    const stockCache = storage?.getItem(storageKey);
-    if (stockCache) {
-      let parsed = JSON.parse(stockCache);
-      return new Map(parsed);
-    }
-    return new Map();
-  }
+  const [resultElement, setResultElement] = React.useState<React.ReactNode>(null);
 
   const clearResult = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    const parentResult: HTMLElement | null = document.getElementById("result");
-    while (parentResult?.firstChild) {
-      parentResult?.firstChild?.remove();
-    }
+    setResultElement(null);
   };
 
   const removeInput = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    clearResult(e);
-    stockCacheValueByName.delete(stockName);
-    storage?.setItem(storageKey, JSON.stringify([...stockCacheValueByName]));
-    setStockCacheValueByName(stockCacheValueByName);
+    setResultElement(null);
+    const newCache = new Map(stockCacheValueByName);
+    newCache.delete(stockName);
+    saveToStorage(newCache);
+    setStockCacheValueByName(newCache);
     setStockName("");
   };
 
-  function constructStockData(e: React.BaseSyntheticEvent): StockData {
-    return {
+  const calculate = (e: React.BaseSyntheticEvent) => {
+    e.preventDefault();
+    const stockData: StockData = {
       stockName: e.target.stockName.value,
       currentUnitPrice: e.target.currentUnitPrice.value,
       unitType: UnitType.LOT,
@@ -58,97 +63,61 @@ export function ValueAveragingForm() {
       sinceYear: parseInt(e.target.sinceYear.value),
       sinceMonth: e.target.sinceMonth.value,
     };
-  }
-
-  const calculate = (e: React.BaseSyntheticEvent) => {
-    e.preventDefault();
-    clearResult();
-    const stockData = constructStockData(e);
     const stock = new ValueAveragingStockCalculator(stockData);
+    setResultElement(getValueAveragingFormResult(stock));
 
-    const divElement: HTMLDivElement = document.createElement("div");
-    element?.current?.appendChild(divElement);
-    const vcaResult = getValueAveragingFormResult(stock);
-    const root = ReactDOM.createRoot(divElement);
-    root.render(vcaResult);
-    stockCacheValueByName.set(String(stockData.stockName), stockData);
-    storage?.setItem(storageKey, JSON.stringify([...stockCacheValueByName]));
-    setStockCacheValueByName(stockCacheValueByName);
+    const newCache = new Map(stockCacheValueByName);
+    newCache.set(String(stockData.stockName), stockData);
+    saveToStorage(newCache);
+    setStockCacheValueByName(newCache);
   };
 
   return (
-    <>
-      <form id="survey-form" onSubmit={calculate}>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="name-label" htmlFor="stockName">
-              Nama Emiten:
-            </label>
-          </div>
-          <div className="rightTab">
+    <div className="vca-wrapper">
+      <div className="vca-card">
+        <form id="survey-form" onSubmit={calculate}>
+          <div className="vca-field">
+            <label htmlFor="stockName">Nama Emiten</label>
             <StockNameValueInput
               onChange={(e) => setStockName(e.target.value.toUpperCase())}
               stockName={stockName}
               stockCacheValueByName={stockCacheValueByName}
             />
           </div>
-        </div>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="email-label" htmlFor="sinceMonth">
-              Mulai sejak:
-            </label>
+          <div className="vca-field">
+            <label htmlFor="sinceMonth">Mulai sejak</label>
+            <div className="vca-field-row">
+              <SinceMonthValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+              <SinceYearValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+            </div>
           </div>
-          <div className="rightTab">
-            <SinceMonthValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
-            <SinceYearValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+          <div className="vca-field">
+            <label htmlFor="totalLot">Stock yang dimiliki saat ini</label>
+            <TotalLotValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+            <div className="vca-suffix">dalam satuan Lot</div>
           </div>
-        </div>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="number-label" htmlFor="totalLot">
-              Stock yang dimiliki saat ini:
-            </label>
-          </div>
-          <div className="rightTab">
-            <TotalLotValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} /> Lot
-          </div>
-        </div>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="number-label" htmlFor="currentUnitPrice">
-              Harga saat ini (dalam unit):
-            </label>
-          </div>
-          <div className="rightTab">
+          <div className="vca-field">
+            <label htmlFor="currentUnitPrice">Harga saat ini (dalam unit)</label>
             <UnitPriceValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
           </div>
-        </div>
-        <div className="rowTab">
-          <div className="labels">
-            <label id="number-label" htmlFor="monthlyInvestTarget">
-              Target investasi bulanan:
-            </label>
-          </div>
-          <div className="rightTab">
+          <div className="vca-field">
+            <label htmlFor="monthlyInvestTarget">Target investasi bulanan</label>
             <InvestTargetValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
           </div>
-        </div>
-        <div>
-          <div style={{ textAlign: "center" }}>
-            <button className="submit-vca" type="submit">
+          <div className="vca-buttons">
+            <button className="vca-btn vca-btn-calculate" type="submit">
               Calculate
             </button>
-            <button className="clear-vca" onClick={clearResult}>
+            <button className="vca-btn vca-btn-clear" onClick={clearResult}>
               Clear
             </button>
-            <button className="reset-vca" onClick={removeInput}>
+            <button className="vca-btn vca-btn-delete" onClick={removeInput}>
               Delete
             </button>
           </div>
-        </div>
-      </form>
-      <div id="result" ref={element} />
-    </>
+        </form>
+        {resultElement && <div className="vca-result">{resultElement}</div>}
+      </div>
+    </div>
   );
 }
