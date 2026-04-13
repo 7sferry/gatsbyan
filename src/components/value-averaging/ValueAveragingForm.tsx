@@ -13,44 +13,48 @@ import { UnitPriceValueInput } from "./UnitPriceValueInput.tsx";
 import { InvestTargetValueInput } from "./InvestTargetValueInput.tsx";
 import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator.tsx";
 import { getValueAveragingFormResult } from "./ValueAveragingFormResult.tsx";
-import ReactDOM from "react-dom/client";
 import "./ValueAveraging.css";
 
-export function ValueAveragingForm() {
-  const storageKey = "vcaList";
-  const storage = typeof window !== "undefined" ? window.localStorage : null;
-  const [stockCacheValueByName, setStockCacheValueByName] = React.useState(getStockCacheValue());
-  const [stockName, setStockName] = React.useState("");
-  const element: React.RefObject<HTMLDivElement | null> = React.createRef();
+const STORAGE_KEY = "vcaList";
 
-  function getStockCacheValue(): Map<string, StockData> {
-    const stockCache = storage?.getItem(storageKey);
-    if (stockCache) {
-      let parsed = JSON.parse(stockCache);
-      return new Map(parsed);
-    }
-    return new Map();
+function getStockCacheFromStorage(): Map<string, StockData> {
+  if (typeof window === "undefined") return new Map();
+  const stockCache = window.localStorage.getItem(STORAGE_KEY);
+  if (stockCache) {
+    return new Map(JSON.parse(stockCache));
   }
+  return new Map();
+}
+
+function saveToStorage(cache: Map<string, StockData>) {
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify([...cache]));
+  }
+}
+
+export function ValueAveragingForm() {
+  const [stockCacheValueByName, setStockCacheValueByName] = React.useState(getStockCacheFromStorage);
+  const [stockName, setStockName] = React.useState("");
+  const [resultElement, setResultElement] = React.useState<React.ReactNode>(null);
 
   const clearResult = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    const parentResult: HTMLElement | null = document.getElementById("result");
-    while (parentResult?.firstChild) {
-      parentResult?.firstChild?.remove();
-    }
+    setResultElement(null);
   };
 
   const removeInput = (e?: React.BaseSyntheticEvent) => {
     e?.preventDefault();
-    clearResult(e);
-    stockCacheValueByName.delete(stockName);
-    storage?.setItem(storageKey, JSON.stringify([...stockCacheValueByName]));
-    setStockCacheValueByName(stockCacheValueByName);
+    setResultElement(null);
+    const newCache = new Map(stockCacheValueByName);
+    newCache.delete(stockName);
+    saveToStorage(newCache);
+    setStockCacheValueByName(newCache);
     setStockName("");
   };
 
-  function constructStockData(e: React.BaseSyntheticEvent): StockData {
-    return {
+  const calculate = (e: React.BaseSyntheticEvent) => {
+    e.preventDefault();
+    const stockData: StockData = {
       stockName: e.target.stockName.value,
       currentUnitPrice: e.target.currentUnitPrice.value,
       unitType: UnitType.LOT,
@@ -59,23 +63,13 @@ export function ValueAveragingForm() {
       sinceYear: parseInt(e.target.sinceYear.value),
       sinceMonth: e.target.sinceMonth.value,
     };
-  }
-
-  const calculate = (e: React.BaseSyntheticEvent) => {
-    e.preventDefault();
-    clearResult();
-    const stockData = constructStockData(e);
     const stock = new ValueAveragingStockCalculator(stockData);
+    setResultElement(getValueAveragingFormResult(stock));
 
-    const divElement: HTMLDivElement = document.createElement("div");
-    divElement.className = "vca-result";
-    element?.current?.appendChild(divElement);
-    const vcaResult = getValueAveragingFormResult(stock);
-    const root = ReactDOM.createRoot(divElement);
-    root.render(vcaResult);
-    stockCacheValueByName.set(String(stockData.stockName), stockData);
-    storage?.setItem(storageKey, JSON.stringify([...stockCacheValueByName]));
-    setStockCacheValueByName(stockCacheValueByName);
+    const newCache = new Map(stockCacheValueByName);
+    newCache.set(String(stockData.stockName), stockData);
+    saveToStorage(newCache);
+    setStockCacheValueByName(newCache);
   };
 
   return (
@@ -122,7 +116,7 @@ export function ValueAveragingForm() {
             </button>
           </div>
         </form>
-        <div id="result" ref={element} />
+        {resultElement && <div className="vca-result">{resultElement}</div>}
       </div>
     </div>
   );
