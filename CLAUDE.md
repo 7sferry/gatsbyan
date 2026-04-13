@@ -73,6 +73,12 @@ Required for full functionality (see `.env.EXAMPLE`):
 ## Agent Rules
 
 - Always run `git add` after writing a new file to ensure it is staged immediately.
+- Use semantic commit message format: `${TYPE}(${SCOPE}): ${SUBJECT}` (scope optional).
+  - Types: `feat`, `fix`, `perf`, `refactor`, `test`, `style`, `docs`, `chore`, `build`, `ci`, `revert`
+  - Subject: max 50 chars, lowercase, no line breaks
+  - Body (optional): max 100 chars per line
+  - Footer (optional): issue references or breaking changes
+  - Do not combine unrelated changes in one commit
 
 ## Key Conventions
 
