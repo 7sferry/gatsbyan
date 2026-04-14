@@ -9,6 +9,7 @@ export enum UnitType {
 export class StockData {
   readonly stockName?: string;
   readonly currentUnitPrice?: number;
+  readonly averagePrice?: number;
   readonly totalLot: number = 0;
   readonly monthlyInvestTarget?: number;
   readonly sinceYear?: number;
