@@ -11,6 +11,7 @@ import { SinceYearValueInput } from "./SinceYearValueInput.tsx";
 import { TotalLotValueInput } from "./TotalLotValueInput.tsx";
 import { UnitPriceValueInput } from "./UnitPriceValueInput.tsx";
 import { InvestTargetValueInput } from "./InvestTargetValueInput.tsx";
+import { AveragePriceValueInput } from "./AveragePriceValueInput.tsx";
 import { ValueAveragingStockCalculator } from "../../utils/ValueAveragingStockCalculator.tsx";
 import { getValueAveragingFormResult } from "./ValueAveragingFormResult.tsx";
 import "./ValueAveraging.css";
@@ -57,6 +58,7 @@ export function ValueAveragingForm() {
     const stockData: StockData = {
       stockName: e.target.stockName.value,
       currentUnitPrice: e.target.currentUnitPrice.value,
+      averagePrice: e.target.averagePrice.value,
       unitType: UnitType.LOT,
       totalLot: parseInt(e.target.totalLot.value),
       monthlyInvestTarget: e.target.monthlyInvestTarget.value,
@@ -97,8 +99,12 @@ export function ValueAveragingForm() {
             <div className="vca-suffix">dalam satuan Lot</div>
           </div>
           <div className="vca-field">
-            <label htmlFor="currentUnitPrice">Harga saat ini (dalam unit)</label>
+            <label htmlFor="currentUnitPrice">Harga saat ini (per unit)</label>
             <UnitPriceValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
+          </div>
+          <div className="vca-field">
+            <label htmlFor="averagePrice">Harga rata-rata (per unit)</label>
+            <AveragePriceValueInput stockCacheValueByName={stockCacheValueByName} stockName={stockName} />
           </div>
           <div className="vca-field">
             <label htmlFor="monthlyInvestTarget">Target investasi bulanan</label>
