@@ -30,6 +30,11 @@ const FeaturedPage = () => {
             </Link>
           </li>
           <li>
+            <Link className="text-link" to={"/features/break-even-calculator"}>
+              <small className="title">{"Break-Even Stock Price Calculator"}</small>
+            </Link>
+          </li>
+          <li>
             <Link className="text-link" to={"/features/value-averaging-calculator"}>
               <small className="title">{"Value Averaging Calculator"}</small>
             </Link>
