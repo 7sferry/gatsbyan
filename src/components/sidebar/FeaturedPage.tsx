@@ -35,6 +35,11 @@ const FeaturedPage = () => {
             </Link>
           </li>
           <li>
+            <Link className="text-link" to={"/features/rebalancing-calculator"}>
+              <small className="title">{"Portfolio Rebalancing Tool"}</small>
+            </Link>
+          </li>
+          <li>
             <Link className="text-link" to={"/features/value-averaging-calculator"}>
               <small className="title">{"Value Averaging Calculator"}</small>
             </Link>
