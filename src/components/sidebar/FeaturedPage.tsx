@@ -25,11 +25,6 @@ const FeaturedPage = () => {
             );
           })}
           <li>
-            <Link className="text-link" to={"/features/random"}>
-              <small className="title">{"Random Number Generator"}</small>
-            </Link>
-          </li>
-          <li>
             <Link className="text-link" to={"/features/break-even-calculator"}>
               <small className="title">{"Break-Even Stock Price Calculator"}</small>
             </Link>
