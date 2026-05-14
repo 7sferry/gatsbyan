@@ -7,7 +7,7 @@ import { SeoAttr, SeoSchemaData } from "../types/DataTypes";
  * on Januari 2023      *
  ************************/
 
-export default function Seo({ description, lang = "id", title = "", image, path = "", date = `2024-11-29` }: SeoAttr) {
+export default function Seo({ description, lang = "id", title = "", image, path = "", date, updatedAt }: SeoAttr) {
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -17,6 +17,8 @@ export default function Seo({ description, lang = "id", title = "", image, path 
           author
           realName
           siteUrl
+          publishDate
+          updatedAt
         }
       }
     }
@@ -43,8 +45,8 @@ export default function Seo({ description, lang = "id", title = "", image, path 
         url: `${metadata.siteUrl}/ferry-suhandri-large.jpg`,
       },
     },
-    datePublished: date,
-    dateModified: date,
+    datePublished: date || metadata.publishDate,
+    dateModified: updatedAt || metadata.updatedAt,
     image: metaImageLarge,
     description: metaDescription,
     mainEntityOfPage: {
