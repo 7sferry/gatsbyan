@@ -77,10 +77,11 @@
     "url": "https://github.com/7sferry/gatsbyan/issues"
   },
   "browserslist": [
-    "supports es6-module",
     "last 2 Chrome versions",
-    "not dead",
-    "not IE 11"
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions",
+    "not dead"
   ],
   "trustedDependencies": [
     "contentful",

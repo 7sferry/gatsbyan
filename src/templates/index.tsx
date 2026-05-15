@@ -122,8 +122,8 @@ export const pageQuery = graphql`
             cropFocus: FACES
             placeholder: BLURRED
             layout: FIXED
-            outputPixelDensities: [1, 1.2]
-            width: 410
+            outputPixelDensities: [1]
+            width: 420
             quality: 50
           )
           ipad: gatsbyImageData(

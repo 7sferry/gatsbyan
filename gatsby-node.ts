@@ -13,6 +13,19 @@ export const onPostBootstrap = () => {
   Sign();
 };
 
+export const onCreateBabelConfig: GatsbyNode["onCreateBabelConfig"] = ({ actions }) => {
+  actions.setBabelPreset({
+    name: "babel-preset-gatsby",
+    options: {
+      targets: {
+        browsers: [">0.25%", "not dead"],
+      },
+      corejs: 3,
+      useBuiltIns: false,
+    },
+  });
+};
+
 export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, reporter }: CreatePagesArgs) => {
   const { createPage, createRedirect, createSlice } = actions;
 
