@@ -51,7 +51,9 @@ const BlogPostTemplate = (props: BlogPostProp) => {
         </div>
       </div>
       <figure className="hero">
-        {imageData && <GatsbyImage image={imageData} className="heroImage" alt={post.title} />}
+        {imageData && (
+          <GatsbyImage image={imageData} className="heroImage" alt={post.title} loading="eager" fetchPriority="high" />
+        )}
         {imageTitle && <figcaption className="gatsby-resp-image-figcaption">{`Source: ${imageTitle}`}</figcaption>}
       </figure>
       <div
@@ -115,7 +117,7 @@ export const pageQuery = graphql`
         )
         phone: gatsbyImageData(
           formats: [NO_CHANGE, AVIF]
-          quality: 50
+          quality: 30
           placeholder: BLURRED
           layout: FULL_WIDTH
           breakpoints: [500]
