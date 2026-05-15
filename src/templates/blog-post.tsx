@@ -115,10 +115,10 @@ export const pageQuery = graphql`
         )
         phone: gatsbyImageData(
           formats: [NO_CHANGE, AVIF]
-          quality: 30
+          quality: 50
           placeholder: BLURRED
           layout: FULL_WIDTH
-          breakpoints: [420]
+          breakpoints: [500]
           sizes: "(max-width: 414px) 410px"
         )
         ipad: gatsbyImageData(
