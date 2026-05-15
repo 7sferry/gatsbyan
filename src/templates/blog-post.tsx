@@ -168,6 +168,7 @@ export function Head({ data, location }: React.PropsWithRef<BlogPostProp>) {
       image={post?.heroImage?.file?.url}
       path={location?.pathname}
       date={getDateYear(post?.publishDate)}
+      updatedAt={getDateYear(post?.updatedAt)}
     />
   );
 }

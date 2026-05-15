@@ -44,6 +44,8 @@ const gatsbyConfig: GatsbyConfig = {
     author: siteConfig.author.name,
     realName: siteConfig.author.realName,
     copyright: siteConfig.copyright,
+    publishDate: siteConfig.publishDate,
+    updatedAt: siteConfig.updatedAt,
   },
   plugins: [
     `gatsby-transformer-sharp`,

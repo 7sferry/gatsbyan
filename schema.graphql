@@ -1491,20 +1491,33 @@ type SitePluginGroupConnection {
 
 type SiteSiteMetadata {
     author: String
-    contacts: [SiteSiteMetadataContacts]
     copyright: String
     description: String
+    publishDate(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date
     realName: String
     repo: String
     siteUrl: String
     tagline: String
     title: String
-}
-
-type SiteSiteMetadataContacts {
-    color: String
-    name: String
-    url: String
+    updatedAt(
+        "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+        difference: String,
+        "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+        formatString: String,
+        "Returns a string generated with Moment.js' `fromNow` function"
+        fromNow: Boolean,
+        "Configures the locale Moment.js will use to format the date."
+        locale: String
+    ): Date
 }
 
 type contentfulBlogPostBodyTextNode implements Node {
@@ -3034,62 +3047,43 @@ input SitePluginSortInput {
     version: SortOrderEnum
 }
 
-input SiteSiteMetadataContactsFieldSelector {
-    color: FieldSelectorEnum
-    name: FieldSelectorEnum
-    url: FieldSelectorEnum
-}
-
-input SiteSiteMetadataContactsFilterInput {
-    color: StringQueryOperatorInput
-    name: StringQueryOperatorInput
-    url: StringQueryOperatorInput
-}
-
-input SiteSiteMetadataContactsFilterListInput {
-    elemMatch: SiteSiteMetadataContactsFilterInput
-}
-
-input SiteSiteMetadataContactsSortInput {
-    color: SortOrderEnum
-    name: SortOrderEnum
-    url: SortOrderEnum
-}
-
 input SiteSiteMetadataFieldSelector {
     author: FieldSelectorEnum
-    contacts: SiteSiteMetadataContactsFieldSelector
     copyright: FieldSelectorEnum
     description: FieldSelectorEnum
+    publishDate: FieldSelectorEnum
     realName: FieldSelectorEnum
     repo: FieldSelectorEnum
     siteUrl: FieldSelectorEnum
     tagline: FieldSelectorEnum
     title: FieldSelectorEnum
+    updatedAt: FieldSelectorEnum
 }
 
 input SiteSiteMetadataFilterInput {
     author: StringQueryOperatorInput
-    contacts: SiteSiteMetadataContactsFilterListInput
     copyright: StringQueryOperatorInput
     description: StringQueryOperatorInput
+    publishDate: DateQueryOperatorInput
     realName: StringQueryOperatorInput
     repo: StringQueryOperatorInput
     siteUrl: StringQueryOperatorInput
     tagline: StringQueryOperatorInput
     title: StringQueryOperatorInput
+    updatedAt: DateQueryOperatorInput
 }
 
 input SiteSiteMetadataSortInput {
     author: SortOrderEnum
-    contacts: SiteSiteMetadataContactsSortInput
     copyright: SortOrderEnum
     description: SortOrderEnum
+    publishDate: SortOrderEnum
     realName: SortOrderEnum
     repo: SortOrderEnum
     siteUrl: SortOrderEnum
     tagline: SortOrderEnum
     title: SortOrderEnum
+    updatedAt: SortOrderEnum
 }
 
 input SiteSortInput {

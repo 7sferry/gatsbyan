@@ -74,6 +74,7 @@ export interface SeoAttr {
   readonly image?: string;
   readonly path?: string;
   readonly date?: string;
+  readonly updatedAt?: string;
 }
 
 export interface CommaSeparatedLinkedPostTagsAttr {
@@ -374,6 +375,8 @@ export interface SiteConfig {
   readonly title: string;
   readonly tagline: string;
   readonly description: string;
+  readonly publishDate: string;
+  readonly updatedAt: string;
   readonly copyright: string;
   readonly author: AuthorConfig;
 }
