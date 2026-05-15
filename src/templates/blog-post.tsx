@@ -133,7 +133,7 @@ export const pageQuery = graphql`
         )
         laptop: gatsbyImageData(
           formats: [NO_CHANGE, AVIF]
-          quality: 50
+          quality: 30
           placeholder: BLURRED
           layout: FULL_WIDTH
           resizingBehavior: THUMB
