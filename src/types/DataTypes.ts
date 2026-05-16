@@ -76,6 +76,7 @@ export interface SeoAttr {
   readonly date?: string;
   readonly updatedAt?: string;
   readonly rating?: number;
+  readonly timeToRead?: string;
 }
 
 export interface CommaSeparatedLinkedPostTagsAttr {
@@ -122,6 +123,7 @@ export interface BlogPostProp {
       readonly siteMetadata: {
         readonly siteUrl: string;
         readonly repo: string;
+        readonly realName: string;
       };
     };
   };
@@ -424,22 +426,41 @@ export interface SeoSchemaData {
   readonly "@type": string;
   readonly headline: string;
   readonly name: string;
+  readonly identifier: string;
   readonly author: {
     readonly "@type": string;
+    readonly "@id": string;
+    readonly identifier: string;
     readonly name: string;
+    readonly url: string;
+    readonly sameAs: string[];
+  };
+  readonly creator: {
+    readonly "@type": string;
+    readonly "@id": string;
+    readonly identifier: string;
+    readonly name: string;
+    readonly url: string;
   };
   readonly publisher: {
     readonly "@type": string;
     readonly name: string;
+    readonly "@id": string;
+    readonly url: string;
     readonly logo: {
       readonly "@type": string;
+      readonly width: number;
+      readonly height: number;
       readonly url: string;
     };
   };
+  readonly dateCreated: string;
   readonly datePublished: string;
   readonly dateModified: string;
-  readonly image: string;
+  readonly image: string[];
   readonly description: string;
+  readonly url: string;
+  readonly "@id": string;
   readonly mainEntityOfPage: {
     readonly "@type": string;
     readonly "@id": string;
@@ -451,6 +472,7 @@ export interface SeoSchemaData {
     readonly worstRating: string;
     readonly ratingCount: string;
   };
+  readonly isAccessibleForFree: boolean;
 }
 
 export interface SeoData {

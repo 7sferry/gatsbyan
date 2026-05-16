@@ -12,10 +12,10 @@ import { getPlurals } from "../utils/GatsbyanUtils";
 import React from "react";
 import { graphql, Slice } from "gatsby";
 import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
-import { BlogPostHeroImage, BlogPostProp } from "../types/DataTypes";
+import { BlogPostHeroImage, BlogPostProp, ContentfulBlogPost } from "../types/DataTypes";
 import { ClientSide } from "../components/ClientSide.tsx";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
-import { getDateYear, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/DateUtils";
+import { getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/DateUtils";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
   const { contentfulBlogPost: post, site: siteProp } = props.data;
@@ -31,10 +31,6 @@ const BlogPostTemplate = (props: BlogPostProp) => {
   const publishDate = post.publishDate;
   const updatedAt = post.updatedAt;
 
-  const showUpdatedText = () => {
-    return post.sys?.revision > 5 && isAfterDate(updatedAt, plusDays(publishDate, 30));
-  };
-
   return (
     <Layout>
       <div className="title posted">{post.title}</div>
@@ -44,7 +40,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           {timeToRead} min{getPlurals(timeToRead)} read
         </span>
         <ClientSide>
-          {showUpdatedText() && <span className="page-info updated-time">{`updated ${toNow(updatedAt)}`}</span>}
+          {showUpdatedText(post) && <span className="page-info updated-time">{`updated ${toNow(updatedAt)}`}</span>}
         </ClientSide>
         <div className="page-info">
           <CommaSeparatedLinkedPostTags tags={post.tags} />
@@ -65,6 +61,10 @@ const BlogPostTemplate = (props: BlogPostProp) => {
       <Slice alias="Comment" repo={repo} />
     </Layout>
   );
+};
+
+const showUpdatedText = (post: ContentfulBlogPost) => {
+  return post.sys?.revision > 5 && isAfterDate(post.publishDate, plusDays(post.publishDate, 30));
 };
 
 function getHeroImage(heroImage: BlogPostHeroImage) {
@@ -153,6 +153,7 @@ export const pageQuery = graphql`
       siteMetadata {
         siteUrl
         repo
+        realName
       }
     }
   }
@@ -170,9 +171,10 @@ export function Head({ data, location }: BlogPostProp) {
       lang={post?.lang?.[0]}
       image={post?.heroImage?.file?.url}
       path={location?.pathname}
-      date={getDateYear(post?.publishDate)}
-      updatedAt={getDateYear(post?.updatedAt)}
+      date={post?.publishDate}
+      updatedAt={showUpdatedText(post) ? post?.publishDate : post?.updatedAt}
       rating={baseRate === 0 ? 5 : 4 + baseRate / 10}
+      timeToRead={`${post?.body?.childMarkdownRemark?.timeToRead} min${getPlurals(post?.body?.childMarkdownRemark?.timeToRead)} read`}
     />
   );
 }
