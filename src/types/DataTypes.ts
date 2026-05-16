@@ -75,6 +75,7 @@ export interface SeoAttr {
   readonly path?: string;
   readonly date?: string;
   readonly updatedAt?: string;
+  readonly rating?: number;
 }
 
 export interface CommaSeparatedLinkedPostTagsAttr {
@@ -422,6 +423,7 @@ export interface SeoSchemaData {
   readonly "@context": string;
   readonly "@type": string;
   readonly headline: string;
+  readonly name: string;
   readonly author: {
     readonly "@type": string;
     readonly name: string;
@@ -441,6 +443,13 @@ export interface SeoSchemaData {
   readonly mainEntityOfPage: {
     readonly "@type": string;
     readonly "@id": string;
+  };
+  readonly aggregateRating: {
+    readonly "@type": string;
+    readonly ratingValue: string;
+    readonly bestRating: string;
+    readonly worstRating: string;
+    readonly ratingCount: string;
   };
 }
 

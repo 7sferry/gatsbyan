@@ -7,7 +7,16 @@ import { SeoAttr, SeoSchemaData } from "../types/DataTypes";
  * on Januari 2023      *
  ************************/
 
-export default function Seo({ description, lang = "id", title = "", image, path = "", date, updatedAt }: SeoAttr) {
+export default function Seo({
+  description,
+  lang = "id",
+  title = "",
+  image,
+  path = "",
+  date,
+  updatedAt,
+  rating = 5,
+}: SeoAttr) {
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -33,6 +42,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title,
+    name: title,
     author: {
       "@type": "Person",
       name: metadata.realName,
@@ -53,6 +63,13 @@ export default function Seo({ description, lang = "id", title = "", image, path 
       "@type": "WebPage",
       "@id": metaUrl,
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: `${rating}`,
+      bestRating: "5",
+      worstRating: "1",
+      ratingCount: `${description?.length}`,
+    },
   };
 
   let name = path?.startsWith("/blog") || path?.startsWith("/features") ? `[${metadata.realName}]` : "";
@@ -65,7 +82,7 @@ export default function Seo({ description, lang = "id", title = "", image, path 
       <meta name="description" content={metaDescription} />
       <meta name="og:title" content={title} />
       <meta name="og:description" content={metaDescription} />
-      <meta name="og:type" content={`website`} />
+      <meta name="og:type" content={`article`} />
       <meta name="og:site_name" content={`Ferry Suhandri`} />
       <meta name="og:url" content={metaUrl} />
       <meta name="og:image" content={metaImageLarge} />

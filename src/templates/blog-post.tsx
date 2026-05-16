@@ -160,8 +160,9 @@ export const pageQuery = graphql`
 
 export default BlogPostTemplate;
 
-export function Head({ data, location }: React.PropsWithRef<BlogPostProp>) {
+export function Head({ data, location }: BlogPostProp) {
   const post = data?.contentfulBlogPost;
+  const baseRate = post?.body?.childMarkdownRemark?.timeToRead % 10;
   return (
     <Seo
       title={post?.title}
@@ -171,6 +172,7 @@ export function Head({ data, location }: React.PropsWithRef<BlogPostProp>) {
       path={location?.pathname}
       date={getDateYear(post?.publishDate)}
       updatedAt={getDateYear(post?.updatedAt)}
+      rating={baseRate === 0 ? 5 : 4 + baseRate / 10}
     />
   );
 }
