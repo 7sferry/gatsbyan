@@ -64,7 +64,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
 };
 
 const showUpdatedText = (post: ContentfulBlogPost) => {
-  return post.sys?.revision > 5 && isAfterDate(post.publishDate, plusDays(post.publishDate, 30));
+  return post.sys?.revision > 5 && isAfterDate(post.updatedAt, plusDays(post.publishDate, 30));
 };
 
 function getHeroImage(heroImage: BlogPostHeroImage) {
