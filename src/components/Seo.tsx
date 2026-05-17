@@ -55,7 +55,6 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
         "https://instagram.com/7sferry",
         "https://facebook.com/7sferry",
         "https://x.com/ferrys37",
-        "https://www.crystalknows.com/p/ferry",
       ],
     },
     url: metaUrl,

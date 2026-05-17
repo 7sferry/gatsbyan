@@ -2,23 +2,8 @@
   "version": 2,
   "redirects": [
     {
-      "source": "/tags/tips-tutorial",
-      "destination": "/tags/tips-and-tutorial",
-      "permanent": true
-    },
-    {
       "source": "/tags/javascript",
       "destination": "/tags/java-script",
-      "permanent": true
-    },
-    {
-      "source": "/blog/download-gatsby-blog-starters-and-contentful-cms-template",
-      "destination": "/blog/migrasi-blog-ke-gatsby",
-      "statusCode": 301
-    },
-    {
-      "source": "/blog/orang-padang-vs-orang-minangkabau",
-      "destination": "/blog/fakta-unik-minangkabau",
       "permanent": true
     },
     {
@@ -32,11 +17,6 @@
       "statusCode": 308
     },
     {
-      "source": "/blog/normalisasi-database",
-      "destination": "/blog/contoh-normalisasi-database",
-      "permanent": true
-    },
-    {
       "source": "/blog/acid-pada-database-consistency",
       "destination": "/blog/acid-pada-database#consistency"
     },
@@ -47,16 +27,6 @@
     {
       "source": "/blog/acid-pada-database-durability",
       "destination": "/blog/acid-pada-database#durability",
-      "permanent": true
-    },
-    {
-      "source": "/blog/value-averaging-calculator",
-      "destination": "/features/value-averaging-calculator",
-      "statusCode": 301
-    },
-    {
-      "source": "/blog/fakta-unik-minangkabau-part-ii",
-      "destination": "/blog/fakta-unik-tentang-minangkabau-part-ii",
       "permanent": true
     }
   ],
