@@ -163,7 +163,6 @@ export default BlogPostTemplate;
 
 export function Head({ data, location }: BlogPostProp) {
   const post = data?.contentfulBlogPost;
-  const baseRate = post?.body?.childMarkdownRemark?.timeToRead % 10;
   return (
     <SeoPost
       title={post?.title}
@@ -172,7 +171,6 @@ export function Head({ data, location }: BlogPostProp) {
       image={post?.heroImage?.file?.url}
       path={location?.pathname}
       publishDate={post?.publishDate}
-      rating={baseRate === 0 ? 5 : 4 + baseRate / 10}
       timeToRead={`${post?.body?.childMarkdownRemark?.timeToRead} min${getPlurals(post?.body?.childMarkdownRemark?.timeToRead)} read`}
     />
   );

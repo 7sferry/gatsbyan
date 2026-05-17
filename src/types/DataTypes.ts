@@ -80,7 +80,6 @@ export interface SeoPostAttr {
   readonly image: string;
   readonly path: string;
   readonly publishDate: string;
-  readonly rating: number;
   readonly timeToRead: string;
 }
 

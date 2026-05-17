@@ -14,7 +14,6 @@ export default function SeoPost({
   image,
   path = "",
   publishDate,
-  rating,
   timeToRead,
 }: SeoPostAttr) {
   const { site } = useStaticQuery(graphql`
