@@ -93,13 +93,6 @@ export default function Seo({
       "@type": "WebPage",
       "@id": metaUrl,
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: `${rating}`,
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: `${metaDescription?.length}`,
-    },
     isAccessibleForFree: true,
   };
 
