@@ -48,8 +48,7 @@ export default function SeoPost({
     dateModified: updatedDateTime,
     author: {
       "@type": "Person",
-      "@id": metadata.siteUrl,
-      identifier: metadata.realName,
+      "@id": metadata.siteUrl + "#",
       name: metadata.realName,
       url: metadata.siteUrl,
       image: {
@@ -70,7 +69,7 @@ export default function SeoPost({
     },
     publisher: {
       "@type": "Organization",
-      "@id": metadata.siteUrl + "#",
+      "@id": metadata.siteUrl,
       name: metadata.author,
       url: metadata.siteUrl,
       logo: {
@@ -125,8 +124,8 @@ export default function SeoPost({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:image" content={metaImage} />
       <meta name="twitter:description" content={description} />
-      {timeToRead && <meta name="twitter:label1" content="Reading time" />}
-      {timeToRead && <meta name="twitter:data1" content={timeToRead} />}
+      <meta name="twitter:label1" content="Reading time" />
+      <meta name="twitter:data1" content={timeToRead} />
       <meta property="fb:app_id" content={`1365740643629290`} />
       <meta name="google-site-verification" content={`zMJIuAagxg8apsDkd_7UPSzDGi7NIo6mwCx_GUcNXNw`} />
     </>

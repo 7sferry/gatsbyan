@@ -432,7 +432,6 @@ export interface SeoSchemaData {
   readonly author: {
     readonly "@type": string;
     readonly "@id": string;
-    readonly identifier: string;
     readonly name: string;
     readonly url: string;
     readonly image: {
@@ -444,23 +443,12 @@ export interface SeoSchemaData {
     };
     readonly sameAs: string[];
   };
-  readonly publisher: {
-    readonly "@type": string;
-    readonly name: string;
-    readonly "@id": string;
-    readonly logo: {
-      readonly "@type": string;
-      readonly width: number;
-      readonly height: number;
-      readonly url: string;
-      readonly "@id": string;
-    };
-  };
   readonly description: string;
   readonly url: string;
   readonly "@id": string;
   readonly mainEntityOfPage: string;
   readonly isAccessibleForFree: boolean;
+  readonly publicAccess: boolean;
 }
 
 export interface SeoPostSchemaData {
@@ -471,7 +459,6 @@ export interface SeoPostSchemaData {
   readonly author: {
     readonly "@type": string;
     readonly "@id": string;
-    readonly identifier: string;
     readonly name: string;
     readonly url: string;
     readonly image: {

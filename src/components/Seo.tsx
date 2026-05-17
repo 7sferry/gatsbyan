@@ -36,22 +36,9 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
     mainEntityOfPage: metaUrl,
     name: title,
     description: metaDescription,
-    publisher: {
-      "@type": "Organization",
-      "@id": metadata.siteUrl + "#",
-      name: metadata.author,
-      logo: {
-        "@type": "ImageObject",
-        width: 600,
-        height: 600,
-        url: metaImage,
-        "@id": metaImage,
-      },
-    },
     author: {
-      "@id": metadata.siteUrl,
+      "@id": metadata.siteUrl + "#",
       "@type": "Person",
-      identifier: metadata.realName,
       name: metadata.realName,
       url: metadata.siteUrl,
       image: {
@@ -73,6 +60,7 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
     },
     url: metaUrl,
     isAccessibleForFree: true,
+    publicAccess: true,
   };
 
   let name = path?.startsWith("/features") ? `[${metadata.realName}]` : "";
