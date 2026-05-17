@@ -88,13 +88,7 @@ export default function SeoPost({
       "@id": metaImage,
     },
     url: metaUrl,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: `${rating}`,
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: `${description?.length}`,
-    },
+    publicAccess: true,
     isAccessibleForFree: true,
   };
 

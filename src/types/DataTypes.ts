@@ -510,13 +510,7 @@ export interface SeoPostSchemaData {
   readonly url: string;
   readonly "@id": string;
   readonly mainEntityOfPage: string;
-  readonly aggregateRating: {
-    readonly "@type": string;
-    readonly ratingValue: string;
-    readonly bestRating: string;
-    readonly worstRating: string;
-    readonly ratingCount: string;
-  };
+  readonly publicAccess: boolean;
   readonly isAccessibleForFree: boolean;
 }
 
