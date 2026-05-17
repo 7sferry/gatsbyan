@@ -68,15 +68,20 @@ export interface CustomPostAttr {
 }
 
 export interface SeoAttr {
-  readonly description?: string;
-  readonly lang?: string;
-  readonly title?: string;
-  readonly image?: string;
+  readonly title: string;
   readonly path?: string;
-  readonly date?: string;
-  readonly updatedAt?: string;
-  readonly rating?: number;
-  readonly timeToRead?: string;
+  readonly description?: string;
+}
+
+export interface SeoPostAttr {
+  readonly description: string;
+  readonly lang: string;
+  readonly title: string;
+  readonly image: string;
+  readonly path: string;
+  readonly publishDate: string;
+  readonly rating: number;
+  readonly timeToRead: string;
 }
 
 export interface CommaSeparatedLinkedPostTagsAttr {
@@ -424,23 +429,60 @@ export interface SeoMetadata {
 export interface SeoSchemaData {
   readonly "@context": string;
   readonly "@type": string;
-  readonly headline: string;
   readonly name: string;
-  readonly identifier: string;
   readonly author: {
     readonly "@type": string;
     readonly "@id": string;
     readonly identifier: string;
     readonly name: string;
     readonly url: string;
+    readonly image: {
+      "@type": string;
+      "@id": string;
+      width: number;
+      height: number;
+      url: string;
+    };
     readonly sameAs: string[];
   };
-  readonly creator: {
+  readonly publisher: {
+    readonly "@type": string;
+    readonly name: string;
+    readonly "@id": string;
+    readonly logo: {
+      readonly "@type": string;
+      readonly width: number;
+      readonly height: number;
+      readonly url: string;
+      readonly "@id": string;
+    };
+  };
+  readonly description: string;
+  readonly url: string;
+  readonly "@id": string;
+  readonly mainEntityOfPage: string;
+  readonly isAccessibleForFree: boolean;
+}
+
+export interface SeoPostSchemaData {
+  readonly "@context": string;
+  readonly "@type": string;
+  readonly headline: string;
+  readonly name: string;
+  readonly author: {
     readonly "@type": string;
     readonly "@id": string;
     readonly identifier: string;
     readonly name: string;
     readonly url: string;
+    readonly image: {
+      "@type": string;
+      "@id": string;
+      width: number;
+      height: number;
+      url: string;
+    };
+    readonly sameAs: string[];
   };
   readonly publisher: {
     readonly "@type": string;
@@ -452,19 +494,22 @@ export interface SeoSchemaData {
       readonly width: number;
       readonly height: number;
       readonly url: string;
+      readonly "@id": string;
     };
   };
-  readonly dateCreated: string;
   readonly datePublished: string;
   readonly dateModified: string;
-  readonly image: string[];
+  readonly image: {
+    "@type": string;
+    "@id": string;
+    width?: number;
+    height?: number;
+    url: string;
+  };
   readonly description: string;
   readonly url: string;
   readonly "@id": string;
-  readonly mainEntityOfPage: {
-    readonly "@type": string;
-    readonly "@id": string;
-  };
+  readonly mainEntityOfPage: string;
   readonly aggregateRating: {
     readonly "@type": string;
     readonly ratingValue: string;

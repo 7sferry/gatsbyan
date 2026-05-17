@@ -4,7 +4,6 @@
  ************************/
 
 import Layout from "../components/Layout";
-import Seo from "../components/Seo";
 import "./ignored/blockquote.css";
 import "./ignored/index-ignored.css";
 import "./ignored/prism.css";
@@ -16,6 +15,7 @@ import { BlogPostHeroImage, BlogPostProp, ContentfulBlogPost } from "../types/Da
 import { ClientSide } from "../components/ClientSide.tsx";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
 import { getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/DateUtils";
+import SeoPost from "../components/SeoPost.tsx";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
   const { contentfulBlogPost: post, site: siteProp } = props.data;
@@ -165,14 +165,13 @@ export function Head({ data, location }: BlogPostProp) {
   const post = data?.contentfulBlogPost;
   const baseRate = post?.body?.childMarkdownRemark?.timeToRead % 10;
   return (
-    <Seo
+    <SeoPost
       title={post?.title}
       description={post?.description?.description}
       lang={post?.lang?.[0]}
       image={post?.heroImage?.file?.url}
       path={location?.pathname}
-      date={post?.publishDate}
-      updatedAt={showUpdatedText(post) ? post?.updatedAt : post?.publishDate}
+      publishDate={post?.publishDate}
       rating={baseRate === 0 ? 5 : 4 + baseRate / 10}
       timeToRead={`${post?.body?.childMarkdownRemark?.timeToRead} min${getPlurals(post?.body?.childMarkdownRemark?.timeToRead)} read`}
     />

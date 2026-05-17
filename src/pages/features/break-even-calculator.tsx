@@ -53,12 +53,5 @@ export async function config() {
 export default BreakEvenCalculator;
 
 export function Head({ location }: any) {
-  return (
-    <Seo
-      title={pageContext?.title}
-      description={pageContext?.description}
-      lang={pageContext?.lang}
-      path={location?.pathname}
-    />
-  );
+  return <Seo title={pageContext?.title} description={pageContext?.description} path={location?.pathname} />;
 }
