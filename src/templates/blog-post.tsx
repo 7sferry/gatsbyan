@@ -117,7 +117,7 @@ export const pageQuery = graphql`
         )
         phone: gatsbyImageData(
           formats: [NO_CHANGE, AVIF]
-          quality: 50
+          quality: 60
           placeholder: BLURRED
           layout: FULL_WIDTH
           breakpoints: [420]
@@ -133,7 +133,7 @@ export const pageQuery = graphql`
         )
         laptop: gatsbyImageData(
           formats: [NO_CHANGE, AVIF]
-          quality: 30
+          quality: 60
           placeholder: BLURRED
           layout: FULL_WIDTH
           resizingBehavior: THUMB
