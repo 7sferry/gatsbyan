@@ -109,7 +109,7 @@ export const pageQuery = graphql`
         publishDate
         heroImage {
           original: gatsbyImageData(
-            formats: [AVIF]
+            formats: [NO_CHANGE, AVIF]
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
@@ -117,7 +117,7 @@ export const pageQuery = graphql`
             quality: 75
           )
           phone: gatsbyImageData(
-            formats: [AVIF]
+            formats: [NO_CHANGE, AVIF]
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
@@ -127,7 +127,7 @@ export const pageQuery = graphql`
             quality: 50
           )
           ipad: gatsbyImageData(
-            formats: [AVIF]
+            formats: [NO_CHANGE, AVIF]
             resizingBehavior: THUMB
             cropFocus: FACES
             placeholder: BLURRED
@@ -137,7 +137,7 @@ export const pageQuery = graphql`
             quality: 50
           )
           laptop: gatsbyImageData(
-            formats: [AVIF]
+            formats: [NO_CHANGE, AVIF]
             placeholder: BLURRED
             layout: FIXED
             outputPixelDensities: [1]

@@ -108,7 +108,7 @@ export const pageQuery = graphql`
       }
       heroImage {
         original: gatsbyImageData(
-          formats: [AVIF]
+          formats: [NO_CHANGE, AVIF]
           quality: 75
           placeholder: BLURRED
           layout: FULL_WIDTH
@@ -116,7 +116,7 @@ export const pageQuery = graphql`
           cropFocus: FACES
         )
         phone: gatsbyImageData(
-          formats: [AVIF]
+          formats: [NO_CHANGE, AVIF]
           quality: 50
           placeholder: BLURRED
           layout: FULL_WIDTH
@@ -124,7 +124,7 @@ export const pageQuery = graphql`
           sizes: "(max-width: 414px) 410px"
         )
         ipad: gatsbyImageData(
-          formats: [AVIF]
+          formats: [NO_CHANGE, AVIF]
           quality: 75
           placeholder: BLURRED
           layout: FULL_WIDTH
@@ -132,7 +132,7 @@ export const pageQuery = graphql`
           sizes: "(max-width: 1024px) 1000px"
         )
         laptop: gatsbyImageData(
-          formats: [AVIF]
+          formats: [NO_CHANGE, AVIF]
           quality: 30
           placeholder: BLURRED
           layout: FULL_WIDTH
