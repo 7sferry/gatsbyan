@@ -7,7 +7,7 @@ import { add, format, formatDistanceToNow, isAfter } from "date-fns";
 
 export const getPublishDate = (date: string) => formatToPattern(date, "MMMM do, yyyy");
 export const getPublishDateTime = (date: string) => formatToPattern(date, "eee. MMM do, yyyy hh:mm a");
-export const getDateYear = (date: string) => formatToPattern(date, "yyyy-MM-dd'T'HH:mm:ssXXX");
+export const getIsoFormat = (date: string) => formatToPattern(date, "yyyy-MM-dd'T'HH:mm:ss");
 export const getMonthYearDate = (date: string) => formatToPattern(date, "yyyy-MMMM");
 export const toNow = (date: string | Date) =>
   formatDistanceToNow(typeof date === "string" ? new Date(date) : date, { addSuffix: true });

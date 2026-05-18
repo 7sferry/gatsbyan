@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoPostAttr, SeoPostSchemaData } from "../types/DataTypes";
-import { getDateYear } from "../utils/DateUtils.tsx";
+import { getIsoFormat } from "../utils/DateUtils.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -38,7 +38,8 @@ export default function SeoPost({
   const metadata = site.siteMetadata;
   const metaImage = `https:${image}`;
   const metaUrl = metadata.siteUrl + path;
-  const updatedDateTime = getDateYear(metadata.updatedAt);
+  const updatedDateTime = metadata.updatedAt;
+  const publishedDateTime = getIsoFormat(publishDate) + "Z";
   const techTags = new Set(["Spring", "Database", "Design Pattern", "Java", "JavaScript", "Programming Principle"]);
   const keywords = [...tags].join(", ");
 
@@ -50,7 +51,7 @@ export default function SeoPost({
     headline: title,
     name: title,
     description: description,
-    datePublished: publishDate,
+    datePublished: publishedDateTime,
     dateModified: updatedDateTime,
     author: {
       "@type": "Person",
@@ -135,7 +136,7 @@ export default function SeoPost({
       <meta name="application-name" content={metadata.realName} />
       <meta property="og:type" content={`article`} />
       <meta property="article:author" content={metadata.realName} />
-      <meta property="article:published_time" content={publishDate} />
+      <meta property="article:published_time" content={publishedDateTime} />
       <meta property="article:modified_time" content={updatedDateTime} />
       <meta name="robots" content="index,follow,max-image-preview:large" />
       <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
