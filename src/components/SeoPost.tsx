@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoPostAttr, SeoPostSchemaData } from "../types/DataTypes";
+import { getDateYear } from "../utils/DateUtils.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -15,6 +16,7 @@ export default function SeoPost({
   path = "",
   publishDate,
   timeToRead,
+  tags,
 }: SeoPostAttr) {
   const { site } = useStaticQuery(graphql`
     query {
@@ -27,6 +29,7 @@ export default function SeoPost({
           siteUrl
           publishDate
           updatedAt
+          tagline
         }
       }
     }
@@ -35,10 +38,13 @@ export default function SeoPost({
   const metadata = site.siteMetadata;
   const metaImage = `https:${image}`;
   const metaUrl = metadata.siteUrl + path;
-  const updatedDateTime = metadata.updatedAt;
+  const updatedDateTime = getDateYear(metadata.updatedAt);
+  const techTags = new Set(["Spring", "Database", "Design Pattern", "Java", "JavaScript", "Programming Principle"]);
+  const keywords = [...tags].join(", ");
+
   const schemaData: SeoPostSchemaData = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": tags.find((tag) => techTags.has(tag)) ? "TechArticle" : "BlogPosting",
     "@id": metaUrl,
     mainEntityOfPage: metaUrl,
     headline: title,
@@ -51,6 +57,33 @@ export default function SeoPost({
       "@id": metadata.siteUrl + "#",
       name: metadata.realName,
       url: metadata.siteUrl,
+      description: metadata.tagline,
+      jobTitle: "Software Engineer",
+      knowsAbout: [
+        "Java",
+        "JavaScript",
+        "Spring Boot",
+        "Programming Principle",
+        "Programming",
+        "Web Developer",
+        "Software Architecture",
+        "Design Patterns",
+        "Hibernate",
+        "Unit Test",
+        "Object Oriented Programming",
+        "Backend Engineering",
+        "Clean Architecture",
+        "Hexagonal Architecture",
+        "System Design",
+        "Database",
+        "MySQL",
+        "SQL",
+        "Message Broker",
+        "PostgreSql",
+        "Redis",
+        "Investment",
+        "Football",
+      ],
       image: {
         "@type": "ImageObject",
         width: 540,
@@ -80,14 +113,39 @@ export default function SeoPost({
         "@id": `${metadata.siteUrl}/ferry-suhandri.jpg`,
       },
     },
-    image: {
-      "@type": "ImageObject",
-      url: metaImage,
-      "@id": metaImage,
+    articleSection: tags,
+    about: tags.map((tag) => {
+      return { "@type": "Thing", name: tag };
+    }),
+    keywords: keywords,
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      "@id": metaUrl + "#breadcrumb",
+      name: title,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: metadata.siteUrl + "/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Blog",
+          item: metaUrl.substring(0, metaUrl.lastIndexOf("/") + 1),
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: title,
+          item: metaUrl,
+        },
+      ],
     },
+    image: [metaImage],
     url: metaUrl,
     publicAccess: true,
-    isAccessibleForFree: true,
   };
 
   return (
@@ -108,7 +166,7 @@ export default function SeoPost({
       <meta name="robots" content="index,follow,max-image-preview:large" />
       <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
       <meta property="og:description" content={description} />
-      <meta property="og:site_name" content={metadata.realName} />
+      <meta property="og:site_name" content={"Blog " + metadata.realName} />
       <meta property="og:url" content={metaUrl} />
       <meta property="og:image" content={metaImage} />
       <meta name="author" content={metadata.realName} />
@@ -119,6 +177,7 @@ export default function SeoPost({
       <meta property="og:image:width" content={`338`} />
       <meta property="og:image:height" content={`463`} />
       <meta name="content-language" content={lang} />
+      <meta name="keywords" content={keywords} />
       <meta name="twitter:card" content={`summary`} />
       <meta name="twitter:creator" content={metadata.author} />
       <meta name="twitter:title" content={title} />

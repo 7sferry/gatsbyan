@@ -80,6 +80,7 @@ export interface SeoPostAttr {
   readonly image: string;
   readonly path: string;
   readonly publishDate: string;
+  readonly tags: string[];
   readonly timeToRead: string;
 }
 
@@ -429,11 +430,14 @@ export interface SeoSchemaData {
   readonly "@context": string;
   readonly "@type": string;
   readonly name: string;
-  readonly author: {
+  readonly alternateName: string[];
+  readonly mainEntity: {
     readonly "@type": string;
     readonly "@id": string;
     readonly name: string;
     readonly url: string;
+    readonly jobTitle: string;
+    readonly knowsAbout: string[];
     readonly image: {
       "@type": string;
       "@id": string;
@@ -444,12 +448,53 @@ export interface SeoSchemaData {
     readonly sameAs: string[];
   };
   readonly description: string;
+  readonly dateCreated: string;
+  readonly dateModified: string;
   readonly url: string;
   readonly "@id": string;
-  readonly mainEntityOfPage: string;
-  readonly isAccessibleForFree: boolean;
   readonly publicAccess: boolean;
 }
+
+type Publisher = {
+  readonly "@type": string;
+  readonly name: string;
+  readonly "@id": string;
+  readonly url: string;
+  readonly logo: {
+    readonly "@type": string;
+    readonly width: number;
+    readonly height: number;
+    readonly url: string;
+    readonly "@id": string;
+  };
+};
+
+type BreadrumbItem = {
+  readonly "@type": string;
+  readonly position: number;
+  readonly name: string;
+  readonly item: string;
+};
+
+type Breadcrumb = {
+  readonly "@type": string;
+  readonly "@id": string;
+  readonly name: string;
+  readonly itemListElement: BreadrumbItem[];
+};
+
+type ImageSeoSchema = {
+  readonly "@type": string;
+  readonly "@id": string;
+  readonly width?: number;
+  readonly height?: number;
+  readonly url: string;
+};
+
+type AboutSeoSchema = {
+  readonly "@type": string;
+  readonly name: string;
+};
 
 export interface SeoPostSchemaData {
   readonly "@context": string;
@@ -461,43 +506,25 @@ export interface SeoPostSchemaData {
     readonly "@id": string;
     readonly name: string;
     readonly url: string;
-    readonly image: {
-      "@type": string;
-      "@id": string;
-      width: number;
-      height: number;
-      url: string;
-    };
+    readonly description: string;
+    readonly jobTitle: string;
+    readonly knowsAbout: string[];
+    readonly image: ImageSeoSchema;
     readonly sameAs: string[];
   };
-  readonly publisher: {
-    readonly "@type": string;
-    readonly name: string;
-    readonly "@id": string;
-    readonly url: string;
-    readonly logo: {
-      readonly "@type": string;
-      readonly width: number;
-      readonly height: number;
-      readonly url: string;
-      readonly "@id": string;
-    };
-  };
+  readonly publisher: Publisher;
   readonly datePublished: string;
   readonly dateModified: string;
-  readonly image: {
-    "@type": string;
-    "@id": string;
-    width?: number;
-    height?: number;
-    url: string;
-  };
+  readonly articleSection: string[];
+  readonly about: AboutSeoSchema[];
+  readonly keywords: string;
+  readonly breadcrumb: Breadcrumb;
+  readonly image: string[];
   readonly description: string;
   readonly url: string;
   readonly "@id": string;
   readonly mainEntityOfPage: string;
   readonly publicAccess: boolean;
-  readonly isAccessibleForFree: boolean;
 }
 
 export interface SeoData {

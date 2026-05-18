@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoAttr, SeoSchemaData } from "../types/DataTypes";
+import { getDateYear } from "../utils/DateUtils.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -31,16 +32,44 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
   const metaUrl = metadata.siteUrl + path;
   const schemaData: SeoSchemaData = {
     "@context": "https://schema.org",
-    "@type": "Blog",
+    "@type": path === "/" ? "ProfilePage" : "WebPage",
     "@id": metaUrl,
-    mainEntityOfPage: metaUrl,
     name: title,
+    alternateName: [metadata.realName],
     description: metaDescription,
-    author: {
+    dateCreated: getDateYear(metadata.publishDate),
+    dateModified: getDateYear(metadata.updatedAt),
+    mainEntity: {
       "@id": metadata.siteUrl + "#",
       "@type": "Person",
       name: metadata.realName,
       url: metadata.siteUrl,
+      jobTitle: "Software Engineer",
+      knowsAbout: [
+        "Java",
+        "JavaScript",
+        "Spring Boot",
+        "Programming Principle",
+        "Programming",
+        "Web Developer",
+        "Software Architecture",
+        "Design Patterns",
+        "Hibernate",
+        "Unit Test",
+        "Object Oriented Programming",
+        "Backend Engineering",
+        "Clean Architecture",
+        "Hexagonal Architecture",
+        "System Design",
+        "Database",
+        "MySQL",
+        "SQL",
+        "Message Broker",
+        "PostgreSql",
+        "Redis",
+        "Investment",
+        "Football",
+      ],
       image: {
         "@type": "ImageObject",
         width: 540,
@@ -58,7 +87,6 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
       ],
     },
     url: metaUrl,
-    isAccessibleForFree: true,
     publicAccess: true,
   };
 
@@ -78,7 +106,7 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
       <meta name="robots" content="index,follow,max-image-preview:large" />
       <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
       <meta property="og:description" content={metaDescription} />
-      <meta property="og:site_name" content={metadata.realName} />
+      <meta property="og:site_name" content={"Blog " + metadata.realName} />
       <meta property="og:url" content={metaUrl} />
       <meta property="og:image" content={metaImageLarge} />
       <meta name="author" content={metadata.realName} />
