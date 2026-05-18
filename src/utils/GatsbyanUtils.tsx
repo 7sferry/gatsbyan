@@ -16,3 +16,12 @@ export const kebabCase = (str: string) => {
 export const getPlurals = (count: number) => {
   return count > 1 ? "s" : "";
 };
+
+export const TECH_TAGS = new Set([
+  "Spring",
+  "Database",
+  "Design Pattern",
+  "Java",
+  "JavaScript",
+  "Programming Principle",
+]);

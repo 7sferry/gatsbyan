@@ -2,6 +2,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoPostAttr, SeoPostSchemaData } from "../types/DataTypes";
 import { getIsoFormat } from "../utils/DateUtils.tsx";
+import { TECH_TAGS } from "../utils/GatsbyanUtils.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -40,12 +41,11 @@ export default function SeoPost({
   const metaUrl = metadata.siteUrl + path;
   const updatedDateTime = metadata.updatedAt;
   const publishedDateTime = getIsoFormat(publishDate) + "Z";
-  const techTags = new Set(["Spring", "Database", "Design Pattern", "Java", "JavaScript", "Programming Principle"]);
   const keywords = [...tags].join(", ");
 
   const schemaData: SeoPostSchemaData = {
     "@context": "https://schema.org",
-    "@type": tags.find((tag) => techTags.has(tag)) ? "TechArticle" : "BlogPosting",
+    "@type": tags.some((tag) => TECH_TAGS.has(tag)) ? "TechArticle" : "BlogPosting",
     "@id": metaUrl,
     mainEntityOfPage: metaUrl,
     headline: title,
