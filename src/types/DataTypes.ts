@@ -452,7 +452,6 @@ export interface SeoSchemaData {
   readonly dateModified: string;
   readonly url: string;
   readonly "@id": string;
-  readonly publicAccess: boolean;
 }
 
 type Publisher = {
@@ -518,13 +517,11 @@ export interface SeoPostSchemaData {
   readonly articleSection: string[];
   readonly about: AboutSeoSchema[];
   readonly keywords: string;
-  readonly breadcrumb: Breadcrumb;
   readonly image: string[];
   readonly description: string;
   readonly url: string;
   readonly "@id": string;
   readonly mainEntityOfPage: string;
-  readonly publicAccess: boolean;
 }
 
 export interface SeoData {

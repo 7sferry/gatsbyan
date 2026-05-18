@@ -118,34 +118,8 @@ export default function SeoPost({
       return { "@type": "Thing", name: tag };
     }),
     keywords: keywords,
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      "@id": metaUrl + "#breadcrumb",
-      name: title,
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: metadata.siteUrl + "/",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Blog",
-          item: metaUrl.substring(0, metaUrl.lastIndexOf("/") + 1),
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: title,
-          item: metaUrl,
-        },
-      ],
-    },
     image: [metaImage],
     url: metaUrl,
-    publicAccess: true,
   };
 
   return (

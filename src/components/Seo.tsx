@@ -1,7 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoAttr, SeoSchemaData } from "../types/DataTypes";
-import { getDateYear } from "../utils/DateUtils.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -37,8 +36,8 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
     name: title,
     alternateName: [metadata.realName],
     description: metaDescription,
-    dateCreated: getDateYear(metadata.publishDate),
-    dateModified: getDateYear(metadata.updatedAt),
+    dateCreated: metadata.publishDate,
+    dateModified: metadata.updatedAt,
     mainEntity: {
       "@id": metadata.siteUrl + "#",
       "@type": "Person",
@@ -87,7 +86,6 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
       ],
     },
     url: metaUrl,
-    publicAccess: true,
   };
 
   let name = path?.startsWith("/features") ? `[${metadata.realName}]` : "";

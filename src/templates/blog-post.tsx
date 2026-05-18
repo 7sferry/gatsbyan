@@ -14,7 +14,7 @@ import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
 import { BlogPostHeroImage, BlogPostProp, ContentfulBlogPost } from "../types/DataTypes";
 import { ClientSide } from "../components/ClientSide.tsx";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags.tsx";
-import { getDateYear, getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/DateUtils";
+import { getPublishDateTime, isAfterDate, plusDays, toNow } from "../utils/DateUtils";
 import SeoPost from "../components/SeoPost.tsx";
 
 const BlogPostTemplate = (props: BlogPostProp) => {
@@ -170,7 +170,7 @@ export function Head({ data, location }: BlogPostProp) {
       lang={post?.lang?.[0]}
       image={post?.heroImage?.file?.url}
       path={location?.pathname}
-      publishDate={getDateYear(post?.publishDate)}
+      publishDate={post?.publishDate}
       tags={post?.tags}
       timeToRead={`${post?.body?.childMarkdownRemark?.timeToRead} min${getPlurals(post?.body?.childMarkdownRemark?.timeToRead)} read`}
     />
