@@ -117,7 +117,7 @@ export const pageQuery = graphql`
         )
         phone: gatsbyImageData(
           formats: [NO_CHANGE, AVIF]
-          quality: 50
+          quality: 35
           placeholder: BLURRED
           layout: FULL_WIDTH
           breakpoints: [420]
