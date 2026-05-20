@@ -100,6 +100,8 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
       <meta property="og:title" content={title} />
       <meta name="title" content={title} />
       <meta name="application-name" content={metadata.realName} />
+      <meta name="apple-mobile-web-app-title" content={metadata.author} />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta property="og:type" content={`website`} />
       <meta name="robots" content="index,follow,max-image-preview:large" />
       <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
