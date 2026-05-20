@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoPostAttr, SeoPostSchemaData } from "../types/DataTypes";
-import { getIsoFormat } from "../utils/DateUtils.tsx";
+import { getIsoFormat, isAfterDate } from "../utils/DateUtils.tsx";
 import { TECH_TAGS } from "../utils/GatsbyanUtils.tsx";
 
 /************************
@@ -39,8 +39,8 @@ export default function SeoPost({
   const metadata = site.siteMetadata;
   const metaImage = `https:${image}`;
   const metaUrl = metadata.siteUrl + path;
-  const updatedDateTime = metadata.updatedAt;
   const publishedDateTime = getIsoFormat(publishDate) + "Z";
+  const updatedDateTime = isAfterDate(publishedDateTime, metadata.updatedAt) ? publishedDateTime : metadata.updatedAt;
   const keywords = [...tags].join(", ");
 
   const schemaData: SeoPostSchemaData = {
