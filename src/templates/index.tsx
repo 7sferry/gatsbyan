@@ -124,7 +124,7 @@ export const pageQuery = graphql`
             layout: FIXED
             outputPixelDensities: [1]
             width: 420
-            quality: 60
+            quality: 75
           )
           ipad: gatsbyImageData(
             formats: [NO_CHANGE, AVIF]
@@ -142,7 +142,7 @@ export const pageQuery = graphql`
             layout: FIXED
             outputPixelDensities: [1]
             width: 275
-            quality: 60
+            quality: 50
           )
           title
         }
