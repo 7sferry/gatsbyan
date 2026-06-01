@@ -11,7 +11,7 @@ import TopTrendingPage from "./TopTrendingPage.tsx";
 
 const RightSidebar = () => {
   return (
-    <div className="sidebar-main ">
+    <div className="sidebar-main " data-nosnippet>
       <FeaturedPage />
       <MostViewedPage />
       <TopTrendingPage />

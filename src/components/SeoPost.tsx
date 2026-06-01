@@ -41,7 +41,6 @@ export default function SeoPost({
   const metaUrl = metadata.siteUrl + path;
   const publishedDateTime = getIsoFormat(publishDate) + "Z";
   const updatedDateTime = isAfterDate(publishedDateTime, metadata.updatedAt) ? publishedDateTime : metadata.updatedAt;
-  const keywords = [...tags].join(", ");
 
   const schemaData: SeoPostSchemaData = {
     "@context": "https://schema.org",
@@ -118,7 +117,6 @@ export default function SeoPost({
     about: tags.map((tag) => {
       return { "@type": "Thing", name: tag };
     }),
-    keywords: keywords,
     image: [metaImage],
     url: metaUrl,
   };
@@ -154,7 +152,6 @@ export default function SeoPost({
       <meta property="og:image:width" content={`338`} />
       <meta property="og:image:height" content={`463`} />
       <meta name="content-language" content={lang} />
-      <meta name="keywords" content={keywords} />
       <meta name="twitter:card" content={`summary`} />
       <meta name="twitter:creator" content={metadata.author} />
       <meta name="twitter:title" content={title} />

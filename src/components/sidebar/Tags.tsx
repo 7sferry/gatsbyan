@@ -8,7 +8,7 @@ const Tags = () => {
   const { allContentfulBlogPost }: TagsData = getTagsQuery();
 
   return (
-    <>
+    <div data-nosnippet>
       <div className="second-header mb-1">Tags</div>
       <div className="d-block">
         {allContentfulBlogPost.tags.map((tag, i) => (
@@ -17,7 +17,7 @@ const Tags = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

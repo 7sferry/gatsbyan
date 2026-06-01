@@ -11,11 +11,11 @@ const Header = () => {
   return (
     <header className="head-main">
       <div className="head-elements">
-        <h1 className="head-logo my-emoji">
+        <div className="head-logo my-emoji">
           <Link to="/" className="header-link">
             {metadata.title}
           </Link>
-        </h1>
+        </div>
         <Menu />
       </div>
       <MobileMenuLinks />

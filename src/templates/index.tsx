@@ -141,8 +141,8 @@ export const pageQuery = graphql`
             placeholder: BLURRED
             layout: FIXED
             outputPixelDensities: [1]
-            width: 275
-            quality: 75
+            width: 250
+            quality: 50
           )
           title
         }

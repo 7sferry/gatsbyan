@@ -1,5 +1,5 @@
-import { IGatsbyImageData } from "gatsby-plugin-image";
-import React, { ChangeEventHandler } from "react";
+import {IGatsbyImageData} from "gatsby-plugin-image";
+import React, {ChangeEventHandler} from "react";
 
 export enum UnitType {
   LOT,
@@ -516,7 +516,6 @@ export interface SeoPostSchemaData {
   readonly dateModified: string;
   readonly articleSection: string[];
   readonly about: AboutSeoSchema[];
-  readonly keywords: string;
   readonly image: string[];
   readonly description: string;
   readonly url: string;
