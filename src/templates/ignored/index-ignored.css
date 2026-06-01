@@ -77,8 +77,12 @@ h1 {
   color: inherit;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   line-height: 1.1;
+}
+
+h1.title {
+  font-size: 1.5rem;
 }
 
 h2 {
@@ -87,7 +91,7 @@ h2 {
   color: inherit;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 1.1;
 }
 
@@ -97,7 +101,7 @@ h3 {
   color: inherit;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.1;
 }
 
