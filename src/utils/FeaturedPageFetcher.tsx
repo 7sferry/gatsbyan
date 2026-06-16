@@ -16,7 +16,7 @@ export function fetchFeaturedPages() {
               "write-skew-pada-database"
               "fakta-unik-minangkabau"
               "pilihan-investasi"
-              "web-rendering-strategy-csr-ssr-ssg-dsg-isr"
+              "mengelola-token-api-authorization-di-web"
               "dosa-besar-selama-menjadi-software-engineer"
             ]
           }
