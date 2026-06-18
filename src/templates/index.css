@@ -13,10 +13,6 @@ p,
   font-family: "Work Sans", Sans-serif, serif;
 }
 
-.medium-zoom-image {
-  transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1) !important;
-}
-
 .main-layout {
   margin: 0 auto;
   padding: .5rem 0 0;
