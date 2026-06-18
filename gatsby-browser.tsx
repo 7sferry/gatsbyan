@@ -6,30 +6,12 @@
 
 // You can delete this file if you're not using it
 
-import mediumZoom from "medium-zoom";
+import type { GatsbyBrowser } from "gatsby";
 import { Sign } from "./src/utils/Sign.tsx";
+import { ImageZoom } from "./src/components/ImageZoom.tsx";
 
-export const onClientEntry = () => {
-  const styles = `
-    .medium-zoom-overlay, .medium-zoom-image {
-      z-index: 0;
-    }
-  `;
-
-  const node = document.createElement(`style`);
-  node.id = `medium-zoom-styles`;
-  node.innerHTML = styles;
-  document.head.appendChild(node);
-};
-
-export const onRouteUpdate = () => {
-  const options = {
-    margin: 20,
-    zIndex: 0,
-    background: "none",
-  };
-  mediumZoom(".gatsby-resp-image-image", options);
-
+export const onRouteUpdate: GatsbyBrowser["onRouteUpdate"] = () => {
+  ImageZoom();
   if (!navigator.clipboard || !window.isSecureContext) {
     return;
   }
