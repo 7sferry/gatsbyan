@@ -10,7 +10,7 @@ let imgEl: HTMLImageElement | null = null;
 let startScrollY = 0;
 let scrollHandler: ((this: Window, ev: Event) => any) | null = null;
 
-const IMAGE_SELECTOR = ".gatsby-resp-image-image";
+const IMAGE_SELECTOR = ".gatsby-resp-image-image, .heroImage img, .index-thumbnail img";
 
 export const ImageZoom = () => {
   if (typeof document === "undefined") {
@@ -153,7 +153,7 @@ function openZoom(sourceImg: HTMLImageElement) {
 
   imgEl = document.createElement("img");
   imgEl.className = "gatsby-image-fullwidth-img";
-  imgEl.src = sourceImg.currentSrc || sourceImg.src;
+  imgEl.src = sourceImg.src;
   imgEl.alt = sourceImg.alt || "";
   imgEl.title = sourceImg.title || "";
   imgEl.decoding = "async";
