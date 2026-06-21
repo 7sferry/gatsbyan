@@ -33,7 +33,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
 
   return (
     <Layout>
-      <h1 className="title posted">{post.title}</h1>
+      <h1 className="text-center">{post.title}</h1>
       <div className="title text-info mb-2" data-nosnippet>
         <span className="page-info">{getPublishDateTime(publishDate)}</span>
         <span className="page-info" style={{ display: "inline-block" }}>
