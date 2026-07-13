@@ -42,12 +42,16 @@ p,
 }
 
 .blog-content {
-  padding: 0 1.5rem;
+  padding: 0;
 }
 
 .page-info {
   padding: 3px 10px;
   font-size: 85%;
+}
+
+footer {
+  padding-top: 1rem;
 }
 
 .title,
@@ -78,11 +82,11 @@ p,
 .sidebar {
   -ms-grid-column: 1;
   grid-column: 1;
-  padding: .5rem 2rem;
+  padding: .5rem 1.5rem;
 }
 .post-main {
   -ms-grid-column: 2;
-  padding: 0 1.5rem 1rem 0;
+  padding: 0 1.5rem;
   grid-column: 2;
   width: 100%;
 }
@@ -93,6 +97,7 @@ p,
 .right-sidebar {
   -ms-grid-column: 3;
   grid-column: 3;
+  padding-left: 1.5rem;
 }
 
 .text-link,
@@ -153,6 +158,14 @@ html {
   .sidebar {
     border-right: none;
     width: 100%;
+    padding: 0;
+  }
+
+  .right-sidebar{
+    padding: 0;
+  }
+
+  footer {
     padding: 0;
   }
 
