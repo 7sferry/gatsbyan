@@ -36,11 +36,16 @@ const BlogPostTemplate = (props: BlogPostProp) => {
       <h1 className="text-center">{post.title}</h1>
       <div className="title text-info mb-2" data-nosnippet>
         <span className="page-info">{getPublishDateTime(publishDate)}</span>
-        <span className="page-info" style={{ display: "inline-block" }}>
+        <span className="page-info">
           {timeToRead} min{getPlurals(timeToRead)} read
         </span>
         <ClientSide>
-          {showUpdatedText(post) && <span className="page-info updated-time">{`updated ${toNow(updatedAt)}`}</span>}
+          {showUpdatedText(post) && (
+            <span
+              data-tooltip={`${getPublishDateTime(updatedAt)}`}
+              className="page-info updated-time"
+            >{`updated ${toNow(updatedAt)}`}</span>
+          )}
         </ClientSide>
         <div className="page-info">
           <CommaSeparatedLinkedPostTags tags={post.tags} />

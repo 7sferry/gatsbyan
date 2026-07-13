@@ -210,10 +210,6 @@ html {
     padding: unset;
   }
 
-  .updated-time {
-    display: inline-block;
-  }
-
   .index-thumbnail {
     max-width: 45%;
   }

@@ -397,6 +397,49 @@ iframe {
   max-height: 55vh;
 }
 
+.updated-time {
+  display: inline-block;
+  position: relative;
+}
+
+.updated-time::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.updated-time::after {
+  content: "";
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: #1e293b transparent transparent transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.updated-time:hover::before,
+.updated-time:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
 @media (min-height: 1024px) {
   .heroImage {
     max-height: 50vh;
