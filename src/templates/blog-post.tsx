@@ -43,7 +43,7 @@ const BlogPostTemplate = (props: BlogPostProp) => {
           {showUpdatedText(post) && (
             <span
               data-tooltip={`${getPublishDateTime(updatedAt)}`}
-              className="page-info updated-time"
+              className="page-info updated-time tooltip-container"
             >{`updated ${toNow(updatedAt)}`}</span>
           )}
         </ClientSide>

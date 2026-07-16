@@ -402,7 +402,11 @@ iframe {
   position: relative;
 }
 
-.updated-time::before {
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip-container::before {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 125%;
@@ -420,7 +424,7 @@ iframe {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.updated-time::after {
+.tooltip-container::after {
   content: "";
   position: absolute;
   bottom: 110%;
@@ -434,8 +438,8 @@ iframe {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.updated-time:hover::before,
-.updated-time:hover::after {
+.tooltip-container:hover::before,
+.tooltip-container:hover::after {
   opacity: 1;
   transform: translateX(-50%) scale(1);
 }

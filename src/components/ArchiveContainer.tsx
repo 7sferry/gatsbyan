@@ -6,7 +6,7 @@
 import { ArchiveNode, DateArchive } from "../types/DataTypes.ts";
 import { Link } from "gatsby";
 import React, { useState } from "react";
-import { getMonthYearDate } from "../utils/DateUtils.tsx";
+import { getMonthYearDate, getPublishDateTime } from "../utils/DateUtils.tsx";
 import { getArchiveQuery } from "../utils/GetArchiveQuery.tsx";
 import MySvg from "./MySvg.tsx";
 
@@ -20,7 +20,7 @@ const ArchiveContainer = () => {
 
   const lastDate = getMonthYearDate(posts[0].publishDate);
   const [activeMonth, setActiveMonth] = useState<string[]>([lastDate]);
-  const [activeYear, setActiveYear] = useState<string[]>([lastDate.split("-")[0]]);
+  const [activeYear, setActiveYear] = useState<string[]>([lastDate.substring(0, lastDate.indexOf("-"))]);
 
   const toggleActiveYear = (year: string) => {
     let newActiveYear = [...activeYear];
@@ -29,8 +29,7 @@ const ArchiveContainer = () => {
     if (newActiveYear.includes(year)) {
       newActiveYear = newActiveYear.filter((o) => o !== year);
       newActiveMonth = newActiveMonth.filter((o) => {
-        const yearMonth = o.split("-");
-        return yearMonth[0] !== year;
+        return o.substring(0, o.indexOf("-")) !== year;
       });
     } else {
       newActiveYear.push(year);
@@ -60,9 +59,8 @@ const ArchiveContainer = () => {
       if (post) {
         post.push(o);
       } else {
-        post = [o];
+        postByMonth.set(monthYearDate, [o]);
       }
-      postByMonth.set(monthYearDate, post);
     });
   }
 
@@ -75,9 +73,8 @@ const ArchiveContainer = () => {
     if (post) {
       post.push(object);
     } else {
-      post = [object];
+      postByYear.set(year, [object]);
     }
-    postByYear.set(year, post);
   });
 
   return (
@@ -114,7 +111,11 @@ const ArchiveContainer = () => {
                     >
                       {dateArchive.archiveNodes.map((content) => {
                         return (
-                          <li className={"item"} key={content.slug}>
+                          <li
+                            className={"item tooltip-container"}
+                            data-tooltip={`${getPublishDateTime(content.publishDate)}`}
+                            key={content.slug}
+                          >
                             <Link className={"archive-link"} to={`/blog/${content.slug}`}>
                               <small>{content.title}</small>
                             </Link>
