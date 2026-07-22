@@ -10,9 +10,10 @@
 
 caption {
   caption-side: top;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 600;
   text-align: left;
+  line-height: 1.1;
 }
 
 .post-container .embedded-video video {
