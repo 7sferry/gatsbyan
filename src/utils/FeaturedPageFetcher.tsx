@@ -14,7 +14,7 @@ export function fetchFeaturedPages() {
           slug: {
             in: [
               "write-skew-pada-database"
-              "fakta-unik-minangkabau"
+              "contoh-clean-architecture"
               "pilihan-investasi"
               "mengelola-token-api-authorization-di-web"
               "dosa-besar-selama-menjadi-software-engineer"
