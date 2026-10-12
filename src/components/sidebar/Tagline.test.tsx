@@ -29,12 +29,20 @@ describe("Tagline", () => {
   });
 
   test("hides the toggle when the tagline fits in two lines", () => {
-    scrollHeight = 10;
+    scrollHeight = 40;
 
     render(<Tagline tagline={TAGLINE} />);
 
     expect(screen.getByText(TAGLINE).className).toBe("truncated");
     expect(screen.queryByRole("link")).toBeNull();
+  });
+
+  test("shows the toggle for a three line tagline", () => {
+    scrollHeight = 60;
+
+    render(<Tagline tagline={TAGLINE} />);
+
+    expect(screen.getByRole("link", { name: "Read more" })).toBeTruthy();
   });
 
   test("expands and collapses a long tagline", async () => {

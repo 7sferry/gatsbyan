@@ -14,9 +14,9 @@ const Tagline = ({ tagline }: TaglineAttr) => {
     const checkIfTwoLines = () => {
       if (paragraphRef.current) {
         const { scrollHeight } = paragraphRef.current;
-        const lineHeight = parseInt(window.getComputedStyle(paragraphRef.current).lineHeight, 15);
+        const lineHeight = parseFloat(window.getComputedStyle(paragraphRef.current).lineHeight);
 
-        if (lineHeight * 2 < scrollHeight) {
+        if (lineHeight * 5 < scrollHeight) {
           setIsTwoLines(true);
         } else {
           setIsTwoLines(false);

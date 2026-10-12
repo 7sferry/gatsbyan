@@ -45,6 +45,15 @@ describe("ArchiveContainer", () => {
     expect(container.innerHTML).toBe("");
   });
 
+  test("renders nothing once the posts are gone", () => {
+    const { container, rerender } = renderArchive();
+
+    mockStaticQueries({ ArchiveQuery: { allContentfulBlogPost: { nodes: [] } } });
+    rerender(<ArchiveContainer />);
+
+    expect(container.innerHTML).toBe("");
+  });
+
   test("groups posts by year and month in Asia/Jakarta time", () => {
     renderArchive();
 

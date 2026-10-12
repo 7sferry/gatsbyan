@@ -23,6 +23,9 @@ const renderHits = async (client: ReturnType<typeof createSearchClient>, query =
 const excerptOf = (title: string) =>
   screen.getByRole("link", { name: title }).closest(".search-result-container")!.querySelector(".ellipsis p")!;
 
+const highlightsOf = (title: string) =>
+  Array.from(excerptOf(title).querySelectorAll("ais-highlight-0000000000"), (element) => element.textContent);
+
 describe("SearchHitsResult", () => {
   test("renders nothing without a query", async () => {
     const { container } = await renderHits(createSearchClient([createHit("a", "Java", "java")]), "");
@@ -57,7 +60,24 @@ describe("SearchHitsResult", () => {
     await screen.findByRole("link", { name: "Post" });
 
     expect(excerptOf("Post").textContent).toBe("belajar java itu seru");
-    expect(excerptOf("Post").querySelector("ais-highlight-0000000000")?.textContent).toBe("java");
+    expect(highlightsOf("Post")).toEqual(["java"]);
+  });
+
+  test("keeps the highlight markup intact when the query is part of the highlight tag", async () => {
+    await renderHits(createSearchClient([createHit("a", "Post", "high availability itu penting")]), "high");
+    await screen.findByRole("link", { name: "Post" });
+
+    expect(excerptOf("Post").textContent).toBe("high availability itu penting");
+    expect(highlightsOf("Post")).toEqual(["high"]);
+  });
+
+  test("highlights the query in an excerpt that Algolia did not highlight, ignoring case", async () => {
+    // the fake client highlights case sensitively, so "Java" comes back without highlight
+    await renderHits(createSearchClient([createHit("a", "Post", "Belajar Java itu seru")]));
+    await screen.findByRole("link", { name: "Post" });
+
+    expect(excerptOf("Post").textContent).toBe("Belajar Java itu seru");
+    expect(highlightsOf("Post")).toEqual(["Java"]);
   });
 
   test("starts the excerpt about a hundred characters before a match in the middle", async () => {

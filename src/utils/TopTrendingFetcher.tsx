@@ -17,14 +17,18 @@ export const fetchTopTrending = (titleByPath: Map<string, string>) => {
 };
 
 async function getTopTrendingReports(): Promise<TrendingReport[]> {
-  let response = await fetch("/api/trending");
-  if (response.status !== 200) {
+  try {
+    let response = await fetch("/api/trending");
+    if (response.status !== 200) {
+      return [];
+    }
+    const reportNode = await response.json();
+    let reports: TrendingReport[] = [];
+    for (const node of reportNode.nodes) {
+      reports.push(node);
+    }
+    return reports;
+  } catch {
     return [];
   }
-  const reportNode = await response.json();
-  let reports: TrendingReport[] = [];
-  for (const node of reportNode.nodes) {
-    reports.push(node);
-  }
-  return reports;
 }

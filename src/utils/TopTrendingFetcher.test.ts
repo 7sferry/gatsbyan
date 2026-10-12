@@ -3,7 +3,7 @@
  * on Oktober 2026      *
  ************************/
 
-import { afterEach, describe, expect, Mock, test } from "bun:test";
+import { afterEach, describe, expect, Mock, spyOn, test } from "bun:test";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import { fetchTopTrending } from "./TopTrendingFetcher.tsx";
 import { mockTrendingApi } from "../test/fixtures.ts";
@@ -51,6 +51,26 @@ describe("fetchTopTrending", () => {
 
   test("returns nothing when the api fails", async () => {
     fetchMock = mockTrendingApi([{ path: "/blog/a", value: 1 }], 500);
+
+    const { result } = renderHook(() => fetchTopTrending(titleByPath));
+    await waitFor(() => expect(fetchMock).toHaveBeenCalled());
+    await act(() => new Promise((resolve) => setTimeout(resolve, 10)));
+
+    expect(result.current).toEqual([]);
+  });
+
+  test("returns nothing when the request fails", async () => {
+    fetchMock = spyOn(globalThis, "fetch").mockRejectedValue(new TypeError("Failed to fetch"));
+
+    const { result } = renderHook(() => fetchTopTrending(titleByPath));
+    await waitFor(() => expect(fetchMock).toHaveBeenCalled());
+    await act(() => new Promise((resolve) => setTimeout(resolve, 10)));
+
+    expect(result.current).toEqual([]);
+  });
+
+  test("returns nothing when the api answers with something other than a report", async () => {
+    fetchMock = spyOn(globalThis, "fetch").mockResolvedValue(new Response("<html>Gateway Timeout</html>"));
 
     const { result } = renderHook(() => fetchTopTrending(titleByPath));
     await waitFor(() => expect(fetchMock).toHaveBeenCalled());

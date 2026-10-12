@@ -6,7 +6,7 @@
 import slugify from "@sindresorhus/slugify";
 
 export const PAGE_COUNT = 5;
-export const SEARCH_COUNT = 7;
+export const SEARCH_COUNT = 10;
 export const DEFAULT_ICON_SIZE = 20;
 
 export const kebabCase = (str: string) => {

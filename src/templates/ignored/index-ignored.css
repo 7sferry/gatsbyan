@@ -482,7 +482,7 @@ iframe {
     overflow: hidden;
     display: -webkit-box !important;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2; /* start showing ellipsis when 3rd line is reached */
+    -webkit-line-clamp: 4; /* start showing ellipsis when 3rd line is reached */
     white-space: pre-wrap; /* let the text wrap preserving spaces */
     text-overflow: ellipsis;
   }

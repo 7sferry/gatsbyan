@@ -45,7 +45,7 @@ const SearchHitsResult = (): React.JSX.Element => {
 };
 
 const getStartIndex = (excerpt: string) => {
-  const matchedIndex = excerpt?.indexOf("<ais-highlight-0000000000");
+  const matchedIndex = excerpt?.indexOf(`<${HIGHLIGHT_TAG}`);
   const lastHundredCharIndex = matchedIndex - LIMIT_CHAR;
   if (lastHundredCharIndex < 0) {
     return lastHundredCharIndex;
@@ -59,17 +59,26 @@ const getStartIndex = (excerpt: string) => {
 const getHtml = (highlightResult: HighlightResult<AlgoliaNodeResult>, query: string) => {
   const excerpt = highlightResult?.excerpt?.value?.trim() ?? "";
   const matchedStartIndex = getStartIndex(excerpt);
-  if (matchedStartIndex < 0) {
-    return reconstructExcerpt(excerpt, query);
+  if (matchedStartIndex >= 0) {
+    return excerpt.substring(matchedStartIndex);
   }
-  return excerpt?.substring(matchedStartIndex);
+  if (excerpt.includes(`<${HIGHLIGHT_TAG}`)) {
+    return excerpt;
+  }
+  return reconstructExcerpt(excerpt, query);
 };
 
 const reconstructExcerpt = (excerpt: string, query: string) => {
-  const newExcerpt = excerpt.replaceAll(query, `<ais-highlight-0000000000>${query}</ais-highlight-0000000000>`);
+  const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const newExcerpt = excerpt.replace(
+    new RegExp(escapedQuery, "gi"),
+    (match) => `<${HIGHLIGHT_TAG}>${match}</${HIGHLIGHT_TAG}>`
+  );
   const matchedIndex = getStartIndex(newExcerpt);
   return newExcerpt.substring(matchedIndex);
 };
+
+const HIGHLIGHT_TAG = "ais-highlight-0000000000";
 
 const LIMIT_CHAR = 100;
 
