@@ -21,7 +21,13 @@ bun run clean-build-serve # Full clean build + serve
 # Code Quality
 bun run typecheck        # tsc --noEmit
 bun run format           # Prettier on src/**/*.{js,jsx,ts,tsx}
+
+# Tests
+bun test                 # All unit tests (bun:test, config in bunfig.toml)
+bun test src/utils       # Tests under a path
 ```
+
+Tests sit next to the code as `*.test.ts(x)`. `src/test/setup.ts` is preloaded and replaces the `gatsby` module with a lightweight mock (`Link`, `graphql`, `useStaticQuery`). Tests run in UTC. Keep tests out of `src/api/`, because Gatsby turns every file there into a serverless function. Put API tests in `src/test/api/`.
 
 Package manager is **bun** (not npm/yarn).
 

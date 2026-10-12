@@ -33,6 +33,7 @@
     "react-instantsearch": "^7.23.0"
   },
   "devDependencies": {
+    "@types/bun": "^1.4.3",
     "@types/node": "^25.1.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
@@ -66,7 +67,7 @@
     "disable-telemetry": "gatsby telemetry --disable",
     "typecheck": "tsc --noEmit",
     "upgrade-all": "yarn yarn-upgrade-all",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "bun test"
   },
   "repository": {
     "type": "git",
