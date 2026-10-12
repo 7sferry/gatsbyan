@@ -51,8 +51,10 @@ const SearchPage = () => {
           advancedSyntax={true}
           advancedSyntaxFeatures={["exactPhrase", "excludeWords"]}
         />
-        <Slice alias="VoiceSearchElement" searchAsYouSpeak={false} />
-        <SearchBox className={"search-box"} searchAsYouType={false} />
+        <div className="search-box-wrapper">
+          <SearchBox className={"search-box"} searchAsYouType={false} />
+          <Slice alias="VoiceSearchElement" searchAsYouSpeak={false} />
+        </div>
         <Slice alias="SearchHitsResult" />
         <Slice alias="PaginationSearchResult" />
       </InstantSearch>

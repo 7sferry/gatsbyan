@@ -47,13 +47,35 @@ ol li {
   padding-left: 0;
 }
 
+.search-box-wrapper {
+  position: relative;
+}
+
 .ais-VoiceSearch {
-  text-align: center;
-  padding-bottom: 15px;
+  position: absolute;
+  top: 0;
+  right: 0.6rem;
+  height: var(--height);
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.search-box-wrapper:has(.ais-SearchBox-input:not(:placeholder-shown)) .ais-VoiceSearch {
+  right: calc(var(--btn-width) + 0.6rem);
 }
 
 .ais-VoiceSearch-button {
   border: 0;
+  background: transparent;
+  color: var(--color-dark);
+  padding: 0.4rem;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.search-box-wrapper:has(.ais-VoiceSearch) .ais-SearchBox-input {
+  padding-right: 3rem;
 }
 
 :root {
