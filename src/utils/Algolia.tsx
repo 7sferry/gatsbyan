@@ -3,8 +3,10 @@
  * on April 2020        *
  ************************/
 
-import { AlgoliaData, AlgoliaNode, FlattenAlgoliaNode } from "../types/DataTypes";
+import type { AlgoliaData, AlgoliaNode, FlattenAlgoliaNode } from "../types/DataTypes";
 import crypto from "crypto";
+
+export const MAX_CONTENT_LENGTH = 8500;
 
 const allContentfulBlogPost = `{
   allContentfulBlogPost {
@@ -34,39 +36,24 @@ const flatNode = (node: AlgoliaNode): FlattenAlgoliaNode => {
 };
 
 function constructSubContents(excerpt: string): string[] {
-  const contents = excerpt.match(/[\s\S]{1,8500}/g) || [];
-  if (contents.length === 1) {
-    return contents;
+  const subContents: string[] = [];
+  let remaining = excerpt;
+  while (remaining.length > MAX_CONTENT_LENGTH) {
+    const splitIndex = getSplitIndex(remaining);
+    subContents.push(remaining.substring(0, splitIndex));
+    remaining = remaining.substring(splitIndex);
   }
-  let lastWord = "";
-  const resultContents: string[] = [];
-  for (let content of contents) {
-    const lastWordPlusContent = lastWord + content;
-    if (content.length < 8500) {
-      resultContents.push(lastWordPlusContent);
-      return resultContents;
-    }
-    const lastSpace = lastWordPlusContent.lastIndexOf(" ");
-    const lastNewLine = lastWordPlusContent.lastIndexOf("\n");
-    const splitIndex = Math.max(lastSpace, lastNewLine);
-    if (splitIndex > 0) {
-      lastWord = lastWordPlusContent.substring(splitIndex, lastWordPlusContent.length);
-      resultContents.push(lastWordPlusContent.substring(0, splitIndex));
-    } else {
-      lastWord = "";
-      handleUnSplittedContent(lastWordPlusContent, resultContents);
-    }
+  if (remaining) {
+    subContents.push(remaining);
   }
-  return resultContents;
+  return subContents;
 }
 
-function handleUnSplittedContent(lastWordPlusContent: string, resultContents: string[]) {
-  if (lastWordPlusContent.length > 9000) {
-    const subContents = constructSubContents(lastWordPlusContent);
-    resultContents.push(...subContents);
-  } else {
-    resultContents.push(lastWordPlusContent);
-  }
+function getSplitIndex(content: string) {
+  const lastSpace = content.lastIndexOf(" ", MAX_CONTENT_LENGTH);
+  const lastNewLine = content.lastIndexOf("\n", MAX_CONTENT_LENGTH);
+  const splitIndex = Math.max(lastSpace, lastNewLine);
+  return splitIndex > 0 ? splitIndex : MAX_CONTENT_LENGTH;
 }
 
 const splitNode = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
@@ -86,7 +73,7 @@ const splitNode = (node: FlattenAlgoliaNode): Array<FlattenAlgoliaNode> => {
   }));
 };
 
-const queries = [
+export const queries = [
   {
     query: allContentfulBlogPost,
     settings: {
@@ -97,4 +84,4 @@ const queries = [
   },
 ];
 
-module.exports = queries;
+export default queries;

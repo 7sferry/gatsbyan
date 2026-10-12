@@ -27,7 +27,19 @@ bun test                 # All unit tests (bun:test, config in bunfig.toml)
 bun test src/utils       # Tests under a path
 ```
 
-Tests sit next to the code as `*.test.ts(x)`. `src/test/setup.ts` is preloaded and replaces the `gatsby` module with a lightweight mock (`Link`, `graphql`, `useStaticQuery`). Tests run in UTC. Keep tests out of `src/api/`, because Gatsby turns every file there into a serverless function. Put API tests in `src/test/api/`.
+Tests sit next to the code as `*.test.ts(x)` and use Testing Library on a happy-dom DOM (`src/test/happydom.ts`). Tests run in UTC.
+
+`src/test/setup.ts` is preloaded and replaces two modules with stand-ins:
+- `gatsby`: `Link` renders an `<a>`, `Slice` renders `<div data-slice data-props>`, and `useStaticQuery` is a mock.
+- `gatsby-plugin-image`: `GatsbyImage` renders an `<img>`.
+
+Helpers in `src/test/`:
+- `mockStaticQueries` (`staticQuery.ts`) answers `useStaticQuery` by query name.
+- `createSearchClient` (`searchClient.ts`) is a fake Algolia client. `renderWithSearch` mounts components in a real `<InstantSearch>` backed by it.
+- `mockTrendingApi` (`fixtures.ts`) stubs `fetch` for `/api/trending`.
+- `renderHead` (`renderHead.ts`) renders a Gatsby `Head` export.
+
+Keep tests out of `src/api/` and `src/pages/`, because Gatsby turns every file there into a function or a page. Put their tests in `src/test/` or `src/templates/`.
 
 Package manager is **bun** (not npm/yarn).
 

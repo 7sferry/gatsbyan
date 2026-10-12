@@ -3,11 +3,9 @@
  * on Oktober 2026      *
  ************************/
 
-import { afterEach, describe, expect, Mock, test } from "bun:test";
-import { useStaticQuery } from "gatsby";
+import { afterEach, describe, expect, test } from "bun:test";
 import { fetchMostViewed } from "./MostViewedCounter.tsx";
-
-const useStaticQueryMock = useStaticQuery as unknown as Mock<() => unknown>;
+import { useStaticQueryMock } from "../test/staticQuery.ts";
 
 describe("fetchMostViewed", () => {
   afterEach(() => {
