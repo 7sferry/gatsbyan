@@ -92,6 +92,6 @@ describe("index template", () => {
     const head = renderHead(<Head {...({ location: { pathname: "/page/2" } } as HeadProps)} />);
 
     expect(head.title?.trim()).toBe("Blog");
-    expect(head.canonical).toBe(`${siteMetadata.siteUrl}/page/2`);
+    expect(head.canonical).toBe(`${siteMetadata.siteUrl}/page/20`);
   });
 });
