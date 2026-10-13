@@ -6,7 +6,7 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import React from "react";
 import { act, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { setupUser } from "../../test/user.ts";
 import Tagline from "./Tagline.tsx";
 
 const TAGLINE = "Software engineer who writes about Java, Spring and investing";
@@ -28,8 +28,8 @@ describe("Tagline", () => {
     lineHeightStyle.remove();
   });
 
-  test("hides the toggle when the tagline fits in two lines", () => {
-    scrollHeight = 10;
+  test("hides the toggle when the tagline fits in five lines", () => {
+    scrollHeight = 100;
 
     render(<Tagline tagline={TAGLINE} />);
 
@@ -37,14 +37,23 @@ describe("Tagline", () => {
     expect(screen.queryByRole("link")).toBeNull();
   });
 
+  test("shows the toggle for a tagline longer than five lines", () => {
+    scrollHeight = 120;
+
+    render(<Tagline tagline={TAGLINE} />);
+
+    expect(screen.getByRole("link", { name: "Read more" })).toBeTruthy();
+  });
+
   test("expands and collapses a long tagline", async () => {
+    const user = setupUser();
     scrollHeight = 200;
     render(<Tagline tagline={TAGLINE} />);
 
-    await userEvent.click(screen.getByRole("link", { name: "Read more" }));
+    await user.click(screen.getByRole("link", { name: "Read more" }));
     expect(screen.getByText(TAGLINE).className).toBe("expanded");
 
-    await userEvent.click(screen.getByRole("link", { name: "Read less" }));
+    await user.click(screen.getByRole("link", { name: "Read less" }));
     expect(screen.getByText(TAGLINE).className).toBe("truncated");
   });
 

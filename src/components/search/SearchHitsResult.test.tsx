@@ -23,6 +23,9 @@ const renderHits = async (client: ReturnType<typeof createSearchClient>, query =
 const excerptOf = (title: string) =>
   screen.getByRole("link", { name: title }).closest(".search-result-container")!.querySelector(".ellipsis p")!;
 
+const highlightsOf = (title: string) =>
+  Array.from(excerptOf(title).querySelectorAll("ais-highlight-0000000000"), (element) => element.textContent);
+
 describe("SearchHitsResult", () => {
   test("renders nothing without a query", async () => {
     const { container } = await renderHits(createSearchClient([createHit("a", "Java", "java")]), "");
@@ -57,7 +60,58 @@ describe("SearchHitsResult", () => {
     await screen.findByRole("link", { name: "Post" });
 
     expect(excerptOf("Post").textContent).toBe("belajar java itu seru");
-    expect(excerptOf("Post").querySelector("ais-highlight-0000000000")?.textContent).toBe("java");
+    expect(highlightsOf("Post")).toEqual(["java"]);
+  });
+
+  test("keeps the highlight markup intact when the query is part of the highlight tag", async () => {
+    await renderHits(createSearchClient([createHit("a", "Post", "high availability itu penting")]), "high");
+    await screen.findByRole("link", { name: "Post" });
+
+    expect(excerptOf("Post").textContent).toBe("high availability itu penting");
+    expect(highlightsOf("Post")).toEqual(["high"]);
+  });
+
+  test("highlights the query in an excerpt that Algolia did not highlight, ignoring case", async () => {
+    // the fake client highlights case sensitively, so "Java" comes back without highlight
+    await renderHits(createSearchClient([createHit("a", "Post", "Belajar Java itu seru")]));
+    await screen.findByRole("link", { name: "Post" });
+
+    expect(excerptOf("Post").textContent).toBe("Belajar Java itu seru");
+    expect(highlightsOf("Post")).toEqual(["Java"]);
+  });
+
+  test("highlights the typos that Algolia highlighted in other hits", async () => {
+    const tagged = (word: string) => `<ais-highlight-0000000000>${word}</ais-highlight-0000000000>`;
+    await renderHits(
+      createSearchClient([
+        createHit("a", "Post A", `kata ${tagged("fery")} dan ${tagged("Feli")}`),
+        createHit("b", "Post B", "kata fery dan feli dan FERI"),
+        createHit("c", "Fery menulis", "tanpa kata"),
+      ]),
+      "feri"
+    );
+    await screen.findByRole("link", { name: "Post A" });
+
+    expect(highlightsOf("Post A")).toEqual(["fery", "Feli"]);
+    expect(excerptOf("Post B").textContent).toBe("kata fery dan feli dan FERI");
+    expect(highlightsOf("Post B")).toEqual(["fery", "feli", "FERI"]);
+    expect(
+      screen.getByRole("link", { name: "Fery menulis" }).querySelector("h3 ais-highlight-0000000000")?.textContent
+    ).toBe("Fery");
+  });
+
+  test("does not highlight inside HTML entities or existing highlights", async () => {
+    await renderHits(
+      createSearchClient([
+        createHit("a", "Post A", "<ais-highlight-0000000000>quot</ais-highlight-0000000000> java"),
+        createHit("b", "Post B", "quot &quot;java&quot;"),
+      ]),
+      "java"
+    );
+    await screen.findByRole("link", { name: "Post B" });
+
+    expect(excerptOf("Post B").textContent).toBe('quot "java"');
+    expect(highlightsOf("Post B")).toEqual(["quot", "java"]);
   });
 
   test("starts the excerpt about a hundred characters before a match in the middle", async () => {

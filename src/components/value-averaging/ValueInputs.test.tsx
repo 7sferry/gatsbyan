@@ -6,7 +6,7 @@
 import { describe, expect, mock, test } from "bun:test";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { setupUser } from "../../test/user.ts";
 import { StockData } from "../../types/DataTypes.ts";
 import { AveragePriceValueInput } from "./AveragePriceValueInput.tsx";
 import { InvestTargetValueInput } from "./InvestTargetValueInput.tsx";
@@ -52,9 +52,10 @@ describe.each([
   });
 
   test("formats typed numbers as rupiah", async () => {
+    const user = setupUser();
     render(<Input stockCacheValueByName={cache} stockName="TLKM" />);
 
-    await userEvent.type(field(name), "1250000");
+    await user.type(field(name), "1250000");
 
     expect(field(name).value).toBe("Rp1.250.000");
   });
@@ -62,23 +63,25 @@ describe.each([
 
 describe("SinceMonthValueInput", () => {
   test("selects the saved month and lists every month", async () => {
+    const user = setupUser();
     render(<SinceMonthValueInput stockCacheValueByName={cache} stockName="BBCA" />);
 
     expect(field("sinceMonth").value).toBe("03");
     expect(screen.getAllByRole("option")).toHaveLength(13);
 
-    await userEvent.selectOptions(field("sinceMonth"), "Desember");
+    await user.selectOptions(field("sinceMonth"), "Desember");
     expect(field("sinceMonth").value).toBe("12");
   });
 });
 
 describe("SinceYearValueInput", () => {
   test("fills the saved year and accepts a new one", async () => {
+    const user = setupUser();
     render(<SinceYearValueInput stockCacheValueByName={cache} stockName="BBCA" />);
     expect(field("sinceYear").value).toBe("2023");
 
-    await userEvent.clear(field("sinceYear"));
-    await userEvent.type(field("sinceYear"), "2024");
+    await user.clear(field("sinceYear"));
+    await user.type(field("sinceYear"), "2024");
 
     expect(field("sinceYear").value).toBe("2024");
   });
@@ -100,6 +103,7 @@ describe("TotalLotValueInput", () => {
 
 describe("StockNameValueInput", () => {
   test("suggests saved stocks and reports typing", async () => {
+    const user = setupUser();
     const onChange = mock();
     render(<StockNameValueInput stockName="" stockCacheValueByName={cache} onChange={onChange} />);
 
@@ -107,7 +111,7 @@ describe("StockNameValueInput", () => {
       Array.from(document.querySelectorAll("#stockNames option"), (option) => option.getAttribute("value"))
     ).toEqual(["BBCA"]);
 
-    await userEvent.type(field("stockName"), "b");
+    await user.type(field("stockName"), "b");
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 });

@@ -6,7 +6,7 @@
 import { afterEach, describe, expect, test } from "bun:test";
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { setupUser } from "../test/user.ts";
 import ArchiveContainer from "./ArchiveContainer.tsx";
 import { mockStaticQueries, useStaticQueryMock } from "../test/staticQuery.ts";
 
@@ -41,6 +41,15 @@ describe("ArchiveContainer", () => {
 
   test("renders nothing without posts", () => {
     const { container } = renderArchive([]);
+
+    expect(container.innerHTML).toBe("");
+  });
+
+  test("renders nothing once the posts are gone", () => {
+    const { container, rerender } = renderArchive();
+
+    mockStaticQueries({ ArchiveQuery: { allContentfulBlogPost: { nodes: [] } } });
+    rerender(<ArchiveContainer />);
 
     expect(container.innerHTML).toBe("");
   });
@@ -85,30 +94,33 @@ describe("ArchiveContainer", () => {
   });
 
   test("toggles a month", async () => {
+    const user = setupUser();
     renderArchive();
 
-    await userEvent.click(button("January"));
+    await user.click(button("January"));
     expect(isOpen("January")).toBe(true);
 
-    await userEvent.click(button("March"));
+    await user.click(button("March"));
     expect(isOpen("March")).toBe(false);
   });
 
   test("closes the months of a closed year", async () => {
+    const user = setupUser();
     renderArchive();
 
-    await userEvent.click(button("2024"));
+    await user.click(button("2024"));
     expect(isOpen("2024")).toBe(false);
 
-    await userEvent.click(button("2024"));
+    await user.click(button("2024"));
     expect([isOpen("2024"), isOpen("March")]).toEqual([true, false]);
   });
 
   test("opens another year", async () => {
+    const user = setupUser();
     renderArchive();
 
-    await userEvent.click(button("2023"));
-    await userEvent.click(button("November"));
+    await user.click(button("2023"));
+    await user.click(button("November"));
 
     expect([isOpen("2023"), isOpen("November"), isOpen("2024")]).toEqual([true, true, true]);
   });

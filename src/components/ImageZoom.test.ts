@@ -9,6 +9,9 @@ import { ImageZoom } from "./ImageZoom.tsx";
 
 const overlay = () => document.querySelector(".gatsby-image-fullwidth-overlay");
 
+// a boolean, because a failing expect on an element makes bun print the whole happy-dom tree, which takes ~350ms
+const isClosed = () => overlay() === null;
+
 const addImage = (html: string) => {
   const wrapper = document.createElement("div");
   wrapper.innerHTML = html;
@@ -32,7 +35,7 @@ describe("ImageZoom", () => {
 
   afterEach(async () => {
     pressEscape();
-    await waitFor(() => expect(overlay()).toBeNull());
+    await waitFor(() => expect(isClosed()).toBe(true));
     document.body.innerHTML = "";
     window.scrollTo(0, 0);
   });
@@ -57,7 +60,7 @@ describe("ImageZoom", () => {
     addImage(`<div class="heroImage"><img src="http://localhost/hero.png" alt=""></div>`).click();
     await waitFor(() => expect(overlay()).not.toBeNull());
     pressEscape();
-    await waitFor(() => expect(overlay()).toBeNull());
+    await waitFor(() => expect(isClosed()).toBe(true));
 
     addImage(`<div class="index-thumbnail"><img src="http://localhost/thumb.png" alt=""></div>`).click();
 
@@ -85,7 +88,7 @@ describe("ImageZoom", () => {
 
     expect(overlay()!.classList.contains("is-open")).toBe(false);
     expect(document.body.classList.contains("gatsby-image-fullwidth-lock")).toBe(false);
-    await waitFor(() => expect(overlay()).toBeNull());
+    await waitFor(() => expect(isClosed()).toBe(true));
   });
 
   test("closes when the zoomed image is clicked", async () => {
@@ -93,7 +96,7 @@ describe("ImageZoom", () => {
 
     (overlay() as HTMLElement).click();
 
-    await waitFor(() => expect(overlay()).toBeNull());
+    await waitFor(() => expect(isClosed()).toBe(true));
   });
 
   test("closes after scrolling more than 300px", async () => {
@@ -105,6 +108,6 @@ describe("ImageZoom", () => {
 
     window.scrollTo(0, 400);
     window.dispatchEvent(new Event("scroll"));
-    await waitFor(() => expect(overlay()).toBeNull());
+    await waitFor(() => expect(isClosed()).toBe(true));
   });
 });

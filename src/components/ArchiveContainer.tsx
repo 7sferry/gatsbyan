@@ -14,13 +14,12 @@ const ArchiveContainer = () => {
   let archiveQuery = getArchiveQuery();
   const { allContentfulBlogPost } = archiveQuery;
   const posts = allContentfulBlogPost.nodes;
+  const lastDate = posts.length > 0 ? getMonthYearDate(posts[0].publishDate) : "";
+  const [activeMonth, setActiveMonth] = useState<string[]>([lastDate]);
+  const [activeYear, setActiveYear] = useState<string[]>([lastDate.substring(0, lastDate.indexOf("-"))]);
   if (posts.length === 0) {
     return <></>;
   }
-
-  const lastDate = getMonthYearDate(posts[0].publishDate);
-  const [activeMonth, setActiveMonth] = useState<string[]>([lastDate]);
-  const [activeYear, setActiveYear] = useState<string[]>([lastDate.substring(0, lastDate.indexOf("-"))]);
 
   const toggleActiveYear = (year: string) => {
     let newActiveYear = [...activeYear];

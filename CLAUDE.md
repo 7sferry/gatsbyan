@@ -38,6 +38,9 @@ Helpers in `src/test/`:
 - `createSearchClient` (`searchClient.ts`) is a fake Algolia client. `renderWithSearch` mounts components in a real `<InstantSearch>` backed by it.
 - `mockTrendingApi` (`fixtures.ts`) stubs `fetch` for `/api/trending`.
 - `renderHead` (`renderHead.ts`) renders a Gatsby `Head` export.
+- `setupUser` (`user.ts`) sets up user-event without a delay between actions. Use it instead of calling `userEvent` directly; its default `setTimeout(0)` after each keystroke takes ~16ms on Windows.
+
+Inside `waitFor`, assert on plain values (`expect(overlay() === null).toBe(true)`) instead of elements. A failing `expect(element)` makes Bun print the whole happy-dom tree, which is several MB and takes hundreds of ms per retry.
 
 Keep tests out of `src/api/` and `src/pages/`, because Gatsby turns every file there into a function or a page. Put their tests in `src/test/` or `src/templates/`.
 
