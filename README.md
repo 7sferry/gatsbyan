@@ -1,108 +1,144 @@
-# gatsbyan [![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=plastic&up_color=green&up_message=online&url=https%3A%2F%2Fferry.vercel.app%2F)](https://ferry.vercel.app/) ![GitHub top language](https://img.shields.io/github/languages/top/7sferry/gatsbyan?style=plastic) ![GitHub](https://img.shields.io/github/license/7sferry/gatsbyan?style=plastic)
+# gatsbyan [![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=plastic&up_color=green&up_message=online&url=https%3A%2F%2Fferry.vercel.app%2F)](https://ferry.vercel.app/) ![GitHub top language](https://img.shields.io/github/languages/top/7sferry/gatsbyan?style=plastic) ![GitHub](https://img.shields.io/github/license/7sferry/gatsbyan?style=plastic) [![Test](https://github.com/7sferry/gatsbyan/actions/workflows/test.yml/badge.svg)](https://github.com/7sferry/gatsbyan/actions/workflows/test.yml)
 
-This is template for GatsbyJS that I use on production for my personal blog at https://ferry.now.sh
+The Gatsby template I use in production for my personal blog at https://ferry.vercel.app
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/example.png?raw=true)
 
-## Features:
+## Features
 
+- Blog posts written in Markdown on Contentful CMS, with Prism syntax highlighting, code titles, copy buttons, table captions, heading anchors and click-to-zoom images
+- Paginated home page (10 posts per page) and paginated tag pages at `/tags/{tag}`
+- Archive by date at `/archive`
+- Full-text search at `/search` with Algolia, including voice search
+- Comments with [utterances](https://utteranc.es) (GitHub issues)
+- Sidebar with featured posts, most viewed posts and top searched posts from Google Analytics
+- Value averaging calculator at `/features/value-averaging-calculator`
+- SEO through the Gatsby Head API, sitemap and structured metadata
+- PWA with offline support and a web manifest
+- Unused CSS removed at build time with PurgeCSS
+
+## Tech Stack
+
+- [Gatsby 5](https://www.gatsbyjs.com) with Gatsby Slices and Gatsby Functions
+- React 19 and TypeScript
 - Contentful CMS
-- Comment
-- Tags
-- SEO
-- Archives by date
-- Pagination
-- Dark Mode
-- Blog Search
-- Full PWA
-- Many more...
+- Bootstrap 5
+- Algolia with React InstantSearch
+- Google Analytics 4 and the GA4 Data API
+- Bun as package manager and test runner, with Testing Library and happy-dom
+- Vercel for hosting
 
-## Tech used:
+See `package.json` for the full list.
 
-- GatsbyJS
-- Typescript
-- Contentful CMS
-- Bootstrap
-- Algolia
-- Google Analytics
-- Prism
-- many others, you can check the pakcage.json
+## Requirements
 
-## Requirements:
-
-- Node JS - I used Node v18.8.1
-- Gatsby CLI - I used gatsby-cli v2.10.10
-- Typescript - I used Typescript 5.0.4
+- [Bun](https://bun.sh) 1.3 or newer
+- Node.js 20 or newer (Gatsby runs on Node)
 - Git
-- Contentful CMS account
-- Google account - optional for analytics and analytics reporter
-- Algolia account - optional for blog search
+- A Contentful account
+- A Google Analytics 4 property and service account (optional, for the analytics sidebar)
+- An Algolia account (optional, for search)
 
-## Step to Install:
+## Installation
 
-- run 'npm install'
-- create file .env on your root projects directory
-- set your spaceId and token from contenful CMS on '.env'
-  (you can look at [here](https://github.com/7sferry/gatsbyan#step-to-get-spaceid-and-token))
-- you could change every properties on config at 'config.ts' or modify SEO variables at '/src.components/SEO.js'
-- you also could change utterances config for comment section at '/src.components/Comment.tsx' or remove it if you don't want.
-- if you use Algolia, you must specify GATSBY_ALGOLIA_APP_ID, GATSBY_ALGOLIA_INDEX_NAME, GATSBY_ALGOLIA_SEARCH_KEY, ALGOLIA_ADMIN_KEY on '.env'. Or turn it off on gatsby-config and gatsby-node & remove search folder inside 'templates' folder and Algolia.tsx on utils if you don't use it.
-- if you use Analytics & Analytics Reporter, you must specify ANALYTICS_PRIVATE_KEY, ANALYTICS_VIEW_ID, 
-  ANALYTICS_GA4, ANALYTICS_TRACKING_ID, ANALYTICS_EMAIL on '.env'. Or turn it off on gatsby-config & remove 
-  AnalyticsPage.tsx and AnalyticsPage on RightSidebar.tsx if you don't use it.
-- execute 'npm run develop' on cli
-- your site will be run on http://localhost:8000
+1. Run `bun install`.
+2. Copy `.env.EXAMPLE` to `.env`.
+3. Set `SPACEID` and `TOKEN` from Contentful in `.env` ([how to get them](#getting-the-space-id-and-token)).
+4. Edit the site metadata (title, author, URL, tagline) in `config.ts`.
+5. Change the utterances repository and theme in `src/components/Comment.tsx`, or remove the `Comment` slice if you don't want comments.
+6. Run `bun run develop`.
+7. Open http://localhost:8000.
 
-## Step to get SpaceId and Token:
+### Environment Variables
 
-- after login and open the homepage content, click burger menu on the top left
+| Variable | Used for |
+|---|---|
+| `SPACEID`, `TOKEN` | Contentful Delivery API |
+| `PREVIEW_TOKEN` | Contentful Preview API. When set, `gatsby develop` shows draft content; `gatsby build` always uses published content |
+| `ANALYTICS_EMAIL`, `ANALYTICS_PRIVATE_KEY`, `ANALYTICS_GA4` | GA4 Data API service account and property ID, for the most viewed posts (build time) and `/api/trending` (runtime) |
+| `ANALYTICS_MEASUREMENT_ID` | GA4 measurement ID for gtag page tracking |
+| `GATSBY_ALGOLIA_APP_ID`, `GATSBY_ALGOLIA_INDEX_NAME`, `GATSBY_ALGOLIA_SEARCH_KEY` | Algolia search from the browser |
+| `ALGOLIA_ADMIN_KEY` | Pushing posts to the Algolia index at build time |
+
+### Optional Integrations
+
+- **Algolia indexing**: the `gatsby-plugin-algolia` entry in `gatsby-config.ts` is commented out, so builds don't update the index. Uncomment it to push posts, using the queries in `src/utils/Algolia.tsx`. If you don't use search, remove `src/templates/search-page.tsx`, the `/search` page and the search slices in `gatsby-node.ts`.
+- **Google Analytics**: if you don't use it, remove `gatsby-plugin-google-analytics-data-reporting-api` and `gatsby-plugin-google-gtag` from `gatsby-config.ts`, and `MostViewedPage` and `TopTrendingPage` from `src/components/sidebar/RightSidebar.tsx`.
+- **Featured posts**: the featured slugs are hardcoded in `src/utils/FeaturedPageFetcher.tsx`.
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `bun run develop` | Type check, then start the dev server on `0.0.0.0:8000` |
+| `bun run clean-develop` | Clear the Gatsby cache, then `develop` |
+| `bun run build` | Production build |
+| `bun run serve` | Serve the built site on `0.0.0.0:9000` |
+| `bun run build-serve` | Type check, build and serve |
+| `bun run clean-build-serve` | Clear the cache, type check, build and serve |
+| `bun run typecheck` | `tsc --noEmit` |
+| `bun run format` | Prettier on `src/` |
+| `bun test` | Unit tests |
+
+## Testing
+
+Tests use `bun:test` with Testing Library on a happy-dom DOM and sit next to the code as `*.test.ts(x)`. GitHub Actions runs the type check and the tests on every push and pull request to `master`.
+
+## Getting the Space ID and Token
+
+- After logging in and opening the home page, click the burger menu at the top left.
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/click%20burger%20menu.jpg?raw=true)
 
-- create new space
+- Create a new space.
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/2.%20create%20space.jpg?raw=true)
 
-- choose space type
+- Choose a space type.
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/3.%20choose%20space%20type.jpg?raw=true)
 
-- write down your space name and choose 'create an example' then choose blog tab and click proceed
+- Write your space name, choose 'create an example', choose the blog tab and click proceed.
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/4.%20write%20down%20your%20space%20name%20and%20choose%20create%20an%20example%20and%20choose%20blog.jpg?raw=true)
 
-- after everything has been set, go to content tab and you will see 4 default contents
+- Once it's set up, go to the content tab and you'll see 4 default entries.
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/5.%20go%20to%20content%20tab%20and%20there%20shoulde%20be%204%20default%20contents.png?raw=true)
 
-- go to media tab and publish all draft images (by default heroImage is required and you can't build your site with
-  unpublished images)
+- Go to the media tab and publish all draft images. `heroImage` is required, and the site won't build with unpublished images.
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/6.%20go%20to%20media%20tab%20and%20publish%20all%20images.png?raw=true)
 
-- open setting tab and choose 'API keys'. Click 'Add api key' on the top right. Copy space ID and token to your '.env'
-  file you created before
+- Open the settings tab and choose 'API keys'. Click 'Add api key' at the top right, then copy the space ID and token into your `.env`.
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/7.%20open%20setting%20and%20add%20api%20key%20copy-paste%20spaceid%20and%20token%20to%20env.jpg?raw=true)
 
-- execute 'npm run develop' on cli
-- now you should be able to access your content at http://localhost:8000
+- Run `bun run develop` and open http://localhost:8000 to see your content.
 
-## via DockerFile
+## Docker
 
-to run this with docker, execute `docker build -t gatsbyan .`
-and `docker run -p 8000:8000 --rm -m 1g --cpus 2 --name gatsbyan gatsbyan`.
+Build and run the image:
 
-## via Docker Compose
+```bash
+docker build -t gatsbyan .
+docker run -p 9000:9000 --rm -m 1g --cpus 2 --name gatsbyan gatsbyan
+```
 
-to run this using docker compose, execute `docker compose -f compose.yaml up -d`
+Or with Docker Compose:
 
-You can deploy your site to any static site hosting like netlify, vercel, or anywhere. There is webhook on netlify
-and you can set this up later to your site hosting for content update everytime you publish your content.
+```bash
+docker compose -f compose.yaml up -d
+```
 
-here is the [google page speed insight](https://developers.google.com/speed/pagespeed/insights/) score for both mobile and desktop
+## Deployment
+
+The site is a static build, so it can be hosted anywhere. Production runs on Vercel, which also hosts the `/api/trending` Gatsby Function and the redirects in `vercel.json`. Point a Contentful webhook at your host's build hook to rebuild whenever you publish content.
+
+[Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/) scores for mobile and desktop:
+
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/mobile.png?raw=true)
 
 ![](https://github.com/7sferry/Gatsbyan1.0/blob/master/static/desktop.png?raw=true)
 
-If you having trouble setting this up, don't hesitate to contact me 😎
+If you have trouble setting this up, don't hesitate to contact me 😎
