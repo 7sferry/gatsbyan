@@ -80,6 +80,40 @@ describe("SearchHitsResult", () => {
     expect(highlightsOf("Post")).toEqual(["Java"]);
   });
 
+  test("highlights the typos that Algolia highlighted in other hits", async () => {
+    const tagged = (word: string) => `<ais-highlight-0000000000>${word}</ais-highlight-0000000000>`;
+    await renderHits(
+      createSearchClient([
+        createHit("a", "Post A", `kata ${tagged("fery")} dan ${tagged("Feli")}`),
+        createHit("b", "Post B", "kata fery dan feli dan FERI"),
+        createHit("c", "Fery menulis", "tanpa kata"),
+      ]),
+      "feri"
+    );
+    await screen.findByRole("link", { name: "Post A" });
+
+    expect(highlightsOf("Post A")).toEqual(["fery", "Feli"]);
+    expect(excerptOf("Post B").textContent).toBe("kata fery dan feli dan FERI");
+    expect(highlightsOf("Post B")).toEqual(["fery", "feli", "FERI"]);
+    expect(
+      screen.getByRole("link", { name: "Fery menulis" }).querySelector("h3 ais-highlight-0000000000")?.textContent
+    ).toBe("Fery");
+  });
+
+  test("does not highlight inside HTML entities or existing highlights", async () => {
+    await renderHits(
+      createSearchClient([
+        createHit("a", "Post A", "<ais-highlight-0000000000>quot</ais-highlight-0000000000> java"),
+        createHit("b", "Post B", "quot &quot;java&quot;"),
+      ]),
+      "java"
+    );
+    await screen.findByRole("link", { name: "Post B" });
+
+    expect(excerptOf("Post B").textContent).toBe('quot "java"');
+    expect(highlightsOf("Post B")).toEqual(["quot", "java"]);
+  });
+
   test("starts the excerpt about a hundred characters before a match in the middle", async () => {
     const excerpt = (numberedWords(100) + "java " + numberedWords(100)).trimEnd();
     await renderHits(createSearchClient([createHit("a", "Post", excerpt)]));
