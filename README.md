@@ -9,7 +9,7 @@ The Gatsby template I use in production for my personal blog at https://ferry.ve
 - Blog posts written in Markdown on Contentful CMS, with Prism syntax highlighting, code titles, copy buttons, table captions, heading anchors and click-to-zoom images
 - Paginated home page (10 posts per page) and paginated tag pages at `/tags/{tag}`
 - Archive by date at `/archive`
-- Full-text search at `/search` with Algolia, including voice search
+- Full-text search at `/search` with Algolia, including voice search and highlighted typo matches
 - Comments with [utterances](https://utteranc.es) (GitHub issues)
 - Sidebar with featured posts, most viewed posts and top searched posts from Google Analytics
 - Value averaging calculator at `/features/value-averaging-calculator`
