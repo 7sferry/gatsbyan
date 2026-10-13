@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import { SeoAttr, SeoSchemaData } from "../types/DataTypes";
+import { SeoAttr, SeoSchemaData, WebSiteSchemaData } from "../types/DataTypes";
 import { AUTHOR_PAGE } from "../utils/GatsbyanUtils.tsx";
 
 /************************
@@ -30,6 +30,7 @@ export default function Seo({ title, path = "", description, noIndex = false }: 
   const metaImage = `${metadata.siteUrl}/ferry-suhandri.jpg`;
   const metaImageLarge = `${metadata.siteUrl}/ferry-suhandri-large.jpg`;
   const metaUrl = metadata.siteUrl + path;
+  const siteName = "Blog " + metadata.realName;
   const schemaData: SeoSchemaData = {
     "@context": "https://schema.org",
     "@type": path === "/" ? "ProfilePage" : "WebPage",
@@ -88,6 +89,14 @@ export default function Seo({ title, path = "", description, noIndex = false }: 
     },
     url: metaUrl,
   };
+  const webSiteSchemaData: WebSiteSchemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": metadata.siteUrl + "/#website",
+    name: siteName,
+    alternateName: [metadata.realName],
+    url: metadata.siteUrl + "/",
+  };
 
   let name = path?.startsWith("/features") ? `[${metadata.realName}]` : "";
   return (
@@ -96,11 +105,14 @@ export default function Seo({ title, path = "", description, noIndex = false }: 
       {!noIndex && <link rel="canonical" href={metaUrl} />}
       <link rel="author" href={metadata.siteUrl + AUTHOR_PAGE} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
-      <title>{`${title} ${name}`}</title>
+      {path === "/" && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchemaData) }} />
+      )}
+      <title>{name ? `${title} ${name}` : title}</title>
       <meta name="description" content={metaDescription} />
       <meta property="og:title" content={title} />
       <meta name="title" content={title} />
-      <meta name="application-name" content={metadata.realName} />
+      <meta name="application-name" content={siteName} />
       <meta name="apple-mobile-web-app-title" content={metadata.author} />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta property="og:type" content={`website`} />
@@ -116,7 +128,7 @@ export default function Seo({ title, path = "", description, noIndex = false }: 
         </>
       )}
       <meta property="og:description" content={metaDescription} />
-      <meta property="og:site_name" content={"Blog " + metadata.realName} />
+      <meta property="og:site_name" content={siteName} />
       <meta property="og:url" content={metaUrl} />
       <meta property="og:image" content={metaImageLarge} />
       <meta name="author" content={metadata.realName} />

@@ -86,7 +86,7 @@ describe("index template", () => {
   test("titles the home page with the author", () => {
     const head = renderIndexHead("/");
 
-    expect(head.title?.trim()).toBe("Personal Blog [Ferry Suhandri]");
+    expect(head.title).toBe("Blog Ferry Suhandri");
     expect(head.schema["@type"]).toBe("ProfilePage");
   });
 

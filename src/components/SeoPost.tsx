@@ -131,7 +131,7 @@ export default function SeoPost({
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
       <meta name="title" content={title} />
-      <meta name="application-name" content={metadata.realName} />
+      <meta name="application-name" content={"Blog " + metadata.realName} />
       <meta name="apple-mobile-web-app-title" content={metadata.author} />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta property="og:type" content={`article`} />
