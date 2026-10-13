@@ -19,7 +19,7 @@ export class ValueAveragingStockCalculator {
     this.averageLotPrice = getNumberValueFromRupiah(String(stockData.averagePrice)) * 100;
     this.totalLot = this.getTotalLot(stockData);
     this.monthlyInvestTarget = getNumberValueFromRupiah(String(stockData.monthlyInvestTarget));
-    this.sinceDate = new Date(stockData.sinceYear + "-" + stockData.sinceMonth);
+    this.sinceDate = new Date(Number(stockData.sinceYear), Number(stockData.sinceMonth) - 1);
   }
 
   buyLot(lot: number) {

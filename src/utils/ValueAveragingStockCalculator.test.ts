@@ -17,6 +17,17 @@ describe("ValueAveragingStockCalculator", () => {
     expect(stock.sinceDate.toISOString()).toBe("2024-01-01T00:00:00.000Z");
   });
 
+  test("starts on the chosen month west of UTC", () => {
+    const timeZone = process.env.TZ;
+    process.env.TZ = "America/New_York";
+    try {
+      const stock = createStock({ sinceYear: 2024, sinceMonth: "01" });
+      expect([stock.sinceDate.getFullYear(), stock.sinceDate.getMonth()]).toEqual([2024, 0]);
+    } finally {
+      process.env.TZ = timeZone;
+    }
+  });
+
   test("parses rupiah formatted input", () => {
     const stock = createStock({
       currentUnitPrice: "Rp1.250",
