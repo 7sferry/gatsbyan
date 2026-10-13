@@ -100,6 +100,64 @@ describe("SearchHitsResult", () => {
     ).toBe("Fery");
   });
 
+  test("highlights the typos of the query in a hit that Algolia did not highlight", async () => {
+    await renderHits(
+      createSearchClient([
+        createHit("a", "Seputar film", "kartun seperti Tom &amp; Jerry dan Woody"),
+        createHit("b", "Piala dunia", "Untungnya Ferran Torres mencetak gol"),
+        createHit("c", "Berry", "buah berry"),
+      ]),
+      "ferry"
+    );
+    await screen.findByRole("link", { name: "Seputar film" });
+
+    expect(highlightsOf("Seputar film")).toEqual(["Jerry"]);
+    expect(highlightsOf("Piala dunia")).toEqual(["Ferran"]);
+    expect(highlightsOf("Berry")).toEqual(["berry"]);
+    expect(screen.getByRole("link", { name: "Berry" }).querySelector("h3 ais-highlight-0000000000")?.textContent).toBe(
+      "Berry"
+    );
+  });
+
+  test("allows one typo in a query word of four to seven letters", async () => {
+    await renderHits(
+      createSearchClient([createHit("a", "Post A", "jawa jaav jav jaw jwa kopi"), createHit("b", "Post B", "kucing")]),
+      "java"
+    );
+    await screen.findByRole("link", { name: "Post A" });
+
+    expect(highlightsOf("Post A")).toEqual(["jawa", "jaav", "jav"]);
+    expect(highlightsOf("Post B")).toEqual([]);
+  });
+
+  test("allows two typos in a query word of eight letters or more", async () => {
+    await renderHits(createSearchClient([createHit("a", "Post", "pemrogaman pemogaman pemogamn")]), "pemrograman");
+    await screen.findByRole("link", { name: "Post" });
+
+    expect(highlightsOf("Post")).toEqual(["pemrogaman", "pemogaman"]);
+  });
+
+  test("allows no typo in a query word of three letters or less", async () => {
+    await renderHits(createSearchClient([createHit("a", "Post", "jaw jaa")]), "jav");
+    await screen.findByRole("link", { name: "Post" });
+
+    expect(highlightsOf("Post")).toEqual([]);
+  });
+
+  test("highlights typos of every query word", async () => {
+    await renderHits(createSearchClient([createHit("a", "Post", "belajr jawa dasar")]), "belajar java");
+    await screen.findByRole("link", { name: "Post" });
+
+    expect(highlightsOf("Post")).toEqual(["belajr", "jawa"]);
+  });
+
+  test("does not add typo highlights to a hit that Algolia highlighted", async () => {
+    await renderHits(createSearchClient([createHit("a", "Post", "ferry dan Jerry")]), "ferry");
+    await screen.findByRole("link", { name: "Post" });
+
+    expect(highlightsOf("Post")).toEqual(["ferry"]);
+  });
+
   test("does not highlight inside HTML entities or existing highlights", async () => {
     await renderHits(
       createSearchClient([

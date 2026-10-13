@@ -102,6 +102,12 @@ Other utilities: `GatsbyanUtils.tsx` (constants, `kebabCase`, tech tags), `Pagin
 
 `src/templates/search-page.tsx` uses `react-instantsearch` with an Algolia client that skips requests for empty queries. The `gatsby-plugin-algolia` entry in `gatsby-config.ts` is commented out, so builds don't update the index; `src/utils/Algolia.tsx` holds its queries, splitting long posts into chunks of at most 8500 characters.
 
+Algolia doesn't highlight every match: it skips some typo matches (e.g. "Jerry" for "ferry"), words in curly quotes and words past roughly the first 1000 words of a chunk. `SearchHitsResult.tsx` fills the gaps in two passes:
+1. It highlights, ignoring case, the query and every word Algolia highlighted in any hit on the page.
+2. A hit still without a highlight gets its words highlighted when they are within Algolia's default typo limits of a query word: none below 4 letters, 1 from 4 letters, 2 from 8. A word's prefix counts too, and words after `-` in the query are skipped.
+
+Both passes leave HTML entities and existing highlights alone. The excerpt is then cut to start shortly before its first highlight.
+
 ### Comments
 
 `Comment.tsx` loads utterances (GitHub issues on the site repo) once per page.
