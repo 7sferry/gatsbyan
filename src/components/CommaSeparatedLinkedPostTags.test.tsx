@@ -7,7 +7,7 @@ import { describe, expect, test } from "bun:test";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import CommaSeparatedLinkedPostTags from "./CommaSeparatedLinkedPostTags.tsx";
-import { getLinks } from "../test/renderUtils.ts";
+import { getLinks, getText } from "../test/renderUtils.ts";
 
 describe("CommaSeparatedLinkedPostTags", () => {
   test("links each tag to its kebab case tag page", () => {
@@ -23,7 +23,7 @@ describe("CommaSeparatedLinkedPostTags", () => {
   test("separates tags with commas", () => {
     const html = renderToStaticMarkup(<CommaSeparatedLinkedPostTags tags={["Java", "Spring"]} />);
 
-    expect(html.replace(/<[^>]+>/g, "")).toBe("Java, Spring");
+    expect(getText(html)).toBe("Java, Spring");
   });
 
   test("renders nothing without tags", () => {
