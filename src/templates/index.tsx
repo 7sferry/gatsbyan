@@ -11,7 +11,7 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { getPlurals } from "../utils/GatsbyanUtils";
 import "./index.css";
-import { IndexHeroImage, IndexProp } from "../types/DataTypes";
+import { IndexContextProp, IndexData, IndexHeroImage, IndexProp } from "../types/DataTypes";
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags";
 import { getPublishDate } from "../utils/DateUtils";
 
@@ -167,8 +167,15 @@ export const pageQuery = graphql`
 
 export default IndexPage;
 
-export function Head({ location }: HeadProps) {
-  return (
-    <Seo title={location?.pathname === "/" ? "Personal Blog [Ferry Suhandri]" : "Blog"} path={location?.pathname} />
-  );
+export function Head({ location, pageContext }: HeadProps<IndexData, IndexContextProp>) {
+  return <Seo title={getTitle(location?.pathname, pageContext)} path={location?.pathname} />;
+}
+
+function getTitle(pathname: string, pageContext: IndexContextProp) {
+  if (pathname === "/") {
+    return "Personal Blog [Ferry Suhandri]";
+  }
+  const title = pageContext?.tag ? `All posts related to ${pageContext.tag}` : "Blog";
+  const page = pageContext?.limit ? pageContext.skip / pageContext.limit + 1 : 1;
+  return page > 1 ? `${title} - Page ${page}` : title;
 }
