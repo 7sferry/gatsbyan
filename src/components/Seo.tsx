@@ -8,7 +8,7 @@ import { AUTHOR_PAGE } from "../utils/GatsbyanUtils.tsx";
  * on Januari 2023      *
  ************************/
 
-export default function Seo({ title, path = "", description }: SeoAttr) {
+export default function Seo({ title, path = "", description, noIndex = false }: SeoAttr) {
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -93,7 +93,7 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
   return (
     <>
       <html lang="id" />
-      <link rel="canonical" href={metaUrl} />
+      {!noIndex && <link rel="canonical" href={metaUrl} />}
       <link rel="author" href={metadata.siteUrl + AUTHOR_PAGE} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       <title>{`${title} ${name}`}</title>
@@ -104,8 +104,17 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
       <meta name="apple-mobile-web-app-title" content={metadata.author} />
       <meta name="apple-mobile-web-app-status-bar-style" content="default" />
       <meta property="og:type" content={`website`} />
-      <meta name="robots" content="index,follow,max-image-preview:large" />
-      <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+      {noIndex ? (
+        <meta name="robots" content="noindex,follow" />
+      ) : (
+        <>
+          <meta name="robots" content="index,follow,max-image-preview:large" />
+          <meta
+            name="googlebot"
+            content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+          />
+        </>
+      )}
       <meta property="og:description" content={metaDescription} />
       <meta property="og:site_name" content={"Blog " + metadata.realName} />
       <meta property="og:url" content={metaUrl} />
