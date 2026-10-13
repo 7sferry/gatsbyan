@@ -173,7 +173,7 @@ export function Head({ location, pageContext }: HeadProps<IndexData, IndexContex
 
 function getTitle(pathname: string, pageContext: IndexContextProp) {
   if (pathname === "/") {
-    return "Personal Blog [Ferry Suhandri]";
+    return "Blog Ferry Suhandri";
   }
   const title = pageContext?.tag ? `All posts related to ${pageContext.tag}` : "Blog";
   const page = pageContext?.limit ? pageContext.skip / pageContext.limit + 1 : 1;

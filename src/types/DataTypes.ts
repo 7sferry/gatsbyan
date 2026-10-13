@@ -455,6 +455,15 @@ export interface SeoSchemaData {
   readonly "@id": string;
 }
 
+export interface WebSiteSchemaData {
+  readonly "@context": string;
+  readonly "@type": string;
+  readonly "@id": string;
+  readonly name: string;
+  readonly alternateName: string[];
+  readonly url: string;
+}
+
 type Publisher = {
   readonly "@type": string;
   readonly name: string;

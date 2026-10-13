@@ -34,11 +34,32 @@ describe("Seo", () => {
   test("describes other pages with their title", () => {
     const head = renderHead(<Seo title="Archive" path="/archive" />);
 
-    expect(head.title?.trim()).toBe("Archive");
+    expect(head.title).toBe("Archive");
     expect(head.canonical).toBe(`${siteUrl}/archive`);
     expect(head.meta("description")).toBe("Archive");
     expect(head.meta("og:description")).toBe("Archive");
     expect(head.schema).toMatchObject({ "@type": "WebPage", "@id": `${siteUrl}/archive`, name: "Archive" });
+  });
+
+  test("names the site on the home page", () => {
+    const head = renderHead(<Seo title="Personal Blog" path="/" />);
+
+    expect(head.schemas[1]).toEqual({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: `Blog ${realName}`,
+      alternateName: [realName],
+      url: `${siteUrl}/`,
+    });
+    expect(head.meta("og:site_name")).toBe(`Blog ${realName}`);
+    expect(head.meta("application-name")).toBe(`Blog ${realName}`);
+  });
+
+  test("names the site only on the home page", () => {
+    const head = renderHead(<Seo title="Archive" path="/archive" />);
+
+    expect(head.schemas.map((schema) => schema["@type"])).toEqual(["WebPage"]);
   });
 
   test("links the author to the about page", () => {
@@ -101,6 +122,7 @@ describe("SeoPost", () => {
     expect(head.canonical).toBe(`${siteUrl}/blog/belajar-spring`);
     expect(head.meta("description")).toBe("Tulisan tentang Spring");
     expect(head.meta("og:type")).toBe("article");
+    expect(head.meta("application-name")).toBe(`Blog ${realName}`);
     expect(head.meta("og:image")).toBe("https://images.ctfassets.net/hero.jpg");
     expect(head.meta("twitter:data1")).toBe("5 mins read");
     expect(head.schema).toMatchObject({

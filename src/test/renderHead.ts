@@ -20,6 +20,9 @@ export function renderHead(element: React.ReactElement) {
     title: head.querySelector("title")?.textContent ?? null,
     canonical: head.querySelector('link[rel="canonical"]')?.getAttribute("href") ?? null,
     schema: JSON.parse(head.querySelector('script[type="application/ld+json"]')?.innerHTML ?? "null"),
+    schemas: Array.from(head.querySelectorAll('script[type="application/ld+json"]'), (script) =>
+      JSON.parse(script.innerHTML)
+    ),
     meta,
   };
 }
