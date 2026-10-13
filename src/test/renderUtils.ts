@@ -19,6 +19,12 @@ export function getLinks(html: string): RenderedLink[] {
   }));
 }
 
+export function getText(html: string): string {
+  const template = document.createElement("template");
+  template.innerHTML = html;
+  return template.content.textContent ?? "";
+}
+
 export function getParagraphs(html: string): string[] {
   return Array.from(html.matchAll(/<p>([\s\S]*?)<\/p>/g), ([, text]) => text.replace(/\s+/g, " ").trim());
 }
