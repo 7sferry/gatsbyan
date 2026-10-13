@@ -30,7 +30,7 @@ bun test src/utils       # Tests under a path
 
 Package manager is **bun** (not npm/yarn). CI (`.github/workflows/test.yml`) runs `bun install --frozen-lockfile`, `bun run typecheck` and `bun test` on pushes and pull requests to `master`.
 
-Project skills in `.claude/skills/`: `build`, `dev`, `typecheck`, `deploy-preview`, `new-component`, `new-template`.
+Project skills in `.claude/skills/`: `write-test` (tests with the helpers below), `fix-bug` (test-first fix and commit on a `fix/` branch), `add-slice` (create and register a Gatsby Slice).
 
 ## Tests
 
