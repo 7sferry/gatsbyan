@@ -33,6 +33,11 @@
     "react-instantsearch": "^7.23.0"
   },
   "devDependencies": {
+    "@happy-dom/global-registrator": "^21.0.1",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/bun": "^1.4.3",
     "@types/node": "^25.1.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
@@ -66,7 +71,7 @@
     "disable-telemetry": "gatsby telemetry --disable",
     "typecheck": "tsc --noEmit",
     "upgrade-all": "yarn yarn-upgrade-all",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "bun test"
   },
   "repository": {
     "type": "git",
