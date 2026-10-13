@@ -121,7 +121,7 @@ Required for full functionality (see `.env.EXAMPLE`):
 - **Analytics**: `ANALYTICS_EMAIL`, `ANALYTICS_PRIVATE_KEY`, `ANALYTICS_GA4`, `ANALYTICS_MEASUREMENT_ID`
 - **Search** (optional): `GATSBY_ALGOLIA_APP_ID`, `GATSBY_ALGOLIA_INDEX_NAME`, `GATSBY_ALGOLIA_SEARCH_KEY`, `ALGOLIA_ADMIN_KEY`
 
-Only `GATSBY_`-prefixed variables reach the browser bundle. `ANALYTICS_VIEW_ID` in `.env.EXAMPLE` is a leftover from Universal Analytics and is unused.
+Only `GATSBY_`-prefixed variables reach the browser bundle.
 
 ## Agent Rules
 

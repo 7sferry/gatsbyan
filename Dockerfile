@@ -7,7 +7,7 @@ RUN npm install -g bun
 # this will cache them and speed up future builds
 FROM base AS install
 COPY package.json .
-COPY bun.lockb .
+COPY bun.lock .
 RUN bun install --frozen-lockfile
 
 # copy node_modules from temp directory
