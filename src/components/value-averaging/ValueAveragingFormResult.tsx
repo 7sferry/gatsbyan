@@ -14,6 +14,9 @@ export const getValueAveragingFormResult = (stock: ValueAveragingStockCalculator
   if (monthDifference < 0) {
     return <p>bulan mulai tidak boleh dari masa depan</p>;
   }
+  if (stock.currentLotPrice <= 0) {
+    return <p>harga saat ini harus lebih dari Rp0</p>;
+  }
   const rawLotShouldInvest = stock.countLotShouldInvest(stock.monthlyInvestTarget, monthDifference + 1);
   const skipTakeProfit = rawLotShouldInvest < 0 && stock.averageLotPrice > stock.currentLotPrice;
   const lotShouldInvest = skipTakeProfit ? 0 : rawLotShouldInvest;
