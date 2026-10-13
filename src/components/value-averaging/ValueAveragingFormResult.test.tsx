@@ -26,6 +26,10 @@ describe("getValueAveragingFormResult", () => {
     expect(renderResult({ sinceMonth: "05" })).toEqual(["bulan mulai tidak boleh dari masa depan"]);
   });
 
+  test("rejects a zero current price", () => {
+    expect(renderResult({ currentUnitPrice: "Rp0" })).toEqual(["harga saat ini harus lebih dari Rp0"]);
+  });
+
   test("rejects a budget below one lot when no lot is owned yet", () => {
     expect(renderResult({ totalLot: 0, monthlyInvestTarget: 50_000 })).toEqual([
       "Uangnya tidak cukup untuk membeli stock ini. Minimal Rp100.000 untuk pembelian satu lot",

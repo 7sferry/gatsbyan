@@ -59,6 +59,14 @@ describe("pages", () => {
       expect(renderHead(<NotFoundHead />).title?.trim()).toBe("Lost Pages");
     });
 
+    test("keeps search engines from indexing the page", () => {
+      const head = renderHead(<NotFoundHead />);
+
+      expect(head.canonical).toBeNull();
+      expect(head.meta("robots")).toBe("noindex,follow");
+      expect(head.meta("googlebot")).toBeNull();
+    });
+
     test("robot explains the page does not exist", () => {
       expect(robot).toContain("Looks like page you entered does not exist.");
     });

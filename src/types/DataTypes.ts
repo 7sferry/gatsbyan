@@ -71,6 +71,7 @@ export interface SeoAttr {
   readonly title: string;
   readonly path?: string;
   readonly description?: string;
+  readonly noIndex?: boolean;
 }
 
 export interface SeoPostAttr {

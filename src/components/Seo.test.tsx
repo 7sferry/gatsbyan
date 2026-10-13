@@ -41,6 +41,12 @@ describe("Seo", () => {
     expect(head.schema).toMatchObject({ "@type": "WebPage", "@id": `${siteUrl}/archive`, name: "Archive" });
   });
 
+  test("links the author to the about page", () => {
+    const head = renderHead(<Seo title="Archive" path="/archive" />);
+
+    expect(head.markup).toContain(`<link rel="author" href="${siteUrl}/blog/berkenalan-dengan-ferry-suhandri"/>`);
+  });
+
   test("prefers the given description", () => {
     const head = renderHead(<Seo title="Search" path="/search" description="Cari tulisan" />);
 
@@ -107,6 +113,12 @@ describe("SeoPost", () => {
         { "@type": "Thing", name: "Football" },
       ],
     });
+  });
+
+  test("links the author to the about page", () => {
+    expect(renderPost().markup).toContain(
+      `<link rel="author" href="${siteUrl}/blog/berkenalan-dengan-ferry-suhandri"/>`
+    );
   });
 
   test("uses the post language", () => {

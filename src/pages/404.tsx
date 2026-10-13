@@ -17,5 +17,5 @@ const NotFoundPage = () => (
 export default NotFoundPage;
 
 export function Head() {
-  return <Seo title={"Lost Pages"} />;
+  return <Seo title={"Lost Pages"} noIndex />;
 }

@@ -36,10 +36,8 @@ export const onChangeRupiah = (event: React.ChangeEvent<HTMLInputElement>) => {
   }
   let lastZero = "";
   if (split.length >= 2) {
-    const secondElement: string = split[1];
-    let temp = "1" + secondElement;
-    const parsedSecondElement = parseInt(temp);
-    lastZero = parsedSecondElement.toString().slice(1);
+    // kept as text, so long decimals don't lose digits to number precision
+    lastZero = split[1].match(/^\d*/)?.[0] ?? "";
 
     decimal = decimalSeparator;
     result = parseInt(result.toString());

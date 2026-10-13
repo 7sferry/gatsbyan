@@ -60,6 +60,10 @@ describe("onChangeRupiah", () => {
     expect(onChangeRupiah(changeEvent("Rp1.000,50"))).toBe("Rp1.000,50");
     expect(onChangeRupiah(changeEvent("Rp1.000,05"))).toBe("Rp1.000,05");
   });
+
+  test("keeps every digit of a long decimal", () => {
+    expect(onChangeRupiah(changeEvent("Rp1,12345678901234567890"))).toBe("Rp1,12345678901234567890");
+  });
 });
 
 describe("getMonthDifference", () => {

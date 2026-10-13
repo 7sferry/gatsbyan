@@ -6,7 +6,6 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import React from "react";
 import { render, screen, within } from "@testing-library/react";
-import { HeadProps } from "gatsby";
 import IndexPage, { Head } from "./index.tsx";
 import { IndexProp } from "../types/DataTypes.ts";
 import { mockStaticQueries, siteMetadata, useStaticQueryMock } from "../test/staticQuery.ts";
@@ -81,17 +80,34 @@ describe("index template", () => {
     expect(paginationProps(container).url).toBe("/tags/design-pattern");
   });
 
+  const renderIndexHead = (pathname: string, pageContext: Record<string, unknown> = {}) =>
+    renderHead(<Head {...({ location: { pathname }, pageContext } as unknown as React.ComponentProps<typeof Head>)} />);
+
   test("titles the home page with the author", () => {
-    const head = renderHead(<Head {...({ location: { pathname: "/" } } as HeadProps)} />);
+    const head = renderIndexHead("/");
 
     expect(head.title?.trim()).toBe("Personal Blog [Ferry Suhandri]");
     expect(head.schema["@type"]).toBe("ProfilePage");
   });
 
-  test("titles other pages as blog", () => {
-    const head = renderHead(<Head {...({ location: { pathname: "/page/2" } } as HeadProps)} />);
+  test("titles other pages with their page number", () => {
+    const head = renderIndexHead("/page/2", { skip: 10, limit: 10 });
 
-    expect(head.title?.trim()).toBe("Blog");
+    expect(head.title?.trim()).toBe("Blog - Page 2");
+    expect(head.meta("description")).toBe("Blog - Page 2");
     expect(head.canonical).toBe(`${siteMetadata.siteUrl}/page/2`);
+  });
+
+  test("titles tag pages with the tag", () => {
+    const head = renderIndexHead("/tags/java", { tag: "Java", skip: 0, limit: 10 });
+
+    expect(head.title?.trim()).toBe("All posts related to Java");
+    expect(head.meta("description")).toBe("All posts related to Java");
+  });
+
+  test("titles later tag pages with the tag and page number", () => {
+    const head = renderIndexHead("/tags/java/3", { tag: "Java", skip: 20, limit: 10 });
+
+    expect(head.title?.trim()).toBe("All posts related to Java - Page 3");
   });
 });

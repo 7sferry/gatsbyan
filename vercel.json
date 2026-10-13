@@ -18,11 +18,13 @@
     },
     {
       "source": "/blog/acid-pada-database-consistency",
-      "destination": "/blog/acid-pada-database#consistency"
+      "destination": "/blog/acid-pada-database#consistency",
+      "permanent": true
     },
     {
       "source": "/blog/acid-pada-database-atomicity",
-      "destination": "/blog/acid-pada-database#atomicity"
+      "destination": "/blog/acid-pada-database#atomicity",
+      "permanent": true
     },
     {
       "source": "/blog/acid-pada-database-durability",

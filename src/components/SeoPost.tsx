@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoPostAttr, SeoPostSchemaData } from "../types/DataTypes";
 import { getIsoFormat, isAfterDate } from "../utils/DateUtils.tsx";
-import { TECH_TAGS } from "../utils/GatsbyanUtils.tsx";
+import { AUTHOR_PAGE, TECH_TAGS } from "../utils/GatsbyanUtils.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -125,7 +125,7 @@ export default function SeoPost({
     <>
       <html lang={lang} />
       <link rel="canonical" href={metaUrl} />
-      <link rel="author" href={metadata.realName} />
+      <link rel="author" href={metadata.siteUrl + AUTHOR_PAGE} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       <title>{`${title} [${metadata.realName}]`}</title>
       <meta name="description" content={description} />
