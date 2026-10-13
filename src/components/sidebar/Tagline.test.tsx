@@ -28,8 +28,8 @@ describe("Tagline", () => {
     lineHeightStyle.remove();
   });
 
-  test("hides the toggle when the tagline fits in two lines", () => {
-    scrollHeight = 40;
+  test("hides the toggle when the tagline fits in five lines", () => {
+    scrollHeight = 100;
 
     render(<Tagline tagline={TAGLINE} />);
 
@@ -37,8 +37,8 @@ describe("Tagline", () => {
     expect(screen.queryByRole("link")).toBeNull();
   });
 
-  test("shows the toggle for a three line tagline", () => {
-    scrollHeight = 60;
+  test("shows the toggle for a tagline longer than five lines", () => {
+    scrollHeight = 120;
 
     render(<Tagline tagline={TAGLINE} />);
 

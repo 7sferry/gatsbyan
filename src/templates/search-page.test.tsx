@@ -11,6 +11,7 @@ import { HeadProps } from "gatsby";
 import { createHit, createSearchClient, lastQuery } from "../test/searchClient.ts";
 import { mockStaticQueries, siteMetadata, useStaticQueryMock } from "../test/staticQuery.ts";
 import { renderHead } from "../test/renderHead.ts";
+import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
 
 let algoliaClient = createSearchClient();
 const algoliasearch = mock(() => algoliaClient);
@@ -82,7 +83,7 @@ describe("search page", () => {
     expect(algoliaClient.search).not.toHaveBeenCalled();
     await userEvent.type(screen.getByRole("searchbox"), "{Enter}");
 
-    await waitFor(() => expect(lastQuery(algoliaClient)).toMatchObject({ query: "java", hitsPerPage: 7 }));
+    await waitFor(() => expect(lastQuery(algoliaClient)).toMatchObject({ query: "java", hitsPerPage: SEARCH_COUNT }));
     expect(algoliaClient.search.mock.lastCall![0][0].indexName).toBe("blog");
   });
 
