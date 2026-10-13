@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { SeoAttr, SeoSchemaData } from "../types/DataTypes";
+import { AUTHOR_PAGE } from "../utils/GatsbyanUtils.tsx";
 
 /************************
  * Made by [MR Ferry™]  *
@@ -93,7 +94,7 @@ export default function Seo({ title, path = "", description }: SeoAttr) {
     <>
       <html lang="id" />
       <link rel="canonical" href={metaUrl} />
-      <link rel="author" href={metadata.realName} />
+      <link rel="author" href={metadata.siteUrl + AUTHOR_PAGE} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       <title>{`${title} ${name}`}</title>
       <meta name="description" content={metaDescription} />

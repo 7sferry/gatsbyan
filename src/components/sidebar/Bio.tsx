@@ -5,6 +5,7 @@ import { Link } from "gatsby";
 import Tagline from "./Tagline.tsx";
 import SiteMetadata from "../../utils/SiteMetadata.tsx";
 import Photo from "../../utils/Photo.tsx";
+import { AUTHOR_PAGE } from "../../utils/GatsbyanUtils.tsx";
 
 const Bio = () => {
   const photo = Photo();
@@ -14,7 +15,7 @@ const Bio = () => {
       <GatsbyImage image={photo} className="bio-picture" alt="Ferry" title="Ferry Suhandri" />
       <div className="bio-letter">
         <p className="bio-name">
-          <Link to={"/blog/berkenalan-dengan-ferry-suhandri"}>{metadata.author}</Link>
+          <Link to={AUTHOR_PAGE}>{metadata.author}</Link>
         </p>
         <Tagline tagline={metadata.tagline} />
       </div>
