@@ -9,7 +9,7 @@ import { CommentAttr } from "../types/DataTypes";
 const src = "https://utteranc.es/client.js";
 
 export const Comment = ({ repo }: CommentAttr) => {
-  const element: React.RefObject<HTMLDivElement | null> = React.createRef();
+  const element = React.useRef<HTMLDivElement>(null);
   const commentShown = isCommentShown();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const Comment = ({ repo }: CommentAttr) => {
     });
 
     element?.current?.appendChild(utterancesScript);
-  }, [commentShown, repo, element]);
+  }, [commentShown, repo]);
 
   return <div className="utterances" ref={element} />;
 };

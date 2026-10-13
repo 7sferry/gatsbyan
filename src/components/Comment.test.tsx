@@ -64,4 +64,13 @@ describe("Comment", () => {
 
     expect(container.querySelectorAll(".utterances script")).toHaveLength(1);
   });
+
+  test("does not load utterances again when re-rendered", () => {
+    const { container, rerender } = render(<Comment repo="7sferry/gatsbyan" />);
+    scrollTo(600);
+
+    rerender(<Comment repo="7sferry/gatsbyan" />);
+
+    expect(container.querySelectorAll(".utterances script")).toHaveLength(1);
+  });
 });
