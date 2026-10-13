@@ -6,7 +6,7 @@
 import { afterEach, beforeEach, describe, expect, mock, test } from "bun:test";
 import React from "react";
 import { act, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { setupUser } from "../../test/user.ts";
 import VoiceSearchElement from "./VoiceSearchElement.tsx";
 import { createSearchClient, lastQuery } from "../../test/searchClient.ts";
 import { renderWithSearch } from "../../test/renderWithSearch.tsx";
@@ -53,9 +53,10 @@ describe("VoiceSearchElement", () => {
     });
 
     test("starts listening when the mic is clicked", async () => {
+      const user = setupUser();
       renderWithSearch(<VoiceSearchElement />, createSearchClient(), "");
 
-      await userEvent.click(await screen.findByTitle("Search by voice"));
+      await user.click(await screen.findByTitle("Search by voice"));
 
       const [recognition] = FakeSpeechRecognition.instances;
       expect(recognition.start).toHaveBeenCalledTimes(1);
@@ -63,8 +64,9 @@ describe("VoiceSearchElement", () => {
     });
 
     test("fills the mic while waiting for speech", async () => {
+      const user = setupUser();
       renderWithSearch(<VoiceSearchElement />, createSearchClient(), "");
-      await userEvent.click(await screen.findByTitle("Search by voice"));
+      await user.click(await screen.findByTitle("Search by voice"));
       expect(micPath().getAttribute("fill")).toBe("");
 
       act(() => {
@@ -75,9 +77,10 @@ describe("VoiceSearchElement", () => {
     });
 
     test("searches what was said once speaking ends", async () => {
+      const user = setupUser();
       const client = createSearchClient();
       renderWithSearch(<VoiceSearchElement />, client, "");
-      await userEvent.click(await screen.findByTitle("Search by voice"));
+      await user.click(await screen.findByTitle("Search by voice"));
 
       act(() => {
         FakeSpeechRecognition.instances[0].say("spring boot");
@@ -87,10 +90,11 @@ describe("VoiceSearchElement", () => {
     });
 
     test("stops listening when the mic is clicked again", async () => {
+      const user = setupUser();
       renderWithSearch(<VoiceSearchElement />, createSearchClient(), "");
-      await userEvent.click(await screen.findByTitle("Search by voice"));
+      await user.click(await screen.findByTitle("Search by voice"));
 
-      await userEvent.click(screen.getByTitle("Search by voice"));
+      await user.click(screen.getByTitle("Search by voice"));
 
       expect(FakeSpeechRecognition.instances[0].stop).toHaveBeenCalledTimes(1);
     });

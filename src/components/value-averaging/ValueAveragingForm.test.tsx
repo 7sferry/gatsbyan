@@ -6,7 +6,8 @@
 import { afterEach, beforeEach, describe, expect, setSystemTime, test } from "bun:test";
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { UserEvent } from "@testing-library/user-event";
+import { setupUser } from "../../test/user.ts";
 import { ValueAveragingForm } from "./ValueAveragingForm.tsx";
 
 const STORAGE_KEY = "vcaList";
@@ -17,18 +18,21 @@ const savedStocks = () => new Map(JSON.parse(localStorage.getItem(STORAGE_KEY) ?
 
 const result = () => document.querySelector(".vca-result");
 
+let user: UserEvent;
+
 async function fillForm() {
-  await userEvent.type(field("stockName"), "bbca");
-  await userEvent.selectOptions(field("sinceMonth"), "Januari");
-  await userEvent.type(field("sinceYear"), "2024");
-  await userEvent.type(field("totalLot"), "10");
-  await userEvent.type(field("currentUnitPrice"), "1000");
-  await userEvent.type(field("averagePrice"), "900");
-  await userEvent.type(field("monthlyInvestTarget"), "1000000");
+  await user.type(field("stockName"), "bbca");
+  await user.selectOptions(field("sinceMonth"), "Januari");
+  await user.type(field("sinceYear"), "2024");
+  await user.type(field("totalLot"), "10");
+  await user.type(field("currentUnitPrice"), "1000");
+  await user.type(field("averagePrice"), "900");
+  await user.type(field("monthlyInvestTarget"), "1000000");
 }
 
 describe("ValueAveragingForm", () => {
   beforeEach(() => {
+    user = setupUser();
     localStorage.clear();
     setSystemTime(new Date("2024-03-15T00:00:00Z"));
   });
@@ -51,7 +55,7 @@ describe("ValueAveragingForm", () => {
     render(<ValueAveragingForm />);
     await fillForm();
 
-    await userEvent.click(screen.getByRole("button", { name: "Calculate" }));
+    await user.click(screen.getByRole("button", { name: "Calculate" }));
 
     expect(result()!.textContent).toContain("sekarang bulan ke-3");
     expect(result()!.textContent).toContain("maka bulan ini saya harus investasi sebanyak: 20 lot");
@@ -61,7 +65,7 @@ describe("ValueAveragingForm", () => {
     render(<ValueAveragingForm />);
     await fillForm();
 
-    await userEvent.click(screen.getByRole("button", { name: "Calculate" }));
+    await user.click(screen.getByRole("button", { name: "Calculate" }));
 
     expect(savedStocks().get("BBCA")).toEqual({
       stockName: "BBCA",
@@ -96,7 +100,7 @@ describe("ValueAveragingForm", () => {
     render(<ValueAveragingForm />);
 
     expect(document.querySelector("#stockNames option")!.getAttribute("value")).toBe("TLKM");
-    await userEvent.type(field("stockName"), "tlkm");
+    await user.type(field("stockName"), "tlkm");
 
     expect(
       ["sinceMonth", "sinceYear", "totalLot", "currentUnitPrice", "averagePrice", "monthlyInvestTarget"].map(
@@ -108,9 +112,9 @@ describe("ValueAveragingForm", () => {
   test("clears the result but keeps the input", async () => {
     render(<ValueAveragingForm />);
     await fillForm();
-    await userEvent.click(screen.getByRole("button", { name: "Calculate" }));
+    await user.click(screen.getByRole("button", { name: "Calculate" }));
 
-    await userEvent.click(screen.getByRole("button", { name: "Clear" }));
+    await user.click(screen.getByRole("button", { name: "Clear" }));
 
     expect(result()).toBeNull();
     expect(field("stockName").value).toBe("BBCA");
@@ -119,9 +123,9 @@ describe("ValueAveragingForm", () => {
   test("deletes the saved stock", async () => {
     render(<ValueAveragingForm />);
     await fillForm();
-    await userEvent.click(screen.getByRole("button", { name: "Calculate" }));
+    await user.click(screen.getByRole("button", { name: "Calculate" }));
 
-    await userEvent.click(screen.getByRole("button", { name: "Delete" }));
+    await user.click(screen.getByRole("button", { name: "Delete" }));
 
     expect(result()).toBeNull();
     expect(field("stockName").value).toBe("");

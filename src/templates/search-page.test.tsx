@@ -6,7 +6,7 @@
 import { afterEach, beforeEach, describe, expect, mock, test } from "bun:test";
 import React from "react";
 import { act, render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { setupUser } from "../test/user.ts";
 import { HeadProps } from "gatsby";
 import { createHit, createSearchClient, lastQuery } from "../test/searchClient.ts";
 import { mockStaticQueries, siteMetadata, useStaticQueryMock } from "../test/staticQuery.ts";
@@ -77,11 +77,12 @@ describe("search page", () => {
   });
 
   test("asks Algolia once the query is submitted", async () => {
+    const user = setupUser();
     await renderSearchPage();
 
-    await userEvent.type(screen.getByRole("searchbox"), "java");
+    await user.type(screen.getByRole("searchbox"), "java");
     expect(algoliaClient.search).not.toHaveBeenCalled();
-    await userEvent.type(screen.getByRole("searchbox"), "{Enter}");
+    await user.type(screen.getByRole("searchbox"), "{Enter}");
 
     await waitFor(() => expect(lastQuery(algoliaClient)).toMatchObject({ query: "java", hitsPerPage: SEARCH_COUNT }));
     expect(algoliaClient.search.mock.lastCall![0][0].indexName).toBe("blog");
