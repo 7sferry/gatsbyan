@@ -12,13 +12,13 @@ import { SearchClient } from "algoliasearch-helper/types/algoliasearch";
 import { HeadProps, Slice } from "gatsby";
 import { SEARCH_COUNT } from "../utils/GatsbyanUtils.tsx";
 
-const SearchPage = () => {
+const createSearchClient = (): SearchClient => {
   const algoliaClient = algoliasearch(
     process.env.GATSBY_ALGOLIA_APP_ID ?? "",
     process.env.GATSBY_ALGOLIA_SEARCH_KEY ?? ""
   );
 
-  const searchClient: SearchClient = {
+  return {
     search(queries): Promise<any> {
       if (queries.every(({ params }: any) => !params.query)) {
         return Promise.resolve({
@@ -33,6 +33,11 @@ const SearchPage = () => {
       return algoliaClient.search(queries);
     },
   };
+};
+
+const SearchPage = () => {
+  // InstantSearch searches again whenever it gets a new client, so keep one per mount
+  const [searchClient] = React.useState(createSearchClient);
 
   return (
     <Layout>

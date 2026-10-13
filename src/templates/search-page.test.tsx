@@ -48,6 +48,15 @@ describe("search page", () => {
     expect(algoliasearch).toHaveBeenCalledWith("app-id", "search-key");
   });
 
+  test("keeps the Algolia client across renders", async () => {
+    const { default: SearchPage } = await loadSearchPage();
+    const view = await renderSearchPage();
+
+    view.rerender(<SearchPage />);
+
+    expect(algoliasearch).toHaveBeenCalledTimes(1);
+  });
+
   test("puts the voice search inside the search box", async () => {
     const { container } = await renderSearchPage();
 
