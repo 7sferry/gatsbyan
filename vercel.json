@@ -27,6 +27,11 @@
       "permanent": true
     },
     {
+      "source": "/blog/another-kesalaham-umum-junior-software-engineer",
+      "destination": "/blog/kesalahan-umum-junior-software-engineer-lainnya",
+      "permanent": true
+    },
+    {
       "source": "/blog/acid-pada-database-durability",
       "destination": "/blog/acid-pada-database#durability",
       "permanent": true

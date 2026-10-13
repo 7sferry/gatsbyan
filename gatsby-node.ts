@@ -200,6 +200,13 @@ export const createPages: GatsbyNode["createPages"] = ({ graphql, actions, repor
         });
 
         createRedirect({
+          fromPath: `/blog/another-kesalaham-umum-junior-software-engineer`,
+          toPath: `/blog/kesalahan-umum-junior-software-engineer-lainnya`,
+          redirectInBrowser: true,
+          isPermanent: true,
+        });
+
+        createRedirect({
           fromPath: `/blog/acid-pada-database-durability`,
           toPath: `/blog/acid-pada-database#durability`,
           redirectInBrowser: true,
