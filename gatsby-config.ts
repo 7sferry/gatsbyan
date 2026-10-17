@@ -5,6 +5,7 @@
 
 import type { GatsbyConfig } from "gatsby";
 import siteConfig from "./config.ts";
+import { trackingExclude } from "./src/utils/AnalyticsConfig.ts";
 import "dotenv/config";
 
 function isProduction() {
@@ -19,19 +20,6 @@ const contentfulConfig = {
   // assetDownloadWorkers: 25,
   // downloadLocal: true,
 };
-const exclude = [
-  "/tags/**",
-  "/search",
-  "/archive",
-  "/404",
-  "/404.html",
-  "/page/**",
-  "^[^?]+(\\?.*)",
-  ".json$",
-  "[?]",
-  "[#]",
-  "[%]",
-];
 
 const gatsbyConfig: GatsbyConfig = {
   trailingSlash: "never",
@@ -62,7 +50,7 @@ const gatsbyConfig: GatsbyConfig = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         entryLimit: 5000,
-        excludes: exclude,
+        excludes: trackingExclude,
       },
     },
     {
@@ -188,7 +176,7 @@ const gatsbyConfig: GatsbyConfig = {
           // Setting this parameter is also optional
           // respectDNT: true,
           // Avoids sending pageview hits from custom paths
-          exclude: exclude,
+          exclude: trackingExclude,
           // Defaults to https://www.googletagmanager.com
           // origin: "https://www.googletagmanager.com",
         },
