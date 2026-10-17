@@ -98,6 +98,17 @@ Other utilities: `GatsbyanUtils.tsx` (constants, `kebabCase`, tech tags), `Pagin
 - Runtime: `src/api/trending.ts` is a Gatsby Function that queries the GA4 Data API for the top 5 posts by organic Google search clicks over the last 30 days. Responses are cached until midnight Asia/Jakarta, when GA rolls over "yesterday".
 - `gatsby-plugin-google-gtag` handles page tracking with `ANALYTICS_MEASUREMENT_ID`.
 
+#### Fallback for blocked gtag
+
+Brave Shields, uBlock Origin and Firefox strict mode block gtag, so those visits never reach GA4. `src/utils/AnalyticsFallback.tsx` (wired into `onRouteUpdate` in `gatsby-browser.tsx`) then sends the events to `src/api/ituang.ts`, which forwards them to the same GA4 stream through the Measurement Protocol with `ANALYTICS_API_SECRET`. The endpoint name avoids words block lists match (`collect`, `track`, `analytics`, `hit`, `beacon`).
+
+- **Production only.** The client runs only when `window.location.origin` equals `siteConfig.url`, and the function answers 403 unless the `Origin` header does (`isSiteOrigin` in `src/utils/AnalyticsConfig.ts`). On `localhost`, Vercel previews and the extra production URLs (`gatsbyan-git-master-….vercel.app`) it adds no listeners, touches no storage and sends nothing. Changing the domain in `config.ts` moves tracking with it. gtag and the reading side (most viewed at build time, `/api/trending`) are unchanged.
+- **Detection.** On `load` + 3s the client checks `window.google_tag_manager` for a `G-` key. Blocker surrogate scripts (uBlock's `googletagmanager_gtm.js`, Firefox's Google Analytics shim) don't define it. Events raised before that are queued, sent if gtag is missing and dropped if it loaded, so nothing is counted twice. A blocker that lets `gtag/js` load but blocks its hits isn't detected.
+- **Events.** Only `page_view` (every route update, keeps GA4 reports consistent) and `scroll` (once per page at 90% depth, like enhanced measurement; feeds `scrolledUsers` for most viewed). A new event needs adding to `ANALYTICS_EVENTS` and the client.
+- **Privacy.** Paths in `window.excludeGtagPaths` and visitors who opted out (`window[window.disableStr]`, the plugin's `gaOptout()` cookie) send nothing. `clientId` and `sessionId` (new after 30 min idle) live in `localStorage` under `ituang`. Visitors with Global Privacy Control (Brave's default) get fresh ids per full page load, kept in memory only, so GA4 can't link their visits; a reader who scrolls the same post on two visits counts twice. The function never forwards the IP, cookies or user agent: location comes from Vercel's `x-vercel-ip-*` headers, the device category is derived from the user agent, language and screen size come from the client.
+- **Spam.** Path (format, length, the gtag exclude list in `trackingExclude`, shared with `gatsby-config.ts`), `Origin`, field format and a 1 KB body limit. No rate limiting: functions are stateless, it would need Vercel KV, and the public `/g/collect` with the `G-` ID from the page HTML is just as easy to spam.
+- Without `ANALYTICS_MEASUREMENT_ID` / `ANALYTICS_API_SECRET` the function answers 204 without forwarding. Upstream failures are logged and still answered with 204.
+
 ### Search
 
 `src/templates/search-page.tsx` uses `react-instantsearch` with an Algolia client that skips requests for empty queries. The `gatsby-plugin-algolia` entry in `gatsby-config.ts` is commented out, so builds don't update the index; `src/utils/Algolia.tsx` holds its queries, splitting long posts into chunks of at most 8500 characters.
