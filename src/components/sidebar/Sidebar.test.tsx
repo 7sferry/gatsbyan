@@ -15,6 +15,7 @@ import Tags from "./Tags.tsx";
 import TopTrendingPage from "./TopTrendingPage.tsx";
 import { mockStaticQueries, siteMetadata, useStaticQueryMock } from "../../test/staticQuery.ts";
 import { createImages, mockTrendingApi, trendingApi } from "../../test/fixtures.ts";
+import { clearTopTrendingCache } from "../../utils/TopTrendingFetcher.tsx";
 
 const posts = [
   { slug: "a", title: "Post A" },
@@ -52,6 +53,7 @@ describe("sidebar", () => {
   afterEach(() => {
     useStaticQueryMock.mockReset();
     fetchMock.mockRestore();
+    clearTopTrendingCache();
   });
 
   describe("Bio", () => {
