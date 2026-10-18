@@ -544,7 +544,7 @@ export interface SeoData {
   readonly title: string;
 }
 
-export type AnalyticsEventName = "page_view" | "scroll";
+export type AnalyticsEventName = "page_view" | "scroll" | "user_engagement";
 
 export interface AnalyticsEvent {
   readonly name: AnalyticsEventName;

@@ -3,7 +3,6 @@
  * on Oktober 2026      *
  ************************/
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
-import { Minimatch } from "minimatch";
 import siteConfig from "../../config.ts";
 import { AnalyticsEvent, AnalyticsEventName } from "../types/DataTypes.ts";
 import {
@@ -17,15 +16,13 @@ import {
   PATH_PATTERN,
   SCREEN_PATTERN,
   SESSION_ID_PATTERN,
-  trackingExclude,
   URL_PATTERN,
 } from "../utils/AnalyticsConfig.ts";
+import { isExcludedPath } from "../utils/TrackingExclude.ts";
 
 const MEASUREMENT_PROTOCOL_URL = "https://www.google-analytics.com/mp/collect";
 const MAX_BODY_BYTES = 1024;
 const SCROLL_PERCENT = 90;
-
-const excludedPaths = trackingExclude.map((glob) => new Minimatch(glob).makeRe());
 
 type Header = string | string[] | undefined;
 
@@ -64,7 +61,7 @@ const isOptionalText = (value: unknown, maxLength: number, pattern?: RegExp): va
   value === undefined || isText(value, maxLength, pattern);
 
 const isTrackedPath = (path: unknown): path is string =>
-  isText(path, MAX_PATH_LENGTH, PATH_PATTERN) && !excludedPaths.some((regex) => regex && regex.test(path));
+  isText(path, MAX_PATH_LENGTH, PATH_PATTERN) && !isExcludedPath(path);
 
 const isEngagement = (value: unknown): value is number =>
   Number.isInteger(value) && (value as number) >= 1 && (value as number) <= MAX_ENGAGEMENT_MS;

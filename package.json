@@ -10,7 +10,6 @@
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-catch-links": "^5.16.0",
     "gatsby-plugin-google-analytics-data-reporting-api": "^2.1.0",
-    "gatsby-plugin-google-gtag": "^5.16.0",
     "gatsby-plugin-image": "^3.16.0",
     "gatsby-plugin-manifest": "^5.16.0",
     "gatsby-plugin-offline": "^6.16.0",

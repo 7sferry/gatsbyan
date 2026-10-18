@@ -9,7 +9,7 @@
 import type { GatsbyBrowser } from "gatsby";
 import { Sign } from "./src/utils/Sign.tsx";
 import { ImageZoom } from "./src/components/ImageZoom.tsx";
-import { trackRouteUpdate } from "./src/utils/AnalyticsFallback.tsx";
+import { trackRouteUpdate } from "./src/utils/Analytics.tsx";
 
 export const onRouteUpdate: GatsbyBrowser["onRouteUpdate"] = ({ location, prevLocation }) => {
   trackRouteUpdate(location, prevLocation);

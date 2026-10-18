@@ -99,6 +99,8 @@ describe("ituang api", () => {
 
   test.each([
     ["an unknown event", { name: "purchase" }],
+    ["a session start", { name: "session_start" }],
+    ["a first visit", { name: "first_visit" }],
     ["a path without a leading slash", { path: "blog/a" }],
     ["a path with a query", { path: "/blog/a?x=1" }],
     ["a path with whitespace", { path: "/blog/a b" }],
@@ -181,6 +183,20 @@ describe("ituang api", () => {
     await callHandler(createRequest({ ...validEvent, name: "scroll" }));
 
     expect(sentPayload().events[0]).toMatchObject({ name: "scroll", params: { percent_scrolled: 90 } });
+  });
+
+  test("forwards user engagement without title or referrer", async () => {
+    const { title, referrer, ...engagement } = validEvent;
+
+    const response = await callHandler(createRequest({ ...engagement, name: "user_engagement", engagementMs: 5000 }));
+
+    expect(statusOf(response)).toBe(204);
+    expect(sentPayload().events).toEqual([
+      {
+        name: "user_engagement",
+        params: { page_location: `${SITE_URL}/blog/a`, session_id: "1792277505", engagement_time_msec: 5000 },
+      },
+    ]);
   });
 
   test("sends the vercel location without the ip address", async () => {

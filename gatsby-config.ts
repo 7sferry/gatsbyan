@@ -151,38 +151,6 @@ const gatsbyConfig: GatsbyConfig = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          // process.env.ANALYTICS_GA4, // Google Analytics / GA
-          process.env.ANALYTICS_MEASUREMENT_ID, // Google Analytics / GA
-          // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
-          // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
-        ],
-        // This object gets passed directly to the gtag config command
-        // This config will be shared across all trackingIds
-        gtagConfig: {
-          // optimize_id: process.env.ANALYTICS_OPTIMIZE_ID,
-          anonymize_ip: true,
-          cookie_domain: "ferry.vercel.app",
-          cookie_flags: "SameSite=None;Secure",
-          cookie_expires: 360 * 24 * 60 * 60,
-        },
-        // This object is used for configuration specific to this plugin
-        pluginConfig: {
-          // Puts tracking script in the head instead of the body
-          head: false,
-          // Setting this parameter is also optional
-          // respectDNT: true,
-          // Avoids sending pageview hits from custom paths
-          exclude: trackingExclude,
-          // Defaults to https://www.googletagmanager.com
-          // origin: "https://www.googletagmanager.com",
-        },
-      },
-    },
-    {
       resolve: `gatsby-plugin-purgecss`,
       options: {
         // printRejected: true, // Print removed selectors and processed file names

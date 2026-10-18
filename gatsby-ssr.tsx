@@ -4,6 +4,7 @@
  ************************/
 
 import * as React from "react";
+import { excludeTrackingPathsScript } from "./src/utils/TrackingExclude.ts";
 
 export function onPreRenderHTML({ getHeadComponents, replaceHeadComponents }: any) {
   const headComponents = getHeadComponents();
@@ -14,6 +15,7 @@ export function onPreRenderHTML({ getHeadComponents, replaceHeadComponents }: an
 
 export const onRenderBody = ({ setHeadComponents }: any) => {
   setHeadComponents([
+    <script key="exclude-tracking-paths" dangerouslySetInnerHTML={{ __html: excludeTrackingPathsScript() }} />,
     // <link
     //   key="work-sans-italic-vietnam"
     //   rel="preload"

@@ -7,7 +7,7 @@ import siteConfig from "../../config.ts";
 import { AnalyticsEventName } from "../types/DataTypes.ts";
 
 export const ANALYTICS_ENDPOINT = "/api/ituang";
-export const ANALYTICS_EVENTS: readonly AnalyticsEventName[] = ["page_view", "scroll"];
+export const ANALYTICS_EVENTS: readonly AnalyticsEventName[] = ["page_view", "scroll", "user_engagement"];
 
 export const MAX_PATH_LENGTH = 200;
 export const MAX_TEXT_LENGTH = 100;

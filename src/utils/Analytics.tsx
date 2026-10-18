@@ -18,19 +18,13 @@ import {
 
 declare global {
   interface Window {
-    excludeGtagPaths?: RegExp[];
-    disableStr?: string;
-    google_tag_manager?: Record<string, unknown>;
+    excludeTrackingPaths?: RegExp[];
   }
 
   interface Navigator {
     globalPrivacyControl?: boolean;
   }
 }
-
-type GtagState = "pending" | "gtag" | "fallback";
-
-type PendingEvent = Omit<AnalyticsEvent, "clientId" | "sessionId">;
 
 interface RouteLocation {
   readonly pathname: string;
@@ -47,17 +41,23 @@ interface IdStore {
   write(ids: Ids): void;
 }
 
-export interface AnalyticsFallback {
-  onRouteUpdate(location: RouteLocation, prevLocation?: RouteLocation | null): void;
+interface TrackedPage {
+  readonly path: string;
+  readonly isPost: boolean;
+  scrolled: boolean;
 }
 
-export interface AnalyticsFallbackOptions {
-  readonly gtagCheckDelayMs?: number;
+export interface Analytics {
+  onRouteUpdate(location: RouteLocation, prevLocation?: RouteLocation | null): void;
 }
 
 export const STORAGE_KEY = "ituang";
 const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
-const SCROLL_THRESHOLD = 0.9;
+const MIN_ENGAGEMENT_MS = 1000;
+const POST_PATH_PREFIX = "/blog/";
+const ARTICLE_SELECTOR = ".content-post";
+const GA_COOKIE = "_ga";
+const GA_COOKIE_PATTERN = /^GA1\.\d+\.(.+)$/;
 
 const isIds = (value: unknown): value is Ids => {
   const ids = value as Ids | null;
@@ -92,28 +92,37 @@ const localStore: IdStore = {
 
 const randomNumber = () => crypto.getRandomValues(new Uint32Array(1))[0];
 
-const renewIds = (previous: Ids | null, now: number): Ids => {
+const renewIds = (previous: Ids | null, now: number, migratedClientId?: string): Ids => {
   const seconds = Math.floor(now / 1000);
   const sameSession = previous !== null && now - previous.lastSeen < SESSION_TIMEOUT_MS;
   return {
-    clientId: previous?.clientId ?? `${randomNumber()}.${seconds}`,
+    clientId: previous?.clientId ?? migratedClientId ?? `${randomNumber()}.${seconds}`,
     sessionId: sameSession ? previous.sessionId : String(seconds),
     lastSeen: now,
   };
+};
+
+const readGaCookies = () =>
+  document.cookie
+    .split(";")
+    .map((cookie) => cookie.trim().split("="))
+    .filter(([name]) => name === GA_COOKIE || name.startsWith(`${GA_COOKIE}_`));
+
+const gaClientId = (cookies: string[][]) => {
+  const value = cookies.find(([name]) => name === GA_COOKIE)?.[1] ?? "";
+  const clientId = GA_COOKIE_PATTERN.exec(value)?.[1];
+  return clientId && CLIENT_ID_PATTERN.test(clientId) ? clientId : undefined;
+};
+
+const expireCookie = ([name]: string[]) => {
+  document.cookie = `${name}=; domain=${window.location.hostname}; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
 };
 
 const truncate = (text: string) => text.slice(0, MAX_TEXT_LENGTH) || undefined;
 
 const pageReferrer = (url: string) => (URL_PATTERN.test(url) ? truncate(url) : undefined);
 
-const hasGtag = () => Object.keys(window.google_tag_manager ?? {}).some((key) => key.startsWith("G-"));
-
-const isExcluded = (path: string) => (window.excludeGtagPaths ?? []).some((regex) => regex.test(path));
-
-const isOptedOut = () => {
-  const key = window.disableStr;
-  return typeof key === "string" && (window as unknown as Record<string, unknown>)[key] === true;
-};
+const isExcluded = (path: string) => (window.excludeTrackingPaths ?? []).some((regex) => regex.test(path));
 
 const deviceInfo = () => {
   const language = navigator.language;
@@ -141,18 +150,15 @@ const afterRender = (callback: () => void) => {
   requestAnimationFrame(() => requestAnimationFrame(callback));
 };
 
-const disabled: AnalyticsFallback = { onRouteUpdate: () => undefined };
+const disabled: Analytics = { onRouteUpdate: () => undefined };
 
-export function createAnalyticsFallback({ gtagCheckDelayMs = 3000 }: AnalyticsFallbackOptions = {}): AnalyticsFallback {
+export function createAnalytics(): Analytics {
   if (!isSiteOrigin(window.location.origin)) {
     return disabled;
   }
 
-  let state: GtagState = "pending";
-  let queue: PendingEvent[] = [];
   let store: IdStore = navigator.globalPrivacyControl === true ? memoryStore() : localStore;
-  let currentPath: string | null = null;
-  let scrolled = false;
+  let page: TrackedPage | null = null;
   let scrollFrame = 0;
   let engagedMs = 0;
   let visibleSince: number | null = document.hidden ? null : Date.now();
@@ -164,9 +170,11 @@ export function createAnalyticsFallback({ gtagCheckDelayMs = 3000 }: AnalyticsFa
     } catch {
       store = memoryStore();
     }
-    const ids = renewIds(previous, Date.now());
+    const gaCookies = previous === null && store === localStore ? readGaCookies() : [];
+    const ids = renewIds(previous, Date.now(), gaClientId(gaCookies));
     try {
       store.write(ids);
+      gaCookies.forEach(expireCookie);
     } catch {
       store = memoryStore();
       store.write(ids);
@@ -174,74 +182,65 @@ export function createAnalyticsFallback({ gtagCheckDelayMs = 3000 }: AnalyticsFa
     return ids;
   };
 
-  const takeEngagement = () => {
-    const now = Date.now();
-    const total = engagedMs + (visibleSince === null ? 0 : now - visibleSince);
+  const engagedTime = () => engagedMs + (visibleSince === null ? 0 : Date.now() - visibleSince);
+
+  const resetEngagement = () => {
     engagedMs = 0;
-    visibleSince = document.hidden ? null : now;
+    visibleSince = document.hidden ? null : Date.now();
+  };
+
+  const takeEngagement = () => {
+    const total = engagedTime();
+    resetEngagement();
     return Math.min(Math.max(1, Math.round(total)), MAX_ENGAGEMENT_MS);
   };
 
-  const deliver = (event: PendingEvent) => {
+  const deliver = (
+    name: AnalyticsEventName,
+    path: string,
+    engagementMs: number,
+    details: Pick<AnalyticsEvent, "title" | "referrer"> = {}
+  ) => {
     const { clientId, sessionId } = nextIds();
-    send({ ...event, clientId, sessionId });
+    send({ name, path, ...details, clientId, sessionId, engagementMs, ...deviceInfo() });
   };
 
-  const raise = (name: AnalyticsEventName, path: string, page: Pick<AnalyticsEvent, "title" | "referrer"> = {}) => {
-    if (state === "gtag" || isOptedOut()) {
-      return;
-    }
-    const event: PendingEvent = { name, path, ...page, engagementMs: takeEngagement(), ...deviceInfo() };
-    if (state === "fallback") {
-      deliver(event);
-    } else {
-      queue.push(event);
-    }
-  };
-
-  const detectGtag = () => {
-    state = hasGtag() ? "gtag" : "fallback";
-    const pending = queue;
-    queue = [];
-    if (state === "fallback") {
-      pending.forEach(deliver);
+  const sendEngagement = (path: string) => {
+    if (engagedTime() >= MIN_ENGAGEMENT_MS) {
+      deliver("user_engagement", path, takeEngagement());
     }
   };
 
   const checkScroll = () => {
     scrollFrame = 0;
-    const height = document.documentElement.scrollHeight;
-    if (scrolled || currentPath === null || height <= window.innerHeight) {
+    if (!page?.isPost || page.scrolled) {
       return;
     }
-    if (window.scrollY + window.innerHeight >= height * SCROLL_THRESHOLD) {
-      scrolled = true;
-      raise("scroll", currentPath);
+    const article = document.querySelector(ARTICLE_SELECTOR);
+    if (article && article.getBoundingClientRect().bottom <= window.innerHeight) {
+      page.scrolled = true;
+      deliver("scroll", page.path, takeEngagement());
     }
   };
-
-  const scheduleDetection = () => {
-    setTimeout(detectGtag, gtagCheckDelayMs);
-  };
-  if (document.readyState === "complete") {
-    scheduleDetection();
-  } else {
-    window.addEventListener("load", scheduleDetection, { once: true });
-  }
 
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) {
       visibleSince = Date.now();
-    } else if (visibleSince !== null) {
+      return;
+    }
+    if (visibleSince !== null) {
       engagedMs += Date.now() - visibleSince;
       visibleSince = null;
+    }
+    if (page) {
+      sendEngagement(page.path);
     }
   });
 
   window.addEventListener(
     "scroll",
     () => {
-      if (!scrollFrame) {
+      if (!scrollFrame && page?.isPost && !page.scrolled) {
         scrollFrame = requestAnimationFrame(checkScroll);
       }
     },
@@ -250,23 +249,26 @@ export function createAnalyticsFallback({ gtagCheckDelayMs = 3000 }: AnalyticsFa
 
   return {
     onRouteUpdate(location, prevLocation) {
+      if (page) {
+        sendEngagement(page.path);
+      }
+      resetEngagement();
       const path = location.pathname;
-      scrolled = false;
-      currentPath = isExcluded(path) ? null : path;
-      if (currentPath === null) {
+      page = isExcluded(path) ? null : { path, isPost: path.startsWith(POST_PATH_PREFIX), scrolled: false };
+      if (page === null) {
         return;
       }
       const referrer = prevLocation ? `${window.location.origin}${prevLocation.pathname}` : document.referrer;
       afterRender(() =>
-        raise("page_view", path, { title: truncate(document.title), referrer: pageReferrer(referrer) })
+        deliver("page_view", path, 1, { title: truncate(document.title), referrer: pageReferrer(referrer) })
       );
     },
   };
 }
 
-let analyticsFallback: AnalyticsFallback | undefined;
+let analytics: Analytics | undefined;
 
-export const trackRouteUpdate: AnalyticsFallback["onRouteUpdate"] = (location, prevLocation) => {
-  analyticsFallback ??= createAnalyticsFallback();
-  analyticsFallback.onRouteUpdate(location, prevLocation);
+export const trackRouteUpdate: Analytics["onRouteUpdate"] = (location, prevLocation) => {
+  analytics ??= createAnalytics();
+  analytics.onRouteUpdate(location, prevLocation);
 };
