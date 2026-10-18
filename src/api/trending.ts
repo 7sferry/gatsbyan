@@ -4,7 +4,6 @@
  ************************/
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import { getReport, ReportingPluginOption, TrendingReport } from "gatsby-plugin-google-analytics-data-reporting-api";
-import Header from "../components/header/Header.tsx";
 
 const DAY_SECONDS = 24 * 3600;
 const JAKARTA_OFFSET_SECONDS = 7 * 3600;
