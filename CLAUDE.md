@@ -88,7 +88,7 @@ Templates receive context from gatsby-node (skip, limit, tag, kebabTag, slug) an
 - **MostViewedCounter.tsx** — most viewed posts from `allPageViews` (GA4 data, sourced at build time)
 - **GetArchiveQuery.tsx**, **GetTagsQuery.tsx** — archive and tag data
 
-**TopTrendingFetcher.tsx** is different: it fetches `/api/trending` in the browser.
+**TopTrendingFetcher.tsx** is different: it fetches `/api/trending` in the browser, once per full page load. Client-side navigation reuses the result; a failed request is retried on the next page.
 
 Other utilities: `GatsbyanUtils.tsx` (constants, `kebabCase`, tech tags), `PagingUtils.tsx`, `DateUtils.tsx`, `Photo.tsx` (art-directed bio image), `Algolia.tsx` (index queries), `ValueAveragingStockCalculator.tsx` and `VcaUtils.tsx` (calculator logic and rupiah formatting).
 
