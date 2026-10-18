@@ -9,8 +9,10 @@
 import type { GatsbyBrowser } from "gatsby";
 import { Sign } from "./src/utils/Sign.tsx";
 import { ImageZoom } from "./src/components/ImageZoom.tsx";
+import { trackRouteUpdate } from "./src/utils/Analytics.tsx";
 
-export const onRouteUpdate: GatsbyBrowser["onRouteUpdate"] = () => {
+export const onRouteUpdate: GatsbyBrowser["onRouteUpdate"] = ({ location, prevLocation }) => {
+  trackRouteUpdate(location, prevLocation);
   ImageZoom();
   if (!navigator.clipboard || !window.isSecureContext) {
     return;

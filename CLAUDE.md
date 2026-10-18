@@ -96,7 +96,25 @@ Other utilities: `GatsbyanUtils.tsx` (constants, `kebabCase`, tech tags), `Pagin
 
 - Build time: `gatsby-plugin-google-analytics-data-reporting-api` sources page views (`scrolledUsers`) for the most viewed sidebar.
 - Runtime: `src/api/trending.ts` is a Gatsby Function that queries the GA4 Data API for the top 5 posts by organic Google search clicks over the last 30 days. Responses are cached until midnight Asia/Jakarta, when GA rolls over "yesterday".
-- `gatsby-plugin-google-gtag` handles page tracking with `ANALYTICS_MEASUREMENT_ID`.
+- Tracking: fully server side, no gtag (definitions, how it works and examples in `ANALYTICS.md`). `src/utils/Analytics.tsx` (wired into `onRouteUpdate` in `gatsby-browser.tsx`) sends events to `src/api/ituang.ts`, which forwards them to the GA4 stream through the Measurement Protocol with `ANALYTICS_MEASUREMENT_ID` and `ANALYTICS_API_SECRET` (both server only). The endpoint name avoids words block lists match (`collect`, `track`, `analytics`, `hit`, `beacon`), so Brave Shields, uBlock Origin and Firefox strict mode don't block it.
+
+#### Server-side tracking
+
+- **Production only.** The client runs only when `window.location.origin` equals `siteConfig.url`, and the function answers 403 unless the `Origin` header does (`isSiteOrigin` in `src/utils/AnalyticsConfig.ts`). On `localhost`, Vercel previews and the extra production URLs (`gatsbyan-git-master-….vercel.app`) it adds no listeners, touches no storage and sends nothing. Changing the domain in `config.ts` moves tracking with it.
+- **Events.** A new event needs adding to `ANALYTICS_EVENTS` and the client. All carry `engagement_time_msec`, and GA4 credits it to the event's page, so a page's time goes out with that page's own `scroll` or `user_engagement`, never with the next `page_view`. Only visible time counts.
+
+  | Event | When | Feeds |
+  |---|---|---|
+  | `page_view` | every route update, engagement 1 ms | Views, Users, page path/title, Page referrer, country, device category |
+  | `scroll` | once per `/blog/` post, from a scroll event, when the bottom of `.content-post` is within 300 px of the viewport bottom (`ARTICLE_END_TOLERANCE_PX`); `percent_scrolled: 90` | `scrolledUsers` → most viewed sidebar |
+  | `user_engagement` | leaving a page (before the next `page_view`) and hiding the tab, skipped under 1 s (short periods add up until then); no title or referrer | engagement time per page |
+
+  `scroll` means "finished the article" from the deploy of this change on; before, gtag sent it at 90% of the whole page including comments. A post that fits on screen sends no `scroll`.
+- **What GA4 shows.** Works: Views, Total/Active users, Views per user, Scrolled users, Event count, Realtime, page path/title, Page referrer, country/region/city, device category, language, screen resolution. Unreliable or gone: Sessions, New users, Engaged sessions and Engagement rate (no `session_start` / `first_visit`), session source / medium and the Acquisition reports, browser and OS (no user agent parser), demographics, enhanced measurement (outbound clicks, downloads, site search, forms). `/api/trending` uses Search Console data and isn't affected.
+- **Excluded paths.** `trackingExclude` in `AnalyticsConfig.ts` is the single list for the sitemap, the client and the function. `src/utils/TrackingExclude.ts` compiles it with minimatch; `onRenderBody` in `gatsby-ssr.tsx` renders the regexes inline as `window.excludeTrackingPaths`, so minimatch never reaches the browser bundle.
+- **Privacy.** No cookies. `clientId` and `sessionId` (new after 30 min idle) live in `localStorage` under `ituang`. A visitor with nothing stored keeps the id from an old gtag `_ga` cookie (`GA1.1.<clientId>`); the `_ga` and `_ga_*` cookies are then expired. Visitors with Global Privacy Control (Brave's default) get fresh ids per full page load, kept in memory only, and their cookies aren't read, so GA4 can't link their visits; a reader who scrolls the same post on two visits counts twice. The function never forwards the IP, cookies or user agent: location comes from Vercel's `x-vercel-ip-*` headers, the device category is derived from the user agent, language and screen size come from the client.
+- **Spam.** Path (format, length, `trackingExclude`), `Origin`, event name, field format and a 1 KB body limit. No rate limiting: functions are stateless and it would need Vercel KV.
+- Without `ANALYTICS_MEASUREMENT_ID` / `ANALYTICS_API_SECRET` the function answers 204 without forwarding. Upstream failures are logged and still answered with 204.
 
 ### Search
 
@@ -124,7 +142,7 @@ All types are centralized in `src/types/DataTypes.ts`. Config files (gatsby-conf
 
 Required for full functionality (see `.env.EXAMPLE`):
 - **CMS**: `SPACEID`, `TOKEN`, `PREVIEW_TOKEN`
-- **Analytics**: `ANALYTICS_EMAIL`, `ANALYTICS_PRIVATE_KEY`, `ANALYTICS_GA4`, `ANALYTICS_MEASUREMENT_ID`
+- **Analytics**: `ANALYTICS_EMAIL`, `ANALYTICS_PRIVATE_KEY`, `ANALYTICS_GA4`, `ANALYTICS_MEASUREMENT_ID`, `ANALYTICS_API_SECRET` (the last two are server only, for `/api/ituang`)
 - **Search** (optional): `GATSBY_ALGOLIA_APP_ID`, `GATSBY_ALGOLIA_INDEX_NAME`, `GATSBY_ALGOLIA_SEARCH_KEY`, `ALGOLIA_ADMIN_KEY`
 
 Only `GATSBY_`-prefixed variables reach the browser bundle.

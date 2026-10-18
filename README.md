@@ -56,14 +56,14 @@ See `package.json` for the full list.
 | `SPACEID`, `TOKEN` | Contentful Delivery API |
 | `PREVIEW_TOKEN` | Contentful Preview API. When set, `gatsby develop` shows draft content; `gatsby build` always uses published content |
 | `ANALYTICS_EMAIL`, `ANALYTICS_PRIVATE_KEY`, `ANALYTICS_GA4` | GA4 Data API service account and property ID, for the most viewed posts (build time) and `/api/trending` (runtime) |
-| `ANALYTICS_MEASUREMENT_ID` | GA4 measurement ID for gtag page tracking |
+| `ANALYTICS_MEASUREMENT_ID`, `ANALYTICS_API_SECRET` | GA4 measurement ID and Measurement Protocol API secret for page tracking through `/api/ituang` (server only) |
 | `GATSBY_ALGOLIA_APP_ID`, `GATSBY_ALGOLIA_INDEX_NAME`, `GATSBY_ALGOLIA_SEARCH_KEY` | Algolia search from the browser |
 | `ALGOLIA_ADMIN_KEY` | Pushing posts to the Algolia index at build time |
 
 ### Optional Integrations
 
 - **Algolia indexing**: the `gatsby-plugin-algolia` entry in `gatsby-config.ts` is commented out, so builds don't update the index. Uncomment it to push posts, using the queries in `src/utils/Algolia.tsx`. If you don't use search, remove `src/templates/search-page.tsx`, the `/search` page and the search slices in `gatsby-node.ts`.
-- **Google Analytics**: if you don't use it, remove `gatsby-plugin-google-analytics-data-reporting-api` and `gatsby-plugin-google-gtag` from `gatsby-config.ts`, and `MostViewedPage` and `TopTrendingPage` from `src/components/sidebar/RightSidebar.tsx`.
+- **Google Analytics**: if you don't use it, remove `gatsby-plugin-google-analytics-data-reporting-api` from `gatsby-config.ts`, `trackRouteUpdate` from `gatsby-browser.tsx`, `src/api/ituang.ts`, and `MostViewedPage` and `TopTrendingPage` from `src/components/sidebar/RightSidebar.tsx`.
 - **Featured posts**: the featured slugs are hardcoded in `src/utils/FeaturedPageFetcher.tsx`.
 
 ## Scripts

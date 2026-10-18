@@ -543,3 +543,17 @@ export interface SeoData {
   readonly schemaDataJson: string;
   readonly title: string;
 }
+
+export type AnalyticsEventName = "page_view" | "scroll" | "user_engagement";
+
+export interface AnalyticsEvent {
+  readonly name: AnalyticsEventName;
+  readonly path: string;
+  readonly title?: string;
+  readonly referrer?: string;
+  readonly clientId: string;
+  readonly sessionId: string;
+  readonly engagementMs: number;
+  readonly language?: string;
+  readonly screen?: string;
+}

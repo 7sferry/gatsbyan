@@ -5,6 +5,7 @@
 
 import type { GatsbyConfig } from "gatsby";
 import siteConfig from "./config.ts";
+import { trackingExclude } from "./src/utils/AnalyticsConfig.ts";
 import "dotenv/config";
 
 function isProduction() {
@@ -19,19 +20,6 @@ const contentfulConfig = {
   // assetDownloadWorkers: 25,
   // downloadLocal: true,
 };
-const exclude = [
-  "/tags/**",
-  "/search",
-  "/archive",
-  "/404",
-  "/404.html",
-  "/page/**",
-  "^[^?]+(\\?.*)",
-  ".json$",
-  "[?]",
-  "[#]",
-  "[%]",
-];
 
 const gatsbyConfig: GatsbyConfig = {
   trailingSlash: "never",
@@ -62,7 +50,7 @@ const gatsbyConfig: GatsbyConfig = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         entryLimit: 5000,
-        excludes: exclude,
+        excludes: trackingExclude,
       },
     },
     {
@@ -160,38 +148,6 @@ const gatsbyConfig: GatsbyConfig = {
         startDate: `2020-01-01`,
         endDate: `today`,
         regexFilter: `^/blog/`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          // process.env.ANALYTICS_GA4, // Google Analytics / GA
-          process.env.ANALYTICS_MEASUREMENT_ID, // Google Analytics / GA
-          // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
-          // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
-        ],
-        // This object gets passed directly to the gtag config command
-        // This config will be shared across all trackingIds
-        gtagConfig: {
-          // optimize_id: process.env.ANALYTICS_OPTIMIZE_ID,
-          anonymize_ip: true,
-          cookie_domain: "ferry.vercel.app",
-          cookie_flags: "SameSite=None;Secure",
-          cookie_expires: 360 * 24 * 60 * 60,
-        },
-        // This object is used for configuration specific to this plugin
-        pluginConfig: {
-          // Puts tracking script in the head instead of the body
-          head: false,
-          // Setting this parameter is also optional
-          // respectDNT: true,
-          // Avoids sending pageview hits from custom paths
-          exclude: exclude,
-          // Defaults to https://www.googletagmanager.com
-          // origin: "https://www.googletagmanager.com",
-        },
       },
     },
     {
