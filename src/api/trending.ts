@@ -36,9 +36,13 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
     return;
   }
   const country = headerValue(req.headers["x-vercel-ip-country"]);
+  const region = headerValue(req.headers["x-vercel-ip-country-region"]);
+  const encodedCity = headerValue(req.headers["x-vercel-ip-city"]);
   res.setHeader("Cache-Control", `public, max-age=${ttl}, s-maxage=${ttl + 3600}, stale-while-revalidate=300`).json({
     nodes: reports,
     country: country,
+    region: region,
+    encodedCity: encodedCity,
   });
 }
 
