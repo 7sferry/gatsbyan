@@ -4,7 +4,6 @@
  ************************/
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import { getReport, ReportingPluginOption, TrendingReport } from "gatsby-plugin-google-analytics-data-reporting-api";
-import Header from "../components/header/Header.tsx";
 
 const DAY_SECONDS = 24 * 3600;
 const JAKARTA_OFFSET_SECONDS = 7 * 3600;
@@ -15,7 +14,7 @@ function constructTtlExpirationToMidnight() {
   return DAY_SECONDS - (jakartaSeconds % DAY_SECONDS);
 }
 
-export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
+export default async function handler(_: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   let ttl = constructTtlExpirationToMidnight();
   let opt: ReportingPluginOption = {
     privateKey: process.env.ANALYTICS_PRIVATE_KEY,
@@ -36,13 +35,7 @@ export default async function handler(req: GatsbyFunctionRequest, res: GatsbyFun
     res.status(500).setHeader("Cache-Control", "no-store").json({ nodes: [] });
     return;
   }
-  const country = headerValue(req.headers["x-vercel-ip-country"]);
   res.setHeader("Cache-Control", `public, max-age=${ttl}, s-maxage=${ttl + 3600}, stale-while-revalidate=300`).json({
     nodes: reports,
-    country: country,
   });
 }
-
-type Header = string | string[] | undefined;
-
-const headerValue = (header: Header) => (Array.isArray(header) ? header[0] : header);
