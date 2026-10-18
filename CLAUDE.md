@@ -96,7 +96,7 @@ Other utilities: `GatsbyanUtils.tsx` (constants, `kebabCase`, tech tags), `Pagin
 
 - Build time: `gatsby-plugin-google-analytics-data-reporting-api` sources page views (`scrolledUsers`) for the most viewed sidebar.
 - Runtime: `src/api/trending.ts` is a Gatsby Function that queries the GA4 Data API for the top 5 posts by organic Google search clicks over the last 30 days. Responses are cached until midnight Asia/Jakarta, when GA rolls over "yesterday".
-- Tracking: fully server side, no gtag. `src/utils/Analytics.tsx` (wired into `onRouteUpdate` in `gatsby-browser.tsx`) sends events to `src/api/ituang.ts`, which forwards them to the GA4 stream through the Measurement Protocol with `ANALYTICS_MEASUREMENT_ID` and `ANALYTICS_API_SECRET` (both server only). The endpoint name avoids words block lists match (`collect`, `track`, `analytics`, `hit`, `beacon`), so Brave Shields, uBlock Origin and Firefox strict mode don't block it.
+- Tracking: fully server side, no gtag (definitions, how it works and examples in `ANALYTICS.md`). `src/utils/Analytics.tsx` (wired into `onRouteUpdate` in `gatsby-browser.tsx`) sends events to `src/api/ituang.ts`, which forwards them to the GA4 stream through the Measurement Protocol with `ANALYTICS_MEASUREMENT_ID` and `ANALYTICS_API_SECRET` (both server only). The endpoint name avoids words block lists match (`collect`, `track`, `analytics`, `hit`, `beacon`), so Brave Shields, uBlock Origin and Firefox strict mode don't block it.
 
 #### Server-side tracking
 
