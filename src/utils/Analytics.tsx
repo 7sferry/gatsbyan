@@ -56,6 +56,7 @@ const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
 const MIN_ENGAGEMENT_MS = 1000;
 const POST_PATH_PREFIX = "/blog/";
 const ARTICLE_SELECTOR = ".content-post";
+const ARTICLE_END_TOLERANCE_PX = 300;
 const GA_COOKIE = "_ga";
 const GA_COOKIE_PATTERN = /^GA1\.\d+\.(.+)$/;
 
@@ -217,7 +218,7 @@ export function createAnalytics(): Analytics {
       return;
     }
     const article = document.querySelector(ARTICLE_SELECTOR);
-    if (article && article.getBoundingClientRect().bottom <= window.innerHeight) {
+    if (article && article.getBoundingClientRect().bottom <= window.innerHeight + ARTICLE_END_TOLERANCE_PX) {
       page.scrolled = true;
       deliver("scroll", page.path, takeEngagement());
     }

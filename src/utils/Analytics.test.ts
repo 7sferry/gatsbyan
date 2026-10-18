@@ -267,12 +267,12 @@ describe("createAnalytics", () => {
   });
 
   describe("article end scroll", () => {
-    test("is sent once when the end of the article becomes visible", async () => {
+    test("is sent once when the end of the article is within 300px of the viewport", async () => {
       await loadPage("/blog/a");
 
       await scrollArticleTo(3000);
-      await scrollArticleTo(769);
-      await scrollArticleTo(768);
+      await scrollArticleTo(1069);
+      await scrollArticleTo(1068);
       await scrollArticleTo(-200);
 
       expect(await sentNames()).toEqual(["page_view /blog/a", "scroll /blog/a"]);

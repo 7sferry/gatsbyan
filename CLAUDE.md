@@ -106,7 +106,7 @@ Other utilities: `GatsbyanUtils.tsx` (constants, `kebabCase`, tech tags), `Pagin
   | Event | When | Feeds |
   |---|---|---|
   | `page_view` | every route update, engagement 1 ms | Views, Users, page path/title, Page referrer, country, device category |
-  | `scroll` | once per `/blog/` post, from a scroll event, when the bottom of `.content-post` is in the viewport; `percent_scrolled: 90` | `scrolledUsers` → most viewed sidebar |
+  | `scroll` | once per `/blog/` post, from a scroll event, when the bottom of `.content-post` is within 300 px of the viewport bottom (`ARTICLE_END_TOLERANCE_PX`); `percent_scrolled: 90` | `scrolledUsers` → most viewed sidebar |
   | `user_engagement` | leaving a page (before the next `page_view`) and hiding the tab, skipped under 1 s (short periods add up until then); no title or referrer | engagement time per page |
 
   `scroll` means "finished the article" from the deploy of this change on; before, gtag sent it at 90% of the whole page including comments. A post that fits on screen sends no `scroll`.
