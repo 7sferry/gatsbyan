@@ -44,6 +44,7 @@ interface IdStore {
 interface TrackedPage {
   readonly path: string;
   readonly isPost: boolean;
+  title?: string;
   scrolled: boolean;
 }
 
@@ -147,7 +148,7 @@ const send = (event: AnalyticsEvent) => {
   }).catch(() => undefined);
 };
 
-const afterRender = (callback: () => void) => {
+const afterNextRender = (callback: () => void) => {
   requestAnimationFrame(() => requestAnimationFrame(callback));
 };
 
@@ -196,19 +197,22 @@ export function createAnalytics(): Analytics {
     return Math.min(Math.max(1, Math.round(total)), MAX_ENGAGEMENT_MS);
   };
 
-  const deliver = (
-    name: AnalyticsEventName,
-    path: string,
-    engagementMs: number,
-    details: Pick<AnalyticsEvent, "title" | "referrer"> = {}
-  ) => {
+  const deliver = (name: AnalyticsEventName, tracked: TrackedPage, engagementMs: number, referrer?: string) => {
     const { clientId, sessionId } = nextIds();
-    send({ name, path, ...details, clientId, sessionId, engagementMs, ...deviceInfo() });
+    const { path, title } = tracked;
+    send({ name, path, title, referrer, clientId, sessionId, engagementMs, ...deviceInfo() });
   };
 
-  const sendEngagement = (path: string) => {
-    if (engagedTime() >= MIN_ENGAGEMENT_MS) {
-      deliver("user_engagement", path, takeEngagement());
+  const sendEngagement = () => {
+    if (page && engagedTime() >= MIN_ENGAGEMENT_MS) {
+      deliver("user_engagement", page, takeEngagement());
+    }
+  };
+
+  const pauseEngagement = () => {
+    if (visibleSince !== null) {
+      engagedMs += Date.now() - visibleSince;
+      visibleSince = null;
     }
   };
 
@@ -220,22 +224,21 @@ export function createAnalytics(): Analytics {
     const article = document.querySelector(ARTICLE_SELECTOR);
     if (article && article.getBoundingClientRect().bottom <= window.innerHeight + ARTICLE_END_TOLERANCE_PX) {
       page.scrolled = true;
-      deliver("scroll", page.path, takeEngagement());
+      deliver("scroll", page, takeEngagement());
     }
   };
 
   document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) {
+    if (document.hidden) {
+      pauseEngagement();
+    } else {
       visibleSince = Date.now();
-      return;
     }
-    if (visibleSince !== null) {
-      engagedMs += Date.now() - visibleSince;
-      visibleSince = null;
-    }
-    if (page) {
-      sendEngagement(page.path);
-    }
+  });
+
+  window.addEventListener("pagehide", () => {
+    pauseEngagement();
+    sendEngagement();
   });
 
   window.addEventListener(
@@ -250,19 +253,19 @@ export function createAnalytics(): Analytics {
 
   return {
     onRouteUpdate(location, prevLocation) {
-      if (page) {
-        sendEngagement(page.path);
-      }
+      sendEngagement();
       resetEngagement();
       const path = location.pathname;
       page = isExcluded(path) ? null : { path, isPost: path.startsWith(POST_PATH_PREFIX), scrolled: false };
       if (page === null) {
         return;
       }
+      const tracked = page;
       const referrer = prevLocation ? `${window.location.origin}${prevLocation.pathname}` : document.referrer;
-      afterRender(() =>
-        deliver("page_view", path, 1, { title: truncate(document.title), referrer: pageReferrer(referrer) })
-      );
+      afterNextRender(() => {
+        tracked.title = truncate(document.title);
+        deliver("page_view", tracked, 1, pageReferrer(referrer));
+      });
     },
   };
 }

@@ -33,7 +33,7 @@ gatsby build ◀──────────── GA4 Data API (scrolledUsers
 | **Engagement time** | Milliseconds the page was **visible** (tab in front, window not minimized). Hidden time never counts. Sent as `engagement_time_msec` on every event. |
 | **Tracked page** | Any path not in `trackingExclude` (tag pages, `/page/n`, `/search`, `/archive`, `/404`). Excluded pages send nothing at all. |
 | **Post** | A path starting with `/blog/`. Only posts send `scroll`. |
-| **Leaving a page** | Navigating to another page on the site, or the tab becoming hidden: switching tabs, minimizing, locking the phone, closing the tab, reloading, following an external link. |
+| **Leaving a page** | Navigating to another page on the site, or the page being unloaded (`pagehide`): closing the tab or window, reloading, following an external link. Switching tabs, minimizing or locking the phone only pause the engagement time. |
 
 ## Events
 
@@ -45,6 +45,12 @@ gatsby build ◀──────────── GA4 Data API (scrolledUsers
 
 GA4 credits engagement time to the page in the event's `page_location`. That is why the time spent on a page is sent
 with that page's own `scroll` or `user_engagement`, and never with the next page's `page_view`.
+
+Every event carries the page's title as `page_title`, like gtag does. GA4 reads the title per event, so without it
+the time from `scroll` and `user_engagement` would land in a `(not set)` row of reports grouped by page title, such as
+the default view of Pages and screens. The title is read once, for the `page_view`, and kept for the page's later
+events, because `document.title` may already belong to the next page when its route update sends the old page's
+`user_engagement`. Only `page_view` carries the referrer.
 
 ### `page_view`
 
@@ -75,24 +81,32 @@ article.getBoundingClientRect().bottom <= window.innerHeight + ARTICLE_END_TOLER
 
 ### `user_engagement`
 
-gtag sends a `user_engagement` every time a reader leaves a page, with the time spent there. This client does the
-same, with one difference: **it skips anything under 1 s** (`MIN_ENGAGEMENT_MS`).
+gtag sends a `user_engagement` every time a reader leaves a page or hides the tab, with the time spent there. This
+client differs in two ways:
+
+- **Hiding the tab sends nothing.** Switching tabs, minimizing or locking the phone only pause the counter. The time
+  goes out once, when the reader navigates to another page or the page is unloaded (`pagehide`), so a reader who
+  switches tabs ten times while reading still costs one call.
+- **It skips anything under 1 s** (`MIN_ENGAGEMENT_MS`).
+
+The price of the first is lost time when no `pagehide` comes. Mobile browsers often don't fire it: a reader who
+switches to another app and never returns, whose tab the OS discards in the background, or who closes the tab from
+the tab switcher (iOS Safari, Chrome on Android) sends no `user_engagement` for that page. Its `page_view` and
+`scroll` still count; only the time since the page's last event is lost. On desktop, closing a tab or window fires
+`pagehide` reliably.
 
 The minimum is mainly a noise filter. It drops the events that carry almost nothing: bounces under a second, a quick
-alt-tab back and forth, a tab switch right after `scroll`, clicking straight through a page. Real reading time is
+look before leaving, a close right after `scroll`, clicking straight through a page. Real reading time is
 usually tens of seconds, so almost every leave still sends its `user_engagement`, and the minimum saves only a few
 function calls. A higher value wouldn't save much more but would lose real data: short visits would drop out of
-average engagement time and inflate it, and time under the minimum is lost on navigation or when a hidden tab is
-closed.
+average engagement time and inflate it, and time under the minimum is lost on navigation or when the page is closed.
 
 What happens to time under 1 s:
 
-- **Tab hidden:** nothing is sent and the time is kept. If the reader comes back, the next visible time is added to
-  it, and it goes out once the total reaches 1 s.
-- **Navigation to another page:** nothing is sent and the time is dropped, because the next time belongs to the new
-  page. At most just under a second is lost per page.
+- **Navigation to another page or closing it:** nothing is sent and the time is dropped, because the next time
+  belongs to the new page. At most just under a second is lost per page.
 
-No title or referrer: GA4 only needs the page path to credit the time.
+Short visible periods between tab switches add up, so they count once the page is left.
 
 ### Engagement time cap
 
@@ -155,20 +169,20 @@ No rate limiting: functions are stateless, and it would need Vercel KV.
 |---|---|---|
 | 0 s | opens `/blog/a` from Google | `page_view /blog/a`, 1 ms, referrer `https://www.google.com/` |
 | 40 s | scrolls near the end of the article | `scroll /blog/a`, 40 000 ms |
-| 55 s | switches to another tab | `user_engagement /blog/a`, 15 000 ms |
+| 55 s | switches to another tab | nothing, the counter pauses at 15 s |
 | 5 min | comes back | nothing, the 4 min 5 s hidden don't count |
-| 5 min 20 s | clicks a link to `/blog/b` | `user_engagement /blog/a`, 20 000 ms, then `page_view /blog/b`, 1 ms, referrer `https://ferry.vercel.app/blog/a` |
-| 5 min 20.5 s | closes the tab | nothing, only 0.5 s on `/blog/b` |
+| 5 min 20 s | clicks a link to `/blog/b` | `user_engagement /blog/a`, 35 000 ms (15 + 20), then `page_view /blog/b`, 1 ms, referrer `https://ferry.vercel.app/blog/a` |
+| 5 min 50 s | closes the tab | `user_engagement /blog/b`, 30 000 ms |
 
-GA4 adds up 40 + 15 + 20 = 75 s of engagement for `/blog/a`, one view each for `/blog/a` and `/blog/b`, and one
-scrolled user for `/blog/a`.
+GA4 adds up 40 + 35 = 75 s of engagement for `/blog/a` and 30 s for `/blog/b`, one view each, and one scrolled user
+for `/blog/a`.
 
 ### Quick tab switches
 
 | Time | Reader does | Sent |
 |---|---|---|
 | 0 s | opens `/blog/a` | `page_view`, 1 ms |
-| 0.6 s | switches tab | nothing, 0.6 s is under 1 s and is kept |
+| 0.6 s | switches tab | nothing, the counter pauses at 0.6 s |
 | 3 min | comes back | nothing |
 | 3 min 0.6 s | clicks to `/blog/b` | `user_engagement /blog/a`, 1 200 ms (0.6 + 0.6), then `page_view /blog/b` |
 
@@ -227,10 +241,9 @@ Per page view, in function calls:
 
 - 1 for `page_view`
 - 1 for `scroll`, posts only, if the reader reaches the end
-- 1 for `user_engagement` on leaving, if 1 s or more was spent
-- 1 more for each tab hide of 1 s or more of new visible time
+- 1 for `user_engagement` on leaving, if 1 s or more was spent; tab switches add none
 
-So about 2 to 4 calls per post read, 1 to 2 for a bounce.
+So 2 to 3 calls per post read, 1 to 2 for a bounce.
 
 `MIN_ENGAGEMENT_MS` barely changes these numbers. If cost ever matters, the bigger saving is batching: a route change
 sends `user_engagement` for the old page and `page_view` for the new one as two requests, while the Measurement
