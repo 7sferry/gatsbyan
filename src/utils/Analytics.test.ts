@@ -49,6 +49,11 @@ const setHidden = (hidden: boolean) => {
   document.dispatchEvent(new Event("visibilitychange"));
 };
 
+const closePage = () => {
+  setHidden(true);
+  window.dispatchEvent(new Event("pagehide"));
+};
+
 describe("createAnalytics", () => {
   let beacon: Mock<(url: string, data: Blob) => boolean>;
   let windowListeners: Mock<typeof window.addEventListener>;
@@ -183,6 +188,7 @@ describe("createAnalytics", () => {
       at("10:00:00");
       const analytics = await loadPage("/blog/a");
       at("10:00:05");
+      document.title = "Post B | MR Ferry";
 
       await navigate(analytics, "/blog/a", "/blog/b");
 
@@ -193,20 +199,35 @@ describe("createAnalytics", () => {
         "page_view /blog/b",
       ]);
       expect(events[1].engagementMs).toBe(5000);
-      expect(events[1].title).toBeUndefined();
+      expect(events[1].title).toBe("Post A | MR Ferry");
       expect(events[1].referrer).toBeUndefined();
       expect(events[2].engagementMs).toBe(1);
     });
 
-    test("is sent when the tab is hidden", async () => {
+    test("is not sent when the tab is hidden", async () => {
       at("10:00:00");
       await loadPage("/blog/a");
       at("10:00:03");
 
       setHidden(true);
 
+      expect(await sentNames()).toEqual(["page_view /blog/a"]);
+    });
+
+    test("is sent when the page is closed", async () => {
+      at("10:00:00");
+      await loadPage("/blog/a");
+      at("10:00:03");
+
+      closePage();
+
       const [, event] = await sentEvents();
-      expect(event).toMatchObject({ name: "user_engagement", path: "/blog/a", engagementMs: 3000 });
+      expect(event).toMatchObject({
+        name: "user_engagement",
+        path: "/blog/a",
+        title: "Post A | MR Ferry",
+        engagementMs: 3000,
+      });
     });
 
     test("is skipped under one second", async () => {
@@ -216,7 +237,7 @@ describe("createAnalytics", () => {
 
       await navigate(analytics, "/blog/a", "/blog/b");
       at("10:00:01.800");
-      setHidden(true);
+      closePage();
 
       expect(await sentNames()).toEqual(["page_view /blog/a", "page_view /blog/b"]);
     });
@@ -236,7 +257,7 @@ describe("createAnalytics", () => {
       expect(event).toMatchObject({ name: "user_engagement", path: "/blog/a", engagementMs: 1200 });
     });
 
-    test("counts only the visible time since the last event", async () => {
+    test("counts only the visible time", async () => {
       at("10:00:00");
       const analytics = await loadPage("/blog/a");
       at("10:00:05");
@@ -248,7 +269,20 @@ describe("createAnalytics", () => {
       await navigate(analytics, "/blog/a", "/blog/b");
 
       const engagements = (await sentEvents()).filter((event) => event.name === "user_engagement");
-      expect(engagements.map((event) => event.engagementMs)).toEqual([5000, 2000]);
+      expect(engagements.map((event) => event.engagementMs)).toEqual([7000]);
+    });
+
+    test("counts no time after the tab was hidden before closing", async () => {
+      at("10:00:00");
+      await loadPage("/blog/a");
+      at("10:00:04");
+      setHidden(true);
+      at("10:30:00");
+
+      closePage();
+
+      const [, event] = await sentEvents();
+      expect(event).toMatchObject({ name: "user_engagement", engagementMs: 4000 });
     });
 
     test("is not sent for excluded pages", async () => {
@@ -297,7 +331,7 @@ describe("createAnalytics", () => {
       await scrollArticleTo(500);
 
       const [, scroll] = await sentEvents();
-      expect(scroll).toMatchObject({ name: "scroll", engagementMs: 120_000 });
+      expect(scroll).toMatchObject({ name: "scroll", title: "Post A | MR Ferry", engagementMs: 120_000 });
     });
 
     test("ignores the height of the page below the article", async () => {
