@@ -23,12 +23,16 @@ const createPost = (id: string, overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 });
 
-const createProps = (pageContext: Record<string, unknown> = {}, posts = [createPost("a"), createPost("b")]) =>
+const createProps = (
+  pageContext: Record<string, unknown> = {},
+  posts = [createPost("a"), createPost("b")],
+  currentPage = 2
+) =>
   ({
     data: {
       allContentfulBlogPost: {
         nodes: posts,
-        pageInfo: { currentPage: 2, pageCount: 4, hasNextPage: true, hasPreviousPage: true, perPage: 10, itemCount: 2 },
+        pageInfo: { currentPage, pageCount: 4, hasNextPage: true, hasPreviousPage: true, perPage: 10, itemCount: 2 },
       },
     },
     pageContext,
@@ -64,6 +68,19 @@ describe("index template", () => {
     const thumbnails = screen.getAllByRole("img");
     expect(thumbnails.map((image) => image.getAttribute("alt"))).toEqual(["Hero a"]);
     expect(thumbnails[0].getAttribute("data-media")).toBe(ART_DIRECTION_MEDIA.join(","));
+  });
+
+  test("headlines the first home page with the site name", () => {
+    render(<IndexPage {...createProps({}, undefined, 1)} />);
+
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Blog Ferry Suhandri");
+  });
+
+  test("leaves the headline out of later and tag pages", () => {
+    render(<IndexPage {...createProps({ tag: "Java", kebabTag: "java" }, undefined, 1)} />);
+    render(<IndexPage {...createProps()} />);
+
+    expect(screen.queryByRole("heading", { level: 1 })).toBeNull();
   });
 
   test("paginates the home page", () => {

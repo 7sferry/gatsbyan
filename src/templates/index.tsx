@@ -15,6 +15,8 @@ import { IndexContextProp, IndexData, IndexHeroImage, IndexProp } from "../types
 import CommaSeparatedLinkedPostTags from "../components/CommaSeparatedLinkedPostTags";
 import { getPublishDate } from "../utils/DateUtils";
 
+const HOME_TITLE = "Blog Ferry Suhandri";
+
 function IndexPage(props: IndexProp) {
   const { pageContext, data } = props;
   const { allContentfulBlogPost: contents } = data;
@@ -24,6 +26,7 @@ function IndexPage(props: IndexProp) {
 
   return (
     <Layout>
+      {!kebabTag && pageInfo.currentPage === 1 && <h1 className="home-title">{HOME_TITLE}</h1>}
       {kebabTag && (
         <div className="tag-title">
           All posts related to <b>{pageContext.tag}</b>
@@ -173,7 +176,7 @@ export function Head({ location, pageContext }: HeadProps<IndexData, IndexContex
 
 function getTitle(pathname: string, pageContext: IndexContextProp) {
   if (pathname === "/") {
-    return "Blog Ferry Suhandri";
+    return HOME_TITLE;
   }
   const title = pageContext?.tag ? `All posts related to ${pageContext.tag}` : "Blog";
   const page = pageContext?.limit ? pageContext.skip / pageContext.limit + 1 : 1;
