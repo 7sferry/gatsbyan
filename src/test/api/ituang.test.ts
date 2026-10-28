@@ -262,7 +262,8 @@ describe("ituang api", () => {
     const response = await callHandler(createRequest(validEvent));
 
     expect(statusOf(response)).toBe(204);
-    expect(consoleError).toHaveBeenCalledWith("failed to forward analytics event", 500);
+    expect(consoleError).toHaveBeenCalledWith("failed to forward analytics event", 500, JSON.stringify(sentPayload()));
+    expect(JSON.stringify(consoleError.mock.calls)).not.toContain("secret");
     consoleError.mockRestore();
   });
 
