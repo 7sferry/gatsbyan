@@ -98,7 +98,6 @@ export default function Seo({ title, path = "", description, noIndex = false }: 
     url: metadata.siteUrl + "/",
   };
 
-  let name = path?.startsWith("/features") ? `[${metadata.realName}]` : "";
   return (
     <>
       <html lang="id" />
@@ -108,7 +107,7 @@ export default function Seo({ title, path = "", description, noIndex = false }: 
       {path === "/" && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchemaData) }} />
       )}
-      <title>{name ? `${title} ${name}` : title}</title>
+      <title>{title}</title>
       <meta name="description" content={metaDescription} />
       <meta property="og:title" content={title} />
       <meta name="title" content={title} />

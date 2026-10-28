@@ -127,7 +127,7 @@ export default function SeoPost({
       <link rel="canonical" href={metaUrl} />
       <link rel="author" href={metadata.siteUrl + AUTHOR_PAGE} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
-      <title>{`${title} [${metadata.realName}]`}</title>
+      <title>{`${title}`}</title>
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
       <meta name="title" content={title} />

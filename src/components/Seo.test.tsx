@@ -78,7 +78,7 @@ describe("Seo", () => {
   test("adds the author to feature page titles", () => {
     const head = renderHead(<Seo title="Value Averaging Calculator" path="/features/value-averaging-calculator" />);
 
-    expect(head.title).toBe(`Value Averaging Calculator [${realName}]`);
+    expect(head.title).toBe(`Value Averaging Calculator`);
   });
 
   test("shares the site photo on social media", () => {
@@ -118,7 +118,7 @@ describe("SeoPost", () => {
   test("describes the post as an article", () => {
     const head = renderPost();
 
-    expect(head.title).toBe(`Belajar Spring [${realName}]`);
+    expect(head.title).toBe(`Belajar Spring`);
     expect(head.canonical).toBe(`${siteUrl}/blog/belajar-spring`);
     expect(head.meta("description")).toBe("Tulisan tentang Spring");
     expect(head.meta("og:type")).toBe("article");

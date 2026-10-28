@@ -95,7 +95,7 @@ describe("pages", () => {
     test("describes the calculator in the head", () => {
       const head = renderHead(<ValueAveragingHead {...location("/features/value-averaging-calculator")} />);
 
-      expect(head.title).toBe(`Value Averaging Calculator [${siteMetadata.realName}]`);
+      expect(head.title).toBe(`Value Averaging Calculator`);
       expect(head.meta("description")).toBe(
         "Monthly Value Averaging Calculator. Kalkulator untuk menghitung Value Averaging secara bulanan"
       );

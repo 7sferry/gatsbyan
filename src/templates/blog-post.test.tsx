@@ -110,7 +110,7 @@ describe("blog post template", () => {
   test("describes the post in the head", () => {
     const head = renderHead(<Head {...createProps()} />);
 
-    expect(head.title).toBe(`Belajar Spring [${siteMetadata.realName}]`);
+    expect(head.title).toBe(`Belajar Spring`);
     expect(head.canonical).toBe(`${siteMetadata.siteUrl}/blog/belajar-spring`);
     expect(head.meta("description")).toBe("Tulisan tentang Spring");
     expect(head.meta("og:image")).toBe("https://images.ctfassets.net/hero.jpg");
