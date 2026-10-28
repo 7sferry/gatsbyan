@@ -172,6 +172,7 @@ export interface AnalyticsData {
   readonly allPageViews: {
     readonly nodes: Array<{
       path: string;
+      totalCount: number;
     }>;
   };
   readonly allContentfulBlogPost: {

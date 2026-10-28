@@ -27,7 +27,15 @@ const staticQueries = {
   SiteMetadata: { site: { siteMetadata } },
   PhotoBio: { file: { childImageSharp: createImages("ferry") } },
   AllPosts: { allContentfulBlogPost: { nodes: posts } },
-  AnalyticsPageQuery: { allPageViews: { nodes: [{ path: "/blog/c" }, { path: "/" }, { path: "/blog/a" }] } },
+  AnalyticsPageQuery: {
+    allPageViews: {
+      nodes: [
+        { path: "/blog/c", totalCount: 30 },
+        { path: "/", totalCount: 20 },
+        { path: "/blog/a", totalCount: 10 },
+      ],
+    },
+  },
   FeaturedPageQuery: { allContentfulBlogPost: { nodes: [{ slug: "b", title: "Post B" }] } },
   Tags: { allContentfulBlogPost: { tags: ["Java", "Design Pattern"] } },
 };

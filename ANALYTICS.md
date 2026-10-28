@@ -233,6 +233,15 @@ GA4's own engagement settings (Admin → Data streams → Configure tag settings
 10 s) and the session timeout (default 30 min). The first doesn't apply without `session_start`; the second matches
 `SESSION_TIMEOUT_MS`. Enhanced measurement in the same place only affects gtag and has no effect here.
 
+The Measurement Protocol caps every parameter value at 100 characters (500 on GA4 360), where gtag allowed 1000 for
+`page_location`, 420 for `page_referrer` and 300 for `page_title`. GA4 cuts longer values silently. `page_location`
+is the site URL plus the path, so with `https://ferry.vercel.app` (24 characters) a path longer than 76 is cut:
+`/blog/tutorial-menggunakan-twin-gamepad-joystik-terdeteksi-sebagai-xbox-controller` is stored as
+`/blog/tutorial-menggunakan-twin-gamepad-joystik-terdeteksi-sebagai-xbox-cont`. A long post therefore has two rows
+in GA4, the full path from the gtag days and the cut path since. The most viewed sidebar (`MostViewedCounter.tsx`)
+merges them by matching the first 60 characters to a post. The client cuts `page_title` and `page_referrer` to 100
+itself, because `/api/ituang` rejects longer values.
+
 `/api/trending` reads Search Console data through the GA4 link and doesn't depend on these events.
 
 ## Cost
