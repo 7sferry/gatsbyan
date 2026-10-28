@@ -40,7 +40,7 @@ gatsby build ◀──────────── GA4 Data API (scrolledUsers
 | Event | Sent when | Engagement time it carries | Feeds in GA4 |
 |---|---|---|---|
 | `page_view` | every route update to a tracked page | always 1 ms | Views, Users, Active users, page path and title, page referrer, country, device |
-| `scroll` | once per post, on a scroll event, when the end of the article is within 300 px of the bottom of the screen | visible time since the page's last event | Scrolled users → most viewed sidebar |
+| `scroll` | once per post, on a scroll event, when the end of the article is within 300 px of the bottom of the screen and the page has had 5 s of visible time | visible time since the page's last event | Scrolled users → most viewed sidebar |
 | `user_engagement` | leaving a page, if at least 1 s of visible time has built up since the page's last event | that visible time | Average engagement time, User engagement |
 
 GA4 credits engagement time to the page in the event's `page_location`. That is why the time spent on a page is sent
@@ -75,6 +75,7 @@ article.getBoundingClientRect().bottom <= window.innerHeight + ARTICLE_END_TOLER
   article don't change `.content-post`, so they never move the threshold.
 - Checked at most once per animation frame, only on posts, and the listener stops checking once the event was sent.
 - Only from a scroll event: a post that fits on the screen without scrolling sends no `scroll`.
+- Minimum read time: when the end is reached before `MIN_READ_MS` (5 s) of visible time, the event waits for the rest. Time in a hidden tab doesn't count, and the wait is dropped when the reader leaves the page first, so a quick scroll to the bottom sends nothing.
 - Keeps the name `scroll` and `percent_scrolled: 90`, so `scrolledUsers` and the most viewed history continue. Before
   this change gtag sent it at 90% of the whole page including comments; from the deploy on it means the end of the
   article.
@@ -264,6 +265,7 @@ without losing data, at the price of the function accepting a list of events.
 | Constant | File | Value | Effect |
 |---|---|---|---|
 | `ARTICLE_END_TOLERANCE_PX` | `Analytics.tsx` | 300 | how far before the end of the article `scroll` fires |
+| `MIN_READ_MS` | `Analytics.tsx` | 5000 | visible time on the page before `scroll` is sent |
 | `MIN_ENGAGEMENT_MS` | `Analytics.tsx` | 1000 | smallest `user_engagement` sent; filters sub-second noise, a higher value loses short visits for few saved calls |
 | `SESSION_TIMEOUT_MS` | `Analytics.tsx` | 30 min | idle time before a new session id |
 | `MAX_ENGAGEMENT_MS` | `AnalyticsConfig.ts` | 1 h | largest engagement time per event |

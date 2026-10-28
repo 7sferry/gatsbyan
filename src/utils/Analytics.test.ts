@@ -44,6 +44,8 @@ const cookieNames = () =>
 
 const at = (time: string) => setSystemTime(new Date(`2026-10-18T${time}Z`));
 
+const readFor = (ms: number) => setSystemTime(new Date(Date.now() + ms));
+
 const setHidden = (hidden: boolean) => {
   setProperty(document, "hidden", hidden);
   document.dispatchEvent(new Event("visibilitychange"));
@@ -303,6 +305,7 @@ describe("createAnalytics", () => {
   describe("article end scroll", () => {
     test("is sent once when the end of the article is within 300px of the viewport", async () => {
       await loadPage("/blog/a");
+      readFor(5000);
 
       await scrollArticleTo(3000);
       await scrollArticleTo(1069);
@@ -314,9 +317,11 @@ describe("createAnalytics", () => {
 
     test("is sent again for the next post", async () => {
       const analytics = await loadPage("/blog/a");
+      readFor(5000);
       await scrollArticleTo(500);
 
       await navigate(analytics, "/blog/a", "/blog/b");
+      readFor(5000);
       await scrollArticleTo(500);
 
       const scrolls = (await sentEvents()).filter((event) => event.name === "scroll");
@@ -337,11 +342,86 @@ describe("createAnalytics", () => {
     test("ignores the height of the page below the article", async () => {
       setProperty(document.documentElement, "scrollHeight", 20_000);
       await loadPage("/blog/a");
+      readFor(5000);
 
       await scrollArticleTo(700);
 
       expect(await sentNames()).toContain("scroll /blog/a");
       delete (document.documentElement as unknown as Record<string, unknown>).scrollHeight;
+    });
+
+    describe("minimum read time", () => {
+      let timers: Array<{ callback: () => void; delay: number }>;
+      let setTimeoutSpy: Mock<typeof setTimeout>;
+      const realSetTimeout = globalThis.setTimeout;
+
+      beforeEach(() => {
+        timers = [];
+        setTimeoutSpy = spyOn(globalThis, "setTimeout").mockImplementation(((callback: () => void, delay?: number) => {
+          if ((delay ?? 0) >= 1000) {
+            timers.push({ callback, delay: delay ?? 0 });
+            return 0;
+          }
+          return realSetTimeout(callback, delay);
+        }) as unknown as typeof setTimeout);
+      });
+
+      afterEach(() => {
+        setTimeoutSpy.mockRestore();
+      });
+
+      const runTimer = () => timers.pop()!.callback();
+
+      test("waits for the rest of 5 s when the end is reached early", async () => {
+        at("10:00:00");
+        await loadPage("/blog/a");
+        at("10:00:02");
+
+        await scrollArticleTo(500);
+
+        expect(await sentNames()).toEqual(["page_view /blog/a"]);
+        expect(timers.map((timer) => timer.delay)).toEqual([3000]);
+
+        at("10:00:05");
+        runTimer();
+
+        const [, scroll] = await sentEvents();
+        expect(scroll).toMatchObject({ name: "scroll", path: "/blog/a", engagementMs: 5000 });
+      });
+
+      test("is not sent when the reader leaves before 5 s", async () => {
+        at("10:00:00");
+        const analytics = await loadPage("/blog/a");
+        at("10:00:02");
+        await scrollArticleTo(500);
+
+        await navigate(analytics, "/blog/a", "/tags/java");
+        at("10:00:05");
+        runTimer();
+
+        expect((await sentNames()).filter((name) => name.startsWith("scroll"))).toEqual([]);
+      });
+
+      test("does not count time in a hidden tab", async () => {
+        at("10:00:00");
+        await loadPage("/blog/a");
+        at("10:00:02");
+        await scrollArticleTo(500);
+
+        setHidden(true);
+        at("10:01:00");
+        runTimer();
+        expect((await sentNames()).filter((name) => name.startsWith("scroll"))).toEqual([]);
+
+        setHidden(false);
+        expect(timers.map((timer) => timer.delay)).toEqual([3000]);
+        at("10:01:03");
+        runTimer();
+
+        const scrolls = (await sentEvents()).filter((event) => event.name === "scroll");
+        expect(scrolls).toHaveLength(1);
+        expect(scrolls[0].engagementMs).toBe(5000);
+      });
     });
 
     test("is not sent without a scroll event", async () => {

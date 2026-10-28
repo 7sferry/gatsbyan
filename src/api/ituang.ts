@@ -169,10 +169,10 @@ async function forward(payload: ReturnType<typeof buildPayload>, measurementId: 
       body: JSON.stringify(payload),
     });
     if (!response.ok) {
-      console.error("failed to forward analytics event", response.status);
+      console.error("failed to forward analytics event", response.status, JSON.stringify(payload));
     }
   } catch (error) {
-    console.error("failed to forward analytics event", error);
+    console.error("failed to forward analytics event", error, JSON.stringify(payload));
   }
 }
 

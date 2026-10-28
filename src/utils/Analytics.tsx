@@ -45,6 +45,7 @@ interface TrackedPage {
   readonly path: string;
   readonly isPost: boolean;
   title?: string;
+  endReached: boolean;
   scrolled: boolean;
 }
 
@@ -58,6 +59,7 @@ const MIN_ENGAGEMENT_MS = 1000;
 const POST_PATH_PREFIX = "/blog/";
 const ARTICLE_SELECTOR = ".content-post";
 const ARTICLE_END_TOLERANCE_PX = 300;
+const MIN_READ_MS = 5000;
 const GA_COOKIE = "_ga";
 const GA_COOKIE_PATTERN = /^GA1\.\d+\.(.+)$/;
 
@@ -162,6 +164,7 @@ export function createAnalytics(): Analytics {
   let store: IdStore = navigator.globalPrivacyControl === true ? memoryStore() : localStore;
   let page: TrackedPage | null = null;
   let scrollFrame = 0;
+  let readTimer: ReturnType<typeof setTimeout> | undefined;
   let engagedMs = 0;
   let visibleSince: number | null = document.hidden ? null : Date.now();
 
@@ -216,15 +219,36 @@ export function createAnalytics(): Analytics {
     }
   };
 
+  const cancelReadTimer = () => {
+    if (readTimer !== undefined) {
+      clearTimeout(readTimer);
+      readTimer = undefined;
+    }
+  };
+
+  const sendScrollWhenRead = () => {
+    cancelReadTimer();
+    if (!page?.endReached || page.scrolled || document.hidden) {
+      return;
+    }
+    const remaining = MIN_READ_MS - engagedTime();
+    if (remaining > 0) {
+      readTimer = setTimeout(sendScrollWhenRead, remaining);
+      return;
+    }
+    page.scrolled = true;
+    deliver("scroll", page, takeEngagement());
+  };
+
   const checkScroll = () => {
     scrollFrame = 0;
-    if (!page?.isPost || page.scrolled) {
+    if (!page?.isPost || page.endReached) {
       return;
     }
     const article = document.querySelector(ARTICLE_SELECTOR);
     if (article && article.getBoundingClientRect().bottom <= window.innerHeight + ARTICLE_END_TOLERANCE_PX) {
-      page.scrolled = true;
-      deliver("scroll", page, takeEngagement());
+      page.endReached = true;
+      sendScrollWhenRead();
     }
   };
 
@@ -234,6 +258,7 @@ export function createAnalytics(): Analytics {
     } else {
       visibleSince = Date.now();
     }
+    sendScrollWhenRead();
   });
 
   window.addEventListener("pagehide", () => {
@@ -244,7 +269,7 @@ export function createAnalytics(): Analytics {
   window.addEventListener(
     "scroll",
     () => {
-      if (!scrollFrame && page?.isPost && !page.scrolled) {
+      if (!scrollFrame && page?.isPost && !page.endReached) {
         scrollFrame = requestAnimationFrame(checkScroll);
       }
     },
@@ -253,10 +278,13 @@ export function createAnalytics(): Analytics {
 
   return {
     onRouteUpdate(location, prevLocation) {
+      cancelReadTimer();
       sendEngagement();
       resetEngagement();
       const path = location.pathname;
-      page = isExcluded(path) ? null : { path, isPost: path.startsWith(POST_PATH_PREFIX), scrolled: false };
+      page = isExcluded(path)
+        ? null
+        : { path, isPost: path.startsWith(POST_PATH_PREFIX), endReached: false, scrolled: false };
       if (page === null) {
         return;
       }
