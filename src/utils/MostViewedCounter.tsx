@@ -7,17 +7,17 @@ import { AnalyticsData, MostViewedNode } from "../types/DataTypes.ts";
 import { graphql, useStaticQuery } from "gatsby";
 
 const MOST_VIEWED_COUNT = 5;
-const CUT_PATH_LENGTH = 60;
+const MIN_CUT_PATH_LENGTH = 60;
 
-const cutPath = (path: string) => path.slice(0, CUT_PATH_LENGTH);
-
-function postPathByCutPath(titleByPath: Map<string, string>) {
-  const postPaths = new Map<string, string | undefined>();
-  for (const path of titleByPath.keys()) {
-    const cut = cutPath(path);
-    postPaths.set(cut, postPaths.has(cut) ? undefined : path);
+function postPathOf(path: string, titleByPath: Map<string, string>, postPaths: string[]) {
+  if (titleByPath.has(path)) {
+    return path;
   }
-  return postPaths;
+  if (path.length < MIN_CUT_PATH_LENGTH) {
+    return undefined;
+  }
+  const matches = postPaths.filter((postPath) => postPath.startsWith(path));
+  return matches.length === 1 ? matches[0] : undefined;
 }
 
 export function fetchMostViewed(titleByPath: Map<string, string>): MostViewedNode[] | undefined {
@@ -36,10 +36,10 @@ export function fetchMostViewed(titleByPath: Map<string, string>): MostViewedNod
   if (!nodes) {
     return undefined;
   }
-  const postPaths = postPathByCutPath(titleByPath);
+  const postPaths = [...titleByPath.keys()];
   const countByPath = new Map<string, number>();
   for (const node of nodes) {
-    const path = node && (titleByPath.has(node.path) ? node.path : postPaths.get(cutPath(node.path)));
+    const path = node && postPathOf(node.path, titleByPath, postPaths);
     if (path) {
       countByPath.set(path, (countByPath.get(path) ?? 0) + node.totalCount);
     }

@@ -239,7 +239,7 @@ is the site URL plus the path, so with `https://ferry.vercel.app` (24 characters
 `/blog/tutorial-menggunakan-twin-gamepad-joystik-terdeteksi-sebagai-xbox-controller` is stored as
 `/blog/tutorial-menggunakan-twin-gamepad-joystik-terdeteksi-sebagai-xbox-cont`. A long post therefore has two rows
 in GA4, the full path from the gtag days and the cut path since. The most viewed sidebar (`MostViewedCounter.tsx`)
-merges them by matching the first 60 characters to a post. The client cuts `page_title` and `page_referrer` to 100
+merges them: a row of at least 60 characters counts for the single post whose path starts with it. The client cuts `page_title` and `page_referrer` to 100
 itself, because `/api/ituang` rejects longer values.
 
 `/api/trending` reads Search Console data through the GA4 link and doesn't depend on these events.

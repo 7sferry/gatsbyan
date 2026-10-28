@@ -53,7 +53,7 @@ describe("fetchMostViewed", () => {
     ]);
   });
 
-  test("drops a cut path shared by two posts but keeps their exact paths", () => {
+  test("drops a cut path that starts two post paths but keeps their exact paths", () => {
     const otherLongPath = `${cutLongPath}roller-wireless`;
     mockPageViews([
       { path: cutLongPath, totalCount: 90 },
@@ -69,6 +69,38 @@ describe("fetchMostViewed", () => {
       { path: longPath, title: "Long Post" },
       { path: otherLongPath, title: "Other Long Post" },
     ]);
+  });
+
+  test("matches cut paths of posts that differ after the first 60 characters", () => {
+    const sharedStart = "/blog/".padEnd(70, "x");
+    const firstPath = `${sharedStart}a-first-post-with-a-long-tail`;
+    const secondPath = `${sharedStart}b-second-post-with-a-long-tail`;
+    mockPageViews([
+      { path: firstPath.slice(0, 76), totalCount: 20 },
+      { path: secondPath.slice(0, 76), totalCount: 10 },
+    ]);
+    const titleByPath = new Map([
+      [firstPath, "First Post"],
+      [secondPath, "Second Post"],
+    ]);
+
+    expect(fetchMostViewed(titleByPath)).toEqual([
+      { path: firstPath, title: "First Post" },
+      { path: secondPath, title: "Second Post" },
+    ]);
+  });
+
+  test("drops a path shorter than 60 characters that starts a post path", () => {
+    mockPageViews([
+      { path: longPath.slice(0, 59), totalCount: 20 },
+      { path: "/blog/a", totalCount: 10 },
+    ]);
+    const titleByPath = new Map([
+      [longPath, "Long Post"],
+      ["/blog/abc", "Post ABC"],
+    ]);
+
+    expect(fetchMostViewed(titleByPath)).toEqual([]);
   });
 
   test("returns at most five posts", () => {

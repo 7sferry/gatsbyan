@@ -85,7 +85,7 @@ Templates receive context from gatsby-node (skip, limit, tag, kebabTag, slug) an
 `src/utils/` contains `useStaticQuery` wrappers:
 - **AllPostFetcher.tsx** — map of post path to title
 - **FeaturedPageFetcher.tsx** — featured posts from a hardcoded slug list
-- **MostViewedCounter.tsx** — top 5 posts from `allPageViews` (GA4 data, sourced at build time). GA4 cuts long paths (see Server-side tracking), so a row that isn't a post path is matched to the post sharing its first 60 characters, and the counts are summed per post. A row whose 60 characters fit two posts is dropped.
+- **MostViewedCounter.tsx** — top 5 posts from `allPageViews` (GA4 data, sourced at build time). GA4 cuts long paths (see Server-side tracking), so a row of at least 60 characters that isn't a post path counts for the single post whose path starts with it, and the counts are summed per post. A row that starts two post paths, or none, is dropped.
 - **GetArchiveQuery.tsx**, **GetTagsQuery.tsx** — archive and tag data
 
 **TopTrendingFetcher.tsx** is different: it fetches `/api/trending` in the browser, once per full page load. Client-side navigation reuses the result; a failed request is retried on the next page.
