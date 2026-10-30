@@ -10,6 +10,11 @@ import type { GatsbyBrowser } from "gatsby";
 import { Sign } from "./src/utils/Sign.tsx";
 import { ImageZoom } from "./src/components/ImageZoom.tsx";
 import { trackRouteUpdate } from "./src/utils/Analytics.tsx";
+import { ExternalLinks } from "./src/utils/ExternalLinks.ts";
+
+export const onClientEntry: GatsbyBrowser["onClientEntry"] = () => {
+  ExternalLinks();
+};
 
 export const onRouteUpdate: GatsbyBrowser["onRouteUpdate"] = ({ location, prevLocation }) => {
   trackRouteUpdate(location, prevLocation);
