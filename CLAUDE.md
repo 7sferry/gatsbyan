@@ -136,7 +136,7 @@ Bootstrap 5 base with custom CSS files co-located in `src/components/` and `src/
 
 ### TypeScript
 
-All types are centralized in `src/types/DataTypes.ts`. Config files (gatsby-config, gatsby-node, gatsby-browser, gatsby-ssr) are all TypeScript. `gatsby-browser.tsx` wires image zoom and Prism copy buttons on route updates.
+All types are centralized in `src/types/DataTypes.ts`. Config files (gatsby-config, gatsby-node, gatsby-browser, gatsby-ssr) are all TypeScript. `gatsby-browser.tsx` wires image zoom and Prism copy buttons on route updates, and on client entry a document click listener (`src/utils/ExternalLinks.ts`) that gives clicked `http(s)` links to another origin `target="_blank"` and `rel="noopener noreferrer"`. Links with their own `target` are left alone.
 
 ## Environment Variables
 
