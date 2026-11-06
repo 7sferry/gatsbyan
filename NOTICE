@@ -1,0 +1,18 @@
+Gatsbyan
+Copyright (c) 2021 Ferry Suhandri
+
+This product is licensed under the MIT License (see LICENSE).
+
+This product includes software developed by third parties, each distributed
+under its own license. The main ones are listed below; the full list with
+license texts is in node_modules after installation.
+
+- Gatsby and its plugins (gatsby-*) - MIT - https://github.com/gatsbyjs/gatsby
+- React and React DOM - MIT - https://github.com/facebook/react
+- Bootstrap - MIT - https://github.com/twbs/bootstrap
+- Prism.js - MIT - https://github.com/PrismJS/prism
+- Algolia (algoliasearch, react-instantsearch) - MIT - https://github.com/algolia
+- minimatch - ISC - https://github.com/isaacs/minimatch
+
+Third-party names and trademarks (Gatsby, Contentful, Algolia, Google
+Analytics, Vercel, GitHub) belong to their respective owners.
