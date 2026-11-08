@@ -98,8 +98,7 @@
     "gatsby-telemetry",
     "lmdb",
     "msgpackr-extract",
-    "patch-package",
-    "sharp"
+    "patch-package"
   ],
   "patchedDependencies": {}
 }
