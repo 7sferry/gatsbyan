@@ -51,7 +51,6 @@
   },
   "trustedDependencies": [
     "lmdb",
-    "sharp",
     "gatsby",
     "contentful",
     "core-js-pure",
